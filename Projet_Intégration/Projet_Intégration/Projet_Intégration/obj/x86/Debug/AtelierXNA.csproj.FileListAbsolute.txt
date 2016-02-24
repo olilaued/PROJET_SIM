@@ -1,0 +1,3 @@
+C:\Users\201471821\Documents\GitHub\Projet_Integration\Projet_Intégration\Projet_Intégration\Projet_Intégration\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\201471821\Documents\GitHub\Projet_Integration\Projet_Intégration\Projet_Intégration\Projet_Intégration\obj\x86\Debug\Projet_Intégration.exe
+C:\Users\201471821\Documents\GitHub\Projet_Integration\Projet_Intégration\Projet_Intégration\Projet_Intégration\obj\x86\Debug\Projet_Intégration.pdb
