@@ -45,7 +45,7 @@ namespace AtelierXNA
         {
             // TODO: Add your initialization logic here
             Vector3 positionCaméra = Vector3.Zero;
-            Vector3 positionObjet = new Vector3(0, 0, -8);
+            Vector3 positionObjet = new Vector3(0, 0, 0);
             Vector3 rotationObjet = new Vector3(0, 0, 0);
 
             GestionnaireDeFonts = new RessourcesManager<SpriteFont>(this, "Fonts");
@@ -53,11 +53,16 @@ namespace AtelierXNA
             GestionnaireDeModèles = new RessourcesManager<Model>(this, "Models");
             GestionnaireDeShaders = new RessourcesManager<Effect>(this, "Effects");
             GestionInput = new InputManager(this);
-            CaméraJeu = new CaméraSubjective(this, positionCaméra, positionObjet, Vector3.Up, INTERVALLE_MAJ_STANDARD);
+            CaméraJeu = new CaméraSubjective(this, new Vector3(0,0,8), positionObjet, Vector3.Up, INTERVALLE_MAJ_STANDARD);
             ObjetDeBase pion = new ObjetDeBase(this, "White/white_pawn", 0.05f, rotationObjet,positionObjet);
+           // Cases uneCase = new Cases(this, 1f, Vector3.Zero, positionObjet, Color.HotPink, Color.WhiteSmoke,new Vector3(2, 0.3f, 2), INTERVALLE_MAJ_STANDARD);
+            Echiquier unEchiquier = new Echiquier(this,new Vector3(-8,-2,8), new Vector2(16, 0.3f), Color.MediumSeaGreen,Color.BurlyWood, Color.Blue);
+            Components.Add(unEchiquier);
            
             Components.Add(CaméraJeu);
             Components.Add(pion);
+            
+            
             
             Components.Add(new Afficheur3D(this));
             Components.Add(GestionInput);

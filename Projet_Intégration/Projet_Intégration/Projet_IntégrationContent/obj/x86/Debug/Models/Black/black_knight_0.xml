@@ -3,7 +3,7 @@
   <Asset Type="Graphics:NodeContent">
     <Name>Model</Name>
     <Identity>
-      <SourceFilename>C:\Users\201471429\Documents\GitHub\Projet_Integration\Projet_Intégration\Projet_Intégration\Projet_IntégrationContent\Models\Black\black_knight.fbx</SourceFilename>
+      <SourceFilename>C:\Users\201471429\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_IntégrationContent\Models\Black\black_knight.fbx</SourceFilename>
       <SourceTool>FbxImporter</SourceTool>
     </Identity>
     <Transform>1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</Transform>
@@ -33,7 +33,7 @@
     <Resource ID="#Resource1" Type="Graphics:BasicMaterialContent">
       <Name>Granite</Name>
       <Identity>
-        <SourceFilename>C:\Users\201471429\Documents\GitHub\Projet_Integration\Projet_Intégration\Projet_Intégration\Projet_IntégrationContent\Models\Black\black_knight.fbx</SourceFilename>
+        <SourceFilename>C:\Users\201471429\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_IntégrationContent\Models\Black\black_knight.fbx</SourceFilename>
         <SourceTool>FbxImporter</SourceTool>
       </Identity>
       <OpaqueData>
