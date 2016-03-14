@@ -27,6 +27,8 @@ namespace AtelierXNA
         RessourcesManager<Effect> GestionnaireDeShaders { get; set; }
         InputManager GestionInput { get; set; }
         Caméra CaméraJeu { get; set; }
+
+       
         
 
         public Jeu()
@@ -43,10 +45,12 @@ namespace AtelierXNA
         /// </summary>
         protected override void Initialize()
         {
+            
             // TODO: Add your initialization logic here
             Vector3 positionCaméra = Vector3.Zero;
             Vector3 positionObjet = new Vector3(0, 0, 0);
             Vector3 rotationObjet = new Vector3(0, 0, 0);
+            
 
             GestionnaireDeFonts = new RessourcesManager<SpriteFont>(this, "Fonts");
             GestionnaireDeTextures = new RessourcesManager<Texture2D>(this, "Textures");
@@ -54,12 +58,14 @@ namespace AtelierXNA
             GestionnaireDeShaders = new RessourcesManager<Effect>(this, "Effects");
             GestionInput = new InputManager(this);
             CaméraJeu = new CaméraSubjective(this, new Vector3(0,0,8), positionObjet, Vector3.Up, INTERVALLE_MAJ_STANDARD);
-            ObjetDeBase pion = new ObjetDeBase(this, "White/white_pawn", 0.05f, rotationObjet,positionObjet);
+            
            // Cases uneCase = new Cases(this, 1f, Vector3.Zero, positionObjet, Color.HotPink, Color.WhiteSmoke,new Vector3(2, 0.3f, 2), INTERVALLE_MAJ_STANDARD);
-            Echiquier unEchiquier = new Echiquier(this,new Vector3(-8,-2,8), new Vector2(16, 0.3f), Color.MediumSeaGreen,Color.BurlyWood, Color.Blue);
+            Echiquier unEchiquier = new Echiquier(this, new Vector3(0, 0, 0), new Vector2(16, 0.3f), Color.MediumSeaGreen, Color.BurlyWood, Color.Blue);
             Components.Add(unEchiquier);
            
             Components.Add(CaméraJeu);
+
+            ObjetDeBase pion = new ObjetDeBase(this, "Black/black_pawn", 0.05f, rotationObjet,unEchiquier.ListeCases[15].Centre);
             Components.Add(pion);
             
             
@@ -113,6 +119,7 @@ namespace AtelierXNA
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+          
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();

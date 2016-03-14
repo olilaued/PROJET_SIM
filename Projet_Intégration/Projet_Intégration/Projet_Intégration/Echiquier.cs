@@ -22,12 +22,16 @@ namespace AtelierXNA
         Vector3 Origine { get; set; }
         Vector2 Delta { get; set; }
         List<string> Styles { get; set; }
-        List<Cases> ListeCases { get; set; }
+         
 
         Color CouleurA { get; set; }
         Color CouleurB { get; set; }
         Color CouleurContour { get; set; }
-        int Variation = 0;
+
+         public List<Cases> ListeCases { get; set; }
+
+        Vector3 position { get; set; }
+        float Variation = 0;
 
         Cases uneCase { get; set; }
         public Echiquier(Game game,Vector3 origine,Vector2 dimensions,Color couleurA, Color couleurB ,Color couleurContour)
@@ -39,8 +43,10 @@ namespace AtelierXNA
             CouleurB = couleurB;
             CouleurContour = couleurContour;
             Delta = new Vector2(Dimensions.X / 8, Dimensions.Y);
-            
+            ListeCases = new List<Cases>();
 
+
+            CréerCases();
             // TODO: Construct any child components here
         }
 
@@ -50,8 +56,8 @@ namespace AtelierXNA
         /// </summary>
         public override void Initialize()
         {
-            ListeCases = new List<Cases>();
-            CréerCases();
+           
+          
             // TODO: Add your initialization code here
             
             base.Initialize();
@@ -70,11 +76,15 @@ namespace AtelierXNA
 
         public void CréerCases()
         {
-            for (float x = Origine.X; x < Origine.X + Dimensions.X; x += Delta.X)
+            float a = Origine.X;
+            float b = Origine.Z;
+            for (float x = 0; x < 8; x ++)
+
             {
-                for (float y = Origine.Y; y < Origine.Y+ Dimensions.X; y += Delta.X)
+
+                for (float z =0; z < 8; z ++)
                 {
-                    Vector3 position = new Vector3(x,Origine.Y, y);
+                     position = new Vector3(a,Origine.Y, b);
                     if (Variation % 2 == 0)
                     {
                         uneCase = new Cases(this.Game, 1f, Vector3.Zero, position, CouleurA, Color.WhiteSmoke, new Vector3(2, 0.3f, 2), 1f / 60f);
@@ -87,11 +97,20 @@ namespace AtelierXNA
                     this.Game.Components.Add(uneCase);
                     ListeCases.Add(uneCase);
                     Variation++;
-                }
+                    b += Delta.X;
+                } 
+                //position = new Vector3(a, Origine.Y, b);
+                b = Origine.Z;
+                a += Delta.X;
+
+                
+               
                 Variation += 1;
+               
                 
 
             }
+            
             
 
         }

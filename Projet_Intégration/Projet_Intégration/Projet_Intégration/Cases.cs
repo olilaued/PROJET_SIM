@@ -21,9 +21,11 @@ namespace AtelierXNA
         Vector3 Delta { get; set; }
         
         Vector3 Origine { get; set; }
+
+        public Vector3 Centre { get; set; }
         Texture3D Texture { get; set; }
         Color CouleurContour { get; set; }
-        Vector3 Centre { get; set; }
+        
         String NomPropriétaire { get; set; }
         Boolean EstUtilisé { get; set; }
 
@@ -54,7 +56,8 @@ namespace AtelierXNA
             CouleurContour = couleurContour;
             Dimension = dimension;
             Delta = new Vector3(Dimension.X, Dimension.Y, Dimension.Z);
-            Origine = new Vector3(-Delta.X / 2, Delta.Y / 2, Delta.Z / 2);
+            //Origine = new Vector3(Origine.X , - Delta.Y ,  Delta.Z );
+            Centre = new Vector3(positionInitiale.X + Delta.X / 2, positionInitiale.Y+0.01f, positionInitiale.Z - Delta.Z / 2);
         }
 
         /// <summary>
@@ -90,6 +93,8 @@ namespace AtelierXNA
             Vector3 Pos4 = new Vector3(Origine.X + Delta.X, Origine.Y - Delta.Y, Origine.Z - Delta.Z);
             Vector3 Pos5 = new Vector3(Origine.X, Origine.Y, Origine.Z - Delta.Z);
             Vector3 Pos6 = new Vector3(Origine.X + Delta.X, Origine.Y, Origine.Z - Delta.Z);
+
+            
            
             
             //SOMMETS AVANT
