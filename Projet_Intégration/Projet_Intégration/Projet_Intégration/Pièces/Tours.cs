@@ -33,7 +33,7 @@ namespace AtelierXNA
 
             base.Initialize();
         }
-        public override bool LogiqueDéplacement(Vector2 déplacement)
+        public  bool LogiqueDéplacement(Vector2 déplacement)
         {
             bool condition = false;
             

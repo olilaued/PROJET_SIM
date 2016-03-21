@@ -27,7 +27,7 @@ namespace AtelierXNA
 
          protected const int LARGEUR_CASES = 2;
          
-         public bool LogiqueDéplacement(Vector2 déplacement)
+          bool LogiqueDéplacement(Vector2 déplacement)
          {
              
              return true;

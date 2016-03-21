@@ -38,7 +38,7 @@ namespace AtelierXNA
 
             base.Initialize();
         }
-        public override bool LogiqueDéplacement(Vector2 déplacement)
+        public  bool LogiqueDéplacement(Vector2 déplacement)
         {
             return (déplacement.Y == LARGEUR_CASES && déplacement.X == 0);
             
