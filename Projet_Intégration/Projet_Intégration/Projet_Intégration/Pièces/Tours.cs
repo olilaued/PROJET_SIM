@@ -10,15 +10,15 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 
 
-namespace Projet_Intégration
+namespace AtelierXNA
 {
     /// <summary>
     /// This is a game component that implements IUpdateable.
     /// </summary>
-    public class Tours : Microsoft.Xna.Framework.DrawableGameComponent
+    public class Tours : Pieces
     {
-        public Tours(Game game)
-            : base(game)
+     public Tours(Game game,Vector3 positioninitiale,string couleur)
+            : base(game,positioninitiale,couleur,"/rook")
         {
             // TODO: Construct any child components here
         }

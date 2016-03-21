@@ -10,15 +10,15 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 
 
-namespace Projet_Intégration
+namespace AtelierXNA
 {
     /// <summary>
     /// This is a game component that implements IUpdateable.
     /// </summary>
-    public class Fous : Microsoft.Xna.Framework.GameComponent
+    public class Fous : Pieces
     {
-        public Fous(Game game)
-            : base(game)
+       public Fous(Game game,Vector3 positioninitiale,string couleur)
+            : base(game,positioninitiale,couleur,"/bishop")
         {
             // TODO: Construct any child components here
         }

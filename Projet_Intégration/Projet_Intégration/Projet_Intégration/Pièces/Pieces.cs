@@ -20,7 +20,7 @@ namespace AtelierXNA
          String Nom { get; set; }
          Model Modèle3D { get; set; }
          string Couleur { get; set; }
-         Vector2 Position { get; set; }
+         Vector3 Position { get; set; }
          int Scale { get; set; }
          char Lettre { get; set; }
          Rectangle HitBox { get; set; }
@@ -30,9 +30,13 @@ namespace AtelierXNA
              return true;
          }
 
-        public Pieces(Game game)
+        public Pieces(Game game,Vector3 positioninitiale,string couleur,string nomModèle)
             : base(game)
         {
+            Nom = nomModèle;
+            Couleur = couleur;
+            Position = positioninitiale;
+            this.Game.Components.Add(new ObjetDeBase(this.Game, Couleur + Nom, 0.05f,Vector3.Zero, Position));
             // TODO: Construct any child components here
         }
 
@@ -42,6 +46,7 @@ namespace AtelierXNA
         /// </summary>
         public override void Initialize()
         {
+            
             // TODO: Add your initialization code here
 
             base.Initialize();

@@ -15,11 +15,15 @@ namespace AtelierXNA
     /// <summary>
     /// This is a game component that implements IUpdateable.
     /// </summary>
-    public class Pions : Microsoft.Xna.Framework.DrawableGameComponent
+    public class Pions : Pieces
     {
-        public Pions(Game game)
-            : base(game)
+     
+        public Pions(Game game,Vector3 positioninitiale,string couleur)
+            : base(game,positioninitiale,couleur,"/pawn")
         {
+            
+
+            
             // TODO: Construct any child components here
         }
 
@@ -29,6 +33,7 @@ namespace AtelierXNA
         /// </summary>
         public override void Initialize()
         {
+            
             // TODO: Add your initialization code here
 
             base.Initialize();

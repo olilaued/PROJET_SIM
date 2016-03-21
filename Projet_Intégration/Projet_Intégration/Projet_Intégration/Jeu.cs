@@ -28,6 +28,8 @@ namespace AtelierXNA
         InputManager GestionInput { get; set; }
         Caméra CaméraJeu { get; set; }
 
+        public List<Pieces> ListePièces { get; set; }
+
        
         
 
@@ -45,11 +47,13 @@ namespace AtelierXNA
         /// </summary>
         protected override void Initialize()
         {
+            ListePièces = new List<Pieces>();
             
             // TODO: Add your initialization logic here
             Vector3 positionCaméra = Vector3.Zero;
             Vector3 positionObjet = new Vector3(0, 0, 0);
             Vector3 rotationObjet = new Vector3(0, 0, 0);
+            
             
 
             GestionnaireDeFonts = new RessourcesManager<SpriteFont>(this, "Fonts");
@@ -60,13 +64,19 @@ namespace AtelierXNA
             CaméraJeu = new CaméraSubjective(this, new Vector3(0,0,8), positionObjet, Vector3.Up, INTERVALLE_MAJ_STANDARD);
             
            // Cases uneCase = new Cases(this, 1f, Vector3.Zero, positionObjet, Color.HotPink, Color.WhiteSmoke,new Vector3(2, 0.3f, 2), INTERVALLE_MAJ_STANDARD);
-            Echiquier unEchiquier = new Echiquier(this, new Vector3(0, 0, 0), new Vector2(16, 0.3f), Color.MediumSeaGreen, Color.BurlyWood, Color.Blue);
+            Echiquier unEchiquier = new Echiquier(this, new Vector3(0, 0, 0), new Vector2(16, 0.3f), Color.BurlyWood,Color.MediumSeaGreen, Color.Blue);
             Components.Add(unEchiquier);
            
             Components.Add(CaméraJeu);
 
-            ObjetDeBase pion = new ObjetDeBase(this, "Black/black_pawn", 0.05f, rotationObjet,unEchiquier.ListeCases[15].Centre);
-            Components.Add(pion);
+            //ObjetDeBase pion = new ObjetDeBase(this, "Black/pawn", 0.05f, rotationObjet,unEchiquier.ListeCases[15].Centre);
+            //Components.Add(pion);
+            InitialiserPièces(unEchiquier);
+          
+            //Pions pion1 = new Pions(this, unEchiquier.ListeCases[1].Centre, "Black");
+            //Pions pion2 = new Pions(this, unEchiquier.ListeCases[9].Centre, "Black");
+            //Pions pion3 = new Pions(this, unEchiquier.ListeCases[17].Centre, "Black");
+
             
             
             
@@ -88,6 +98,73 @@ namespace AtelierXNA
             Services.AddService(typeof(SpriteBatch), GestionSprites);
             base.Initialize();
             
+        }
+        void InitialiserPièces(Echiquier unEchiquier)
+        {
+            for (int i = 0; i < 8; i++)
+            {
+                Pions pionB = new Pions(this, unEchiquier.ListeCases[1 + 8 * i].Centre, "Black");
+                ListePièces.Add(pionB);
+                Pions pionW = new Pions(this, unEchiquier.ListeCases[(1 + 8 * i)+5].Centre, "White");
+                ListePièces.Add(pionW);
+
+            }
+            for (int i = 0; i < 2; i++)
+            {
+                //CRÉATION TOURS
+                Tours tourB = new Tours(this, unEchiquier.ListeCases[0 + 56 * i].Centre, "Black");
+                ListePièces.Add(tourB);
+                Tours tourW = new Tours(this,unEchiquier.ListeCases[(0+56*i)+7].Centre,"White");
+                ListePièces.Add(tourW);
+
+                //CRÉATION CAVALIERS
+                Cavaliers cavalierB = new Cavaliers(this, unEchiquier.ListeCases[8 + 40 * i].Centre, "Black");
+                ListePièces.Add(cavalierB);
+                Cavaliers cavalierW = new Cavaliers(this, unEchiquier.ListeCases[(8 + 40 * i)+7].Centre, "White");
+                ListePièces.Add(cavalierW);
+
+                //CRÉATION FOUS
+                Fous fouB = new Fous(this, unEchiquier.ListeCases[16 + 24 * i].Centre, "Black");
+                ListePièces.Add(fouB);
+                Fous fouW = new Fous(this, unEchiquier.ListeCases[(16 + 24 * i)+7].Centre, "White");
+                ListePièces.Add(fouW);
+                
+                //CRÉATION REINES
+                Reine reineB = new Reine(this, unEchiquier.ListeCases[24].Centre, "Black");
+                ListePièces.Add(reineB);
+                Reine reineW = new Reine(this, unEchiquier.ListeCases[24+7].Centre, "White");
+                ListePièces.Add(reineW);
+                
+                //CRÉATION ROI
+                Roi roiB = new Roi(this, unEchiquier.ListeCases[32].Centre, "Black");
+                ListePièces.Add(roiB);
+                Roi roiW = new Roi(this, unEchiquier.ListeCases[32+7].Centre, "White");
+                ListePièces.Add(roiW);
+            }
+            for (int i = 0; i< 2 ; i++)
+            {
+                
+
+
+            }
+            for (int i =0; i<2; i++)
+            {
+                
+
+            }
+            for (int i = 0; i<2; i++)
+            {
+               
+                
+            }
+            for (int i = 0; i<2; i++)
+            {
+             
+
+            }
+            
+            
+
         }
 
         /// <summary>
