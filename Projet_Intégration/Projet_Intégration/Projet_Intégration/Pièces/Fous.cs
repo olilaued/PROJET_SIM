@@ -33,6 +33,10 @@ namespace AtelierXNA
 
             base.Initialize();
         }
+        public override bool LogiqueDéplacement(Vector2 déplacement)
+        {
+            return déplacement.X == déplacement.Y;
+        }
 
         /// <summary>
         /// Allows the game component to update itself.

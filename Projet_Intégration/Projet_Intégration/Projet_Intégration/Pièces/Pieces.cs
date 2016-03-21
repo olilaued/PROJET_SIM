@@ -24,9 +24,12 @@ namespace AtelierXNA
          int Scale { get; set; }
          char Lettre { get; set; }
          Rectangle HitBox { get; set; }
+
+         protected const int LARGEUR_CASES = 2;
          
          public bool LogiqueDéplacement(Vector2 déplacement)
          {
+             
              return true;
          }
 

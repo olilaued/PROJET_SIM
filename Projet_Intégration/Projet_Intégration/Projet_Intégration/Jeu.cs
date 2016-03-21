@@ -16,6 +16,8 @@ namespace AtelierXNA
     /// </summary>
     public class Jeu : Microsoft.Xna.Framework.Game
     {
+         const float LARGEUR_ECHIQUIER = 16f;
+         
         const float INTERVALLE_CALCUL_FPS = 1f;
         const float INTERVALLE_MAJ_STANDARD = 1f / 60f;
         GraphicsDeviceManager PériphériqueGraphique { get; set; }
@@ -37,6 +39,7 @@ namespace AtelierXNA
         {
             PériphériqueGraphique = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            IsMouseVisible = true;
         }
 
         /// <summary>
@@ -63,19 +66,15 @@ namespace AtelierXNA
             GestionInput = new InputManager(this);
             CaméraJeu = new CaméraSubjective(this, new Vector3(0,0,8), positionObjet, Vector3.Up, INTERVALLE_MAJ_STANDARD);
             
-           // Cases uneCase = new Cases(this, 1f, Vector3.Zero, positionObjet, Color.HotPink, Color.WhiteSmoke,new Vector3(2, 0.3f, 2), INTERVALLE_MAJ_STANDARD);
-            Echiquier unEchiquier = new Echiquier(this, new Vector3(0, 0, 0), new Vector2(16, 0.3f), Color.BurlyWood,Color.MediumSeaGreen, Color.Blue);
+          
+            Echiquier unEchiquier = new Echiquier(this, new Vector3(0, 0, 0), new Vector2(LARGEUR_ECHIQUIER, 0.3f), Color.BurlyWood,Color.MediumSeaGreen, Color.Blue);
             Components.Add(unEchiquier);
            
             Components.Add(CaméraJeu);
 
-            //ObjetDeBase pion = new ObjetDeBase(this, "Black/pawn", 0.05f, rotationObjet,unEchiquier.ListeCases[15].Centre);
-            //Components.Add(pion);
             InitialiserPièces(unEchiquier);
           
-            //Pions pion1 = new Pions(this, unEchiquier.ListeCases[1].Centre, "Black");
-            //Pions pion2 = new Pions(this, unEchiquier.ListeCases[9].Centre, "Black");
-            //Pions pion3 = new Pions(this, unEchiquier.ListeCases[17].Centre, "Black");
+            
 
             
             
@@ -83,7 +82,7 @@ namespace AtelierXNA
             Components.Add(new Afficheur3D(this));
             Components.Add(GestionInput);
 
-           //// GestionnaireDeModèles.Add("Modern");
+           
 
             
 

@@ -33,6 +33,20 @@ namespace AtelierXNA
 
             base.Initialize();
         }
+        public override bool LogiqueDéplacement(Vector2 déplacement)
+        {
+            bool condition = false;
+
+            if (déplacement.X == LARGEUR_CASES)
+            {
+                condition = (déplacement.Y == 0 || déplacement.Y == LARGEUR_CASES);
+            }
+            if (déplacement.Y == LARGEUR_CASES)
+            {
+                condition = (déplacement.X == 0 || déplacement.X == LARGEUR_CASES);
+            }
+            return condition;
+        }
 
         /// <summary>
         /// Allows the game component to update itself.
