@@ -15,12 +15,19 @@ namespace AtelierXNA
     /// <summary>
     /// This is a game component that implements IUpdateable.
     /// </summary>
-     public abstract class Pieces : Microsoft.Xna.Framework.DrawableGameComponent
-    {
+     public  class Pieces : ObjetDeBase
+     {
+
          String Nom { get; set; }
          Model Modèle3D { get; set; }
          string Couleur { get; set; }
-         Vector3 Position { get; set; }
+         //public Vector3 Position {get;set;}
+            
+        
+
+
+
+         
          int Scale { get; set; }
          char Lettre { get; set; }
          Rectangle HitBox { get; set; }
@@ -34,13 +41,13 @@ namespace AtelierXNA
          }
 
         public Pieces(Game game,Vector3 positioninitiale,string couleur,string nomModèle)
-            : base(game)
+              : base(game, couleur + nomModèle, 0.05f,Vector3.Zero, positioninitiale)
         {
             Nom = nomModèle;
             Couleur = couleur;
             Position = positioninitiale;
-            this.Game.Components.Add(new ObjetDeBase(this.Game, Couleur + Nom, 0.05f,Vector3.Zero, Position));
-            // TODO: Construct any child components here
+            this.Game.Components.Add(this);
+            //TODO: Construct any child components here
         }
 
         /// <summary>
@@ -61,9 +68,30 @@ namespace AtelierXNA
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Update(GameTime gameTime)
         {
+            
+
             // TODO: Add your update code here
 
             base.Update(gameTime);
         }
+         public void Deplacer(Vector3 destination,GameTime gameTime)
+        {
+            
+            Position = destination;
+           
+             
+          
+            
+           
+           this.Game.Components.Remove(this);
+           this.Game.Components.Add(this);
+
+
+
+
+
+
+      }
+             
     }
 }

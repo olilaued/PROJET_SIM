@@ -33,6 +33,9 @@ namespace AtelierXNA
         Echiquier Echiquier { get; set; }
 
         public List<Pieces> ListePièces { get; set; }
+        Cases CaseA { get; set; }
+        Cases CaseB { get; set; }
+
 
        
         
@@ -201,8 +204,9 @@ namespace AtelierXNA
             {
                 this.Exit();
             }
-            MouseState a = Mouse.GetState();
-            Point lapos = new Point(a.X, a.Y);
+   
+            
+            Point PosSouris =GestionInput.GetPositionSouris();
             
 
             // TODO: Add your update logic here
@@ -237,10 +241,55 @@ namespace AtelierXNA
 
 
 
-                 if (zone.Contains(lapos))
+                 if (zone.Contains(PosSouris) && GestionInput.EstNouveauClicGauche())
                  {
-                     ChangeCouleur();
+                    if (CaseA == null)
+                    {
+                        CaseA = o;
+                    }
+                    else
+                    {
+                        CaseB = o;
+                    }
+                   
+                    {
+                        foreach (Pieces a in ListePièces)
+                        {
+                            if (CaseA != null && CaseB != null)
+                            {
+                                if (a.Position == CaseA.Centre)
+                                {
+                                   
+                                  
+                                    a.Deplacer(CaseB.Centre,gameTime);
+                                    CaseA = null;
+                                    CaseB = null;
+                                }
+                                if (a == ListePièces[32])
+                                {
+                                    CaseA = null;
+                                    CaseB = null;
+                                }
+                               
+
+
+                               
+                            }
+                            
+                            
+
+
+                        }
+                        //CaseA = null;
+                        //CaseB = null;
+                    }
+                    
+                       
+                      
                  }
+                 
+                
+                
              }
             
           
