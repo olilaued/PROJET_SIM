@@ -15,12 +15,12 @@ namespace AtelierXNA
     /// <summary>
     /// This is a game component that implements IUpdateable.
     /// </summary>
-     public  class Pieces : ObjetDeBase
+     public abstract class Pieces : ObjetDeBase
      {
 
          String Nom { get; set; }
          Model Modèle3D { get; set; }
-         string Couleur { get; set; }
+         public string Couleur { get; set; }
          //public Vector3 Position {get;set;}
             
         
@@ -31,10 +31,14 @@ namespace AtelierXNA
          int Scale { get; set; }
          char Lettre { get; set; }
          Rectangle HitBox { get; set; }
+         Vector3 PositionSortieBlanc = new Vector3(18, 0, 0);
+         Vector3 PositionSortieNoir = new Vector3(-1, 0, 0);
+
+         float z = 5;
 
          protected const int LARGEUR_CASES = 2;
          
-          bool LogiqueDéplacement(Vector2 déplacement)
+          public virtual bool LogiqueDéplacement(Vector2 déplacement)
          {
              
              return true;
@@ -47,6 +51,7 @@ namespace AtelierXNA
             Couleur = couleur;
             Position = positioninitiale;
             this.Game.Components.Add(this);
+           
             //TODO: Construct any child components here
         }
 
@@ -86,12 +91,22 @@ namespace AtelierXNA
            this.Game.Components.Remove(this);
            this.Game.Components.Add(this);
 
-
-
-
-
-
       }
+         public void Sortir(float nbSortiesBlanc,float nbSortiesNoir)
+         {
+             if (this.Couleur == "White")
+             {
+                 Position = new Vector3(PositionSortieBlanc.X, PositionSortieBlanc.Y, nbSortiesBlanc);
+             }
+             else
+             {
+                 Position = new Vector3(PositionSortieNoir.X, PositionSortieNoir.Y, nbSortiesNoir);
+             }
+             this.Game.Components.Remove(this);
+             this.Game.Components.Add(this);
+            // PositionSortie = new Vector3(PositionSortie.X, PositionSortie.Y, PositionSortie.Z + nbSorties* z);
+             
+         }
              
     }
 }

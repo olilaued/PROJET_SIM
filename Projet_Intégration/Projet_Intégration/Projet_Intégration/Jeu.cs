@@ -35,6 +35,11 @@ namespace AtelierXNA
         public List<Pieces> ListePièces { get; set; }
         Cases CaseA { get; set; }
         Cases CaseB { get; set; }
+        Pieces PieceA { get; set; }
+        Pieces PieceB { get; set; }
+        float nbSortiesBlanc = 0;
+        float nbSortiesNoir = 0;
+
 
 
        
@@ -56,6 +61,7 @@ namespace AtelierXNA
         protected override void Initialize()
         {
             ListePièces = new List<Pieces>();
+     
             
             // TODO: Add your initialization logic here
             Vector3 positionCaméra = Vector3.Zero;
@@ -81,6 +87,7 @@ namespace AtelierXNA
             Components.Add(CaméraJeu);
 
             InitialiserPièces(Echiquier);
+            
             
 
         
@@ -113,14 +120,14 @@ namespace AtelierXNA
         }
         void InitialiserPièces(Echiquier unEchiquier)
         {
-            Roi pionaa = new Roi(this, unEchiquier.ListeCases[0].Centre, "Black");
-            ListePièces.Add(pionaa);
+            
             for (int i = 0; i < 8; i++)
             {
                 Pions pionB = new Pions(this, unEchiquier.ListeCases[1 + 8 * i].Centre, "Black");
                 ListePièces.Add(pionB);
                 Pions pionW = new Pions(this, unEchiquier.ListeCases[(1 + 8 * i)+5].Centre, "White");
                 ListePièces.Add(pionW);
+                
 
             }
             for (int i = 0; i < 2; i++)
@@ -143,18 +150,19 @@ namespace AtelierXNA
                 Fous fouW = new Fous(this, unEchiquier.ListeCases[(16 + 24 * i)+7].Centre, "White");
                 ListePièces.Add(fouW);
                 
-                //CRÉATION REINES
-                Reine reineB = new Reine(this, unEchiquier.ListeCases[24].Centre, "Black");
-                ListePièces.Add(reineB);
-                Reine reineW = new Reine(this, unEchiquier.ListeCases[24+7].Centre, "White");
-                ListePièces.Add(reineW);
                 
-                //CRÉATION ROI
-                Roi roiB = new Roi(this, unEchiquier.ListeCases[32].Centre, "Black");
-                ListePièces.Add(roiB);
-                Roi roiW = new Roi(this, unEchiquier.ListeCases[32+7].Centre, "White");
-                ListePièces.Add(roiW);
             }
+            //CRÉATION REINES
+            Reine reineB = new Reine(this, unEchiquier.ListeCases[24].Centre, "Black");
+            ListePièces.Add(reineB);
+            Reine reineW = new Reine(this, unEchiquier.ListeCases[24 + 7].Centre, "White");
+            ListePièces.Add(reineW);
+
+            //CRÉATION ROI
+            Roi roiB = new Roi(this, unEchiquier.ListeCases[32].Centre, "Black");
+            ListePièces.Add(roiB);
+            Roi roiW = new Roi(this, unEchiquier.ListeCases[32 + 7].Centre, "White");
+            ListePièces.Add(roiW);
         
             
 
@@ -181,15 +189,7 @@ namespace AtelierXNA
         {
             // TODO: Unload any non ContentManager content here
         }
-          void ChangeCouleur()
-
-            {
-                CaméraJeu.Déplacer(new Vector3(0, 10, -10), new Vector3(0, 0, 0), Vector3.Up);
-
-                
-               
-            }
-            
+         
 
         /// <summary>
         /// Allows the game to run logic such as updating the world,
@@ -200,7 +200,7 @@ namespace AtelierXNA
         {
           
             // Allows the game to exit
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
+            if (GestionInput.EstEnfoncée(Keys.Escape))
             {
                 this.Exit();
             }
@@ -209,106 +209,116 @@ namespace AtelierXNA
             Point PosSouris =GestionInput.GetPositionSouris();
             
 
-            // TODO: Add your update logic here
-            
-            foreach (Cases o in this.Echiquier.ListeCases)
-             {
-                
-                 
-                 Vector3 HG = GraphicsDevice.Viewport.Project(o.HG, this.CaméraJeu.Projection, this.CaméraJeu.Vue, Matrix.Identity);
-                 HG.X -= GraphicsDevice.Viewport.X;
-                 HG.Y -= GraphicsDevice.Viewport.Y;
-
-                 Vector3 HD = GraphicsDevice.Viewport.Project(o.HD, this.CaméraJeu.Projection, this.CaméraJeu.Vue, Matrix.Identity);
-                 HD.X -= GraphicsDevice.Viewport.X;
-                 HD.Y -= GraphicsDevice.Viewport.Y;
-
-                 Vector3 BG = GraphicsDevice.Viewport.Project(o.BG, this.CaméraJeu.Projection, this.CaméraJeu.Vue, Matrix.Identity);
-                 BG.X -= GraphicsDevice.Viewport.X;
-                 BG.Y -= GraphicsDevice.Viewport.Y;
-
-                 Vector3 BD = GraphicsDevice.Viewport.Project(o.BD, this.CaméraJeu.Projection, this.CaméraJeu.Vue, Matrix.Identity);
-                 BD.X -= GraphicsDevice.Viewport.X;
-                 BD.Y -= GraphicsDevice.Viewport.Y;
-
-                 int width = (int)(HG.X - HD.X);
-                 int height = (int)(BG.Y-HG.Y);
-
-
-
-
-                 Rectangle zone = new Rectangle((int)BD.X,(int)HG.Y,width,height);
-
-
-
-                 if (zone.Contains(PosSouris) && GestionInput.EstNouveauClicGauche())
-                 {
-                    if (CaseA == null)
-                    {
-                        CaseA = o;
-                    }
-                    else
-                    {
-                        CaseB = o;
-                    }
-                   
-                    {
-                        foreach (Pieces a in ListePièces)
-                        {
-                            if (CaseA != null && CaseB != null)
-                            {
-                                if (a.Position == CaseA.Centre)
-                                {
-                                   
-                                  
-                                    a.Deplacer(CaseB.Centre,gameTime);
-                                    CaseA = null;
-                                    CaseB = null;
-                                }
-                                if (a == ListePièces[32])
-                                {
-                                    CaseA = null;
-                                    CaseB = null;
-                                }
-                               
-
-
-                               
-                            }
-                            
-                            
-
-
-                        }
-                        //CaseA = null;
-                        //CaseB = null;
-                    }
-                    
-                       
-                      
-                 }
-                 
-                
-                
-             }
-            
           
-            
-              
-            
-           
-
-           ////////
-            
- 
-           
+            if (GestionInput.EstNouveauClicGauche())
+            {
+                foreach (Cases o in this.Echiquier.ListeCases)
+                {
 
 
-            //////////
-            
-           
-            
-            
+                    Vector3 HG = GraphicsDevice.Viewport.Project(o.HG, this.CaméraJeu.Projection, this.CaméraJeu.Vue, Matrix.Identity);
+                    HG.X -= GraphicsDevice.Viewport.X;
+                    HG.Y -= GraphicsDevice.Viewport.Y;
+
+                    Vector3 HD = GraphicsDevice.Viewport.Project(o.HD, this.CaméraJeu.Projection, this.CaméraJeu.Vue, Matrix.Identity);
+                    HD.X -= GraphicsDevice.Viewport.X;
+                    HD.Y -= GraphicsDevice.Viewport.Y;
+
+                    Vector3 BG = GraphicsDevice.Viewport.Project(o.BG, this.CaméraJeu.Projection, this.CaméraJeu.Vue, Matrix.Identity);
+                    BG.X -= GraphicsDevice.Viewport.X;
+                    BG.Y -= GraphicsDevice.Viewport.Y;
+
+                    Vector3 BD = GraphicsDevice.Viewport.Project(o.BD, this.CaméraJeu.Projection, this.CaméraJeu.Vue, Matrix.Identity);
+                    BD.X -= GraphicsDevice.Viewport.X;
+                    BD.Y -= GraphicsDevice.Viewport.Y;
+
+                    int width = (int)(HG.X - HD.X);
+                    int height = (int)(BG.Y - HG.Y);
+
+
+
+
+                    Rectangle zone = new Rectangle((int)BD.X, (int)HG.Y, width, height);
+
+
+
+                    if (zone.Contains(PosSouris))
+                    {
+                        if (CaseA == null)
+                        {
+                            CaseA = o;
+                        }
+                        else
+                        {
+                            CaseB = o;
+                            foreach (Pieces a in ListePièces)
+                            {
+                                if (CaseA != null && CaseB != null)
+                                {
+                                    foreach (Pieces b in ListePièces)
+                                    {
+                                        if (b.Position == CaseB.Centre)
+                                        {
+                                            PieceB = b;
+                                        }
+                                    }
+                                    if (a.Position == CaseA.Centre)                                   
+                                    {
+                                       
+                                        
+
+                                        if (a.LogiqueDéplacement(new Vector2((CaseB.Centre.X - CaseA.Centre.X), (CaseB.Centre.Z - CaseA.Centre.Z))))
+                                        {
+
+                                            PieceA = a;
+
+                                            if (PieceB == null)
+                                            {
+
+                                                PieceA.Deplacer(CaseB.Centre, gameTime);
+                                            }
+                                            else
+                                            {
+                                                if (PieceA.Couleur != PieceB.Couleur)
+                                                {
+                                                    PieceB.Sortir(nbSortiesBlanc,nbSortiesNoir) ;
+                                                    PieceA.Deplacer(CaseB.Centre, gameTime);
+                                                    if (PieceB.Couleur == "White")
+                                                    {
+                                                    nbSortiesBlanc += 1;
+                                                    }
+                                                    else
+                                                    {
+                                                        nbSortiesNoir += 1;
+                                                    }
+                                                }
+                                            }
+
+                                        }
+                                        PieceA = null;
+                                        PieceB = null;
+                                        CaseA = null;
+                                        CaseB = null;
+                                    }
+                                    if (a == ListePièces[31])
+                                    {
+                                        PieceA = PieceB;
+                                        PieceB = null;
+                                        CaseA = CaseB;
+                                        CaseB = null;
+                                    }
+                                }
+
+                            }
+                        }
+
+                        
+
+                    }
+
+                }
+            }
+          
             base.Update(gameTime);
         }
 

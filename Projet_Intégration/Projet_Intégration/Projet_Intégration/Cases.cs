@@ -157,11 +157,7 @@ namespace AtelierXNA
             SommetsF[3] = new VertexPositionColor(Pos1, CouleurContour);
 
             ZoneSelection = new Rectangle((int)Pos5.X, (int)Pos5.Z, (int)this.Dimension.X,(int)this.Dimension.X);
-            //HG = Origine+Pos5;
-            //HD = Origine+Pos6;
-            //BG = Origine+Origine;
-            //BD = Origine+Pos0;
-            
+           
             
 
 

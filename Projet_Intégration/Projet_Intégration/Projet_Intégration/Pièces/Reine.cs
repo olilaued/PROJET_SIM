@@ -33,10 +33,10 @@ namespace AtelierXNA
 
             base.Initialize();
         }
-        public  bool LogiqueDéplacement(Vector2 déplacement)
+        public  override bool LogiqueDéplacement(Vector2 déplacement)
         {
             bool condition = false;
-            if (déplacement.X == déplacement.Y)
+            if (Math.Abs(déplacement.X )== Math.Abs(déplacement.Y))
             {
                 condition = true;
             }
