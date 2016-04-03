@@ -59,6 +59,7 @@ namespace AtelierXNA
          TempsÉcouléDepuisMAJ = 0;
          base.Initialize();
          GestionInput = Game.Services.GetService(typeof(InputManager)) as InputManager;
+         
       }
 
       protected override void CréerPointDeVue()
@@ -171,8 +172,9 @@ namespace AtelierXNA
         Rotation = Matrix.CreateFromAxisAngle(Direction, variationRoulis * DELTA_ROULIS);
         Vector3 nouvelleOV = Vector3.Transform(OrientationVerticale, Rotation);
         OrientationVerticale = Vector3.Normalize(nouvelleOV);
+          
       }
-
+       
       private void GestionClavier()
       {
          //if (GestionInput.EstNouvelleTouche(Keys.Z))

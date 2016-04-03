@@ -34,15 +34,15 @@ namespace AtelierXNA
 
             base.Initialize();
         }
-        public  bool LogiqueDéplacement(Vector2 déplacement)
+        public override bool LogiqueDéplacement(Vector2 déplacement)
         {
             bool condition = false;
 
-            if ((déplacement.X == 2*déplacement.Y) && (déplacement.Y == LARGEUR_CASES))
+            if ((Math.Abs(déplacement.X) ==Math.Abs(2*déplacement.Y)) && (Math.Abs(déplacement.Y) == LARGEUR_CASES))
             {
                 condition = true;
             }
-            if ((déplacement.Y == 2 * déplacement.X) && (déplacement.X == LARGEUR_CASES))
+            if ((Math.Abs(déplacement.Y) == Math.Abs(2 * déplacement.X)) && (Math.Abs(déplacement.X) == LARGEUR_CASES))
             {
                 condition = true;
             }

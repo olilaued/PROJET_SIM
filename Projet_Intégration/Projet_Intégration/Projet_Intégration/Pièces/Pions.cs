@@ -17,10 +17,13 @@ namespace AtelierXNA
     /// </summary>
     public class Pions : Pieces
     {
+        //string Couleur { get; set; }
+        bool estPremierMouvement = true;
      
         public Pions(Game game,Vector3 positioninitiale,string couleur)
             : base(game,positioninitiale,couleur,"/pawn")
         {
+           // Couleur = couleur;
             
 
             
@@ -38,10 +41,34 @@ namespace AtelierXNA
 
             base.Initialize();
         }
-        public  bool LogiqueDéplacement(Vector2 déplacement)
+        public override  bool LogiqueDéplacement(Vector2 déplacement)
         {
-            return (déplacement.Y == LARGEUR_CASES && déplacement.X == 0);
-            
+            bool condition = false;
+            if (this.Couleur == "Black")
+            {
+                if (estPremierMouvement)
+                {
+                    condition = ((déplacement.Y == (LARGEUR_CASES)) || (déplacement.Y == 2 * LARGEUR_CASES)) && déplacement.X == 0;                                                                    
+                    estPremierMouvement = false;                   
+                }
+                else
+                {
+                    condition = (déplacement.Y == LARGEUR_CASES && déplacement.X == 0);
+                }
+            }
+            else
+            {
+                if (estPremierMouvement)
+                {
+                    condition = ((déplacement.Y == (-LARGEUR_CASES)) || (déplacement.Y == -2 * LARGEUR_CASES)) && déplacement.X == 0;
+                    estPremierMouvement = false;
+                }
+                else
+                {
+                    condition = (déplacement.Y == -LARGEUR_CASES && déplacement.X == 0);
+                }
+            }
+            return condition;
         }
 
         /// <summary>
