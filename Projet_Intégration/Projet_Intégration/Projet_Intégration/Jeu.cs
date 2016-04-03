@@ -73,8 +73,15 @@ namespace AtelierXNA
             Components.Add(CaméraJeu);
 
             InitialiserPièces(unEchiquier);
-          
-            
+
+            //ObjetDeBase table = new ObjetDeBase(this, "Pub/table", 0.05f, rotationObjet, new Vector3(5,5,5));
+            //Components.Add(table);
+            //ObjetDeBase divan = new ObjetDeBase(this, "Pub/Divan", 0.05f, rotationObjet, new Vector3(-5, 0, 0));
+            //Components.Add(divan);
+            ObjetDeBase maison = new ObjetDeBase(this, "Pub/Club_map_2", 0.009f, rotationObjet, positionObjet);
+            Components.Add(maison);
+           // Pions pionB = new Pions(this,positionObjet, "Black");
+            //Components.Add(pionB);
 
             
             
