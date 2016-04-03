@@ -29,6 +29,13 @@ namespace AtelierXNA
         String NomPropriétaire { get; set; }
         Boolean EstUtilisé { get; set; }
 
+        public Rectangle ZoneSelection { get; set; }
+        public Vector3 HG { get; set; }
+        public Vector3 HD { get; set; }
+        public Vector3 BG { get; set; }
+        public Vector3 BD { get; set; }
+
+
         const int NB_SOMMETS= 4;
         const int NB_TRIANGLES = 2;
         
@@ -58,6 +65,13 @@ namespace AtelierXNA
             Delta = new Vector3(Dimension.X, Dimension.Y, Dimension.Z);
             //Origine = new Vector3(Origine.X , - Delta.Y ,  Delta.Z );
             Centre = new Vector3(positionInitiale.X + Delta.X / 2, positionInitiale.Y+0.01f, positionInitiale.Z - Delta.Z / 2);
+            HG = new Vector3(Centre.X - Delta.X / 2, Centre.Y, Centre.Z+Delta.Z/2);
+            HD = new Vector3(Centre.X + Delta.X / 2, Centre.Y, Centre.Z+Delta.Z/2);
+            BG = new Vector3(Centre.X - Delta.X / 2, Centre.Y, Centre.Z-Delta.Z/2);
+            BD = new Vector3(Centre.X + Delta.X / 2, Centre.Y, Centre.Z-Delta.Z/2);
+
+
+
         }
 
         /// <summary>
@@ -72,6 +86,7 @@ namespace AtelierXNA
            SommetsD = new VertexPositionColor[NB_SOMMETS];
            SommetsE = new VertexPositionColor[NB_SOMMETS];
            SommetsF = new VertexPositionColor[NB_SOMMETS];
+            
 
             base.Initialize();
         }
@@ -80,6 +95,7 @@ namespace AtelierXNA
             EffetDeBase = new BasicEffect(GraphicsDevice);
             EffetDeBase.VertexColorEnabled = true;
             base.LoadContent();
+            
 
             // à compléter
 
@@ -130,6 +146,9 @@ namespace AtelierXNA
             SommetsE[2] = new VertexPositionColor(Origine, Couleur);
             SommetsE[3] = new VertexPositionColor(Pos0, Couleur);
 
+
+            
+
             //SOMMETS DESSOUS
 
             SommetsF[0] = new VertexPositionColor(Pos4, CouleurContour);
@@ -137,6 +156,13 @@ namespace AtelierXNA
             SommetsF[2] = new VertexPositionColor(Pos2, CouleurContour);
             SommetsF[3] = new VertexPositionColor(Pos1, CouleurContour);
 
+            ZoneSelection = new Rectangle((int)Pos5.X, (int)Pos5.Z, (int)this.Dimension.X,(int)this.Dimension.X);
+            //HG = Origine+Pos5;
+            //HD = Origine+Pos6;
+            //BG = Origine+Origine;
+            //BD = Origine+Pos0;
+            
+            
 
 
             
@@ -158,8 +184,10 @@ namespace AtelierXNA
                 GraphicsDevice.DrawUserPrimitives<VertexPositionColor>(PrimitiveType.TriangleStrip, SommetsD, 0, NB_TRIANGLES);
                 GraphicsDevice.DrawUserPrimitives<VertexPositionColor>(PrimitiveType.TriangleStrip, SommetsE, 0, NB_TRIANGLES);
                 GraphicsDevice.DrawUserPrimitives<VertexPositionColor>(PrimitiveType.TriangleStrip, SommetsF, 0, NB_TRIANGLES);
-
+                
+                
             }
+            
             base.Draw(gameTime);
        
         }

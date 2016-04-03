@@ -43,6 +43,8 @@ namespace AtelierXNA
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Update(GameTime gameTime)
         {
+            Mouse.GetState();
+            
             // TODO: Add your update code here
 
             base.Update(gameTime);

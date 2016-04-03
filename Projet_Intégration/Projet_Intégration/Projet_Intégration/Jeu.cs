@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 
+
 namespace AtelierXNA
 {
     /// <summary>
@@ -29,6 +30,7 @@ namespace AtelierXNA
         RessourcesManager<Effect> GestionnaireDeShaders { get; set; }
         InputManager GestionInput { get; set; }
         Caméra CaméraJeu { get; set; }
+        Echiquier Echiquier { get; set; }
 
         public List<Pieces> ListePièces { get; set; }
 
@@ -64,15 +66,22 @@ namespace AtelierXNA
             GestionnaireDeModèles = new RessourcesManager<Model>(this, "Models");
             GestionnaireDeShaders = new RessourcesManager<Effect>(this, "Effects");
             GestionInput = new InputManager(this);
-            CaméraJeu = new CaméraSubjective(this, new Vector3(0,0,8), positionObjet, Vector3.Up, INTERVALLE_MAJ_STANDARD);
+            CaméraJeu = new CaméraSubjective(this, new Vector3(0,10,-10), positionObjet, Vector3.Up, INTERVALLE_MAJ_STANDARD);
+           
             
           
-            Echiquier unEchiquier = new Echiquier(this, new Vector3(0, 0, 0), new Vector2(LARGEUR_ECHIQUIER, 0.3f), Color.BurlyWood,Color.MediumSeaGreen, Color.Blue);
-            Components.Add(unEchiquier);
+            Echiquier = new Echiquier(this, new Vector3(0, 0, 0), new Vector2(LARGEUR_ECHIQUIER, 0.3f),  Color.BurlyWood,Color.MediumSeaGreen, Color.Blue);
+            Components.Add(Echiquier);
+            // GraphicsDevice.Viewport.Unproject()
+            
            
             Components.Add(CaméraJeu);
 
-            InitialiserPièces(unEchiquier);
+            InitialiserPièces(Echiquier);
+            
+
+        
+        
           
             
 
@@ -96,10 +105,13 @@ namespace AtelierXNA
             GestionSprites = new SpriteBatch(GraphicsDevice);
             Services.AddService(typeof(SpriteBatch), GestionSprites);
             base.Initialize();
+           
             
         }
         void InitialiserPièces(Echiquier unEchiquier)
         {
+            Roi pionaa = new Roi(this, unEchiquier.ListeCases[0].Centre, "Black");
+            ListePièces.Add(pionaa);
             for (int i = 0; i < 8; i++)
             {
                 Pions pionB = new Pions(this, unEchiquier.ListeCases[1 + 8 * i].Centre, "Black");
@@ -140,28 +152,7 @@ namespace AtelierXNA
                 Roi roiW = new Roi(this, unEchiquier.ListeCases[32+7].Centre, "White");
                 ListePièces.Add(roiW);
             }
-            for (int i = 0; i< 2 ; i++)
-            {
-                
-
-
-            }
-            for (int i =0; i<2; i++)
-            {
-                
-
-            }
-            for (int i = 0; i<2; i++)
-            {
-               
-                
-            }
-            for (int i = 0; i<2; i++)
-            {
-             
-
-            }
-            
+        
             
 
         }
@@ -187,6 +178,15 @@ namespace AtelierXNA
         {
             // TODO: Unload any non ContentManager content here
         }
+          void ChangeCouleur()
+
+            {
+                CaméraJeu.Déplacer(new Vector3(0, 10, -10), new Vector3(0, 0, 0), Vector3.Up);
+
+                
+               
+            }
+            
 
         /// <summary>
         /// Allows the game to run logic such as updating the world,
@@ -198,10 +198,68 @@ namespace AtelierXNA
           
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
+            {
                 this.Exit();
+            }
+            MouseState a = Mouse.GetState();
+            Point lapos = new Point(a.X, a.Y);
+            
 
             // TODO: Add your update logic here
+            
+            foreach (Cases o in this.Echiquier.ListeCases)
+             {
+                
+                 
+                 Vector3 HG = GraphicsDevice.Viewport.Project(o.HG, this.CaméraJeu.Projection, this.CaméraJeu.Vue, Matrix.Identity);
+                 HG.X -= GraphicsDevice.Viewport.X;
+                 HG.Y -= GraphicsDevice.Viewport.Y;
 
+                 Vector3 HD = GraphicsDevice.Viewport.Project(o.HD, this.CaméraJeu.Projection, this.CaméraJeu.Vue, Matrix.Identity);
+                 HD.X -= GraphicsDevice.Viewport.X;
+                 HD.Y -= GraphicsDevice.Viewport.Y;
+
+                 Vector3 BG = GraphicsDevice.Viewport.Project(o.BG, this.CaméraJeu.Projection, this.CaméraJeu.Vue, Matrix.Identity);
+                 BG.X -= GraphicsDevice.Viewport.X;
+                 BG.Y -= GraphicsDevice.Viewport.Y;
+
+                 Vector3 BD = GraphicsDevice.Viewport.Project(o.BD, this.CaméraJeu.Projection, this.CaméraJeu.Vue, Matrix.Identity);
+                 BD.X -= GraphicsDevice.Viewport.X;
+                 BD.Y -= GraphicsDevice.Viewport.Y;
+
+                 int width = (int)(HG.X - HD.X);
+                 int height = (int)(BG.Y-HG.Y);
+
+
+
+
+                 Rectangle zone = new Rectangle((int)BD.X,(int)HG.Y,width,height);
+
+
+
+                 if (zone.Contains(lapos))
+                 {
+                     ChangeCouleur();
+                 }
+             }
+            
+          
+            
+              
+            
+           
+
+           ////////
+            
+ 
+           
+
+
+            //////////
+            
+           
+            
+            
             base.Update(gameTime);
         }
 

@@ -117,6 +117,8 @@ namespace AtelierXNA
         
         public void ChangerStyle()
         {
+           
+            
 
 
         }
