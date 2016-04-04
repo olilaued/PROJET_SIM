@@ -48,8 +48,11 @@ namespace AtelierXNA
             {
                 if (estPremierMouvement)
                 {
-                    condition = ((déplacement.Y == (LARGEUR_CASES)) || (déplacement.Y == 2 * LARGEUR_CASES)) && déplacement.X == 0;                                                                    
-                    estPremierMouvement = false;                   
+                    condition = ((déplacement.Y == (LARGEUR_CASES)) || (déplacement.Y == 2 * LARGEUR_CASES)) && déplacement.X == 0;       
+                    if (condition == true)
+                    {
+                        estPremierMouvement = false;
+                    }
                 }
                 else
                 {
@@ -61,7 +64,10 @@ namespace AtelierXNA
                 if (estPremierMouvement)
                 {
                     condition = ((déplacement.Y == (-LARGEUR_CASES)) || (déplacement.Y == -2 * LARGEUR_CASES)) && déplacement.X == 0;
-                    estPremierMouvement = false;
+                    if (condition == true)
+                    {
+                        estPremierMouvement = false;
+                    }
                 }
                 else
                 {

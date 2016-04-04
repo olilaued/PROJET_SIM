@@ -17,7 +17,7 @@ namespace AtelierXNA
     /// </summary>
     public class Jeu : Microsoft.Xna.Framework.Game
     {
-         const float LARGEUR_ECHIQUIER = 16f;
+         
          
         const float INTERVALLE_CALCUL_FPS = 1f;
         const float INTERVALLE_MAJ_STANDARD = 1f / 60f;
@@ -30,15 +30,10 @@ namespace AtelierXNA
         RessourcesManager<Effect> GestionnaireDeShaders { get; set; }
         InputManager GestionInput { get; set; }
         Caméra CaméraJeu { get; set; }
-        Echiquier Echiquier { get; set; }
+       
 
-        public List<Pieces> ListePièces { get; set; }
-        Cases CaseA { get; set; }
-        Cases CaseB { get; set; }
-        Pieces PieceA { get; set; }
-        Pieces PieceB { get; set; }
-        float nbSortiesBlanc = 0;
-        float nbSortiesNoir = 0;
+        Color[] CouleursÉchiquier { get; set; }
+        
 
 
 
@@ -60,14 +55,19 @@ namespace AtelierXNA
         /// </summary>
         protected override void Initialize()
         {
-            ListePièces = new List<Pieces>();
+            
      
             
             // TODO: Add your initialization logic here
             Vector3 positionCaméra = Vector3.Zero;
             Vector3 positionObjet = new Vector3(0, 0, 0);
             Vector3 rotationObjet = new Vector3(0, 0, 0);
-            
+
+            CouleursÉchiquier = new Color[3];
+            CouleursÉchiquier[0] = Color.White;
+            CouleursÉchiquier[1] = Color.LightSeaGreen;
+            CouleursÉchiquier[2] = Color.Black;
+           
             
 
             GestionnaireDeFonts = new RessourcesManager<SpriteFont>(this, "Fonts");
@@ -79,14 +79,14 @@ namespace AtelierXNA
            
             
           
-            Echiquier = new Echiquier(this, new Vector3(0, 0, 0), new Vector2(LARGEUR_ECHIQUIER, 0.3f),  Color.BurlyWood,Color.MediumSeaGreen, Color.Blue);
-            Components.Add(Echiquier);
+            //Echiquier = new Echiquier(this, new Vector3(0, 0, 0), new Vector2(LARGEUR_ECHIQUIER, 0.3f),  Color.BurlyWood,Color.MediumSeaGreen, Color.Blue);
+           // Components.Add(Echiquier);
             // GraphicsDevice.Viewport.Unproject()
             
            
             Components.Add(CaméraJeu);
 
-            InitialiserPièces(Echiquier);
+            //InitialiserPièces(Echiquier);
             
             
 
@@ -114,59 +114,14 @@ namespace AtelierXNA
             Services.AddService(typeof(Caméra), CaméraJeu);
             GestionSprites = new SpriteBatch(GraphicsDevice);
             Services.AddService(typeof(SpriteBatch), GestionSprites);
+
+            Components.Add(new Partie(this, 30, null, CouleursÉchiquier, Vector3.Zero));
+
             base.Initialize();
            
             
         }
-        void InitialiserPièces(Echiquier unEchiquier)
-        {
-            
-            for (int i = 0; i < 8; i++)
-            {
-                Pions pionB = new Pions(this, unEchiquier.ListeCases[1 + 8 * i].Centre, "Black");
-                ListePièces.Add(pionB);
-                Pions pionW = new Pions(this, unEchiquier.ListeCases[(1 + 8 * i)+5].Centre, "White");
-                ListePièces.Add(pionW);
-                
-
-            }
-            for (int i = 0; i < 2; i++)
-            {
-                //CRÉATION TOURS
-                Tours tourB = new Tours(this, unEchiquier.ListeCases[0 + 56 * i].Centre, "Black");
-                ListePièces.Add(tourB);
-                Tours tourW = new Tours(this,unEchiquier.ListeCases[(0+56*i)+7].Centre,"White");
-                ListePièces.Add(tourW);
-
-                //CRÉATION CAVALIERS
-                Cavaliers cavalierB = new Cavaliers(this, unEchiquier.ListeCases[8 + 40 * i].Centre, "Black");
-                ListePièces.Add(cavalierB);
-                Cavaliers cavalierW = new Cavaliers(this, unEchiquier.ListeCases[(8 + 40 * i)+7].Centre, "White");
-                ListePièces.Add(cavalierW);
-
-                //CRÉATION FOUS
-                Fous fouB = new Fous(this, unEchiquier.ListeCases[16 + 24 * i].Centre, "Black");
-                ListePièces.Add(fouB);
-                Fous fouW = new Fous(this, unEchiquier.ListeCases[(16 + 24 * i)+7].Centre, "White");
-                ListePièces.Add(fouW);
-                
-                
-            }
-            //CRÉATION REINES
-            Reine reineB = new Reine(this, unEchiquier.ListeCases[24].Centre, "Black");
-            ListePièces.Add(reineB);
-            Reine reineW = new Reine(this, unEchiquier.ListeCases[24 + 7].Centre, "White");
-            ListePièces.Add(reineW);
-
-            //CRÉATION ROI
-            Roi roiB = new Roi(this, unEchiquier.ListeCases[32].Centre, "Black");
-            ListePièces.Add(roiB);
-            Roi roiW = new Roi(this, unEchiquier.ListeCases[32 + 7].Centre, "White");
-            ListePièces.Add(roiW);
         
-            
-
-        }
 
         /// <summary>
         /// LoadContent will be called once per game and is the place to load
@@ -204,121 +159,7 @@ namespace AtelierXNA
             {
                 this.Exit();
             }
-   
             
-            Point PosSouris =GestionInput.GetPositionSouris();
-            
-
-          
-            if (GestionInput.EstNouveauClicGauche())
-            {
-                foreach (Cases o in this.Echiquier.ListeCases)
-                {
-
-
-                    Vector3 HG = GraphicsDevice.Viewport.Project(o.HG, this.CaméraJeu.Projection, this.CaméraJeu.Vue, Matrix.Identity);
-                    HG.X -= GraphicsDevice.Viewport.X;
-                    HG.Y -= GraphicsDevice.Viewport.Y;
-
-                    Vector3 HD = GraphicsDevice.Viewport.Project(o.HD, this.CaméraJeu.Projection, this.CaméraJeu.Vue, Matrix.Identity);
-                    HD.X -= GraphicsDevice.Viewport.X;
-                    HD.Y -= GraphicsDevice.Viewport.Y;
-
-                    Vector3 BG = GraphicsDevice.Viewport.Project(o.BG, this.CaméraJeu.Projection, this.CaméraJeu.Vue, Matrix.Identity);
-                    BG.X -= GraphicsDevice.Viewport.X;
-                    BG.Y -= GraphicsDevice.Viewport.Y;
-
-                    Vector3 BD = GraphicsDevice.Viewport.Project(o.BD, this.CaméraJeu.Projection, this.CaméraJeu.Vue, Matrix.Identity);
-                    BD.X -= GraphicsDevice.Viewport.X;
-                    BD.Y -= GraphicsDevice.Viewport.Y;
-
-                    int width = (int)(HG.X - HD.X);
-                    int height = (int)(BG.Y - HG.Y);
-
-
-
-
-                    Rectangle zone = new Rectangle((int)BD.X, (int)HG.Y, width, height);
-
-
-
-                    if (zone.Contains(PosSouris))
-                    {
-                        if (CaseA == null)
-                        {
-                            CaseA = o;
-                        }
-                        else
-                        {
-                            CaseB = o;
-                            foreach (Pieces a in ListePièces)
-                            {
-                                if (CaseA != null && CaseB != null)
-                                {
-                                    foreach (Pieces b in ListePièces)
-                                    {
-                                        if (b.Position == CaseB.Centre)
-                                        {
-                                            PieceB = b;
-                                        }
-                                    }
-                                    if (a.Position == CaseA.Centre)                                   
-                                    {
-                                       
-                                        
-
-                                        if (a.LogiqueDéplacement(new Vector2((CaseB.Centre.X - CaseA.Centre.X), (CaseB.Centre.Z - CaseA.Centre.Z))))
-                                        {
-
-                                            PieceA = a;
-
-                                            if (PieceB == null)
-                                            {
-
-                                                PieceA.Deplacer(CaseB.Centre, gameTime);
-                                            }
-                                            else
-                                            {
-                                                if (PieceA.Couleur != PieceB.Couleur)
-                                                {
-                                                    PieceB.Sortir(nbSortiesBlanc,nbSortiesNoir) ;
-                                                    PieceA.Deplacer(CaseB.Centre, gameTime);
-                                                    if (PieceB.Couleur == "White")
-                                                    {
-                                                    nbSortiesBlanc += 1;
-                                                    }
-                                                    else
-                                                    {
-                                                        nbSortiesNoir += 1;
-                                                    }
-                                                }
-                                            }
-
-                                        }
-                                        PieceA = null;
-                                        PieceB = null;
-                                        CaseA = null;
-                                        CaseB = null;
-                                    }
-                                    if (a == ListePièces[31])
-                                    {
-                                        PieceA = PieceB;
-                                        PieceB = null;
-                                        CaseA = CaseB;
-                                        CaseB = null;
-                                    }
-                                }
-
-                            }
-                        }
-
-                        
-
-                    }
-
-                }
-            }
-          
             base.Update(gameTime);
         }
 

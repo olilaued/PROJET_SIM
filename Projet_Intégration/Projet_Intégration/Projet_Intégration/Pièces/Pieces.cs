@@ -79,7 +79,7 @@ namespace AtelierXNA
 
             base.Update(gameTime);
         }
-         public void Deplacer(Vector3 destination,GameTime gameTime)
+         public void Deplacer(Vector3 destination)
         {
             
             Position = destination;

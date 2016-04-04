@@ -7,8 +7,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\201471429\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Textures\chess.xnb</Output>
-      <Time>2016-02-17T08:28:41.9149186-05:00</Time>
+      <Output>C:\Users\201471821\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Textures\chess.xnb</Output>
+      <Time>2016-04-04T07:56:23.5636241-04:00</Time>
     </Item>
     <Item>
       <Source>Textures\Granite.jpg</Source>
@@ -16,8 +16,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\201471429\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Textures\Granite.xnb</Output>
-      <Time>2016-02-24T09:03:57.2526867-05:00</Time>
+      <Output>C:\Users\201471821\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Textures\Granite.xnb</Output>
+      <Time>2016-04-04T07:56:23.5576271-04:00</Time>
     </Item>
     <Item>
       <Source>Models\Black\Granite.jpg</Source>
@@ -25,8 +25,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\201471429\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Black\Granite.xnb</Output>
-      <Time>2016-02-24T09:03:57.1846867-05:00</Time>
+      <Output>C:\Users\201471821\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Black\Granite.xnb</Output>
+      <Time>2016-04-04T07:56:23.4826646-04:00</Time>
     </Item>
     <Item>
       <Source>Models\White\Marble.jpg</Source>
@@ -34,8 +34,183 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\201471429\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\White\Marble.xnb</Output>
-      <Time>2016-02-24T09:03:57.2136867-05:00</Time>
+      <Output>C:\Users\201471821\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\White\Marble.xnb</Output>
+      <Time>2016-04-04T07:56:23.5156481-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\Black\bishop.fbx</Source>
+      <Name>Models\Black\bishop</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\201471821\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Black\bishop.xnb</Output>
+      <Time>2016-04-04T07:56:23.4876621-04:00</Time>
+      <Dependency>
+        <Key>obj\x86\Debug\Models\Black\bishop_0.xml</Key>
+        <Value>2016-04-04T08:04:07.7740112-04:00</Value>
+      </Dependency>
+      <Request>C:\Users\201471821\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Black\Granite_0.xnb</Request>
+    </Item>
+    <Item>
+      <Source>Models\Black\king.fbx</Source>
+      <Name>Models\Black\king</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\201471821\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Black\king.xnb</Output>
+      <Time>2016-04-04T07:56:23.4936591-04:00</Time>
+      <Dependency>
+        <Key>obj\x86\Debug\Models\Black\king_0.xml</Key>
+        <Value>2016-04-04T08:04:08.1399746-04:00</Value>
+      </Dependency>
+      <Request>C:\Users\201471821\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Black\Granite_0.xnb</Request>
+    </Item>
+    <Item>
+      <Source>Models\Black\knight.fbx</Source>
+      <Name>Models\Black\knight</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\201471821\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Black\knight.xnb</Output>
+      <Time>2016-04-04T07:56:23.4986566-04:00</Time>
+      <Dependency>
+        <Key>obj\x86\Debug\Models\Black\knight_0.xml</Key>
+        <Value>2016-04-04T08:04:08.2869599-04:00</Value>
+      </Dependency>
+      <Request>C:\Users\201471821\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Black\Granite_0.xnb</Request>
+    </Item>
+    <Item>
+      <Source>Models\Black\pawn.fbx</Source>
+      <Name>Models\Black\pawn</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\201471821\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Black\pawn.xnb</Output>
+      <Time>2016-04-04T07:56:23.5026546-04:00</Time>
+      <Dependency>
+        <Key>obj\x86\Debug\Models\Black\pawn_0.xml</Key>
+        <Value>2016-04-04T08:04:08.3949491-04:00</Value>
+      </Dependency>
+      <Request>C:\Users\201471821\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Black\Granite_0.xnb</Request>
+    </Item>
+    <Item>
+      <Source>Models\Black\queen.fbx</Source>
+      <Name>Models\Black\queen</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\201471821\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Black\queen.xnb</Output>
+      <Time>2016-04-04T07:56:23.5076521-04:00</Time>
+      <Dependency>
+        <Key>obj\x86\Debug\Models\Black\queen_0.xml</Key>
+        <Value>2016-04-04T08:04:08.5539332-04:00</Value>
+      </Dependency>
+      <Request>C:\Users\201471821\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Black\Granite_0.xnb</Request>
+    </Item>
+    <Item>
+      <Source>Models\Black\rook.fbx</Source>
+      <Name>Models\Black\rook</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\201471821\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Black\rook.xnb</Output>
+      <Time>2016-04-04T07:56:23.5126496-04:00</Time>
+      <Dependency>
+        <Key>obj\x86\Debug\Models\Black\rook_0.xml</Key>
+        <Value>2016-04-04T08:04:08.6949191-04:00</Value>
+      </Dependency>
+      <Request>C:\Users\201471821\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Black\Granite_0.xnb</Request>
+    </Item>
+    <Item>
+      <Source>Models\White\bishop.fbx</Source>
+      <Name>Models\White\bishop</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\201471821\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\White\bishop.xnb</Output>
+      <Time>2016-04-04T07:56:23.5196461-04:00</Time>
+      <Dependency>
+        <Key>obj\x86\Debug\Models\White\bishop_0.xml</Key>
+        <Value>2016-04-04T08:04:08.9098976-04:00</Value>
+      </Dependency>
+      <Request>C:\Users\201471821\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\White\Marble_0.xnb</Request>
+    </Item>
+    <Item>
+      <Source>Models\White\king.fbx</Source>
+      <Name>Models\White\king</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\201471821\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\White\king.xnb</Output>
+      <Time>2016-04-04T07:56:23.5246436-04:00</Time>
+      <Dependency>
+        <Key>obj\x86\Debug\Models\White\king_0.xml</Key>
+        <Value>2016-04-04T08:04:09.1898696-04:00</Value>
+      </Dependency>
+      <Request>C:\Users\201471821\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\White\Marble_0.xnb</Request>
+    </Item>
+    <Item>
+      <Source>Models\White\knight.fbx</Source>
+      <Name>Models\White\knight</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\201471821\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\White\knight.xnb</Output>
+      <Time>2016-04-04T07:56:23.5286416-04:00</Time>
+      <Dependency>
+        <Key>obj\x86\Debug\Models\White\knight_0.xml</Key>
+        <Value>2016-04-04T08:04:09.3518534-04:00</Value>
+      </Dependency>
+      <Request>C:\Users\201471821\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\White\Marble_0.xnb</Request>
+    </Item>
+    <Item>
+      <Source>Models\White\pawn.fbx</Source>
+      <Name>Models\White\pawn</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\201471821\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\White\pawn.xnb</Output>
+      <Time>2016-04-04T07:56:23.5326396-04:00</Time>
+      <Dependency>
+        <Key>obj\x86\Debug\Models\White\pawn_0.xml</Key>
+        <Value>2016-04-04T08:04:09.4768409-04:00</Value>
+      </Dependency>
+      <Request>C:\Users\201471821\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\White\Marble_0.xnb</Request>
+    </Item>
+    <Item>
+      <Source>Models\White\queen.fbx</Source>
+      <Name>Models\White\queen</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\201471821\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\White\queen.xnb</Output>
+      <Time>2016-04-04T07:56:23.5366376-04:00</Time>
+      <Dependency>
+        <Key>obj\x86\Debug\Models\White\queen_0.xml</Key>
+        <Value>2016-04-04T08:04:09.6498236-04:00</Value>
+      </Dependency>
+      <Request>C:\Users\201471821\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\White\Marble_0.xnb</Request>
+    </Item>
+    <Item>
+      <Source>Models\White\rook.fbx</Source>
+      <Name>Models\White\rook</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\201471821\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\White\rook.xnb</Output>
+      <Time>2016-04-04T07:56:23.5436341-04:00</Time>
+      <Dependency>
+        <Key>obj\x86\Debug\Models\White\rook_0.xml</Key>
+        <Value>2016-04-04T08:04:09.7868099-04:00</Value>
+      </Dependency>
+      <Request>C:\Users\201471821\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\White\Marble_0.xnb</Request>
+    </Item>
+    <Item>
+      <Source>Models\Black\bishop.fbx</Source>
+      <Importer>FbxImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Debug\Models\Black\bishop_0.xml</Output>
+      <Time>2016-04-04T07:56:23.4876621-04:00</Time>
     </Item>
     <Item>
       <Source>Models\Black\Granite.jpg</Source>
@@ -50,8 +225,50 @@
         <Data Key="PremultiplyAlpha" Type="bool">true</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>C:\Users\201471429\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Black\Granite_0.xnb</Output>
-      <Time>2016-02-24T09:03:57.1846867-05:00</Time>
+      <Output>C:\Users\201471821\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Black\Granite_0.xnb</Output>
+      <Time>2016-04-04T07:56:23.4826646-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\Black\king.fbx</Source>
+      <Importer>FbxImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Debug\Models\Black\king_0.xml</Output>
+      <Time>2016-04-04T07:56:23.4936591-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\Black\knight.fbx</Source>
+      <Importer>FbxImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Debug\Models\Black\knight_0.xml</Output>
+      <Time>2016-04-04T07:56:23.4986566-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\Black\pawn.fbx</Source>
+      <Importer>FbxImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Debug\Models\Black\pawn_0.xml</Output>
+      <Time>2016-04-04T07:56:23.5026546-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\Black\queen.fbx</Source>
+      <Importer>FbxImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Debug\Models\Black\queen_0.xml</Output>
+      <Time>2016-04-04T07:56:23.5076521-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\Black\rook.fbx</Source>
+      <Importer>FbxImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Debug\Models\Black\rook_0.xml</Output>
+      <Time>2016-04-04T07:56:23.5126496-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\White\bishop.fbx</Source>
+      <Importer>FbxImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Debug\Models\White\bishop_0.xml</Output>
+      <Time>2016-04-04T07:56:23.5196461-04:00</Time>
     </Item>
     <Item>
       <Source>Models\White\Marble.jpg</Source>
@@ -66,260 +283,43 @@
         <Data Key="PremultiplyAlpha" Type="bool">true</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>C:\Users\201471429\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\White\Marble_0.xnb</Output>
-      <Time>2016-02-24T09:03:57.2136867-05:00</Time>
-    </Item>
-    <Item>
-      <Source>Models\Black\bishop.fbx</Source>
-      <Name>Models\Black\bishop</Name>
-      <Importer>FbxImporter</Importer>
-      <Processor>ModelProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\201471429\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Black\bishop.xnb</Output>
-      <Time>2016-03-21T09:26:11.7520148-04:00</Time>
-      <Dependency>
-        <Key>obj\x86\Debug\Models\Black\bishop_0.xml</Key>
-        <Value>2016-03-21T09:26:12.7810148-04:00</Value>
-      </Dependency>
-      <Request>C:\Users\201471429\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Black\Granite_0.xnb</Request>
-    </Item>
-    <Item>
-      <Source>Models\Black\king.fbx</Source>
-      <Name>Models\Black\king</Name>
-      <Importer>FbxImporter</Importer>
-      <Processor>ModelProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\201471429\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Black\king.xnb</Output>
-      <Time>2016-03-21T09:26:11.8030148-04:00</Time>
-      <Dependency>
-        <Key>obj\x86\Debug\Models\Black\king_0.xml</Key>
-        <Value>2016-03-21T09:26:13.0950148-04:00</Value>
-      </Dependency>
-      <Request>C:\Users\201471429\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Black\Granite_0.xnb</Request>
-    </Item>
-    <Item>
-      <Source>Models\Black\knight.fbx</Source>
-      <Name>Models\Black\knight</Name>
-      <Importer>FbxImporter</Importer>
-      <Processor>ModelProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\201471429\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Black\knight.xnb</Output>
-      <Time>2016-03-21T09:44:28.909191-04:00</Time>
-      <Dependency>
-        <Key>obj\x86\Debug\Models\Black\knight_0.xml</Key>
-        <Value>2016-03-21T09:44:29.7132714-04:00</Value>
-      </Dependency>
-      <Request>C:\Users\201471429\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Black\Granite_0.xnb</Request>
-    </Item>
-    <Item>
-      <Source>Models\Black\pawn.fbx</Source>
-      <Name>Models\Black\pawn</Name>
-      <Importer>FbxImporter</Importer>
-      <Processor>ModelProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\201471429\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Black\pawn.xnb</Output>
-      <Time>2016-03-14T11:31:55.6037903-04:00</Time>
-      <Dependency>
-        <Key>obj\x86\Debug\Models\Black\pawn_0.xml</Key>
-        <Value>2016-03-21T08:33:16.3211548-04:00</Value>
-      </Dependency>
-      <Request>C:\Users\201471429\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Black\Granite_0.xnb</Request>
-    </Item>
-    <Item>
-      <Source>Models\Black\queen.fbx</Source>
-      <Name>Models\Black\queen</Name>
-      <Importer>FbxImporter</Importer>
-      <Processor>ModelProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\201471429\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Black\queen.xnb</Output>
-      <Time>2016-03-21T09:26:11.6400148-04:00</Time>
-      <Dependency>
-        <Key>obj\x86\Debug\Models\Black\queen_0.xml</Key>
-        <Value>2016-03-21T09:26:13.3720148-04:00</Value>
-      </Dependency>
-      <Request>C:\Users\201471429\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Black\Granite_0.xnb</Request>
-    </Item>
-    <Item>
-      <Source>Models\Black\rook.fbx</Source>
-      <Name>Models\Black\rook</Name>
-      <Importer>FbxImporter</Importer>
-      <Processor>ModelProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\201471429\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Black\rook.xnb</Output>
-      <Time>2016-03-21T09:33:52.9684148-04:00</Time>
-      <Dependency>
-        <Key>obj\x86\Debug\Models\Black\rook_0.xml</Key>
-        <Value>2016-03-21T09:33:53.7710148-04:00</Value>
-      </Dependency>
-      <Request>C:\Users\201471429\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Black\Granite_0.xnb</Request>
-    </Item>
-    <Item>
-      <Source>Models\White\bishop.fbx</Source>
-      <Name>Models\White\bishop</Name>
-      <Importer>FbxImporter</Importer>
-      <Processor>ModelProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\201471429\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\White\bishop.xnb</Output>
-      <Time>2016-03-21T09:26:11.9260148-04:00</Time>
-      <Dependency>
-        <Key>obj\x86\Debug\Models\White\bishop_0.xml</Key>
-        <Value>2016-03-21T09:26:13.6250148-04:00</Value>
-      </Dependency>
-      <Request>C:\Users\201471429\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\White\Marble_0.xnb</Request>
-    </Item>
-    <Item>
-      <Source>Models\White\king.fbx</Source>
-      <Name>Models\White\king</Name>
-      <Importer>FbxImporter</Importer>
-      <Processor>ModelProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\201471429\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\White\king.xnb</Output>
-      <Time>2016-03-21T09:26:11.8690148-04:00</Time>
-      <Dependency>
-        <Key>obj\x86\Debug\Models\White\king_0.xml</Key>
-        <Value>2016-03-21T09:26:13.8510148-04:00</Value>
-      </Dependency>
-      <Request>C:\Users\201471429\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\White\Marble_0.xnb</Request>
-    </Item>
-    <Item>
-      <Source>Models\White\knight.fbx</Source>
-      <Name>Models\White\knight</Name>
-      <Importer>FbxImporter</Importer>
-      <Processor>ModelProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\201471429\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\White\knight.xnb</Output>
-      <Time>2016-03-21T09:44:28.8641865-04:00</Time>
-      <Dependency>
-        <Key>obj\x86\Debug\Models\White\knight_0.xml</Key>
-        <Value>2016-03-21T09:44:30.0063007-04:00</Value>
-      </Dependency>
-      <Request>C:\Users\201471429\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\White\Marble_0.xnb</Request>
-    </Item>
-    <Item>
-      <Source>Models\White\pawn.fbx</Source>
-      <Name>Models\White\pawn</Name>
-      <Importer>FbxImporter</Importer>
-      <Processor>ModelProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\201471429\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\White\pawn.xnb</Output>
-      <Time>2016-03-21T09:26:11.5330148-04:00</Time>
-      <Dependency>
-        <Key>obj\x86\Debug\Models\White\pawn_0.xml</Key>
-        <Value>2016-03-21T09:26:14.1030148-04:00</Value>
-      </Dependency>
-      <Request>C:\Users\201471429\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\White\Marble_0.xnb</Request>
-    </Item>
-    <Item>
-      <Source>Models\White\queen.fbx</Source>
-      <Name>Models\White\queen</Name>
-      <Importer>FbxImporter</Importer>
-      <Processor>ModelProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\201471429\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\White\queen.xnb</Output>
-      <Time>2016-03-21T09:26:11.4770148-04:00</Time>
-      <Dependency>
-        <Key>obj\x86\Debug\Models\White\queen_0.xml</Key>
-        <Value>2016-03-21T09:26:14.2520148-04:00</Value>
-      </Dependency>
-      <Request>C:\Users\201471429\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\White\Marble_0.xnb</Request>
-    </Item>
-    <Item>
-      <Source>Models\White\rook.fbx</Source>
-      <Name>Models\White\rook</Name>
-      <Importer>FbxImporter</Importer>
-      <Processor>ModelProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\201471429\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\White\rook.xnb</Output>
-      <Time>2016-03-21T09:26:11.4270148-04:00</Time>
-      <Dependency>
-        <Key>obj\x86\Debug\Models\White\rook_0.xml</Key>
-        <Value>2016-03-21T09:26:14.4040148-04:00</Value>
-      </Dependency>
-      <Request>C:\Users\201471429\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\White\Marble_0.xnb</Request>
-    </Item>
-    <Item>
-      <Source>Models\Black\bishop.fbx</Source>
-      <Importer>FbxImporter</Importer>
-      <Options>IntermediateFile, DontCacheImportedData</Options>
-      <Output>obj\x86\Debug\Models\Black\bishop_0.xml</Output>
-      <Time>2016-03-21T09:26:11.7520148-04:00</Time>
-    </Item>
-    <Item>
-      <Source>Models\Black\king.fbx</Source>
-      <Importer>FbxImporter</Importer>
-      <Options>IntermediateFile, DontCacheImportedData</Options>
-      <Output>obj\x86\Debug\Models\Black\king_0.xml</Output>
-      <Time>2016-03-21T09:26:11.8030148-04:00</Time>
-    </Item>
-    <Item>
-      <Source>Models\Black\knight.fbx</Source>
-      <Importer>FbxImporter</Importer>
-      <Options>IntermediateFile, DontCacheImportedData</Options>
-      <Output>obj\x86\Debug\Models\Black\knight_0.xml</Output>
-      <Time>2016-03-21T09:44:28.909191-04:00</Time>
-    </Item>
-    <Item>
-      <Source>Models\Black\pawn.fbx</Source>
-      <Importer>FbxImporter</Importer>
-      <Options>IntermediateFile, DontCacheImportedData</Options>
-      <Output>obj\x86\Debug\Models\Black\pawn_0.xml</Output>
-      <Time>2016-03-14T11:31:55.6037903-04:00</Time>
-    </Item>
-    <Item>
-      <Source>Models\Black\queen.fbx</Source>
-      <Importer>FbxImporter</Importer>
-      <Options>IntermediateFile, DontCacheImportedData</Options>
-      <Output>obj\x86\Debug\Models\Black\queen_0.xml</Output>
-      <Time>2016-03-21T09:26:11.6400148-04:00</Time>
-    </Item>
-    <Item>
-      <Source>Models\Black\rook.fbx</Source>
-      <Importer>FbxImporter</Importer>
-      <Options>IntermediateFile, DontCacheImportedData</Options>
-      <Output>obj\x86\Debug\Models\Black\rook_0.xml</Output>
-      <Time>2016-03-21T09:33:52.9684148-04:00</Time>
-    </Item>
-    <Item>
-      <Source>Models\White\bishop.fbx</Source>
-      <Importer>FbxImporter</Importer>
-      <Options>IntermediateFile, DontCacheImportedData</Options>
-      <Output>obj\x86\Debug\Models\White\bishop_0.xml</Output>
-      <Time>2016-03-21T09:26:11.9260148-04:00</Time>
+      <Output>C:\Users\201471821\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\White\Marble_0.xnb</Output>
+      <Time>2016-04-04T07:56:23.5156481-04:00</Time>
     </Item>
     <Item>
       <Source>Models\White\king.fbx</Source>
       <Importer>FbxImporter</Importer>
       <Options>IntermediateFile, DontCacheImportedData</Options>
       <Output>obj\x86\Debug\Models\White\king_0.xml</Output>
-      <Time>2016-03-21T09:26:11.8690148-04:00</Time>
+      <Time>2016-04-04T07:56:23.5246436-04:00</Time>
     </Item>
     <Item>
       <Source>Models\White\knight.fbx</Source>
       <Importer>FbxImporter</Importer>
       <Options>IntermediateFile, DontCacheImportedData</Options>
       <Output>obj\x86\Debug\Models\White\knight_0.xml</Output>
-      <Time>2016-03-21T09:44:28.8641865-04:00</Time>
+      <Time>2016-04-04T07:56:23.5286416-04:00</Time>
     </Item>
     <Item>
       <Source>Models\White\pawn.fbx</Source>
       <Importer>FbxImporter</Importer>
       <Options>IntermediateFile, DontCacheImportedData</Options>
       <Output>obj\x86\Debug\Models\White\pawn_0.xml</Output>
-      <Time>2016-03-21T09:26:11.5330148-04:00</Time>
+      <Time>2016-04-04T07:56:23.5326396-04:00</Time>
     </Item>
     <Item>
       <Source>Models\White\queen.fbx</Source>
       <Importer>FbxImporter</Importer>
       <Options>IntermediateFile, DontCacheImportedData</Options>
       <Output>obj\x86\Debug\Models\White\queen_0.xml</Output>
-      <Time>2016-03-21T09:26:11.4770148-04:00</Time>
+      <Time>2016-04-04T07:56:23.5366376-04:00</Time>
     </Item>
     <Item>
       <Source>Models\White\rook.fbx</Source>
       <Importer>FbxImporter</Importer>
       <Options>IntermediateFile, DontCacheImportedData</Options>
       <Output>obj\x86\Debug\Models\White\rook_0.xml</Output>
-      <Time>2016-03-21T09:26:11.4270148-04:00</Time>
+      <Time>2016-04-04T07:56:23.5436341-04:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
@@ -328,10 +328,10 @@
       <TargetProfile>Reach</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>C:\Users\201471429\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_IntégrationContent\</RootDirectory>
-      <LoggerRootDirectory>C:\Users\201471429\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\</LoggerRootDirectory>
-      <IntermediateDirectory>C:\Users\201471429\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_IntégrationContent\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>C:\Users\201471429\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>C:\Users\201471821\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_IntégrationContent\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\201471821\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\201471821\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_IntégrationContent\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\201471821\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>
@@ -360,7 +360,7 @@
       </Assembly>
       <Assembly>
         <Key>C:\windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
-        <Value>2016-01-11T11:56:59.386576-05:00</Value>
+        <Value>2016-01-11T11:00:04.4746446-05:00</Value>
       </Assembly>
     </Assemblies>
   </Asset>
