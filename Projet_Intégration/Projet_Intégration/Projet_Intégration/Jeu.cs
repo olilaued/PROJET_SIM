@@ -21,6 +21,7 @@ namespace AtelierXNA
          
         const float INTERVALLE_CALCUL_FPS = 1f;
         const float INTERVALLE_MAJ_STANDARD = 1f / 60f;
+        
         GraphicsDeviceManager PériphériqueGraphique { get; set; }
         SpriteBatch GestionSprites { get; set; }
 
@@ -62,6 +63,7 @@ namespace AtelierXNA
             Vector3 positionCaméra = Vector3.Zero;
             Vector3 positionObjet = new Vector3(0, 0, 0);
             Vector3 rotationObjet = new Vector3(0, 0, 0);
+           
 
             CouleursÉchiquier = new Color[3];
             CouleursÉchiquier[0] = Color.White;
@@ -115,7 +117,7 @@ namespace AtelierXNA
             GestionSprites = new SpriteBatch(GraphicsDevice);
             Services.AddService(typeof(SpriteBatch), GestionSprites);
 
-            Components.Add(new Partie(this, 30, null, CouleursÉchiquier, Vector3.Zero));
+            Components.Add(new Partie(this, 30, "Pub/club_map_2", CouleursÉchiquier, new Vector3(0, 5, 0)));
 
             base.Initialize();
            

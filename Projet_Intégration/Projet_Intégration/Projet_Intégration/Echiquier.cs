@@ -19,7 +19,7 @@ namespace AtelierXNA
     {
         const int NB_CASES = 64;
         Vector2 Dimensions { get; set; }
-        Vector3 Origine { get; set; }
+        public  Vector3 Origine { get; set; }
         Vector2 Delta { get; set; }
         List<string> Styles { get; set; }
          

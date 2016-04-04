@@ -7,8 +7,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Olivier Boivin\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Textures\chess.xnb</Output>
-      <Time>2016-04-02T15:01:57.163284-04:00</Time>
+      <Output>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Textures\chess.xnb</Output>
+      <Time>2016-04-04T17:20:48.331058-04:00</Time>
     </Item>
     <Item>
       <Source>Textures\Granite.jpg</Source>
@@ -16,8 +16,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Olivier Boivin\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Textures\Granite.xnb</Output>
-      <Time>2016-04-02T15:01:57.1622817-04:00</Time>
+      <Output>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Textures\Granite.xnb</Output>
+      <Time>2016-04-04T17:20:48.330558-04:00</Time>
     </Item>
     <Item>
       <Source>Models\Black\Granite.jpg</Source>
@@ -25,8 +25,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Olivier Boivin\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Black\Granite.xnb</Output>
-      <Time>2016-04-02T15:01:57.1422283-04:00</Time>
+      <Output>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Black\Granite.xnb</Output>
+      <Time>2016-04-04T17:20:48.3061202-04:00</Time>
     </Item>
     <Item>
       <Source>Models\White\Marble.jpg</Source>
@@ -34,8 +34,224 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Olivier Boivin\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\White\Marble.xnb</Output>
-      <Time>2016-04-02T15:01:57.152255-04:00</Time>
+      <Output>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\White\Marble.xnb</Output>
+      <Time>2016-04-04T17:20:48.3213107-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\Pub\13-Seamless-marble-texture.jpg</Source>
+      <Name>Models\Pub\13-Seamless-marble-texture</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\13-Seamless-marble-texture.xnb</Output>
+      <Time>2016-04-04T17:23:49.1448879-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\Pub\beige_wall.jpg</Source>
+      <Name>Models\Pub\beige_wall</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\beige_wall.xnb</Output>
+      <Time>2016-04-04T17:23:49.1663383-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\Pub\bois_table_dessus.jpg</Source>
+      <Name>Models\Pub\bois_table_dessus</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\bois_table_dessus.xnb</Output>
+      <Time>2016-04-04T17:23:49.1713325-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\Pub\canape-cuir-savane-noir.jpg</Source>
+      <Name>Models\Pub\canape-cuir-savane-noir</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\canape-cuir-savane-noir.xnb</Output>
+      <Time>2016-04-04T17:23:49.1918572-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\Pub\ceramic_floor.jpg</Source>
+      <Name>Models\Pub\ceramic_floor</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\ceramic_floor.xnb</Output>
+      <Time>2016-04-04T17:23:49.1953607-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\Pub\Cloth_Sofa GM Plutone_Bump.jpg</Source>
+      <Name>Models\Pub\Cloth_Sofa GM Plutone_Bump</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\Cloth_Sofa GM Plutone_Bump.xnb</Output>
+      <Time>2016-04-04T17:23:49.1993654-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\Pub\Cloth_Sofa GM Plutone_Dif.jpg</Source>
+      <Name>Models\Pub\Cloth_Sofa GM Plutone_Dif</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\Cloth_Sofa GM Plutone_Dif.xnb</Output>
+      <Time>2016-04-04T17:23:49.2028713-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\Pub\dark_roof.jpg</Source>
+      <Name>Models\Pub\dark_roof</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\dark_roof.xnb</Output>
+      <Time>2016-04-04T17:23:49.2118821-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\Pub\dark_texture.png</Source>
+      <Name>Models\Pub\dark_texture</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\dark_texture.xnb</Output>
+      <Time>2016-04-04T17:23:49.214388-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\Pub\fabric_texture_plain_229291_l.jpg</Source>
+      <Name>Models\Pub\fabric_texture_plain_229291_l</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\fabric_texture_plain_229291_l.xnb</Output>
+      <Time>2016-04-04T17:23:49.2178912-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\Pub\Folds Pillows_Bump.jpg</Source>
+      <Name>Models\Pub\Folds Pillows_Bump</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\Folds Pillows_Bump.xnb</Output>
+      <Time>2016-04-04T17:23:49.2213956-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\Pub\free-texture-painted-wood.jpg</Source>
+      <Name>Models\Pub\free-texture-painted-wood</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\free-texture-painted-wood.xnb</Output>
+      <Time>2016-04-04T17:23:49.2259059-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\Pub\glass.jpg</Source>
+      <Name>Models\Pub\glass</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\glass.xnb</Output>
+      <Time>2016-04-04T17:23:49.2289018-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\Pub\interior_brick_wall.jpg</Source>
+      <Name>Models\Pub\interior_brick_wall</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\interior_brick_wall.xnb</Output>
+      <Time>2016-04-04T17:23:49.2324053-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\Pub\light_texture.jpg</Source>
+      <Name>Models\Pub\light_texture</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\light_texture.xnb</Output>
+      <Time>2016-04-04T17:23:49.2359089-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\Pub\mw_Carel.jpg</Source>
+      <Name>Models\Pub\mw_Carel</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\mw_Carel.xnb</Output>
+      <Time>2016-04-04T17:23:49.2394121-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\Pub\Stoneette6.png</Source>
+      <Name>Models\Pub\Stoneette6</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\Stoneette6.xnb</Output>
+      <Time>2016-04-04T17:23:49.2469195-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\Pub\wall_texture.jpg</Source>
+      <Name>Models\Pub\wall_texture</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\wall_texture.xnb</Output>
+      <Time>2016-04-04T17:23:49.2529248-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\Pub\white_brick.png</Source>
+      <Name>Models\Pub\white_brick</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\white_brick.xnb</Output>
+      <Time>2016-04-04T17:23:49.256428-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\Pub\wood-texture.jpg</Source>
+      <Name>Models\Pub\wood-texture</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\wood-texture.xnb</Output>
+      <Time>2016-04-04T17:23:49.271943-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\Pub\Wood-Textures-1.jpg</Source>
+      <Name>Models\Pub\Wood-Textures-1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\Wood-Textures-1.xnb</Output>
+      <Time>2016-04-04T17:23:49.2749462-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\Pub\wood_floor.jpg</Source>
+      <Name>Models\Pub\wood_floor</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\wood_floor.xnb</Output>
+      <Time>2016-04-04T17:23:49.2609327-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\Pub\Wood_Sofa GM Plutone_Bump.jpg</Source>
+      <Name>Models\Pub\Wood_Sofa GM Plutone_Bump</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\Wood_Sofa GM Plutone_Bump.xnb</Output>
+      <Time>2016-04-04T17:23:49.2649365-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\Pub\Wood_Sofa GM Plutone_Dif.jpg</Source>
+      <Name>Models\Pub\Wood_Sofa GM Plutone_Dif</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\Wood_Sofa GM Plutone_Dif.xnb</Output>
+      <Time>2016-04-04T17:23:49.2684403-04:00</Time>
     </Item>
     <Item>
       <Source>Models\Black\bishop.fbx</Source>
@@ -43,13 +259,13 @@
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Olivier Boivin\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Black\bishop.xnb</Output>
-      <Time>2016-04-02T15:01:57.1442337-04:00</Time>
+      <Output>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Black\bishop.xnb</Output>
+      <Time>2016-04-04T17:20:48.3076216-04:00</Time>
       <Dependency>
-        <Key>C:\Users\Olivier Boivin\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\obj\x86\Debug\Models\Black\bishop_0.xml</Key>
-        <Value>2016-04-02T15:02:55.9803402-04:00</Value>
+        <Key>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\obj\x86\Debug\Models\Black\bishop_0.xml</Key>
+        <Value>2016-04-04T17:31:07.355975-04:00</Value>
       </Dependency>
-      <Request>C:\Users\Olivier Boivin\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Black\Granite_0.xnb</Request>
+      <Request>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Black\Granite_0.xnb</Request>
     </Item>
     <Item>
       <Source>Models\Black\king.fbx</Source>
@@ -57,13 +273,13 @@
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Olivier Boivin\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Black\king.xnb</Output>
-      <Time>2016-04-02T15:01:57.1452363-04:00</Time>
+      <Output>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Black\king.xnb</Output>
+      <Time>2016-04-04T17:20:48.309624-04:00</Time>
       <Dependency>
-        <Key>C:\Users\Olivier Boivin\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\obj\x86\Debug\Models\Black\king_0.xml</Key>
-        <Value>2016-04-02T15:02:56.6174742-04:00</Value>
+        <Key>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\obj\x86\Debug\Models\Black\king_0.xml</Key>
+        <Value>2016-04-04T17:31:07.6277578-04:00</Value>
       </Dependency>
-      <Request>C:\Users\Olivier Boivin\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Black\Granite_0.xnb</Request>
+      <Request>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Black\Granite_0.xnb</Request>
     </Item>
     <Item>
       <Source>Models\Black\knight.fbx</Source>
@@ -71,13 +287,13 @@
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Olivier Boivin\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Black\knight.xnb</Output>
-      <Time>2016-04-02T15:01:57.1472425-04:00</Time>
+      <Output>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Black\knight.xnb</Output>
+      <Time>2016-04-04T17:20:48.3106246-04:00</Time>
       <Dependency>
-        <Key>C:\Users\Olivier Boivin\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\obj\x86\Debug\Models\Black\knight_0.xml</Key>
-        <Value>2016-04-02T15:02:56.7041998-04:00</Value>
+        <Key>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\obj\x86\Debug\Models\Black\knight_0.xml</Key>
+        <Value>2016-04-04T17:31:07.7133416-04:00</Value>
       </Dependency>
-      <Request>C:\Users\Olivier Boivin\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Black\Granite_0.xnb</Request>
+      <Request>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Black\Granite_0.xnb</Request>
     </Item>
     <Item>
       <Source>Models\Black\pawn.fbx</Source>
@@ -85,13 +301,13 @@
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Olivier Boivin\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Black\pawn.xnb</Output>
-      <Time>2016-04-02T15:01:57.1482443-04:00</Time>
+      <Output>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Black\pawn.xnb</Output>
+      <Time>2016-04-04T17:20:48.3116255-04:00</Time>
       <Dependency>
-        <Key>C:\Users\Olivier Boivin\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\obj\x86\Debug\Models\Black\pawn_0.xml</Key>
-        <Value>2016-04-02T15:02:56.7926565-04:00</Value>
+        <Key>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\obj\x86\Debug\Models\Black\pawn_0.xml</Key>
+        <Value>2016-04-04T17:31:07.7909157-04:00</Value>
       </Dependency>
-      <Request>C:\Users\Olivier Boivin\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Black\Granite_0.xnb</Request>
+      <Request>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Black\Granite_0.xnb</Request>
     </Item>
     <Item>
       <Source>Models\Black\queen.fbx</Source>
@@ -99,13 +315,13 @@
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Olivier Boivin\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Black\queen.xnb</Output>
-      <Time>2016-04-02T15:01:57.1502497-04:00</Time>
+      <Output>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Black\queen.xnb</Output>
+      <Time>2016-04-04T17:20:48.3131272-04:00</Time>
       <Dependency>
-        <Key>C:\Users\Olivier Boivin\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\obj\x86\Debug\Models\Black\queen_0.xml</Key>
-        <Value>2016-04-02T15:02:56.8970022-04:00</Value>
+        <Key>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\obj\x86\Debug\Models\Black\queen_0.xml</Key>
+        <Value>2016-04-04T17:31:07.8880259-04:00</Value>
       </Dependency>
-      <Request>C:\Users\Olivier Boivin\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Black\Granite_0.xnb</Request>
+      <Request>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Black\Granite_0.xnb</Request>
     </Item>
     <Item>
       <Source>Models\Black\rook.fbx</Source>
@@ -113,13 +329,13 @@
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Olivier Boivin\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Black\rook.xnb</Output>
-      <Time>2016-04-02T15:01:57.1512582-04:00</Time>
+      <Output>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Black\rook.xnb</Output>
+      <Time>2016-04-04T17:20:48.3208265-04:00</Time>
       <Dependency>
-        <Key>C:\Users\Olivier Boivin\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\obj\x86\Debug\Models\Black\rook_0.xml</Key>
-        <Value>2016-04-02T15:02:56.9759923-04:00</Value>
+        <Key>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\obj\x86\Debug\Models\Black\rook_0.xml</Key>
+        <Value>2016-04-04T17:31:07.9636065-04:00</Value>
       </Dependency>
-      <Request>C:\Users\Olivier Boivin\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Black\Granite_0.xnb</Request>
+      <Request>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Black\Granite_0.xnb</Request>
     </Item>
     <Item>
       <Source>Models\White\bishop.fbx</Source>
@@ -127,13 +343,13 @@
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Olivier Boivin\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\White\bishop.xnb</Output>
-      <Time>2016-04-02T15:01:57.1542603-04:00</Time>
+      <Output>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\White\bishop.xnb</Output>
+      <Time>2016-04-04T17:20:48.3223116-04:00</Time>
       <Dependency>
-        <Key>C:\Users\Olivier Boivin\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\obj\x86\Debug\Models\White\bishop_0.xml</Key>
-        <Value>2016-04-02T15:02:57.0702763-04:00</Value>
+        <Key>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\obj\x86\Debug\Models\White\bishop_0.xml</Key>
+        <Value>2016-04-04T17:31:08.0536947-04:00</Value>
       </Dependency>
-      <Request>C:\Users\Olivier Boivin\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\White\Marble_0.xnb</Request>
+      <Request>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\White\Marble_0.xnb</Request>
     </Item>
     <Item>
       <Source>Models\White\king.fbx</Source>
@@ -141,13 +357,13 @@
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Olivier Boivin\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\White\king.xnb</Output>
-      <Time>2016-04-02T15:01:57.1562659-04:00</Time>
+      <Output>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\White\king.xnb</Output>
+      <Time>2016-04-04T17:20:48.3240793-04:00</Time>
       <Dependency>
-        <Key>C:\Users\Olivier Boivin\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\obj\x86\Debug\Models\White\king_0.xml</Key>
-        <Value>2016-04-02T15:02:57.2606774-04:00</Value>
+        <Key>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\obj\x86\Debug\Models\White\king_0.xml</Key>
+        <Value>2016-04-04T17:31:08.2348694-04:00</Value>
       </Dependency>
-      <Request>C:\Users\Olivier Boivin\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\White\Marble_0.xnb</Request>
+      <Request>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\White\Marble_0.xnb</Request>
     </Item>
     <Item>
       <Source>Models\White\knight.fbx</Source>
@@ -155,13 +371,13 @@
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Olivier Boivin\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\White\knight.xnb</Output>
-      <Time>2016-04-02T15:01:57.1572683-04:00</Time>
+      <Output>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\White\knight.xnb</Output>
+      <Time>2016-04-04T17:20:48.3250594-04:00</Time>
       <Dependency>
-        <Key>C:\Users\Olivier Boivin\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\obj\x86\Debug\Models\White\knight_0.xml</Key>
-        <Value>2016-04-02T15:02:57.3428987-04:00</Value>
+        <Key>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\obj\x86\Debug\Models\White\knight_0.xml</Key>
+        <Value>2016-04-04T17:31:08.3159529-04:00</Value>
       </Dependency>
-      <Request>C:\Users\Olivier Boivin\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\White\Marble_0.xnb</Request>
+      <Request>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\White\Marble_0.xnb</Request>
     </Item>
     <Item>
       <Source>Models\White\pawn.fbx</Source>
@@ -169,13 +385,13 @@
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Olivier Boivin\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\White\pawn.xnb</Output>
-      <Time>2016-04-02T15:01:57.1582713-04:00</Time>
+      <Output>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\White\pawn.xnb</Output>
+      <Time>2016-04-04T17:20:48.3265448-04:00</Time>
       <Dependency>
-        <Key>C:\Users\Olivier Boivin\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\obj\x86\Debug\Models\White\pawn_0.xml</Key>
-        <Value>2016-04-02T15:02:57.4160946-04:00</Value>
+        <Key>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\obj\x86\Debug\Models\White\pawn_0.xml</Key>
+        <Value>2016-04-04T17:31:08.3885609-04:00</Value>
       </Dependency>
-      <Request>C:\Users\Olivier Boivin\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\White\Marble_0.xnb</Request>
+      <Request>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\White\Marble_0.xnb</Request>
     </Item>
     <Item>
       <Source>Models\White\queen.fbx</Source>
@@ -183,13 +399,13 @@
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Olivier Boivin\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\White\queen.xnb</Output>
-      <Time>2016-04-02T15:01:57.1602763-04:00</Time>
+      <Output>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\White\queen.xnb</Output>
+      <Time>2016-04-04T17:20:48.3280594-04:00</Time>
       <Dependency>
-        <Key>C:\Users\Olivier Boivin\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\obj\x86\Debug\Models\White\queen_0.xml</Key>
-        <Value>2016-04-02T15:02:57.5181208-04:00</Value>
+        <Key>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\obj\x86\Debug\Models\White\queen_0.xml</Key>
+        <Value>2016-04-04T17:31:08.4870195-04:00</Value>
       </Dependency>
-      <Request>C:\Users\Olivier Boivin\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\White\Marble_0.xnb</Request>
+      <Request>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\White\Marble_0.xnb</Request>
     </Item>
     <Item>
       <Source>Models\White\rook.fbx</Source>
@@ -197,20 +413,47 @@
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Olivier Boivin\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\White\rook.xnb</Output>
-      <Time>2016-04-02T15:01:57.1612787-04:00</Time>
+      <Output>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\White\rook.xnb</Output>
+      <Time>2016-04-04T17:20:48.3290609-04:00</Time>
       <Dependency>
-        <Key>C:\Users\Olivier Boivin\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\obj\x86\Debug\Models\White\rook_0.xml</Key>
-        <Value>2016-04-02T15:02:57.5999835-04:00</Value>
+        <Key>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\obj\x86\Debug\Models\White\rook_0.xml</Key>
+        <Value>2016-04-04T17:31:08.5619986-04:00</Value>
       </Dependency>
-      <Request>C:\Users\Olivier Boivin\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\White\Marble_0.xnb</Request>
+      <Request>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\White\Marble_0.xnb</Request>
+    </Item>
+    <Item>
+      <Source>Models\Pub\club_map_2.fbx</Source>
+      <Name>Models\Pub\club_map_2</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\club_map_2.xnb</Output>
+      <Time>2016-04-04T17:23:49.2083789-04:00</Time>
+      <Dependency>
+        <Key>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\obj\x86\Debug\Models\Pub\club_map_2_0.xml</Key>
+        <Value>2016-04-04T17:31:09.77003-04:00</Value>
+      </Dependency>
+      <Request>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\mw_Carel_0.xnb</Request>
+      <Request>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\Wood-Textures-1_0.xnb</Request>
+      <Request>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\wood-texture_0.xnb</Request>
+      <Request>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\fabric_texture_plain_229291_l_0.xnb</Request>
+      <Request>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\light_texture_0.xnb</Request>
+      <Request>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\wood_floor_0.xnb</Request>
+      <Request>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\bois_table_dessus_0.xnb</Request>
+      <Request>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\glass_0.xnb</Request>
+      <Request>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\Stoneette6_0.xnb</Request>
+      <Request>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\beige_wall_0.xnb</Request>
+      <Request>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\canape-cuir-savane-noir_0.xnb</Request>
+      <Request>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\interior_brick_wall_0.xnb</Request>
+      <Request>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\dark_roof_0.xnb</Request>
+      <Request>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\dark_texture_0.xnb</Request>
     </Item>
     <Item>
       <Source>Models\Black\bishop.fbx</Source>
       <Importer>FbxImporter</Importer>
       <Options>IntermediateFile, DontCacheImportedData</Options>
-      <Output>C:\Users\Olivier Boivin\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\obj\x86\Debug\Models\Black\bishop_0.xml</Output>
-      <Time>2016-04-02T15:01:57.1442337-04:00</Time>
+      <Output>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\obj\x86\Debug\Models\Black\bishop_0.xml</Output>
+      <Time>2016-04-04T17:20:48.3076216-04:00</Time>
     </Item>
     <Item>
       <Source>Models\Black\Granite.jpg</Source>
@@ -225,50 +468,50 @@
         <Data Key="PremultiplyAlpha" Type="bool">true</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>C:\Users\Olivier Boivin\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Black\Granite_0.xnb</Output>
-      <Time>2016-04-02T15:01:57.1422283-04:00</Time>
+      <Output>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Black\Granite_0.xnb</Output>
+      <Time>2016-04-04T17:20:48.3061202-04:00</Time>
     </Item>
     <Item>
       <Source>Models\Black\king.fbx</Source>
       <Importer>FbxImporter</Importer>
       <Options>IntermediateFile, DontCacheImportedData</Options>
-      <Output>C:\Users\Olivier Boivin\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\obj\x86\Debug\Models\Black\king_0.xml</Output>
-      <Time>2016-04-02T15:01:57.1452363-04:00</Time>
+      <Output>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\obj\x86\Debug\Models\Black\king_0.xml</Output>
+      <Time>2016-04-04T17:20:48.309624-04:00</Time>
     </Item>
     <Item>
       <Source>Models\Black\knight.fbx</Source>
       <Importer>FbxImporter</Importer>
       <Options>IntermediateFile, DontCacheImportedData</Options>
-      <Output>C:\Users\Olivier Boivin\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\obj\x86\Debug\Models\Black\knight_0.xml</Output>
-      <Time>2016-04-02T15:01:57.1472425-04:00</Time>
+      <Output>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\obj\x86\Debug\Models\Black\knight_0.xml</Output>
+      <Time>2016-04-04T17:20:48.3106246-04:00</Time>
     </Item>
     <Item>
       <Source>Models\Black\pawn.fbx</Source>
       <Importer>FbxImporter</Importer>
       <Options>IntermediateFile, DontCacheImportedData</Options>
-      <Output>C:\Users\Olivier Boivin\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\obj\x86\Debug\Models\Black\pawn_0.xml</Output>
-      <Time>2016-04-02T15:01:57.1482443-04:00</Time>
+      <Output>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\obj\x86\Debug\Models\Black\pawn_0.xml</Output>
+      <Time>2016-04-04T17:20:48.3116255-04:00</Time>
     </Item>
     <Item>
       <Source>Models\Black\queen.fbx</Source>
       <Importer>FbxImporter</Importer>
       <Options>IntermediateFile, DontCacheImportedData</Options>
-      <Output>C:\Users\Olivier Boivin\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\obj\x86\Debug\Models\Black\queen_0.xml</Output>
-      <Time>2016-04-02T15:01:57.1502497-04:00</Time>
+      <Output>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\obj\x86\Debug\Models\Black\queen_0.xml</Output>
+      <Time>2016-04-04T17:20:48.3131272-04:00</Time>
     </Item>
     <Item>
       <Source>Models\Black\rook.fbx</Source>
       <Importer>FbxImporter</Importer>
       <Options>IntermediateFile, DontCacheImportedData</Options>
-      <Output>C:\Users\Olivier Boivin\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\obj\x86\Debug\Models\Black\rook_0.xml</Output>
-      <Time>2016-04-02T15:01:57.1512582-04:00</Time>
+      <Output>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\obj\x86\Debug\Models\Black\rook_0.xml</Output>
+      <Time>2016-04-04T17:20:48.3208265-04:00</Time>
     </Item>
     <Item>
       <Source>Models\White\bishop.fbx</Source>
       <Importer>FbxImporter</Importer>
       <Options>IntermediateFile, DontCacheImportedData</Options>
-      <Output>C:\Users\Olivier Boivin\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\obj\x86\Debug\Models\White\bishop_0.xml</Output>
-      <Time>2016-04-02T15:01:57.1542603-04:00</Time>
+      <Output>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\obj\x86\Debug\Models\White\bishop_0.xml</Output>
+      <Time>2016-04-04T17:20:48.3223116-04:00</Time>
     </Item>
     <Item>
       <Source>Models\White\Marble.jpg</Source>
@@ -283,43 +526,274 @@
         <Data Key="PremultiplyAlpha" Type="bool">true</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>C:\Users\Olivier Boivin\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\White\Marble_0.xnb</Output>
-      <Time>2016-04-02T15:01:57.152255-04:00</Time>
+      <Output>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\White\Marble_0.xnb</Output>
+      <Time>2016-04-04T17:20:48.3213107-04:00</Time>
     </Item>
     <Item>
       <Source>Models\White\king.fbx</Source>
       <Importer>FbxImporter</Importer>
       <Options>IntermediateFile, DontCacheImportedData</Options>
-      <Output>C:\Users\Olivier Boivin\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\obj\x86\Debug\Models\White\king_0.xml</Output>
-      <Time>2016-04-02T15:01:57.1562659-04:00</Time>
+      <Output>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\obj\x86\Debug\Models\White\king_0.xml</Output>
+      <Time>2016-04-04T17:20:48.3240793-04:00</Time>
     </Item>
     <Item>
       <Source>Models\White\knight.fbx</Source>
       <Importer>FbxImporter</Importer>
       <Options>IntermediateFile, DontCacheImportedData</Options>
-      <Output>C:\Users\Olivier Boivin\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\obj\x86\Debug\Models\White\knight_0.xml</Output>
-      <Time>2016-04-02T15:01:57.1572683-04:00</Time>
+      <Output>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\obj\x86\Debug\Models\White\knight_0.xml</Output>
+      <Time>2016-04-04T17:20:48.3250594-04:00</Time>
     </Item>
     <Item>
       <Source>Models\White\pawn.fbx</Source>
       <Importer>FbxImporter</Importer>
       <Options>IntermediateFile, DontCacheImportedData</Options>
-      <Output>C:\Users\Olivier Boivin\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\obj\x86\Debug\Models\White\pawn_0.xml</Output>
-      <Time>2016-04-02T15:01:57.1582713-04:00</Time>
+      <Output>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\obj\x86\Debug\Models\White\pawn_0.xml</Output>
+      <Time>2016-04-04T17:20:48.3265448-04:00</Time>
     </Item>
     <Item>
       <Source>Models\White\queen.fbx</Source>
       <Importer>FbxImporter</Importer>
       <Options>IntermediateFile, DontCacheImportedData</Options>
-      <Output>C:\Users\Olivier Boivin\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\obj\x86\Debug\Models\White\queen_0.xml</Output>
-      <Time>2016-04-02T15:01:57.1602763-04:00</Time>
+      <Output>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\obj\x86\Debug\Models\White\queen_0.xml</Output>
+      <Time>2016-04-04T17:20:48.3280594-04:00</Time>
     </Item>
     <Item>
       <Source>Models\White\rook.fbx</Source>
       <Importer>FbxImporter</Importer>
       <Options>IntermediateFile, DontCacheImportedData</Options>
-      <Output>C:\Users\Olivier Boivin\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\obj\x86\Debug\Models\White\rook_0.xml</Output>
-      <Time>2016-04-02T15:01:57.1612787-04:00</Time>
+      <Output>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\obj\x86\Debug\Models\White\rook_0.xml</Output>
+      <Time>2016-04-04T17:20:48.3290609-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\Pub\club_map_2.fbx</Source>
+      <Importer>FbxImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\obj\x86\Debug\Models\Pub\club_map_2_0.xml</Output>
+      <Time>2016-04-04T17:23:49.2083789-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\Pub\mw_Carel.jpg</Source>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Parameters>
+        <Data Key="ColorKeyColor" Type="Framework:Color">FFFF00FF</Data>
+        <Data Key="ColorKeyEnabled" Type="bool">true</Data>
+        <Data Key="TextureFormat" Type="Processors:TextureProcessorOutputFormat">DxtCompressed</Data>
+        <Data Key="GenerateMipmaps" Type="bool">true</Data>
+        <Data Key="ResizeToPowerOfTwo" Type="bool">false</Data>
+        <Data Key="PremultiplyAlpha" Type="bool">true</Data>
+      </Parameters>
+      <Options>None</Options>
+      <Output>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\mw_Carel_0.xnb</Output>
+      <Time>2016-04-04T17:23:49.2394121-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\Pub\Wood-Textures-1.jpg</Source>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Parameters>
+        <Data Key="ColorKeyColor" Type="Framework:Color">FFFF00FF</Data>
+        <Data Key="ColorKeyEnabled" Type="bool">true</Data>
+        <Data Key="TextureFormat" Type="Processors:TextureProcessorOutputFormat">DxtCompressed</Data>
+        <Data Key="GenerateMipmaps" Type="bool">true</Data>
+        <Data Key="ResizeToPowerOfTwo" Type="bool">false</Data>
+        <Data Key="PremultiplyAlpha" Type="bool">true</Data>
+      </Parameters>
+      <Options>None</Options>
+      <Output>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\Wood-Textures-1_0.xnb</Output>
+      <Time>2016-04-04T17:23:49.2749462-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\Pub\wood-texture.jpg</Source>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Parameters>
+        <Data Key="ColorKeyColor" Type="Framework:Color">FFFF00FF</Data>
+        <Data Key="ColorKeyEnabled" Type="bool">true</Data>
+        <Data Key="TextureFormat" Type="Processors:TextureProcessorOutputFormat">DxtCompressed</Data>
+        <Data Key="GenerateMipmaps" Type="bool">true</Data>
+        <Data Key="ResizeToPowerOfTwo" Type="bool">false</Data>
+        <Data Key="PremultiplyAlpha" Type="bool">true</Data>
+      </Parameters>
+      <Options>None</Options>
+      <Output>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\wood-texture_0.xnb</Output>
+      <Time>2016-04-04T17:23:49.271943-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\Pub\fabric_texture_plain_229291_l.jpg</Source>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Parameters>
+        <Data Key="ColorKeyColor" Type="Framework:Color">FFFF00FF</Data>
+        <Data Key="ColorKeyEnabled" Type="bool">true</Data>
+        <Data Key="TextureFormat" Type="Processors:TextureProcessorOutputFormat">DxtCompressed</Data>
+        <Data Key="GenerateMipmaps" Type="bool">true</Data>
+        <Data Key="ResizeToPowerOfTwo" Type="bool">false</Data>
+        <Data Key="PremultiplyAlpha" Type="bool">true</Data>
+      </Parameters>
+      <Options>None</Options>
+      <Output>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\fabric_texture_plain_229291_l_0.xnb</Output>
+      <Time>2016-04-04T17:23:49.2178912-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\Pub\light_texture.jpg</Source>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Parameters>
+        <Data Key="ColorKeyColor" Type="Framework:Color">FFFF00FF</Data>
+        <Data Key="ColorKeyEnabled" Type="bool">true</Data>
+        <Data Key="TextureFormat" Type="Processors:TextureProcessorOutputFormat">DxtCompressed</Data>
+        <Data Key="GenerateMipmaps" Type="bool">true</Data>
+        <Data Key="ResizeToPowerOfTwo" Type="bool">false</Data>
+        <Data Key="PremultiplyAlpha" Type="bool">true</Data>
+      </Parameters>
+      <Options>None</Options>
+      <Output>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\light_texture_0.xnb</Output>
+      <Time>2016-04-04T17:23:49.2359089-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\Pub\wood_floor.jpg</Source>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Parameters>
+        <Data Key="ColorKeyColor" Type="Framework:Color">FFFF00FF</Data>
+        <Data Key="ColorKeyEnabled" Type="bool">true</Data>
+        <Data Key="TextureFormat" Type="Processors:TextureProcessorOutputFormat">DxtCompressed</Data>
+        <Data Key="GenerateMipmaps" Type="bool">true</Data>
+        <Data Key="ResizeToPowerOfTwo" Type="bool">false</Data>
+        <Data Key="PremultiplyAlpha" Type="bool">true</Data>
+      </Parameters>
+      <Options>None</Options>
+      <Output>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\wood_floor_0.xnb</Output>
+      <Time>2016-04-04T17:23:49.2609327-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\Pub\bois_table_dessus.jpg</Source>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Parameters>
+        <Data Key="ColorKeyColor" Type="Framework:Color">FFFF00FF</Data>
+        <Data Key="ColorKeyEnabled" Type="bool">true</Data>
+        <Data Key="TextureFormat" Type="Processors:TextureProcessorOutputFormat">DxtCompressed</Data>
+        <Data Key="GenerateMipmaps" Type="bool">true</Data>
+        <Data Key="ResizeToPowerOfTwo" Type="bool">false</Data>
+        <Data Key="PremultiplyAlpha" Type="bool">true</Data>
+      </Parameters>
+      <Options>None</Options>
+      <Output>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\bois_table_dessus_0.xnb</Output>
+      <Time>2016-04-04T17:23:49.1713325-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\Pub\glass.jpg</Source>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Parameters>
+        <Data Key="ColorKeyColor" Type="Framework:Color">FFFF00FF</Data>
+        <Data Key="ColorKeyEnabled" Type="bool">true</Data>
+        <Data Key="TextureFormat" Type="Processors:TextureProcessorOutputFormat">DxtCompressed</Data>
+        <Data Key="GenerateMipmaps" Type="bool">true</Data>
+        <Data Key="ResizeToPowerOfTwo" Type="bool">false</Data>
+        <Data Key="PremultiplyAlpha" Type="bool">true</Data>
+      </Parameters>
+      <Options>None</Options>
+      <Output>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\glass_0.xnb</Output>
+      <Time>2016-04-04T17:23:49.2289018-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\Pub\Stoneette6.png</Source>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Parameters>
+        <Data Key="ColorKeyColor" Type="Framework:Color">FFFF00FF</Data>
+        <Data Key="ColorKeyEnabled" Type="bool">true</Data>
+        <Data Key="TextureFormat" Type="Processors:TextureProcessorOutputFormat">DxtCompressed</Data>
+        <Data Key="GenerateMipmaps" Type="bool">true</Data>
+        <Data Key="ResizeToPowerOfTwo" Type="bool">false</Data>
+        <Data Key="PremultiplyAlpha" Type="bool">true</Data>
+      </Parameters>
+      <Options>None</Options>
+      <Output>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\Stoneette6_0.xnb</Output>
+      <Time>2016-04-04T17:23:49.2469195-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\Pub\beige_wall.jpg</Source>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Parameters>
+        <Data Key="ColorKeyColor" Type="Framework:Color">FFFF00FF</Data>
+        <Data Key="ColorKeyEnabled" Type="bool">true</Data>
+        <Data Key="TextureFormat" Type="Processors:TextureProcessorOutputFormat">DxtCompressed</Data>
+        <Data Key="GenerateMipmaps" Type="bool">true</Data>
+        <Data Key="ResizeToPowerOfTwo" Type="bool">false</Data>
+        <Data Key="PremultiplyAlpha" Type="bool">true</Data>
+      </Parameters>
+      <Options>None</Options>
+      <Output>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\beige_wall_0.xnb</Output>
+      <Time>2016-04-04T17:23:49.1663383-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\Pub\canape-cuir-savane-noir.jpg</Source>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Parameters>
+        <Data Key="ColorKeyColor" Type="Framework:Color">FFFF00FF</Data>
+        <Data Key="ColorKeyEnabled" Type="bool">true</Data>
+        <Data Key="TextureFormat" Type="Processors:TextureProcessorOutputFormat">DxtCompressed</Data>
+        <Data Key="GenerateMipmaps" Type="bool">true</Data>
+        <Data Key="ResizeToPowerOfTwo" Type="bool">false</Data>
+        <Data Key="PremultiplyAlpha" Type="bool">true</Data>
+      </Parameters>
+      <Options>None</Options>
+      <Output>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\canape-cuir-savane-noir_0.xnb</Output>
+      <Time>2016-04-04T17:23:49.1918572-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\Pub\interior_brick_wall.jpg</Source>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Parameters>
+        <Data Key="ColorKeyColor" Type="Framework:Color">FFFF00FF</Data>
+        <Data Key="ColorKeyEnabled" Type="bool">true</Data>
+        <Data Key="TextureFormat" Type="Processors:TextureProcessorOutputFormat">DxtCompressed</Data>
+        <Data Key="GenerateMipmaps" Type="bool">true</Data>
+        <Data Key="ResizeToPowerOfTwo" Type="bool">false</Data>
+        <Data Key="PremultiplyAlpha" Type="bool">true</Data>
+      </Parameters>
+      <Options>None</Options>
+      <Output>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\interior_brick_wall_0.xnb</Output>
+      <Time>2016-04-04T17:23:49.2324053-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\Pub\dark_roof.jpg</Source>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Parameters>
+        <Data Key="ColorKeyColor" Type="Framework:Color">FFFF00FF</Data>
+        <Data Key="ColorKeyEnabled" Type="bool">true</Data>
+        <Data Key="TextureFormat" Type="Processors:TextureProcessorOutputFormat">DxtCompressed</Data>
+        <Data Key="GenerateMipmaps" Type="bool">true</Data>
+        <Data Key="ResizeToPowerOfTwo" Type="bool">false</Data>
+        <Data Key="PremultiplyAlpha" Type="bool">true</Data>
+      </Parameters>
+      <Options>None</Options>
+      <Output>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\dark_roof_0.xnb</Output>
+      <Time>2016-04-04T17:23:49.2118821-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\Pub\dark_texture.png</Source>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Parameters>
+        <Data Key="ColorKeyColor" Type="Framework:Color">FFFF00FF</Data>
+        <Data Key="ColorKeyEnabled" Type="bool">true</Data>
+        <Data Key="TextureFormat" Type="Processors:TextureProcessorOutputFormat">DxtCompressed</Data>
+        <Data Key="GenerateMipmaps" Type="bool">true</Data>
+        <Data Key="ResizeToPowerOfTwo" Type="bool">false</Data>
+        <Data Key="PremultiplyAlpha" Type="bool">true</Data>
+      </Parameters>
+      <Options>None</Options>
+      <Output>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\dark_texture_0.xnb</Output>
+      <Time>2016-04-04T17:23:49.214388-04:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
@@ -328,10 +802,10 @@
       <TargetProfile>Reach</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>C:\Users\Olivier Boivin\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_IntégrationContent\</RootDirectory>
-      <LoggerRootDirectory>C:\Users\Olivier Boivin\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\</LoggerRootDirectory>
-      <IntermediateDirectory>C:\Users\Olivier Boivin\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>C:\Users\Olivier Boivin\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_IntégrationContent\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>
@@ -359,8 +833,8 @@
         <Value>2011-09-01T16:22:30-04:00</Value>
       </Assembly>
       <Assembly>
-        <Key>C:\Windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
-        <Value>2016-04-01T11:14:23.5844441-04:00</Value>
+        <Key>C:\WINDOWS\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
+        <Value>2016-04-02T18:43:50.3659458-04:00</Value>
       </Assembly>
     </Assemblies>
   </Asset>

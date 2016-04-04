@@ -17,19 +17,21 @@ namespace AtelierXNA
     /// </summary>
     public class Partie : Microsoft.Xna.Framework.GameComponent
     {
-        const float LARGEUR_ECHIQUIER = 15f;
+        const float LARGEUR_ECHIQUIER = 0.3f;
         const float LONGUEUR_ÉCHIQUIER = 16f;
+        
        
         List<Pieces> ListeDesPièces { get; set; }
         protected List<string> ListeDesMoves { get; set; }
         protected float TempsLimite { get; set; }
-        protected Model Map { get; set; }
+        protected string Map { get; set; }
         protected Echiquier UnÉchiquier { get; set; }
         protected CaméraSubjective CaméraJeu { get; set; }
         protected float NbSortiesBlanc { get; set; }
         protected float NbSortiesNoir { get; set; }
         protected float TempsÉcoulé { get; set; }
         protected Tour TourActuel { get; set; }
+        protected static Vector2[] PositionSorties { get; set; } 
 
         InputManager GestionInput { get; set; }
         
@@ -40,7 +42,7 @@ namespace AtelierXNA
 
 
 
-        public Partie(Game game, float tempsLimite, Model map, Color[] couleursÉchiquier, Vector3 origineÉchiquier)
+        public Partie(Game game, float tempsLimite, string map, Color[] couleursÉchiquier, Vector3 origineÉchiquier)
             : base(game)
         {
             UnÉchiquier = new Echiquier(Game, origineÉchiquier, new Vector2(LONGUEUR_ÉCHIQUIER, LARGEUR_ECHIQUIER), couleursÉchiquier[0],
@@ -54,12 +56,17 @@ namespace AtelierXNA
         /// </summary>
         public override void Initialize()
         {
+            PositionSorties = new Vector2[2];
             NbSortiesBlanc = 0;
             NbSortiesNoir = 0;
             InitialiserPièces(UnÉchiquier);
             GestionInput = Game.Services.GetService(typeof(InputManager)) as InputManager;
             CaméraJeu = Game.Services.GetService(typeof(CaméraSubjective)) as CaméraSubjective;
+            ObjetDeBase terrain = new ObjetDeBase(Game, Map, 0.005f, new Vector3(0, 0, 0), Vector3.Zero);
             TourActuel = new Tour(Game,"White", UnÉchiquier.ListeCases, ListeDesPièces, NbSortiesBlanc, NbSortiesNoir);
+            PositionSorties[0] = new Vector2(UnÉchiquier.Origine.X - 1, UnÉchiquier.Origine.Y);
+            PositionSorties[1] = new Vector2(UnÉchiquier.Origine.X + 18, UnÉchiquier.Origine.Y);
+            Game.Components.Add(terrain);
             Game.Components.Add(TourActuel);
             base.Initialize();
         }
@@ -131,6 +138,24 @@ namespace AtelierXNA
 
 
         }
+        
+        public static Vector2 GetPositionSorties(int index)
+        {
+            
+            if (index > 0 && index < PositionSorties.Length)
+            {
+                return PositionSorties[index];
+            }
+            else
+            {
+                return Vector2.Zero;
+            }
+            
+        }
+
+       
+        
+    
     }
         
     

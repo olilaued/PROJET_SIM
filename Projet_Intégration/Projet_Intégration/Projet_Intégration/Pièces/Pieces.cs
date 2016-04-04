@@ -31,8 +31,7 @@ namespace AtelierXNA
          int Scale { get; set; }
          char Lettre { get; set; }
          Rectangle HitBox { get; set; }
-         Vector3 PositionSortieBlanc = new Vector3(18, 0, 0);
-         Vector3 PositionSortieNoir = new Vector3(-1, 0, 0);
+       
 
          float z = 5;
 
@@ -96,11 +95,11 @@ namespace AtelierXNA
          {
              if (this.Couleur == "White")
              {
-                 Position = new Vector3(PositionSortieBlanc.X, PositionSortieBlanc.Y, nbSortiesBlanc);
+                 Position = new Vector3(Partie.GetPositionSorties(0).X, Partie.GetPositionSorties(0).Y, nbSortiesBlanc);
              }
              else
              {
-                 Position = new Vector3(PositionSortieNoir.X, PositionSortieNoir.Y, nbSortiesNoir);
+                 Position = new Vector3(Partie.GetPositionSorties(1).X, Partie.GetPositionSorties(1).Y, nbSortiesNoir);
              }
              this.Game.Components.Remove(this);
              this.Game.Components.Add(this);
