@@ -17,8 +17,8 @@ namespace AtelierXNA
     /// </summary>
     public class Partie : Microsoft.Xna.Framework.GameComponent
     {
-        const float LARGEUR_ECHIQUIER = 16f;
-        const float LONGUEUR_ÉCHIQUIER = 0.3f;
+        const float LARGEUR_ECHIQUIER = 15f;
+        const float LONGUEUR_ÉCHIQUIER = 16f;
        
         List<Pieces> ListeDesPièces { get; set; }
         protected List<string> ListeDesMoves { get; set; }
@@ -43,7 +43,7 @@ namespace AtelierXNA
         public Partie(Game game, float tempsLimite, Model map, Color[] couleursÉchiquier, Vector3 origineÉchiquier)
             : base(game)
         {
-            UnÉchiquier = new Echiquier(Game, origineÉchiquier, new Vector2(LARGEUR_ECHIQUIER, LONGUEUR_ÉCHIQUIER), couleursÉchiquier[0],
+            UnÉchiquier = new Echiquier(Game, origineÉchiquier, new Vector2(LONGUEUR_ÉCHIQUIER, LARGEUR_ECHIQUIER), couleursÉchiquier[0],
                 couleursÉchiquier[1], couleursÉchiquier[2]);
             TempsLimite = tempsLimite;
             Map = map;

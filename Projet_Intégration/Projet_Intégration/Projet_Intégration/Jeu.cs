@@ -66,7 +66,7 @@ namespace AtelierXNA
             CouleursÉchiquier = new Color[3];
             CouleursÉchiquier[0] = Color.White;
             CouleursÉchiquier[1] = Color.LightSeaGreen;
-            CouleursÉchiquier[2] = Color.Black;
+            CouleursÉchiquier[2] = Color.Aquamarine;
            
             
 

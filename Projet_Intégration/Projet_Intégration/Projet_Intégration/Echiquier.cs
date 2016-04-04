@@ -87,12 +87,12 @@ namespace AtelierXNA
                      position = new Vector3(a,Origine.Y, b);
                     if (Variation % 2 == 0)
                     {
-                        uneCase = new Cases(this.Game, 1f, Vector3.Zero, position, CouleurA, CouleurContour, new Vector3(2, 0.3f, 2), 1f / 60f);
+                        uneCase = new Cases(this.Game, 1f, Vector3.Zero, position, CouleurA, CouleurContour, new Vector3(Delta.X, Delta.Y, Delta.X), 1f / 60f);
 
                     }
                     else
                     {
-                        uneCase = new Cases(this.Game, 1f, Vector3.Zero, position, CouleurB, CouleurContour, new Vector3(2, 0.3f, 2), 1f / 60f);
+                        uneCase = new Cases(this.Game, 1f, Vector3.Zero, position, CouleurB, CouleurContour, new Vector3(Delta.X,Delta.Y, Delta.X), 1f / 60f);
                     }
                     this.Game.Components.Add(uneCase);
                     ListeCases.Add(uneCase);

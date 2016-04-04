@@ -17,7 +17,7 @@ namespace AtelierXNA
     /// </summary>
     public class Tour : Microsoft.Xna.Framework.GameComponent
     {
-        const Vector3 POS_BLANC = null;
+        //const Vector3 POS_BLANC = null;
         const string WHITE = "White";
         const string BLACK = "Black";
         protected float TempsÉcoulé { get; set; }
