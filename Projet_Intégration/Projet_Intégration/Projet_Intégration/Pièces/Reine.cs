@@ -37,7 +37,7 @@ namespace AtelierXNA
         {
             bool condition = false;
             if (Math.Abs(déplacement.X )== Math.Abs(déplacement.Y))
-            {
+            {        
                 condition = true;
             }
             else

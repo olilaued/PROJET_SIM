@@ -66,17 +66,59 @@ namespace AtelierXNA
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Update(GameTime gameTime)
         {
-             if (Compteur % 2 == 0)
+            if (Compteur % 2 == 0)
             {
                 Couleur = WHITE;
             }
-             else
-             {
-                 Couleur = BLACK;
-             }
+            else
+            {
+                Couleur = BLACK;
+            }
             GérerDéplacement();
 
             base.Update(gameTime);
+        }
+        private bool EstEnEchec(List<Cases> listeCases, List<Pieces> listePieces, string CouleurDuRoi)
+        {
+            bool condition = false;
+            Pieces leRoi = ListeDesPièces.Find(x => x.Nom == "/king" && x.Couleur == CouleurDuRoi);
+            
+
+            foreach (Pieces a in ListeDesPièces)
+            {
+                if (a.LogiqueDéplacement(new Vector2((leRoi.Position.X - a.Position.X), (leRoi.Position.Z - a.Position.Z))) && (a.Couleur != leRoi.Couleur) && NeSautePas(a.Position,leRoi.Position))
+                {
+                    condition = true;
+                }
+
+
+
+            }
+            return condition;
+        }
+        private bool NeSautePas( Vector3 caseA, Vector3 caseB)
+        {
+            bool condition = true;
+            Vector3 direction = (caseB- caseA);
+            direction.Normalize();
+            foreach (Pieces a in ListeDesPièces)
+            {
+               Vector3 laDirection = (a.Position - caseA);
+               laDirection.Normalize();
+                if (laDirection == direction && Math.Abs(a.Position.Z - caseA.Z)<= Math.Abs(caseB.Z-caseA.Z) && ( Math.Abs(a.Position.X - caseA.X)<= Math.Abs(caseB.X-caseA.X)))
+                {
+                    if (a.Position != caseB && a.Nom != "/knight")
+                    {
+                        condition = false;
+                    }
+                }
+
+            }
+            return condition;
+
+          
+           
+           
         }
         private void GérerDéplacement()
         {
@@ -110,7 +152,7 @@ namespace AtelierXNA
 
                     Rectangle zone = new Rectangle((int)BD.X, (int)HG.Y, width, height);
                     Point PosSouris = GestionInput.GetPositionSouris();
-                    
+
 
 
                     if (zone.Contains(PosSouris))
@@ -141,59 +183,102 @@ namespace AtelierXNA
 
                                         if (a.Couleur == Couleur)
                                         {
-                                            if (a.LogiqueDéplacement(new Vector2((CaseB.Centre.X - CaseA.Centre.X), (CaseB.Centre.Z - CaseA.Centre.Z))))
-                                            {
+                                            if (a.LogiqueDéplacement(new Vector2((CaseB.Centre.X - CaseA.Centre.X), (CaseB.Centre.Z - CaseA.Centre.Z))) && NeSautePas(CaseA.Centre, CaseB.Centre))
+                                            {                                            
                                                 Compteur++;
                                                 PièceA = a;
 
                                                 if (PièceB == null)
                                                 {
+                                                                                                       
+                                                                                                  
+                                                     PièceA.Deplacer(CaseB.Centre);
+                                                    if (PièceA.Nom == "/pawn")
+                                                    {
+                                                        if (CaseB.Centre.X - CaseA.Centre.X != 0)
+                                                        {
+                                                            PièceA.Deplacer(CaseA.Centre);
+                                                            Compteur--;
+                                                        }
+                                                    }
 
-                                                    PièceA.Deplacer(CaseB.Centre);
+                                                         if (EstEnEchec(ListeDesCases, ListeDesPièces, Couleur))
+                                                         {
+                                                             PièceA.Deplacer(CaseA.Centre);
+                                                             Compteur--;
+                                                         }
+                                                    
                                                 }
                                                 else
                                                 {
                                                     if (PièceA.Couleur != PièceB.Couleur)
                                                     {
                                                         PièceB.Sortir(NbSortiesBlanc, NbSortiesNoir);
+
                                                         PièceA.Deplacer(CaseB.Centre);
-                                                        if (PièceB.Couleur == "White")
+                                                        if (PièceA.Nom == "/pawn")
                                                         {
-                                                            NbSortiesBlanc += 1;
+                                                            Vector3 déplacement = (CaseB.Centre - CaseA.Centre);
+                                                            if (!PièceA.EstValidePion(déplacement))
+                                                            {
+                                                                PièceA.Deplacer(CaseA.Centre);
+                                                                PièceB.Deplacer(CaseB.Centre);
+                                                                Compteur--;
+                                                            }
+                                                        }
+                                                        if (EstEnEchec(ListeDesCases, ListeDesPièces, Couleur))
+                                                        {
+                                                            PièceA.Deplacer(CaseA.Centre);
+                                                            PièceB.Deplacer(CaseB.Centre);
+                                                            Compteur--;
                                                         }
                                                         else
                                                         {
-                                                            NbSortiesNoir += 1;
+                                                            // PièceB.Sortir(NbSortiesBlanc, NbSortiesNoir);
+                                                            if (PièceB.Couleur == "White")
+                                                            {
+                                                                NbSortiesBlanc += 1;
+                                                            }
+                                                            else
+                                                            {
+                                                                NbSortiesNoir += 1;
+
+                                                            }
+
+
                                                         }
                                                     }
                                                 }
+
                                             }
-
                                         }
-                                        PièceA = null;
-                                        PièceB = null;
-                                        CaseA = null;
-                                        CaseB = null;
-                                    }
-                                    if (a == ListeDesPièces[31])
-                                    {
-                                        PièceA = PièceB;
-                                        PièceB = null;
-                                        CaseA = CaseB;
-                                        CaseB = null;
-                                    }
-                                }
 
+                                            PièceA = null;
+                                            PièceB = null;
+                                            CaseA = null;
+                                            CaseB = null;
+                                        }
+                                        if (a == ListeDesPièces[31])
+                                        {
+                                            PièceA = PièceB;
+                                            PièceB = null;
+                                            CaseA = CaseB;
+                                            CaseB = null;
+                                        }
+                                    }
+
+                                }
                             }
+
+
+
                         }
 
-
-
                     }
-
                 }
             }
         }
     }
-}
+
+
 

@@ -29,6 +29,17 @@ namespace AtelierXNA
             
             // TODO: Construct any child components here
         }
+        public override bool EstValidePion(Vector3 déplacement)
+        {
+            if (this.Couleur == "Black")
+            {
+                return (Math.Abs(déplacement.X) == LARGEUR_CASES && déplacement.Z == LARGEUR_CASES);
+            }
+            else
+            {
+                return (Math.Abs(déplacement.X) == LARGEUR_CASES && déplacement.Z == -LARGEUR_CASES);
+            }
+        }
 
         /// <summary>
         /// Allows the game component to perform any initialization it needs to before starting
@@ -44,36 +55,55 @@ namespace AtelierXNA
         public override  bool LogiqueDéplacement(Vector2 déplacement)
         {
             bool condition = false;
+            
+
             if (this.Couleur == "Black")
             {
-                if (estPremierMouvement)
+                if (Math.Abs(déplacement.X) == LARGEUR_CASES && déplacement.Y == LARGEUR_CASES) 
                 {
-                    condition = ((déplacement.Y == (LARGEUR_CASES)) || (déplacement.Y == 2 * LARGEUR_CASES)) && déplacement.X == 0;       
-                    if (condition == true)
-                    {
-                        estPremierMouvement = false;
-                    }
+                    condition = true;
                 }
                 else
                 {
-                    condition = (déplacement.Y == LARGEUR_CASES && déplacement.X == 0);
+
+
+                    if (estPremierMouvement)
+                    {
+                        condition = ((déplacement.Y == (LARGEUR_CASES)) || (déplacement.Y == 2 * LARGEUR_CASES)) && déplacement.X == 0;
+                        if (condition == true)
+                        {
+                            estPremierMouvement = false;
+                        }
+                    }
+                    else
+                    {
+                        condition = (déplacement.Y == LARGEUR_CASES && déplacement.X == 0);
+                    }
                 }
             }
             else
             {
-                if (estPremierMouvement)
+                if (Math.Abs(déplacement.X) == LARGEUR_CASES && déplacement.Y == -LARGEUR_CASES)
                 {
-                    condition = ((déplacement.Y == (-LARGEUR_CASES)) || (déplacement.Y == -2 * LARGEUR_CASES)) && déplacement.X == 0;
-                    if (condition == true)
-                    {
-                        estPremierMouvement = false;
-                    }
+                    condition = true;
                 }
                 else
                 {
-                    condition = (déplacement.Y == -LARGEUR_CASES && déplacement.X == 0);
+                    if (estPremierMouvement)
+                    {
+                        condition = ((déplacement.Y == (-LARGEUR_CASES)) || (déplacement.Y == -2 * LARGEUR_CASES)) && déplacement.X == 0;
+                        if (condition == true)
+                        {
+                            estPremierMouvement = false;
+                        }
+                    }
+                    else
+                    {
+                        condition = (déplacement.Y == -LARGEUR_CASES && déplacement.X == 0);
+                    }
                 }
             }
+            
             return condition;
         }
 

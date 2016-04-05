@@ -18,7 +18,7 @@ namespace AtelierXNA
      public abstract class Pieces : ObjetDeBase
      {
 
-         String Nom { get; set; }
+         public string Nom { get; set; }
          Model Modèle3D { get; set; }
          public string Couleur { get; set; }
          //public Vector3 Position {get;set;}
@@ -42,6 +42,12 @@ namespace AtelierXNA
              
              return true;
          }
+          public virtual bool EstValidePion(Vector3 déplacement)
+          {
+
+              return true;
+          }
+
 
         public Pieces(Game game,Vector3 positioninitiale,string couleur,string nomModèle)
               : base(game, couleur + nomModèle, 0.05f,Vector3.Zero, positioninitiale)
@@ -106,6 +112,7 @@ namespace AtelierXNA
             // PositionSortie = new Vector3(PositionSortie.X, PositionSortie.Y, PositionSortie.Z + nbSorties* z);
              
          }
+         
              
     }
 }
