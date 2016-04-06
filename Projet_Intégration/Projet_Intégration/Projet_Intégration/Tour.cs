@@ -82,13 +82,19 @@ namespace AtelierXNA
         {
             bool condition = false;
             Pieces leRoi = ListeDesPièces.Find(x => x.Nom == "/king" && x.Couleur == CouleurDuRoi);
-            
+
 
             foreach (Pieces a in ListeDesPièces)
             {
-                if (a.LogiqueDéplacement(new Vector2((leRoi.Position.X - a.Position.X), (leRoi.Position.Z - a.Position.Z))) && (a.Couleur != leRoi.Couleur) && NeSautePas(a.Position,leRoi.Position))
+                Vector3 déplacement = new Vector3((leRoi.Position.X - a.Position.X), 0f, (leRoi.Position.Z - a.Position.Z));
+                if (a.LogiqueDéplacement(new Vector2((leRoi.Position.X - a.Position.X), (leRoi.Position.Z - a.Position.Z))) && (a.Couleur != leRoi.Couleur) && NeSautePas(leRoi.Position,a.Position))
                 {
+
                     condition = true;
+                    if (a.Nom == "/pawn")
+                    {
+                        condition = a.EstValidePion(déplacement);
+                    }
                 }
 
 
@@ -96,29 +102,36 @@ namespace AtelierXNA
             }
             return condition;
         }
-        private bool NeSautePas( Vector3 caseA, Vector3 caseB)
+        private bool NeSautePas(Vector3 destination, Vector3 position)
         {
             bool condition = true;
-            Vector3 direction = (caseB- caseA);
+            Vector3 direction = (position - destination);
             direction.Normalize();
-            foreach (Pieces a in ListeDesPièces)
+            foreach (Pieces b in ListeDesPièces)
             {
-               Vector3 laDirection = (a.Position - caseA);
-               laDirection.Normalize();
-                if (laDirection == direction && Math.Abs(a.Position.Z - caseA.Z)<= Math.Abs(caseB.Z-caseA.Z) && ( Math.Abs(a.Position.X - caseA.X)<= Math.Abs(caseB.X-caseA.X)))
+                Vector3 laDirection = (b.Position - destination);
+                laDirection.Normalize();
+               
+                
+                if ((Math.Abs(b.Position.Z - destination.Z) <= Math.Abs(position.Z - destination.Z)) && (Math.Abs(b.Position.X - destination.X) <= Math.Abs(position.X - destination.X)))
                 {
-                    if (a.Position != caseB && a.Nom != "/knight")
+                    if ((direction.X-0.0001f < laDirection.X) && (laDirection.X< direction.X+0.0001f) && (laDirection.Z-0.0001f  < direction.Z) &&( laDirection.Z+0.0001f > direction.Z))
                     {
-                        condition = false;
+                        float g = laDirection.X;
+                        if (b.Position != position)
+                        {
+                            condition = false;
+                        }
                     }
+                   
                 }
 
             }
             return condition;
 
-          
-           
-           
+
+
+
         }
         private void GérerDéplacement()
         {
@@ -184,15 +197,15 @@ namespace AtelierXNA
                                         if (a.Couleur == Couleur)
                                         {
                                             if (a.LogiqueDéplacement(new Vector2((CaseB.Centre.X - CaseA.Centre.X), (CaseB.Centre.Z - CaseA.Centre.Z))) && NeSautePas(CaseA.Centre, CaseB.Centre))
-                                            {                                            
+                                            {
                                                 Compteur++;
                                                 PièceA = a;
 
                                                 if (PièceB == null)
                                                 {
-                                                                                                       
-                                                                                                  
-                                                     PièceA.Deplacer(CaseB.Centre);
+
+
+                                                    PièceA.Deplacer(CaseB.Centre);
                                                     if (PièceA.Nom == "/pawn")
                                                     {
                                                         if (CaseB.Centre.X - CaseA.Centre.X != 0)
@@ -202,12 +215,12 @@ namespace AtelierXNA
                                                         }
                                                     }
 
-                                                         if (EstEnEchec(ListeDesCases, ListeDesPièces, Couleur))
-                                                         {
-                                                             PièceA.Deplacer(CaseA.Centre);
-                                                             Compteur--;
-                                                         }
-                                                    
+                                                    if (EstEnEchec(ListeDesCases, ListeDesPièces, Couleur))
+                                                    {
+                                                        PièceA.Deplacer(CaseA.Centre);
+                                                        Compteur--;
+                                                    }
+
                                                 }
                                                 else
                                                 {
@@ -248,24 +261,36 @@ namespace AtelierXNA
 
                                                         }
                                                     }
+                                                    else
+                                                    {
+
+                                                        Compteur--;
+                                                    }
                                                 }
 
                                             }
                                         }
-
-                                            PièceA = null;
-                                            PièceB = null;
-                                            CaseA = null;
-                                            CaseB = null;
-                                        }
-                                        if (a == ListeDesPièces[31])
+                                        else
                                         {
                                             PièceA = PièceB;
                                             PièceB = null;
                                             CaseA = CaseB;
                                             CaseB = null;
                                         }
+
+                                        //PièceA = null;
+                                        //PièceB = null;
+                                        //CaseA = null;
+                                        //CaseB = null;
                                     }
+                                    if (a == ListeDesPièces[31])
+                                    {
+                                        PièceA = PièceB;
+                                        PièceB = null;
+                                        CaseA = CaseB;
+                                        CaseB = null;
+                                    }
+
 
                                 }
                             }
@@ -279,6 +304,7 @@ namespace AtelierXNA
             }
         }
     }
+}
 
 
 

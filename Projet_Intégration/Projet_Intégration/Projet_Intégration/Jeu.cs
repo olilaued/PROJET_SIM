@@ -66,8 +66,8 @@ namespace AtelierXNA
            
 
             CouleursÉchiquier = new Color[3];
-            CouleursÉchiquier[0] = Color.White;
-            CouleursÉchiquier[1] = Color.LightSeaGreen;
+            CouleursÉchiquier[0] = Color.NavajoWhite;
+            CouleursÉchiquier[1] = Color.Gray;
             CouleursÉchiquier[2] = Color.Aquamarine;
            
             
@@ -117,7 +117,7 @@ namespace AtelierXNA
             GestionSprites = new SpriteBatch(GraphicsDevice);
             Services.AddService(typeof(SpriteBatch), GestionSprites);
 
-            Components.Add(new Partie(this, 30, "Pub/club_map_2", CouleursÉchiquier, new Vector3(0, 5, 0)));
+            Components.Add(new Partie(this, 30, "Pub/club_map_2", CouleursÉchiquier, new Vector3(0, 4.9f, 0)));
 
             base.Initialize();
            
