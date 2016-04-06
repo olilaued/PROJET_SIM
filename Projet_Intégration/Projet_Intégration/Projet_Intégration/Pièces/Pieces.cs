@@ -21,6 +21,8 @@ namespace AtelierXNA
          public string Nom { get; set; }
          Model Modèle3D { get; set; }
          public string Couleur { get; set; }
+         public bool EstPremierMove { get; set; }
+         public int NbDéplacement { get; set; }
          //public Vector3 Position {get;set;}
             
         
@@ -47,6 +49,8 @@ namespace AtelierXNA
 
               return true;
           }
+        
+
 
 
         public Pieces(Game game,Vector3 positioninitiale,string couleur,string nomModèle)
@@ -56,6 +60,8 @@ namespace AtelierXNA
             Couleur = couleur;
             Position = positioninitiale;
             this.Game.Components.Add(this);
+            EstPremierMove = true;
+            NbDéplacement = 0;
            
             //TODO: Construct any child components here
         }
@@ -67,9 +73,19 @@ namespace AtelierXNA
         public override void Initialize()
         {
             
+            
             // TODO: Add your initialization code here
 
             base.Initialize();
+        }
+         public Pieces PromoteQueen()
+        {
+            Vector3 posPion =this.Position;
+            string couleurPion =this.Couleur;
+            this.Game.Components.Remove(this);
+            Reine nouvelleReine = new Reine(this.Game, posPion, couleurPion);
+            return nouvelleReine; 
+
         }
 
         /// <summary>
@@ -86,7 +102,7 @@ namespace AtelierXNA
         }
          public void Deplacer(Vector3 destination)
         {
-            
+            NbDéplacement++;
             Position = destination;
            
              

@@ -17,6 +17,7 @@ namespace AtelierXNA
     /// </summary>
     public class Tours : Pieces
     {
+        bool estPremierMove = true;
      public Tours(Game game,Vector3 positioninitiale,string couleur)
             : base(game,positioninitiale,couleur,"/rook")
         {
@@ -33,6 +34,7 @@ namespace AtelierXNA
 
             base.Initialize();
         }
+        
         public override bool LogiqueDéplacement(Vector2 déplacement)
         {
             bool condition = false;
@@ -40,6 +42,8 @@ namespace AtelierXNA
             if ((déplacement.X != 0 && déplacement.Y == 0) || (déplacement.Y != 0 && déplacement.X == 0))
             {
                 condition = true;
+               
+                
             }
             return condition;
         }
