@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using System.IO;
 
 namespace AtelierXNA
 {
@@ -181,6 +182,12 @@ namespace AtelierXNA
          //{
          //   EstEnZoom = !EstEnZoom;
          //}
+          if (GestionInput.EstNouvelleTouche(Keys.P))
+          {
+              StreamWriter sw = File.CreateText(@"C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_IntégrationContent");
+              sw.WriteLine(this.Position.ToString(), this.Cible.ToString(), this.OrientationVerticale.ToString());
+          }
+
       }
    }
 }

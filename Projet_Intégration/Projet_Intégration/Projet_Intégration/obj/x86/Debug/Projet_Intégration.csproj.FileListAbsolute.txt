@@ -209,3 +209,4 @@ C:\Users\Olivier Boivin\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_I
 C:\Users\Olivier Boivin\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\dark_roof_0.xnb
 C:\Users\Olivier Boivin\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\Wood-Textures-1_0.xnb
 C:\Users\Olivier Boivin\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\Stoneette6_0.xnb
+C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Fonts\Arial.xnb

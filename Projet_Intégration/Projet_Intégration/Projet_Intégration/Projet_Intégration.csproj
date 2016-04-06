@@ -79,6 +79,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Afficheur3D.cs" />
+    <Compile Include="AfficheurFps.cs" />
     <Compile Include="CaméraSubjective.cs" />
     <Compile Include="Cases.cs" />
     <Compile Include="Gestion\Gestion_Deplacement.cs" />

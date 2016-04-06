@@ -3,7 +3,7 @@
   <Asset Type="Graphics:NodeContent">
     <Name>Model</Name>
     <Identity>
-      <SourceFilename>C:\Users\Olivier Boivin\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_IntégrationContent\Models\Black\bishop.fbx</SourceFilename>
+      <SourceFilename>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_IntégrationContent\Models\Black\bishop.fbx</SourceFilename>
       <SourceTool>FbxImporter</SourceTool>
     </Identity>
     <Transform>1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</Transform>
@@ -33,7 +33,7 @@
     <Resource ID="#Resource1" Type="Graphics:BasicMaterialContent">
       <Name>Granite</Name>
       <Identity>
-        <SourceFilename>C:\Users\Olivier Boivin\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_IntégrationContent\Models\Black\bishop.fbx</SourceFilename>
+        <SourceFilename>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_IntégrationContent\Models\Black\bishop.fbx</SourceFilename>
         <SourceTool>FbxImporter</SourceTool>
       </Identity>
       <OpaqueData>

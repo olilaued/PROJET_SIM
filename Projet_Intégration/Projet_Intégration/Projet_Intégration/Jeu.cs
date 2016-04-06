@@ -46,6 +46,9 @@ namespace AtelierXNA
             PériphériqueGraphique = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+            IsFixedTimeStep = false;
+            PériphériqueGraphique.SynchronizeWithVerticalRetrace = false;
+            PériphériqueGraphique.ApplyChanges();
         }
 
         /// <summary>
@@ -84,9 +87,13 @@ namespace AtelierXNA
             //Echiquier = new Echiquier(this, new Vector3(0, 0, 0), new Vector2(LARGEUR_ECHIQUIER, 0.3f),  Color.BurlyWood,Color.MediumSeaGreen, Color.Blue);
            // Components.Add(Echiquier);
             // GraphicsDevice.Viewport.Unproject()
-            
-           
+            Components.Add(new AfficheurFps(this,"Arial", Color.Blue, INTERVALLE_CALCUL_FPS)) ;
+            Components.Add(new Afficheur3D(this));
+            Components.Add(new Partie(this, 30, "Pub/club_map_2", CouleursÉchiquier, new Vector3(0, 4.9f, 0)));
             Components.Add(CaméraJeu);
+            
+            Components.Add(GestionInput);
+            
 
             //InitialiserPièces(Echiquier);
             
@@ -100,8 +107,9 @@ namespace AtelierXNA
             
             
             
-            Components.Add(new Afficheur3D(this));
-            Components.Add(GestionInput);
+            
+            
+ 
 
            
 
@@ -117,7 +125,7 @@ namespace AtelierXNA
             GestionSprites = new SpriteBatch(GraphicsDevice);
             Services.AddService(typeof(SpriteBatch), GestionSprites);
 
-            Components.Add(new Partie(this, 30, "Pub/club_map_2", CouleursÉchiquier, new Vector3(0, 4.9f, 0)));
+            
 
             base.Initialize();
            

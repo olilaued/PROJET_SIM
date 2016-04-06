@@ -17,7 +17,7 @@ namespace AtelierXNA
     /// </summary>
     public class Tours : Pieces
     {
-        bool estPremierMove = true;
+     bool estPremierMove = true;
      public Tours(Game game,Vector3 positioninitiale,string couleur)
             : base(game,positioninitiale,couleur,"/rook")
         {
