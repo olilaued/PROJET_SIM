@@ -80,7 +80,7 @@ namespace AtelierXNA
             GestionnaireDeModèles = new RessourcesManager<Model>(this, "Models");
             GestionnaireDeShaders = new RessourcesManager<Effect>(this, "Effects");
             GestionInput = new InputManager(this);
-            CaméraJeu = new CaméraSubjective(this, new Vector3(0,10,-10), positionObjet, Vector3.Up, INTERVALLE_MAJ_STANDARD);
+            CaméraJeu = new CaméraSubjective(this, new Vector3(8.95f,16.12f,-9.59f), new Vector3(8.9f, 15.5f, -8.81f), new Vector3(0.03888775f,0.7823958f,0.6215662f), INTERVALLE_MAJ_STANDARD);
            
             
           
@@ -91,11 +91,10 @@ namespace AtelierXNA
             Components.Add(new Afficheur3D(this));
             Components.Add(new Partie(this, 30, "Pub/club_map_2", CouleursÉchiquier, new Vector3(0, 4.9f, 0)));
             Components.Add(CaméraJeu);
-            
             Components.Add(GestionInput);
             
+            
 
-            //InitialiserPièces(Echiquier);
             
             
 

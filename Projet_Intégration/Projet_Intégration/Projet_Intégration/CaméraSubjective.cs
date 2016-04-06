@@ -184,8 +184,12 @@ namespace AtelierXNA
          //}
           if (GestionInput.EstNouvelleTouche(Keys.P))
           {
-              StreamWriter sw = File.CreateText(@"C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_IntégrationContent");
-              sw.WriteLine(this.Position.ToString(), this.Cible.ToString(), this.OrientationVerticale.ToString());
+              
+              StreamWriter sw = File.CreateText("C:/Users/Tristan/Documents/GitHub/PROJET_SIM/infoCaméra.txt");
+              sw.WriteLine(Position.ToString());
+              sw.WriteLine((Direction + Position).ToString());
+              sw.WriteLine(OrientationVerticale.ToString());
+              sw.Close();
           }
 
       }
