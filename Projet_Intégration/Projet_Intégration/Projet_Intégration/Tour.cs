@@ -20,7 +20,7 @@ namespace AtelierXNA
         //const Vector3 POS_BLANC = null;
         const string WHITE = "White";
         const string BLACK = "Black";
-        protected float TempsÉcoulé { get; set; }
+        float TempsÉcouléDepuisMAJ { get; set; }
         protected List<Cases> ListeDesCases { get; set; }
         protected List<Pieces> ListeDesPièces { get; set; }
         protected bool Action { get; set; }
@@ -55,7 +55,7 @@ namespace AtelierXNA
         public override void Initialize()
         {
             // TODO: Add your initialization code here
-            TempsÉcoulé = 0;
+            TempsÉcouléDepuisMAJ = 0;
             Compteur = 0;
             CaméraJeu = Game.Services.GetService(typeof(Caméra)) as CaméraSubjective;
             GestionInput = Game.Services.GetService(typeof(InputManager)) as InputManager;
@@ -68,6 +68,7 @@ namespace AtelierXNA
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Update(GameTime gameTime)
         {
+
             if (Compteur % 2 == 0)
             {
                 Couleur = WHITE;
@@ -77,9 +78,9 @@ namespace AtelierXNA
                 Couleur = BLACK;
             }
             GérerDéplacement();
-
             base.Update(gameTime);
         }
+        
         private bool EstEnEchec(List<Cases> listeCases, List<Pieces> listePieces, string CouleurDuRoi)
         {
             bool condition = false;

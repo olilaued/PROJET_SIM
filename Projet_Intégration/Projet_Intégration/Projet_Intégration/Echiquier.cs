@@ -70,7 +70,13 @@ namespace AtelierXNA
         public override void Update(GameTime gameTime)
         {
             // TODO: Add your update code here
-
+            if (Jeu.EstVisible == true)
+            {
+                foreach (Cases c in ListeCases)
+                {
+                    c.Visible = true;
+                }
+            }
             base.Update(gameTime);
         }
 
@@ -95,6 +101,7 @@ namespace AtelierXNA
                         uneCase = new Cases(this.Game, 1f, Vector3.Zero, position, CouleurB, CouleurContour, new Vector3(Delta.X,Delta.Y, Delta.X), 1f / 60f);
                     }
                     this.Game.Components.Add(uneCase);
+                    uneCase.Visible = false;
                     ListeCases.Add(uneCase);
                     Variation++;
                     b += Delta.X;

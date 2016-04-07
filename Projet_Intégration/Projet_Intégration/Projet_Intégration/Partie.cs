@@ -19,18 +19,23 @@ namespace AtelierXNA
     {
         const float LARGEUR_ECHIQUIER = 0.3f;
         const float LONGUEUR_ÉCHIQUIER = 16f;
-        
-       
+        const float PROFONDEUR_DEFAUT = 0.5f;
+        const float SCALE_DEFAUT = 1.0f;
+
+        const string VAINQUEUR_B = "Les blancs l'emportent!";
+        const string VAINQUEUR_N = "Les noirs l'emportent!";
+
+       public static float TempsLimite { get; set; }
         List<Pieces> ListeDesPièces { get; set; }
         protected List<string> ListeDesMoves { get; set; }
-        protected float TempsLimite { get; set; }
         protected string Map { get; set; }
         protected Echiquier UnÉchiquier { get; set; }
         protected CaméraSubjective CaméraJeu { get; set; }
         protected float NbSortiesBlanc { get; set; }
         protected float NbSortiesNoir { get; set; }
-        protected float TempsÉcoulé { get; set; }
+        protected float TempsÉcouléDepuisMAJ { get; set; }
         protected Tour TourActuel { get; set; }
+        protected ObjetDeBase Environnement {get; set;}
         protected static Vector2[] PositionSorties { get; set; } 
 
         InputManager GestionInput { get; set; }
@@ -45,8 +50,8 @@ namespace AtelierXNA
         public Partie(Game game, float tempsLimite, string map, Color[] couleursÉchiquier, Vector3 origineÉchiquier)
             : base(game)
         {
-            UnÉchiquier = new Echiquier(Game, origineÉchiquier, new Vector2(LONGUEUR_ÉCHIQUIER, LARGEUR_ECHIQUIER), couleursÉchiquier[0],
-                couleursÉchiquier[1], couleursÉchiquier[2]);
+           game.Components.Add(UnÉchiquier = new Echiquier(Game, origineÉchiquier, new Vector2(LONGUEUR_ÉCHIQUIER, LARGEUR_ECHIQUIER), couleursÉchiquier[0],
+                couleursÉchiquier[1], couleursÉchiquier[2]));
             TempsLimite = tempsLimite;
             Map = map;
         }
@@ -57,17 +62,21 @@ namespace AtelierXNA
         public override void Initialize()
         {
             PositionSorties = new Vector2[2];
+            TempsÉcouléDepuisMAJ = 0;
             NbSortiesBlanc = 0;
             NbSortiesNoir = 0;
             InitialiserPièces(UnÉchiquier);
             GestionInput = Game.Services.GetService(typeof(InputManager)) as InputManager;
             CaméraJeu = Game.Services.GetService(typeof(CaméraSubjective)) as CaméraSubjective;
-            ObjetDeBase terrain = new ObjetDeBase(Game, Map, 0.005f, new Vector3(0, 0, 0), Vector3.Zero);
-            TourActuel = new Tour(Game,"White", UnÉchiquier.ListeCases, ListeDesPièces, NbSortiesBlanc, NbSortiesNoir);
             PositionSorties[0] = new Vector2(UnÉchiquier.Origine.X - 1, UnÉchiquier.Origine.Y);
             PositionSorties[1] = new Vector2(UnÉchiquier.Origine.X + 18, UnÉchiquier.Origine.Y);
-            Game.Components.Add(terrain);
-            Game.Components.Add(TourActuel);
+            Game.Components.Add(Environnement = new ObjetDeBase(Game, Map, 0.005f, new Vector3(0, 0, 0), Vector3.Zero));
+            Game.Components.Add(TourActuel = new Tour(Game,"White", UnÉchiquier.ListeCases, ListeDesPièces, NbSortiesBlanc, NbSortiesNoir));
+            Environnement.Visible = false;
+            
+            
+            
+           // TourActuel = Game.Services.GetService(typeof(Tour)) as Tour;
             base.Initialize();
         }
 
@@ -77,16 +86,32 @@ namespace AtelierXNA
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Update(GameTime gameTime)
         {
-
-            if ( TempsÉcoulé < TempsLimite)
+            if (Jeu.EstVisible == true && Environnement.Visible == false)
             {
-                
+                ModifierEstVisiblePièces();
+                Environnement.Visible = true; 
+            }
+            float TempsÉcoulé = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            TempsÉcouléDepuisMAJ += TempsÉcoulé;
+            if (TempsÉcouléDepuisMAJ > TempsLimite)
+            {
+                Game.Components.Remove(TourActuel);
+                Environnement.Visible = false;
+                if (TourActuel.Couleur == "WHITE")
+                {
+                    Game.Components.Add(new SpriteFonts(Game, "Arial", VAINQUEUR_N, Color.LightGreen, 0, 3.0f, PROFONDEUR_DEFAUT));
+                }
+                else
+                {
+                   Game.Components.Add(new SpriteFonts(Game, "Arial", VAINQUEUR_B, Color.LightGreen, 0, 3.0f, PROFONDEUR_DEFAUT));
+                }
 
             }
-
-
-
-
+            else
+            {
+                
+            }
+            
             base.Update(gameTime);
         }
         void InitialiserPièces(Echiquier unEchiquier)
@@ -95,8 +120,10 @@ namespace AtelierXNA
             for (int i = 0; i < 8; i++)
             {
                 Pions pionB = new Pions(Game, unEchiquier.ListeCases[1 + 8 * i].Centre, "Black");
+                
                 ListeDesPièces.Add(pionB);
                 Pions pionW = new Pions(Game, unEchiquier.ListeCases[(1 + 8 * i) + 5].Centre, "White");
+                
                 ListeDesPièces.Add(pionW);
 
 
@@ -108,6 +135,7 @@ namespace AtelierXNA
                 ListeDesPièces.Add(tourB);
                 Tours tourW = new Tours(Game, unEchiquier.ListeCases[(0 + 56 * i) + 7].Centre, "White");
                 ListeDesPièces.Add(tourW);
+                
 
                 //CRÉATION CAVALIERS
                 Cavaliers cavalierB = new Cavaliers(Game, unEchiquier.ListeCases[8 + 40 * i].Centre, "Black");
@@ -120,7 +148,7 @@ namespace AtelierXNA
                 ListeDesPièces.Add(fouB);
                 Fous fouW = new Fous(Game, unEchiquier.ListeCases[(16 + 24 * i) + 7].Centre, "White");
                 ListeDesPièces.Add(fouW);
-
+               
 
             }
             //CRÉATION REINES
@@ -135,7 +163,8 @@ namespace AtelierXNA
             Roi roiW = new Roi(Game, unEchiquier.ListeCases[32 + 7].Centre, "White");
             ListeDesPièces.Add(roiW);
 
-
+            
+             ModifierEstVisiblePièces();
 
         }
         
@@ -153,7 +182,14 @@ namespace AtelierXNA
             
         }
 
-       
+       void ModifierEstVisiblePièces()
+        {
+           foreach (Pieces p in ListeDesPièces)
+            {
+                p.Visible = !p.Visible; 
+            }
+
+        }
         
     
     }
