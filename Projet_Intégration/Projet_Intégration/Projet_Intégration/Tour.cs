@@ -35,6 +35,7 @@ namespace AtelierXNA
         Pieces PièceB { get; set; }
         protected int Compteur { get; set; }
         private int NbPiece { get; set; }
+        public bool PartieTerminée { get; set; }
 
         public Tour(Game game, string couleur, List<Cases> listeCases, List<Pieces> listePièce, float nbSortiesBlanc, float nbSortiesNoir)
             : base(game)
@@ -57,6 +58,7 @@ namespace AtelierXNA
             // TODO: Add your initialization code here
             TempsÉcouléDepuisMAJ = 0;
             Compteur = 0;
+            PartieTerminée = false;
             CaméraJeu = Game.Services.GetService(typeof(Caméra)) as CaméraSubjective;
             GestionInput = Game.Services.GetService(typeof(InputManager)) as InputManager;
             base.Initialize();

@@ -60,6 +60,7 @@ namespace AtelierXNA
             Couleur = couleur;
             Position = positioninitiale;
             this.Game.Components.Add(this);
+            this.Visible = false;
             EstPremierMove = true;
             NbDéplacement = 0;
            

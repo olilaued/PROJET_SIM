@@ -15,7 +15,7 @@ namespace AtelierXNA
     /// <summary>
     /// This is a game component that implements IUpdateable.
     /// </summary>
-    public class SpriteFonts : Microsoft.Xna.Framework.DrawableGameComponent
+    public class TexteAffichable : Microsoft.Xna.Framework.DrawableGameComponent
     {
         string NomFont {get; set;}
         string Message { get; set; }
@@ -33,7 +33,7 @@ namespace AtelierXNA
         
         
 
-        public SpriteFonts(Game game, string nomFont, Vector2 fontPos, string message, Color couleur, float rotation, Vector2 origine, float scale, float profondeur)
+        public TexteAffichable(Game game, string nomFont, Vector2 fontPos, string message, Color couleur, float rotation, float scale, float profondeur)
             : base(game)
         {
             NomFont = nomFont;
@@ -41,13 +41,12 @@ namespace AtelierXNA
             Message = message;
             Couleur = couleur;
             Rotation = rotation;
-            Origine = origine;
             Scale = scale;
             Profondeur = profondeur;
             
         }
 
-        public SpriteFonts(Game game, string nomFont, string message, Color couleur, float rotation, Vector2 origine, float scale, float profondeur)
+        public TexteAffichable(Game game, string nomFont, string message, Color couleur, float rotation, Vector2 origine, float scale, float profondeur)
             : base(game)
         {
             NomFont = nomFont;
@@ -60,7 +59,7 @@ namespace AtelierXNA
             FontPos = new Vector2(Game.GraphicsDevice.Viewport.Width / 2,Game.GraphicsDevice.Viewport.Height / 2);
             
         }
-        public SpriteFonts(Game game, string nomFont, string message, Color couleur, float rotation, float scale, float profondeur)
+        public TexteAffichable(Game game, string nomFont, string message, Color couleur, float rotation, float scale, float profondeur)
             : base(game)
         {
             NomFont = nomFont;
@@ -72,7 +71,7 @@ namespace AtelierXNA
             FontPos = new Vector2(Game.GraphicsDevice.Viewport.Width / 2, Game.GraphicsDevice.Viewport.Height / 2);
             
         }
-        public SpriteFonts(Game game, string nomFont, string message, Color couleur, float rotation, float scale)
+        public TexteAffichable(Game game, string nomFont, string message, Color couleur, float rotation, float scale)
             : base(game)
         {
             NomFont = nomFont;
@@ -116,9 +115,7 @@ namespace AtelierXNA
             GestionSprites.Begin();
 
 
-            // Find the center of the string
-            Vector2 FontOrigin = Écriture.MeasureString(Message) / 2;
-            // Draw the string
+           
             GestionSprites.DrawString(Écriture, Message, FontPos, Couleur,
                 Rotation, Origine, Scale, SpriteEffects.None,Profondeur);
 

@@ -101,7 +101,7 @@ namespace AtelierXNA
                         uneCase = new Cases(this.Game, 1f, Vector3.Zero, position, CouleurB, CouleurContour, new Vector3(Delta.X,Delta.Y, Delta.X), 1f / 60f);
                     }
                     this.Game.Components.Add(uneCase);
-                    uneCase.Visible = false;
+                    //uneCase.Visible = false;
                     ListeCases.Add(uneCase);
                     Variation++;
                     b += Delta.X;

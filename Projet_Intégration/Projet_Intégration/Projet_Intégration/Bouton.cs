@@ -30,16 +30,18 @@ namespace AtelierXNA
         RessourcesManager<Texture2D> GestionnaireDeTextures{ get; set; }
         RessourcesManager<SpriteFont> GestionnaireDeFonts { get; set; }
         Vector2 Origine { get; set; }
+        Vector2 Dimensions { get; set; }
         public bool Clicked { get; set; }
         string clickText = "Button was Clicked!";
 
-        public Bouton(Game game,string nomTexture, string nomFont, string texte, Vector2 origine)
+        public Bouton(Game game,string nomTexture, string nomFont, string texte, Vector2 origine, Vector2 dimensions)
             :base(game)
         {
             NomTexture = nomTexture;
             Texte = texte; 
             NomFont = nomFont;
             Origine = origine;
+            Dimensions = dimensions;
             
              
         }
@@ -61,7 +63,9 @@ namespace AtelierXNA
             Image = GestionnaireDeTextures.Find(NomTexture);
             Font = GestionnaireDeFonts.Find(NomFont);
             Vector2 size = Font.MeasureString(Texte);
-            Location = new Rectangle((int)Origine.X, (int)Origine.Y, GraphicsDevice.Viewport.Width / 5, GraphicsDevice.Viewport.Width / 8);
+            //int longueur = GraphicsDevice.Viewport.Width / 5;
+           // int hauteur = GraphicsDevice.Viewport.Width / 8;
+            Location = new Rectangle((int)Origine.X - (int)Dimensions.X/2, (int)Origine.Y + (int)Dimensions.Y/2, (int)Dimensions.X , (int)Dimensions.Y);
             TexteLocation = new Vector2(Location.X + ((Location.Width / 2) - (size.X / 2)),Location.Y + ((Location.Height / 2) - (size.Y / 2)));
            
             base.LoadContent();
