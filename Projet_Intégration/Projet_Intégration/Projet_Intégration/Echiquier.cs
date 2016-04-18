@@ -82,15 +82,15 @@ namespace AtelierXNA
 
         public void CréerCases()
         {
-            float a = Origine.X;
-            float b = Origine.Z;
+            float a = Origine.Z;
+            float b = Origine.X;
             for (float x = 0; x < 8; x ++)
 
             {
 
                 for (float z =0; z < 8; z ++)
                 {
-                     position = new Vector3(a,Origine.Y, b);
+                     position = new Vector3(b,Origine.Y,a);
                     if (Variation % 2 == 0)
                     {
                         uneCase = new Cases(this.Game, 1f, Vector3.Zero, position, CouleurA, CouleurContour, new Vector3(Delta.X, Delta.Y, Delta.X), 1f / 60f);
@@ -104,10 +104,10 @@ namespace AtelierXNA
                     //uneCase.Visible = false;
                     ListeCases.Add(uneCase);
                     Variation++;
-                    b += Delta.X;
+                    b -= Delta.X;
                 } 
                 //position = new Vector3(a, Origine.Y, b);
-                b = Origine.Z;
+                b = Origine.X;
                 a += Delta.X;
 
                 

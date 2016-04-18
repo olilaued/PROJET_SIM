@@ -18,7 +18,7 @@ namespace AtelierXNA
     public class Partie : Microsoft.Xna.Framework.GameComponent
     {
         const float LARGEUR_ECHIQUIER = 0.3f;
-        const float LONGUEUR_ÉCHIQUIER = 16f;
+        const float LONGUEUR_ÉCHIQUIER = 14f;
         const float PROFONDEUR_DEFAUT = 0.5f;
         const float SCALE_DEFAUT = 1.0f;
 
@@ -74,7 +74,7 @@ namespace AtelierXNA
             PositionSorties[1] = new Vector2(UnÉchiquier.Origine.X + 17, UnÉchiquier.Origine.Y);
             GagnantN = new TexteAffichable(Game, "Arial", VAINQUEUR_N, Color.LightGreen, 0, 3.0f, PROFONDEUR_DEFAUT);
             GagnantB = new TexteAffichable(Game, "Arial", VAINQUEUR_B, Color.LightGreen, 0, 3.0f, PROFONDEUR_DEFAUT);
-            Game.Components.Add(Environnement = new ObjetDeBase(Game, Map, 0.005f, new Vector3(0, 0, 0), Vector3.Zero));
+            Game.Components.Add(Environnement = new ObjetDeBase(Game, Map, 0.01f, new Vector3(0, 0, 0), Vector3.Zero));
             Game.Components.Add(TourActuel = new Tour(Game,"White", UnÉchiquier.ListeCases, ListeDesPièces, NbSortiesBlanc, NbSortiesNoir));
             Environnement.Visible = false;
             TourActuel.Enabled = false;
