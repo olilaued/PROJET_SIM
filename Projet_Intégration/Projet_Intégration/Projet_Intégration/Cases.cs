@@ -25,6 +25,8 @@ namespace AtelierXNA
         public Vector3 Centre { get; set; }
         Texture3D Texture { get; set; }
         Color CouleurContour { get; set; }
+
+        Color CouleurInitiale { get; set; }
         
         String NomPropriétaire { get; set; }
         Boolean EstUtilisé { get; set; }
@@ -53,13 +55,14 @@ namespace AtelierXNA
         VertexPositionColor[] SommetsF { get; set; }
 
 
-        Color Couleur { get; set; }
+        public Color Couleur { get; set; }
 
         BasicEffect EffetDeBase { get; set; }
         public Cases(Game game, float homothétieInitiale, Vector3 rotationInitiale, Vector3 positionInitiale, Color couleur,Color couleurContour ,Vector3 dimension, float intervalleMAJ)
             : base(game, homothétieInitiale, rotationInitiale, positionInitiale)
         {
             Couleur = couleur;
+            CouleurInitiale = couleur;
             CouleurContour = couleurContour;
             Dimension = dimension;
             Delta = new Vector3(Dimension.X, Dimension.Y, Dimension.Z);
@@ -91,6 +94,26 @@ namespace AtelierXNA
 
             base.Initialize();
         }
+        public void ChangerCouleur(Color laCouleur)
+        {
+            Couleur = laCouleur;
+
+
+
+
+
+            this.Game.Components.Remove(this);
+            this.Game.Components.Add(this);
+        }
+        public void ResetCouleur()
+        {
+            Couleur = CouleurInitiale;
+
+            this.Game.Components.Remove(this);
+            this.Game.Components.Add(this);
+
+        }
+    
         protected override void LoadContent()
         {
             EffetDeBase = new BasicEffect(GraphicsDevice);
