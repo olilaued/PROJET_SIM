@@ -82,7 +82,7 @@ namespace AtelierXNA
             GérerDéplacement();
             base.Update(gameTime);
         }
-        private void VerificationMat()
+        public bool Mat()
         {
             bool t = false;
 
@@ -172,12 +172,9 @@ namespace AtelierXNA
                     }
 
                 }
+                
             }
-
-            if (t == false)
-            {
-                Game.Exit();
-            }
+           return t;
         }
         
         private bool EstEnEchec(List<Cases> listeCases, List<Pieces> listePieces, string CouleurDuRoi)
@@ -666,64 +663,8 @@ namespace AtelierXNA
                                             g.EstPremierMove = false;
                                         }
                                     }
-                                    VerificationMat();
-                                    //bool t = false;
-
-                                    //foreach (Pieces l in ListeDesPièces.FindAll(x => x.Couleur != Couleur))
-                                    //{
-                                       
-
-                                    //    Vector3 posIni = l.Position;
-                                    //    foreach (Cases r in ListeDesCases)
-                                    //    {
-
-
-                                    //        if (l.LogiqueDéplacement(new Vector2((r.Centre.X - l.Position.X), (r.Centre.Z - l.Position.Z))) && NeSautePas(l.Position,r.Centre))
-                                    //        {
-                                    //            g.Deplacer(r.Centre);
-                                    //            g.NbDéplacement--;
-                                    //            foreach (Pieces q in ListeDesPièces.FindAll(x => x.Couleur == l.Couleur))
-                                    //            {
-                                    //                if (g != q && q.Position == l.Position)
-                                    //                {
-                                    //                    l.Deplacer(posIni);
-                                    //                    l.NbDéplacement--;
-                                    //                }
-                                    //                else
-                                    //                {
-                                    //                    if (l.Nom == "/king" && Math.Abs(r.Centre.X - l.Position.X) > 2)
-                                    //                    {
-                                    //                        l.Deplacer(posIni);
-                                    //                        l.NbDéplacement--;
-
-                                    //                    }
-                                    //                }
-                                                    
-                                    //            }
-                                                
-                                                
-                                    //            if (!EstEnEchec(ListeDesCases, ListeDesPièces, g.Couleur))
-                                    //            {
-                                                    
-                                    //                t = true;
-                                    //            }
-
-                                    //            g.Deplacer(posIni);
-                                    //            g.NbDéplacement--;
-                                    //            if (g.NbDéplacement == 0)
-                                    //            {
-                                    //                g.EstPremierMove = true;
-                                    //            }
-                                    //        }
-
-                                    //    }
-                                    //}
-
-                                    //if (t == false)
-                                    //{
-                                    //    Game.Exit();
-                                    //}
                                     
+                                   
                                     
 
 

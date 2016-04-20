@@ -105,7 +105,7 @@ namespace AtelierXNA
                 }
                 else
                 {
-                    if (TempsÉcouléDepuisMAJ > TempsLimite || TourActuel.PartieTerminée)
+                    if (TempsÉcouléDepuisMAJ > TempsLimite || TourActuel.PartieTerminée || TourActuel.Mat())
                     {
                         if (TourActuel.Couleur == "WHITE")
                         {
@@ -119,6 +119,7 @@ namespace AtelierXNA
                         Environnement.Visible = false;
                         TempsÉcouléDepuisMAJ = 0;
                     }
+                    
                 }
                
             }

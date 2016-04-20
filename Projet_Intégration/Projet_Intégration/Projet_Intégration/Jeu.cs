@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using System.IO;
 
 
 namespace AtelierXNA
@@ -19,10 +20,12 @@ namespace AtelierXNA
     {
 
         public static bool EstVisible { get; set; }
+        public static bool MapChoisie { get; set; }
         const float INTERVALLE_CALCUL_FPS = 1f;
         const float INTERVALLE_MAJ_STANDARD = 1f / 60f;
         float Bordures { get; set; }
         public int Index { get; set; }
+
         
         GraphicsDeviceManager PériphériqueGraphique { get; set; }
         SpriteBatch GestionSprites { get; set; }
@@ -43,12 +46,15 @@ namespace AtelierXNA
         Vector3 PositionCaméra { get; set; }
         Vector3 CibleCaméra { get; set; }
         Vector3 OVCaméra { get; set; }
+
+        
         
 
         // Menu principal
         Bouton Bouton1 { get; set; }
         Bouton Bouton2 { get; set; }
         Bouton Bouton3 { get; set; }
+        
 
         string text1 = "Jouer En Solo";
         string text2 = "Jouer 1v1";
@@ -57,9 +63,16 @@ namespace AtelierXNA
         string text4 = "Map";
         string text5 = "Couleur des pieces";
         string text6 = "Couleurs de l'echiquier";
+        string text7 = "Temps de la partie";
         
         string text41 = "Pub";
         string text42= "Parc";
+
+        string text51 = "Classique";
+        string text52 = "Vert/Blanc";
+        string text53 = "Rouge/Blanc";
+        string text54 = "Rose/Blanc";
+
         
 
 
@@ -67,6 +80,15 @@ namespace AtelierXNA
         Bouton Bouton4 { get; set; }
         Bouton Bouton5 { get; set; }
         Bouton Bouton6 { get; set; }
+        Bouton Bouton7 { get; set; }
+        // Maps
+        Bouton Bouton41 { get; set; }
+        Bouton Bouton42 { get; set; }
+        // CouleursÉchiquier
+        Bouton Bouton51 { get; set; }
+        Bouton Bouton52 { get; set; }
+        Bouton Bouton53 { get; set; }
+        Bouton Bouton54 { get; set; }
 
         
        
@@ -106,21 +128,21 @@ namespace AtelierXNA
         {
             ListeDesBoutons = new List<Bouton>();
             TempsDePartie = 15 * 60;
-            NomMap = "Pub/club_map_2";
-            OrigineÉchiquier = new Vector3(163.20f,55.28f,-74.17f);
+            //NomMap = "Pub/club_map_2";
+            //OrigineÉchiquier = new Vector3(163.20f,55.28f,-74.17f);
            
             Vector3 positionObjet = new Vector3(0, 0, 0);
             Vector3 rotationObjet = new Vector3(0, 0, 0);
 
-            PositionCaméra = new Vector3(171.76f, 65.08f, -68.30f);
-            CibleCaméra = new Vector3(170.96f, 64.49f, -68.35f);
-            OVCaméra = new Vector3(-0.5933704f, 0.8049271f, -0.00201782f);
+            //PositionCaméra = new Vector3(171.76f, 65.08f, -68.30f);
+            //CibleCaméra = new Vector3(170.96f, 64.49f, -68.35f);
+            //OVCaméra = new Vector3(-0.5933704f, 0.8049271f, -0.00201782f);
 
 
             CouleursÉchiquier = new Color[3];
-            CouleursÉchiquier[0] = Color.NavajoWhite;
-            CouleursÉchiquier[1] = Color.Gray;
-            CouleursÉchiquier[2] = Color.Aquamarine;
+           // CouleursÉchiquier[0] = Color.NavajoWhite;
+            //CouleursÉchiquier[1] = Color.Gray;
+            //CouleursÉchiquier[2] = Color.Aquamarine;
            
             
 
@@ -149,7 +171,8 @@ namespace AtelierXNA
 
             
             CréerMP();
-            
+            CréerOptions();
+            CréerChoixMaps();
             
             //unAfficheur3D.Visible = false;
             
@@ -206,23 +229,46 @@ namespace AtelierXNA
             {
                 if (Bouton2.Clicked == true)
                 {
-                    unAfficheur3D.Visible = true;
-                    //CaméraJeu.Position = PositionCaméra;
-                    //CaméraJeu.Cible = CibleCaméra;
-                    //CaméraJeu.OrientationVerticale = OVCaméra;
-                    Components.Add(CaméraJeu);
-                    
-                    EstVisible = true;
-                    AfficherVoilerMP();
+                    DéterminerSettings();
+                    if (MapChoisie == true)
+                    {
+
+                        unAfficheur3D.Visible = true;
+                        //CaméraJeu = new CaméraSubjective(this, PositionCaméra, CibleCaméra, OVCaméra, INTERVALLE_MAJ_STANDARD);
+                        Components.Add(CaméraJeu);
+
+                        EstVisible = true;
+                        AfficherVoilerMP();
+                    }
+                    else
+                    {
+
+                    }
                 }
                 if (Bouton1.Clicked == true)
                 {
                     
                 }
-                if (Bouton3.Clicked == true && ListeDesBoutons.All(x => x.Visible == true))
+                if (Bouton3.Clicked == true) //&& ListeDesBoutons.All(x => x.Visible == true))
                 {
                     AfficherVoilerMP();
-                    CréerOptions();
+                    AfficherVoilerOPTN();
+
+                    if(Bouton4.Clicked == true)
+                    {
+                        AfficherVoilerOPTN();
+                        AfficherVoilerChoixMaps();
+                        if (Bouton41.Clicked == true || Bouton42.Clicked == true)
+                        {
+                            MapChoisie = true;
+                            AfficherVoilerChoixMaps();
+                            AfficherVoilerOPTN();
+                        }
+                    }
+                    if (Bouton5.Clicked == true)
+                    {
+
+                    }
                 }
 
             }
@@ -260,22 +306,22 @@ namespace AtelierXNA
         void CréerOptions()
         {
 
-            float valeur = GraphicsDevice.Viewport.Height / 3;
+            float valeur = GraphicsDevice.Viewport.Height / 4;
             float y = 0;
             float x = GraphicsDevice.Viewport.Width / 2;
             float longueur = GraphicsDevice.Viewport.Width / 5;
             float hauteur = GraphicsDevice.Viewport.Width / 8;
-            Components.Add(Bouton1 = new Bouton(this, "Granite", "Arial", text4, new Vector2(x, y), new Vector2(2 * longueur, hauteur)));
+            Components.Add(Bouton4 = new Bouton(this, "Granite", "Arial", text4, new Vector2(x, y), new Vector2(2 * longueur, hauteur)));
             y += valeur;
-            Components.Add(Bouton2 = new Bouton(this, "Granite", "Arial", text5, new Vector2(x, y), new Vector2(2 * longueur, hauteur)));
+            Components.Add(Bouton5 = new Bouton(this, "Granite", "Arial", text5, new Vector2(x, y), new Vector2(2 * longueur, hauteur)));
             y += valeur;
-            Components.Add(Bouton3 = new Bouton(this, "Granite", "Arial", text6, new Vector2(x, y), new Vector2(2* longueur, hauteur)));
-            ListeDesBoutons.Add(Bouton1);
-            ListeDesBoutons.Add(Bouton2);
-            ListeDesBoutons.Add(Bouton3);
-            
-          
-
+            Components.Add(Bouton6 = new Bouton(this, "Granite", "Arial", text6, new Vector2(x, y), new Vector2(2* longueur, hauteur)));
+            y += valeur;
+            Components.Add(Bouton7 = new Bouton(this, "Granite", "Arial", text7, new Vector2(x, y), new Vector2(2 * longueur, hauteur)));
+            ListeDesBoutons.Add(Bouton4);
+            ListeDesBoutons.Add(Bouton5);
+            ListeDesBoutons.Add(Bouton6);
+            AfficherVoilerOPTN();
         }
 
 
@@ -288,10 +334,126 @@ namespace AtelierXNA
         }
         void AfficherVoilerOPTN()
         {
-            for (int i = 3; i < 6; i++)
+            for (int i = 3; i < 7; i++)
             {
                 ListeDesBoutons.ElementAt(i).Visible = !ListeDesBoutons.ElementAt(i).Visible;
             }
         }
+        void CréerChoixMaps()
+        {
+            float valeur = GraphicsDevice.Viewport.Height / 2;
+            float y = 0;
+            float x = GraphicsDevice.Viewport.Width / 2;
+            float longueur = GraphicsDevice.Viewport.Width / 5;
+            float hauteur = GraphicsDevice.Viewport.Width / 8;
+            Components.Add(Bouton41 = new Bouton(this, "Granite", "Arial", text41, new Vector2(x, y), new Vector2(2 * longueur, hauteur)));
+            y += valeur;
+            Components.Add(Bouton42 = new Bouton(this, "Granite", "Arial", text42, new Vector2(x, y), new Vector2(2 * longueur, hauteur)));
+            ListeDesBoutons.Add(Bouton41);
+            ListeDesBoutons.Add(Bouton42);
+            AfficherVoilerChoixMaps();
+        }
+        void AfficherVoilerChoixMaps()
+        {
+            for (int i = 7; i < 9; i++)
+            {
+                ListeDesBoutons.ElementAt(i).Visible = !ListeDesBoutons.ElementAt(i).Visible;
+            }
+            
+        }
+        void CréerChoixClrsÉchi()
+        {
+            float valeur = GraphicsDevice.Viewport.Height / 4;
+            float y = 0;
+            float x = GraphicsDevice.Viewport.Width / 2;
+            float longueur = GraphicsDevice.Viewport.Width / 5;
+            float hauteur = GraphicsDevice.Viewport.Width / 8;
+            Components.Add(Bouton51 = new Bouton(this, "Granite", "Arial", text51, new Vector2(x, y), new Vector2(2 * longueur, hauteur)));
+            y += valeur;
+            Components.Add(Bouton52 = new Bouton(this, "Granite", "Arial", text52, new Vector2(x, y), new Vector2(2 * longueur, hauteur)));
+            y += valeur;
+            Components.Add(Bouton53 = new Bouton(this, "Granite", "Arial", text53, new Vector2(x, y), new Vector2(2 * longueur, hauteur)));
+            y += valeur;
+            Components.Add(Bouton54 = new Bouton(this, "Granite", "Arial", text54, new Vector2(x, y), new Vector2(2 * longueur, hauteur)));
+            ListeDesBoutons.Add(Bouton51);
+            ListeDesBoutons.Add(Bouton52);
+            ListeDesBoutons.Add(Bouton53);
+            ListeDesBoutons.Add(Bouton54);
+            AfficherVoilerChoixClrsÉchi();
+ 
+        }
+        void AfficherVoilerChoixClrsÉchi()
+        {
+            for (int i = 9; i < 13; i++)
+            {
+                ListeDesBoutons.ElementAt(i).Visible = !ListeDesBoutons.ElementAt(i).Visible;
+            }
+        }
+
+        void DéterminerSettings()
+        {
+            StreamReader sr = new StreamReader("/../../../../../Settings.txt");
+            //Options de la caméra
+            int indexMap = ListeDesBoutons.FindIndex(7,2, x => (x.Clicked == true));
+            int indexClrÉchi = ListeDesBoutons.FindIndex(9, 4, x => (x.Clicked == true));
+            int i = 0;
+            int max1;
+            switch (indexMap)
+            {
+                case 7: max1 = 2; NomMap = "Pub"; OrigineÉchiquier = new Vector3(163.20f, 55.28f, -74.17f);break;
+                case 8:max1 = 6;NomMap = "Parc";break;
+                default:max1 = 0;break;
+            }
+            if (max1 > 0)
+            {
+                while (i < max1)
+                {
+                    sr.ReadLine();
+                }
+                string position = sr.ReadLine();
+                PositionCaméra = LireLigneVecteur3(position);
+                string cible = sr.ReadLine();
+                CibleCaméra = LireLigneVecteur3(cible);
+                string oV = sr.ReadLine();
+                OVCaméra = LireLigneVecteur3(oV);
+            }
+            //Options Échiquier
+            switch (indexClrÉchi)
+            {
+                case 9: CouleursÉchiquier[0] = Color.White ; CouleursÉchiquier[1] = Color.Gray; CouleursÉchiquier[2] = Color.Black;break;
+                case 10: CouleursÉchiquier[0] = Color.White ; CouleursÉchiquier[1] = Color.Green; CouleursÉchiquier[2] = Color.Black;break;
+                case 11:CouleursÉchiquier[0] = Color.White ; CouleursÉchiquier[1] = Color.Red; CouleursÉchiquier[2] = Color.Black;break;
+                case 12:CouleursÉchiquier[0] = Color.White ; CouleursÉchiquier[1] = Color.Pink; CouleursÉchiquier[2] = Color.Black;break;
+            }
+            
+            
+
+
+
+
+            //int premiereVirgule = position.IndexOf(position,0,position.First(b => b == ','));
+            //float x = float.Parse(position.Substring(0, premiereVirgule));
+            //int deuxièmeVirgule = position.IndexOf(position,premiereVirgule,position.First(c => c == ','));
+            //float y = float.Parse(position.Substring(premiereVirgule,deuxièmeVirgule));
+            //float z = float.Parse(position.Substring(deuxièmeVirgule).Trim());
+            //PositionCaméra = new Vector3(x, y, z);
+
+            
+        }
+
+        Vector3 LireLigneVecteur3(string objet)
+        {
+            int premiereVirgule = objet.IndexOf(objet, 0, objet.First(b => b == ','));
+            float x = float.Parse(objet.Substring(0, premiereVirgule));
+            int deuxièmeVirgule = objet.IndexOf(objet, premiereVirgule, objet.First(c => c == ','));
+            float y = float.Parse(objet.Substring(premiereVirgule, deuxièmeVirgule));
+            float z = float.Parse(objet.Substring(deuxièmeVirgule).Trim());
+            return new Vector3(x, y, z);
+        }
+        
+       
+        
     }
+
+    
 }
