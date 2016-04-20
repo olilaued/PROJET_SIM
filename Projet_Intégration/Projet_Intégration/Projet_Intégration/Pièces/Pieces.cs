@@ -82,9 +82,12 @@ namespace AtelierXNA
          public Pieces PromoteQueen()
         {
             Vector3 posPion =this.Position;
+            
             string couleurPion =this.Couleur;
             this.Game.Components.Remove(this);
             Reine nouvelleReine = new Reine(this.Game, posPion, couleurPion);
+            nouvelleReine.Visible = true;
+
             return nouvelleReine; 
 
         }

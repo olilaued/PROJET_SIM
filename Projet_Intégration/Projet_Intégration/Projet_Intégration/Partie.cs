@@ -18,7 +18,7 @@ namespace AtelierXNA
     public class Partie : Microsoft.Xna.Framework.GameComponent
     {
         const float LARGEUR_ECHIQUIER = 0.3f;
-        const float LONGUEUR_ÉCHIQUIER = 14f;
+        const float LONGUEUR_ÉCHIQUIER = 16f;
         const float PROFONDEUR_DEFAUT = 0.5f;
         const float SCALE_DEFAUT = 1.0f;
 
