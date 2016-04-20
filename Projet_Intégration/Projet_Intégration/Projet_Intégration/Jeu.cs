@@ -84,7 +84,7 @@ namespace AtelierXNA
         {
             TempsDePartie = 15 * 60;
             NomMap = "Pub/club_map_2";
-            OrigineÉchiquier = new Vector3(0, 4.9f, 0);
+            OrigineÉchiquier = new Vector3(0, 4.1f, 0);
            
             Vector3 positionCaméra = Vector3.Zero;
             Vector3 positionObjet = new Vector3(0, 0, 0);

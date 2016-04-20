@@ -64,7 +64,7 @@ namespace AtelierXNA
 
             if(déplacement.Y == 0)
             {
-                condition = (déplacement.X == 2 * LARGEUR_CASES) || (déplacement.X == -2 * LARGEUR_CASES);
+               condition = (déplacement.X == 2 * LARGEUR_CASES) || (déplacement.X == -2 * LARGEUR_CASES);
             }
             return condition;
             

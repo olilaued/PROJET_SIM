@@ -80,6 +80,103 @@ namespace AtelierXNA
             GérerDéplacement();
             base.Update(gameTime);
         }
+        private void VerificationMat()
+        {
+            bool t = false;
+
+            foreach (Pieces l in ListeDesPièces.FindAll(x => x.Couleur != Couleur))
+            {
+                
+                Pieces laPiece = null;
+                Vector3 posPiece = Vector3.Zero;
+                Vector3 posIni = l.Position;
+                foreach (Cases r in ListeDesCases)
+                {
+
+
+                    if (l.LogiqueDéplacement(new Vector2((r.Centre.X - l.Position.X), (r.Centre.Z - l.Position.Z))) && NeSautePas(r.Centre, l.Position))
+                    {
+
+                        l.Deplacer(r.Centre);
+                        foreach (Pieces u in ListeDesPièces.FindAll(x =>x.Couleur != l.Couleur))
+                        {
+                            if (u.Position == r.Centre)
+                            {
+                                laPiece = u ;
+                                posPiece = u.Position;
+                                laPiece.Sortir(1000, 1000);
+                                
+
+                            }
+                        }
+
+                        l.NbDéplacement--;
+
+
+                        foreach (Pieces q in ListeDesPièces.FindAll(x => x.Couleur == l.Couleur))
+                        {
+                            if (l != q && q.Position == l.Position)
+                            {
+                                l.Deplacer(posIni);
+                                l.NbDéplacement--;
+                            }
+
+
+                        }
+                        if (l.Nom == "/pawn")
+                        {
+                            if (laPiece == null)
+                            {
+                                if ((r.Centre.X - posIni.X != 0) && (r.Centre.Z - posIni.Z != 0))
+                                {
+                                    l.Deplacer(posIni);
+                                    l.NbDéplacement--;
+                                }
+                            }
+
+
+
+
+
+                        }
+
+                        if (l.Nom == "/king" && Math.Abs(r.Centre.X - posIni.X) > 2)
+                        {
+                            l.Deplacer(posIni);
+                            l.NbDéplacement--;
+
+                        }
+                        if (!EstEnEchec(ListeDesCases, ListeDesPièces, l.Couleur))
+                        {
+                            
+                                t = true;
+                            
+                        }
+
+                        l.Deplacer(posIni);
+                        if (laPiece != null)
+                        {
+                            laPiece.Deplacer(posPiece);
+                        }
+                        l.NbDéplacement--;
+                        if (l.NbDéplacement == 0)
+                        {
+                            l.EstPremierMove = true;
+                        }
+                       
+
+
+
+                    }
+
+                }
+            }
+
+            if (t == false)
+            {
+                Game.Exit();
+            }
+        }
         
         private bool EstEnEchec(List<Cases> listeCases, List<Pieces> listePieces, string CouleurDuRoi)
         {
@@ -164,6 +261,140 @@ namespace AtelierXNA
             }
             return estAuBorne;
         }
+        private bool EstPropriétaire(Vector3 Position, Vector3 Position2)
+        {
+            return (Position == Position2);
+        }
+        private bool EstValidePionSeul( Cases A, Cases B)
+        {
+            return (CaseB.Centre.X - CaseA.Centre.X != 0);
+        }
+        private void ResetPièces(Pieces A, Pieces B)
+        {
+            PièceA.Deplacer(CaseA.Centre);
+            PièceB.Deplacer(CaseB.Centre);
+            Compteur--;
+            ResetCouleur();
+            
+        }
+        private void ResetPièces(Pieces A)
+        {
+            PièceA.Deplacer(CaseA.Centre);
+            Compteur--;
+            ResetCouleur();
+            
+        }
+        private void EstValidePionMange( Cases A, Cases B)
+        {
+            Vector3 déplacement = (B.Centre - A.Centre);
+            if (!PièceA.EstValidePion(déplacement))
+            {
+                ResetPièces(PièceA, PièceB);
+            }
+            
+        }
+        private void NouvelleReine(Pieces A)
+        {
+            Pieces nouvellePiece = PièceA.PromoteQueen();
+            ListeDesPièces.Add(nouvellePiece);
+            ListeDesPièces.Remove(PièceA);
+        }
+        //private void MouvementsPiece(Cases A)
+        //{
+        //    Pieces laPiece = null;
+        //    foreach (Pieces d in ListeDesPièces)
+        //    {
+        //        if (d.Position == A.Centre)
+        //        {
+        //            laPiece = d;
+        //        }
+
+        //    }
+
+
+        //    if (laPiece != null)
+        //    {
+
+        //        foreach (Cases f in ListeDesCases)
+        //        {
+        //            if ((laPiece.LogiqueDéplacement(new Vector2((f.Centre.X - laPiece.Position.X), (f.Centre.Z - laPiece.Position.Z))) && NeSautePas(laPiece.Position, f.Centre) && !EstEnEchec(ListeDesCases, ListeDesPièces, laPiece.Couleur)) && laPiece.Couleur == Couleur)
+        //            {
+
+        //                f.ChangerCouleur(Color.Blue);
+
+
+        //            }
+        //        }
+        //        laPiece.EstPremierMove = true;
+
+
+        //    }
+
+        //}
+        private void ResetCouleur()
+        {
+            foreach (Cases t in ListeDesCases)
+            {
+                t.ResetCouleur();
+            }
+        }
+        private void VérifierChangementCouleur(Cases A)
+        {
+            foreach (Pieces g in ListeDesPièces)
+            {
+                if (g.Position == A.Centre && g.Couleur == Couleur)
+                {
+                    A.ChangerCouleur(Color.Blue);
+                }
+            }
+        }
+
+        private void GèrerRook()
+        {
+            bool r = true;
+            for (float i = 0; i <= 1; i += 0.5f)
+            {
+                PièceA.Deplacer(CaseA.Centre + i * (CaseB.Centre - CaseA.Centre));
+                if (EstEnEchec(ListeDesCases, ListeDesPièces, PièceA.Couleur))
+                {
+                    r = false;
+                }
+            }
+            bool aBouger = false;
+            foreach (Pieces c in ListeDesPièces.FindAll(x => x.Nom == "/rook" && x.Couleur == PièceA.Couleur && x.EstPremierMove == true))
+            {
+                if (PièceA.EstPremierMove && r == true)
+                {
+                    if (c.Position == PièceA.Position + new Vector3(2, 0, 0))
+                    {
+                        c.Deplacer(CaseA.Centre + new Vector3(2, 0, 0));
+                        aBouger = true;
+                        PièceA.EstPremierMove = false;
+                        ResetCouleur();
+
+                    }
+
+                    if (c.Position == PièceA.Position + new Vector3(-4, 0, 0))
+                    {
+                        c.Deplacer(CaseA.Centre + new Vector3(-2, 0, 0));
+                        aBouger = true;
+                        PièceA.EstPremierMove = false;
+                        ResetCouleur();
+                    }
+
+
+                }
+
+
+
+            }
+            if (aBouger == false)
+            {
+
+                ResetPièces(PièceA);
+                PièceA.EstPremierMove = true;
+            }
+        }
         private void GérerDéplacement()
         {
             if (GestionInput.EstNouveauClicGauche())
@@ -197,122 +428,95 @@ namespace AtelierXNA
                     Rectangle zone = new Rectangle((int)BD.X, (int)HG.Y, width, height);
                     Point PosSouris = GestionInput.GetPositionSouris();
 
-
+                    
 
                     if (zone.Contains(PosSouris))
                     {
+                        if (CaseA != CaseB)
+                        {
+                            VérifierChangementCouleur(o);
+                        }
                         if (CaseA == null)
                         {
                             CaseA = o;
+                            
                         }
+                       
+                            
                         else
                         {
+                           
+                          
                             CaseB = o;
+                           
+                            
 
                             foreach (Pieces a in ListeDesPièces.ToList())
                             {
+                                
+
                                 if (CaseA != null && CaseB != null)
                                 {
+                                    
                                     foreach (Pieces b in ListeDesPièces)
                                     {
-                                        if (b.Position == CaseB.Centre)
+                                       if (EstPropriétaire(b.Position, CaseB.Centre))                                       
                                         {
                                             PièceB = b;
                                         }
                                     }
-                                    if (a.Position == CaseA.Centre)
+                                    if (EstPropriétaire(a.Position, CaseA.Centre))                                  
                                     {
-
-
-
                                         if (a.Couleur == Couleur)
                                         {
                                             if (a.LogiqueDéplacement(new Vector2((CaseB.Centre.X - CaseA.Centre.X), (CaseB.Centre.Z - CaseA.Centre.Z))) && NeSautePas(CaseA.Centre, CaseB.Centre))
-                                            {
+                                             {
                                                 Compteur++;
                                                 PièceA = a;
 
+
                                                 if (PièceB == null)
                                                 {
-
-
+                                                    ResetCouleur();
                                                     PièceA.Deplacer(CaseB.Centre);
+                                                    
                                                     if (PièceA.Nom == "/pawn")
                                                     {
-                                                        if (CaseB.Centre.X - CaseA.Centre.X != 0)
+                                                        if (EstValidePionSeul(CaseA, CaseB))
                                                         {
                                                             PièceA.Deplacer(CaseA.Centre);
                                                             Compteur--;
+                                                            ResetCouleur();
+
+
+
                                                         }
                                                         else
                                                         {
                                                             if (EstAuBorne(PièceA.Couleur, CaseB))
                                                             {
-                                                                Pieces nouvellePiece = PièceA.PromoteQueen();
-                                                                ListeDesPièces.Add(nouvellePiece);
-                                                                ListeDesPièces.Remove(PièceA);
-
+                                                                NouvelleReine(PièceA);
                                                             }
                                                         }
                                                     }
                                                     if (PièceA.Nom == "/king")
                                                     {
-                                                        if (Math.Abs(CaseB.Centre.X - CaseA.Centre.X )> 2 && (!EstEnEchec(ListeDesCases,ListeDesPièces,PièceA.Couleur)))
-                                                           
+                                                        if (Math.Abs(CaseB.Centre.X - CaseA.Centre.X) > 2 && (!EstEnEchec(ListeDesCases, ListeDesPièces, PièceA.Couleur)))
                                                         {
-                                                            bool r = true; 
-                                                            for (float i =0; i <=1; i+=0.5f)
-                                                            {
-                                                                PièceA.Deplacer(CaseA.Centre + i * (CaseB.Centre - CaseA.Centre));
-                                                                if (EstEnEchec(ListeDesCases,ListeDesPièces,PièceA.Couleur))
-                                                                {
-                                                                    r = false;
-                                                                }
-                                                            }
-                                                            bool aBouger = false;
-                                                            foreach (Pieces c in ListeDesPièces.FindAll(x=> x.Nom == "/rook" && x.Couleur == PièceA.Couleur && x.EstPremierMove == true))
-                                                            {
-                                                                if (PièceA.EstPremierMove && r == true)
-                                                                {
-                                                                    if (c.Position == PièceA.Position + new Vector3(2,0,0))
-                                                                    {
-                                                                        c.Deplacer(CaseA.Centre + new Vector3(2, 0, 0));
-                                                                        aBouger = true;
-                                                                        PièceA.EstPremierMove = false;
-                                                                        
-                                                                    }                                                                
-
-                                                                    if (c.Position == PièceA.Position + new Vector3(-4, 0, 0))
-                                                                    {
-                                                                        c.Deplacer(CaseA.Centre + new Vector3(-2, 0, 0));
-                                                                        aBouger = true;
-                                                                        PièceA.EstPremierMove = false;
-                                                                    }
-                                                                    
-                                                                    
-                                                                }
-                                                                
-                                                                    
-
-                                                            }
-                                                            if( aBouger == false)
-                                                            {
-                                                                
-                                                                PièceA.Deplacer(CaseA.Centre);
-                                                                Compteur--;
-                                                                PièceA.EstPremierMove = true;
-                                                            }
-                                                            
+                                                            GèrerRook();
                                                         }
                                                     }
 
-                                                    if (PièceA.Position != CaseA.Centre)
+
+                                                    if (!EstPropriétaire(PièceA.Position, CaseA.Centre))
                                                     {
                                                         if (EstEnEchec(ListeDesCases, ListeDesPièces, Couleur))
                                                         {
-
                                                             PièceA.Deplacer(CaseA.Centre);
                                                             Compteur--;
+                                                            ResetCouleur();
+
+
                                                         }
                                                     }
 
@@ -323,49 +527,47 @@ namespace AtelierXNA
                                                     {
                                                         PièceB.Sortir(NbSortiesBlanc, NbSortiesNoir);
 
+                                                     //   ListeDesPièces.Remove(PièceB);
+                                                    //    NbPiece--;
                                                         PièceA.Deplacer(CaseB.Centre);
+                                                        ResetCouleur();
+                                                        
                                                         if (PièceA.Nom == "/pawn")
                                                         {
                                                             Vector3 déplacement = (CaseB.Centre - CaseA.Centre);
                                                             if (!PièceA.EstValidePion(déplacement))
                                                             {
-                                                                PièceA.Deplacer(CaseA.Centre);
-                                                                PièceB.Deplacer(CaseB.Centre);
-                                                                Compteur--;
+                                                                ResetPièces(PièceA, PièceB);
+                                                          //      ListeDesPièces.Add(PièceB);
+                                                           //     NbPiece++;
                                                             }
                                                             else
                                                             {
-                                                                if (EstAuBorne(PièceA.Couleur,CaseB))
+                                                                if (EstAuBorne(PièceA.Couleur, CaseB))
                                                                 {
-                                                                    Pieces nouvellePiece = PièceA.PromoteQueen();
-                                                                    ListeDesPièces.Add(nouvellePiece);
-                                                                    ListeDesPièces.Remove(PièceA);
-                                                                    
+                                                                    NouvelleReine(PièceA);
+
                                                                 }
-                                                               
-                                                                
+
+
                                                             }
-                                                            
+
                                                         }
-                                                        
+
                                                         if (PièceA.Nom == "/king")
                                                         {
-                                                             if (Math.Abs(CaseB.Centre.X - CaseA.Centre.X )> 2)
+                                                            if (Math.Abs(CaseB.Centre.X - CaseA.Centre.X) > 2)
                                                             {
-                                                                 PièceA.Deplacer(CaseA.Centre);
-                                                                PièceB.Deplacer(CaseB.Centre);
-                                                                Compteur--;
+                                                                ResetPièces(PièceA, PièceB);
                                                             }
                                                         }
-                                                    
-                                                       
-                                                                                                               
-                                                        
+
+
+
+
                                                         if (EstEnEchec(ListeDesCases, ListeDesPièces, Couleur))
                                                         {
-                                                            PièceA.Deplacer(CaseA.Centre);
-                                                            PièceB.Deplacer(CaseB.Centre);
-                                                            Compteur--;
+                                                            ResetPièces(PièceA, PièceB);
                                                         }
                                                         else
                                                         {
@@ -387,51 +589,158 @@ namespace AtelierXNA
                                                     {
 
                                                         Compteur--;
+                                                        ResetCouleur();
                                                     }
                                                 }
-
+                                               
                                             }
+                                            else
+                                            {
+                                                ResetCouleur();
+                                             //   VérifierChangementCouleur(CaseB);
+                                            }
+
+
+                                            
+                                            
                                         }
                                         else
                                         {
+                                            ResetCouleur();
+                                           VérifierChangementCouleur(CaseB);
                                             PièceA = PièceB;
                                             PièceB = null;
                                             CaseA = CaseB;
                                             CaseB = null;
+                                                                                                                                                                                                                  
+                                            
                                         }
-
-                                        //PièceA = null;
-                                        //PièceB = null;
-                                        //CaseA = null;
-                                        //CaseB = null;
+                                    
                                     }
                                     if (a == ListeDesPièces[NbPiece-1])
                                     {
-                                        PièceA = PièceB;
+                                        ResetCouleur();
+                                        if (CaseB != null)
+                                        {                                     
+                                                VérifierChangementCouleur(CaseB);
+                                            
+
+                                        }
+                                       
+                                      // VérifierChangementCouleur(CaseB);
+                                        
+                                        PièceA = PièceB;                                      
                                         PièceB = null;
                                         CaseA = CaseB;
                                         CaseB = null;
+                                        
+                                        
+                                        
+                                        
+                                        
+                                       
+                                        
                                     }
-                                    foreach (Pieces g in ListeDesPièces.FindAll(x => x.Nom == "/rook" || x.Nom == "/king"))
+                                    foreach (Pieces v in ListeDesPièces.ToList())
+                                    {
+                                        bool cd = true ;
+                                        foreach (Cases y in ListeDesCases)
+                                        {
+                                            if( v.Position == y.Centre)
+                                            {
+                                                cd = false;
+                                            }
+                                        }
+                                        if (cd)
+                                        {
+                                            ListeDesPièces.Remove(v);
+                                            NbPiece--;
+                                        }
+                                    }
+                                    foreach (Pieces g in ListeDesPièces.FindAll(x => x.Nom == "/rook" || x.Nom == "/king"  || x.Nom == "/pawn"))
                                     {
                                         if (g.NbDéplacement == 1)
                                         {
                                             g.EstPremierMove = false;
                                         }
                                     }
+                                    VerificationMat();
+                                    //bool t = false;
+
+                                    //foreach (Pieces l in ListeDesPièces.FindAll(x => x.Couleur != Couleur))
+                                    //{
+                                       
+
+                                    //    Vector3 posIni = l.Position;
+                                    //    foreach (Cases r in ListeDesCases)
+                                    //    {
+
+
+                                    //        if (l.LogiqueDéplacement(new Vector2((r.Centre.X - l.Position.X), (r.Centre.Z - l.Position.Z))) && NeSautePas(l.Position,r.Centre))
+                                    //        {
+                                    //            g.Deplacer(r.Centre);
+                                    //            g.NbDéplacement--;
+                                    //            foreach (Pieces q in ListeDesPièces.FindAll(x => x.Couleur == l.Couleur))
+                                    //            {
+                                    //                if (g != q && q.Position == l.Position)
+                                    //                {
+                                    //                    l.Deplacer(posIni);
+                                    //                    l.NbDéplacement--;
+                                    //                }
+                                    //                else
+                                    //                {
+                                    //                    if (l.Nom == "/king" && Math.Abs(r.Centre.X - l.Position.X) > 2)
+                                    //                    {
+                                    //                        l.Deplacer(posIni);
+                                    //                        l.NbDéplacement--;
+
+                                    //                    }
+                                    //                }
+                                                    
+                                    //            }
+                                                
+                                                
+                                    //            if (!EstEnEchec(ListeDesCases, ListeDesPièces, g.Couleur))
+                                    //            {
+                                                    
+                                    //                t = true;
+                                    //            }
+
+                                    //            g.Deplacer(posIni);
+                                    //            g.NbDéplacement--;
+                                    //            if (g.NbDéplacement == 0)
+                                    //            {
+                                    //                g.EstPremierMove = true;
+                                    //            }
+                                    //        }
+
+                                    //    }
+                                    //}
+
+                                    //if (t == false)
+                                    //{
+                                    //    Game.Exit();
+                                    //}
+                                    
+                                    
 
 
                                 }
+                                
                             }
-
+                            
 
 
                         }
-
+                        
                     }
+                   
                 }
+                
             }
+            
         }
+       
     }
 }
 

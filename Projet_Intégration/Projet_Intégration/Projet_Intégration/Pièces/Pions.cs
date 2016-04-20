@@ -18,7 +18,7 @@ namespace AtelierXNA
     public class Pions : Pieces
     {
         //string Couleur { get; set; }
-        bool estPremierMouvement = true;
+        //bool estPremierMouvement = true;
      
         public Pions(Game game,Vector3 positioninitiale,string couleur)
             : base(game,positioninitiale,couleur,"/pawn")
@@ -67,13 +67,13 @@ namespace AtelierXNA
                 {
 
 
-                    if (estPremierMouvement)
+                    if (EstPremierMove)
                     {
                         condition = ((déplacement.Y == (LARGEUR_CASES)) || (déplacement.Y == 2 * LARGEUR_CASES)) && déplacement.X == 0;
-                        if (condition == true)
-                        {
-                            estPremierMouvement = false;
-                        }
+                        //if (condition == true)
+                        //{
+                        //   EstPremierMove = false;
+                        //}
                     }
                     else
                     {
@@ -89,13 +89,13 @@ namespace AtelierXNA
                 }
                 else
                 {
-                    if (estPremierMouvement)
+                    if (EstPremierMove)
                     {
                         condition = ((déplacement.Y == (-LARGEUR_CASES)) || (déplacement.Y == -2 * LARGEUR_CASES)) && déplacement.X == 0;
-                        if (condition == true)
-                        {
-                            estPremierMouvement = false;
-                        }
+                        //if (condition == true)
+                        //{
+                        //    EstPremierMove = false;
+                        //}
                     }
                     else
                     {
