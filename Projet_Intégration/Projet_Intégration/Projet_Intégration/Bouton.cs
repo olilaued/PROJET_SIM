@@ -65,7 +65,7 @@ namespace AtelierXNA
             Vector2 size = Font.MeasureString(Texte);
             //int longueur = GraphicsDevice.Viewport.Width / 5;
            // int hauteur = GraphicsDevice.Viewport.Width / 8;
-            Location = new Rectangle((int)Origine.X - (int)Dimensions.X/2, (int)Origine.Y + (int)Dimensions.Y/2, (int)Dimensions.X , (int)Dimensions.Y);
+            Location = new Rectangle((int)Origine.X - (int)Dimensions.X/2, (int)Origine.Y + (int)(Dimensions.Y/2), (int)Dimensions.X , (int)Dimensions.Y);
             TexteLocation = new Vector2(Location.X + ((Location.Width / 2) - (size.X / 2)),Location.Y + ((Location.Height / 2) - (size.Y / 2)));
            
             base.LoadContent();
