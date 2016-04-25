@@ -82,12 +82,21 @@ namespace AtelierXNA
         public override void Update(GameTime gametime)
         {
 
+            if (Clicked == true)
+            {
+
+                Clicked = false;
+            }
+                
+
             if (GestionInput.EstNouveauClicGauche())
             {
+                
                 if (SourisOnBouton())
                 {
                     Clicked = true;
                 }
+                
             }
 
             base.Update(gametime);

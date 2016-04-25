@@ -25,6 +25,9 @@ namespace AtelierXNA
         const float INTERVALLE_MAJ_STANDARD = 1f / 60f;
         float Bordures { get; set; }
         public int Index { get; set; }
+        bool MP_VISIBLE = true;
+        bool OPTN_VISIBLE = false;
+        bool CHOIX_MAP_VISIBLE = false;
 
         
         GraphicsDeviceManager PériphériqueGraphique { get; set; }
@@ -156,8 +159,8 @@ namespace AtelierXNA
             Components.Add(new AfficheurFps(this,"Arial", Color.Blue, INTERVALLE_CALCUL_FPS)) ;
             Components.Add(GestionInput);
             Components.Add(unAfficheur3D  = new Afficheur3D(this));
-            CaméraJeu = new CaméraSubjective(this,PositionCaméra,CibleCaméra,OVCaméra, INTERVALLE_MAJ_STANDARD);
-            Components.Add(PartiEnCours = new Partie(this, TempsDePartie, NomMap, CouleursÉchiquier, OrigineÉchiquier));
+            
+           
            
 
             Services.AddService(typeof(Random), new Random());
@@ -166,13 +169,13 @@ namespace AtelierXNA
             Services.AddService(typeof(RessourcesManager<Model>), GestionnaireDeModèles);
             Services.AddService(typeof(RessourcesManager<Effect>), GestionnaireDeShaders);
             Services.AddService(typeof(InputManager), GestionInput);
-            Services.AddService(typeof(Caméra), CaméraJeu);
+            //Services.AddService(typeof(Caméra), CaméraJeu);
             Services.AddService(typeof(SpriteBatch), GestionSprites);
 
             
             CréerMP();
-            CréerOptions();
-            CréerChoixMaps();
+           // CréerOptions();
+            //CréerChoixMaps();
             
             //unAfficheur3D.Visible = false;
             
@@ -221,9 +224,13 @@ namespace AtelierXNA
         {
           
             // Allows the game to exit
-            if (GestionInput.EstEnfoncée(Keys.Escape))
+            if (GestionInput.EstNouvelleTouche(Keys.Escape))
             {
-                this.Exit();
+                //if (OPTN_VISIBLE == true)
+                //{
+                //    AfficherVoilerOPTN();
+                //   // AfficherVoilerMP();
+                //}
             }
             if (EstVisible == false)
             {
@@ -231,11 +238,14 @@ namespace AtelierXNA
                 {
                     DéterminerSettings();
                     if (MapChoisie == true)
-                    {
-
+                    { 
+                        Components.Add(PartiEnCours = new Partie(this, TempsDePartie, NomMap, CouleursÉchiquier, OrigineÉchiquier));
                         unAfficheur3D.Visible = true;
-                        //CaméraJeu = new CaméraSubjective(this, PositionCaméra, CibleCaméra, OVCaméra, INTERVALLE_MAJ_STANDARD);
+                        CaméraJeu = new CaméraSubjective(this,PositionCaméra,CibleCaméra,OVCaméra, INTERVALLE_MAJ_STANDARD);
                         Components.Add(CaméraJeu);
+                        Services.AddService(typeof(Caméra), CaméraJeu);
+                        //CaméraJeu = new CaméraSubjective(this, PositionCaméra, CibleCaméra, OVCaméra, INTERVALLE_MAJ_STANDARD);
+                        
 
                         EstVisible = true;
                         AfficherVoilerMP();
@@ -249,27 +259,59 @@ namespace AtelierXNA
                 {
                     
                 }
-                if (Bouton3.Clicked == true) //&& ListeDesBoutons.All(x => x.Visible == true))
+                if (Bouton3.Clicked == true || MP_VISIBLE == false)  //&& ListeDesBoutons.All(x => x.Visible == true))
                 {
-                    AfficherVoilerMP();
-                    AfficherVoilerOPTN();
-
-                    if(Bouton4.Clicked == true)
+                    if (MP_VISIBLE == true)
                     {
+                        AfficherVoilerMP();
+                        //AfficherVoilerOPTN();
+                        CréerOptions();
+                        MP_VISIBLE = false;
+                        OPTN_VISIBLE = true;
+                    }
+                    if(GestionInput.EstNouvelleTouche(Keys.Escape))
+                    {
+                        AfficherVoilerMP();
                         AfficherVoilerOPTN();
-                        AfficherVoilerChoixMaps();
+                        MP_VISIBLE = true;
+                        OPTN_VISIBLE = false;
+                        CHOIX_MAP_VISIBLE = false;
+                      //  return;
+                    }
+                    if((Bouton4.Clicked == true || CHOIX_MAP_VISIBLE == true))
+                    {
+                        
+                        if (OPTN_VISIBLE == true && CHOIX_MAP_VISIBLE == false)
+                        {
+                            AfficherVoilerOPTN();
+                           // AfficherVoilerChoixMaps();
+                            CréerChoixMaps();
+                            OPTN_VISIBLE = false;
+                            CHOIX_MAP_VISIBLE = true;
+                        }
+                        
+
                         if (Bouton41.Clicked == true || Bouton42.Clicked == true)
                         {
-                            MapChoisie = true;
                             AfficherVoilerChoixMaps();
                             AfficherVoilerOPTN();
+                            MapChoisie = true;
+                            OPTN_VISIBLE = true;
+                            CHOIX_MAP_VISIBLE = false;
+                            
                         }
                     }
-                    if (Bouton5.Clicked == true)
-                    {
-
-                    }
                 }
+
+                     
+
+                       
+                    
+                    //if (Bouton5.Clicked == true)
+                    //{
+
+                    //}
+                
 
             }
             
@@ -299,9 +341,9 @@ namespace AtelierXNA
             Components.Add(Bouton2 = new Bouton(this, "Granite", "Arial", text2, new Vector2(x, y), new Vector2(2*longueur,hauteur)));
             y += valeur;
             Components.Add(Bouton3 = new Bouton(this, "Granite", "Arial", text3, new Vector2(x, y), new Vector2(longueur,hauteur)));
-            ListeDesBoutons.Add(Bouton1);
-            ListeDesBoutons.Add(Bouton2);
-            ListeDesBoutons.Add(Bouton3);
+            ListeDesBoutons.Add(Bouton1); //0
+            ListeDesBoutons.Add(Bouton2); //1
+            ListeDesBoutons.Add(Bouton3); //2
         }
         void CréerOptions()
         {
@@ -318,10 +360,12 @@ namespace AtelierXNA
             Components.Add(Bouton6 = new Bouton(this, "Granite", "Arial", text6, new Vector2(x, y), new Vector2(2* longueur, hauteur)));
             y += valeur;
             Components.Add(Bouton7 = new Bouton(this, "Granite", "Arial", text7, new Vector2(x, y), new Vector2(2 * longueur, hauteur)));
-            ListeDesBoutons.Add(Bouton4);
-            ListeDesBoutons.Add(Bouton5);
-            ListeDesBoutons.Add(Bouton6);
-            AfficherVoilerOPTN();
+            ListeDesBoutons.Add(Bouton4); //3
+            ListeDesBoutons.Add(Bouton5); //4
+            ListeDesBoutons.Add(Bouton6); //5
+            ListeDesBoutons.Add(Bouton7); //6
+            //OPTN_VISIBLE = true;
+           // AfficherVoilerOPTN();
         }
 
 
@@ -330,14 +374,19 @@ namespace AtelierXNA
             for (int i = 0; i < 3; i++)
             {
                 ListeDesBoutons.ElementAt(i).Visible = !ListeDesBoutons.ElementAt(i).Visible;
+                ListeDesBoutons.ElementAt(i).Enabled = !ListeDesBoutons.ElementAt(i).Enabled;
+                
             }
+            MP_VISIBLE = !MP_VISIBLE;
         }
         void AfficherVoilerOPTN()
         {
             for (int i = 3; i < 7; i++)
             {
                 ListeDesBoutons.ElementAt(i).Visible = !ListeDesBoutons.ElementAt(i).Visible;
+                ListeDesBoutons.ElementAt(i).Enabled = !ListeDesBoutons.ElementAt(i).Enabled;
             }
+            //OPTN_VISIBLE = !OPTN_VISIBLE;
         }
         void CréerChoixMaps()
         {
@@ -349,15 +398,16 @@ namespace AtelierXNA
             Components.Add(Bouton41 = new Bouton(this, "Granite", "Arial", text41, new Vector2(x, y), new Vector2(2 * longueur, hauteur)));
             y += valeur;
             Components.Add(Bouton42 = new Bouton(this, "Granite", "Arial", text42, new Vector2(x, y), new Vector2(2 * longueur, hauteur)));
-            ListeDesBoutons.Add(Bouton41);
-            ListeDesBoutons.Add(Bouton42);
-            AfficherVoilerChoixMaps();
+            ListeDesBoutons.Add(Bouton41); //7
+            ListeDesBoutons.Add(Bouton42); //8
+           // AfficherVoilerChoixMaps();
         }
         void AfficherVoilerChoixMaps()
         {
             for (int i = 7; i < 9; i++)
             {
                 ListeDesBoutons.ElementAt(i).Visible = !ListeDesBoutons.ElementAt(i).Visible;
+                ListeDesBoutons.ElementAt(i).Enabled = !ListeDesBoutons.ElementAt(i).Enabled;
             }
             
         }
@@ -392,39 +442,47 @@ namespace AtelierXNA
 
         void DéterminerSettings()
         {
-            StreamReader sr = new StreamReader("/../../../../../Settings.txt");
+            //StreamReader sr = new StreamReader("/../../../../../Settings.txt");
             //Options de la caméra
             int indexMap = ListeDesBoutons.FindIndex(7,2, x => (x.Clicked == true));
-            int indexClrÉchi = ListeDesBoutons.FindIndex(9, 4, x => (x.Clicked == true));
+            //int indexClrÉchi = ListeDesBoutons.FindIndex(9, 3, x => (x.Clicked == true));
             int i = 0;
             int max1;
+            //switch (indexMap)
+            //{
+            //    case 7: max1 = 2; NomMap = "Pub"; OrigineÉchiquier = new Vector3(163.20f, 55.28f, -74.17f);break;
+            //    case 8:max1 = 6;NomMap = "Parc";break;
+            //    default:max1 = 0;break;
+            //}
+            //if (max1 > 0)
+            //{
+            //    while (i < max1)
+            //    {
+            //        sr.ReadLine();
+            //    }
+            //    string position = sr.ReadLine();
+            //    PositionCaméra = LireLigneVecteur3(position);
+            //    string cible = sr.ReadLine();
+            //    CibleCaméra = LireLigneVecteur3(cible);
+            //    string oV = sr.ReadLine();
+            //    OVCaméra = LireLigneVecteur3(oV);
+            //}
             switch (indexMap)
             {
-                case 7: max1 = 2; NomMap = "Pub"; OrigineÉchiquier = new Vector3(163.20f, 55.28f, -74.17f);break;
-                case 8:max1 = 6;NomMap = "Parc";break;
-                default:max1 = 0;break;
-            }
-            if (max1 > 0)
-            {
-                while (i < max1)
-                {
-                    sr.ReadLine();
-                }
-                string position = sr.ReadLine();
-                PositionCaméra = LireLigneVecteur3(position);
-                string cible = sr.ReadLine();
-                CibleCaméra = LireLigneVecteur3(cible);
-                string oV = sr.ReadLine();
-                OVCaméra = LireLigneVecteur3(oV);
+                case 7: NomMap = "Pub"; OrigineÉchiquier = new Vector3(163.20f, 55.28f, -74.17f); PositionCaméra = new Vector3(171.76f, 65.08f, -68.30f); CibleCaméra = new Vector3(170.96f, 64.49f, -68.35f);
+                    OVCaméra = new Vector3(-0.5933704f, 0.8049271f, -0.00201782f); break;
+                case 8: NomMap = "Parc"; break;
+                    
+                    
             }
             //Options Échiquier
-            switch (indexClrÉchi)
-            {
-                case 9: CouleursÉchiquier[0] = Color.White ; CouleursÉchiquier[1] = Color.Gray; CouleursÉchiquier[2] = Color.Black;break;
-                case 10: CouleursÉchiquier[0] = Color.White ; CouleursÉchiquier[1] = Color.Green; CouleursÉchiquier[2] = Color.Black;break;
-                case 11:CouleursÉchiquier[0] = Color.White ; CouleursÉchiquier[1] = Color.Red; CouleursÉchiquier[2] = Color.Black;break;
-                case 12:CouleursÉchiquier[0] = Color.White ; CouleursÉchiquier[1] = Color.Pink; CouleursÉchiquier[2] = Color.Black;break;
-            }
+            //switch (indexClrÉchi)
+            //{
+            //    case 9: CouleursÉchiquier[0] = Color.White ; CouleursÉchiquier[1] = Color.Gray; CouleursÉchiquier[2] = Color.Black;break;
+            //    case 10: CouleursÉchiquier[0] = Color.White ; CouleursÉchiquier[1] = Color.Green; CouleursÉchiquier[2] = Color.Black;break;
+            //    case 11:CouleursÉchiquier[0] = Color.White ; CouleursÉchiquier[1] = Color.Red; CouleursÉchiquier[2] = Color.Black;break;
+            //    case 12:CouleursÉchiquier[0] = Color.White ; CouleursÉchiquier[1] = Color.Pink; CouleursÉchiquier[2] = Color.Black;break;
+            //}
             
             
 
@@ -450,6 +508,8 @@ namespace AtelierXNA
             float z = float.Parse(objet.Substring(deuxièmeVirgule).Trim());
             return new Vector3(x, y, z);
         }
+
+       
         
        
         
