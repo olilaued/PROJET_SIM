@@ -544,7 +544,7 @@
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\201471429\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Fonts\Arial.xnb</Output>
-      <Time>2016-04-20T08:25:16.2043128-04:00</Time>
+      <Time>2016-04-25T08:27:41.8372416-04:00</Time>
     </Item>
     <Item>
       <Source>Models\Pub\club_map_2.fbx</Source>
@@ -553,19 +553,31 @@
       <Processor>ModelProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\201471429\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\club_map_2.xnb</Output>
-      <Time>0001-01-01T00:00:00</Time>
+      <Time>2016-04-25T08:55:07.109613-04:00</Time>
       <Dependency>
         <Key>obj\x86\Debug\Models\Pub\club_map_2_0.xml</Key>
-        <Value>2016-04-25T08:31:52.4941696-04:00</Value>
+        <Value>2016-04-25T08:56:32.4708128-04:00</Value>
       </Dependency>
       <Request>C:\Users\201471429\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\mw_Carel_0.xnb</Request>
+      <Request>C:\Users\201471429\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\Wood-Textures-1_0.xnb</Request>
+      <Request>C:\Users\201471429\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\wood-texture_0.xnb</Request>
+      <Request>C:\Users\201471429\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\fabric_texture_plain_229291_l_0.xnb</Request>
+      <Request>C:\Users\201471429\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\light_texture_0.xnb</Request>
+      <Request>C:\Users\201471429\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\bois_table_dessus_0.xnb</Request>
+      <Request>C:\Users\201471429\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\glass_0.xnb</Request>
+      <Request>C:\Users\201471429\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\Stoneette6_0.xnb</Request>
+      <Request>C:\Users\201471429\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\beige_wall_0.xnb</Request>
+      <Request>C:\Users\201471429\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\canape-cuir-savane-noir_0.xnb</Request>
+      <Request>C:\Users\201471429\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\interior_brick_wall_0.xnb</Request>
+      <Request>C:\Users\201471429\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\dark_roof_0.xnb</Request>
+      <Request>C:\Users\201471429\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\dark_texture_0.xnb</Request>
     </Item>
     <Item>
       <Source>Models\Pub\club_map_2.fbx</Source>
       <Importer>FbxImporter</Importer>
       <Options>IntermediateFile, DontCacheImportedData</Options>
       <Output>obj\x86\Debug\Models\Pub\club_map_2_0.xml</Output>
-      <Time>2016-04-25T08:28:04.9096882-04:00</Time>
+      <Time>2016-04-25T08:55:07.109613-04:00</Time>
     </Item>
     <Item>
       <Source>Models\Pub\mw_Carel.jpg</Source>
@@ -581,7 +593,7 @@
       </Parameters>
       <Options>None</Options>
       <Output>C:\Users\201471429\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\mw_Carel_0.xnb</Output>
-      <Time>2016-04-20T08:25:16.5332141-04:00</Time>
+      <Time>2016-04-25T08:27:42.043869-04:00</Time>
     </Item>
     <Item>
       <Source>Models\Pub\Wood-Textures-1.jpg</Source>
@@ -597,7 +609,7 @@
       </Parameters>
       <Options>None</Options>
       <Output>C:\Users\201471429\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\Wood-Textures-1_0.xnb</Output>
-      <Time>2016-04-20T08:25:16.3642648-04:00</Time>
+      <Time>2016-04-25T08:27:41.9250832-04:00</Time>
     </Item>
     <Item>
       <Source>Models\Pub\wood-texture.jpg</Source>
@@ -613,7 +625,7 @@
       </Parameters>
       <Options>None</Options>
       <Output>C:\Users\201471429\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\wood-texture_0.xnb</Output>
-      <Time>2016-04-20T08:25:16.5732021-04:00</Time>
+      <Time>2016-04-25T08:27:42.078806-04:00</Time>
     </Item>
     <Item>
       <Source>Models\Pub\fabric_texture_plain_229291_l.jpg</Source>
@@ -629,7 +641,7 @@
       </Parameters>
       <Options>None</Options>
       <Output>C:\Users\201471429\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\fabric_texture_plain_229291_l_0.xnb</Output>
-      <Time>2016-04-20T08:25:16.4772309-04:00</Time>
+      <Time>2016-04-25T08:27:41.99895-04:00</Time>
     </Item>
     <Item>
       <Source>Models\Pub\light_texture.jpg</Source>
@@ -645,23 +657,7 @@
       </Parameters>
       <Options>None</Options>
       <Output>C:\Users\201471429\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\light_texture_0.xnb</Output>
-      <Time>2016-04-20T08:25:16.5292153-04:00</Time>
-    </Item>
-    <Item>
-      <Source>Models\Pub\wood_floor.jpg</Source>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Parameters>
-        <Data Key="ColorKeyColor" Type="Framework:Color">FFFF00FF</Data>
-        <Data Key="ColorKeyEnabled" Type="bool">true</Data>
-        <Data Key="TextureFormat" Type="Processors:TextureProcessorOutputFormat">DxtCompressed</Data>
-        <Data Key="GenerateMipmaps" Type="bool">true</Data>
-        <Data Key="ResizeToPowerOfTwo" Type="bool">false</Data>
-        <Data Key="PremultiplyAlpha" Type="bool">true</Data>
-      </Parameters>
-      <Options>None</Options>
-      <Output>C:\Users\201471429\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\wood_floor_0.xnb</Output>
-      <Time>2016-04-20T08:25:16.5841988-04:00</Time>
+      <Time>2016-04-25T08:27:42.0368816-04:00</Time>
     </Item>
     <Item>
       <Source>Models\Pub\bois_table_dessus.jpg</Source>
@@ -677,7 +673,7 @@
       </Parameters>
       <Options>None</Options>
       <Output>C:\Users\201471429\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\bois_table_dessus_0.xnb</Output>
-      <Time>2016-04-20T08:25:16.4042528-04:00</Time>
+      <Time>2016-04-25T08:27:41.9530328-04:00</Time>
     </Item>
     <Item>
       <Source>Models\Pub\glass.jpg</Source>
@@ -693,7 +689,7 @@
       </Parameters>
       <Options>None</Options>
       <Output>C:\Users\201471429\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\glass_0.xnb</Output>
-      <Time>2016-04-20T08:25:16.5132201-04:00</Time>
+      <Time>2016-04-25T08:27:42.0169176-04:00</Time>
     </Item>
     <Item>
       <Source>Models\Pub\Stoneette6.png</Source>
@@ -709,7 +705,7 @@
       </Parameters>
       <Options>None</Options>
       <Output>C:\Users\201471429\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\Stoneette6_0.xnb</Output>
-      <Time>2016-04-20T08:25:16.3582666-04:00</Time>
+      <Time>2016-04-25T08:27:41.919094-04:00</Time>
     </Item>
     <Item>
       <Source>Models\Pub\beige_wall.jpg</Source>
@@ -725,7 +721,7 @@
       </Parameters>
       <Options>None</Options>
       <Output>C:\Users\201471429\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\beige_wall_0.xnb</Output>
-      <Time>2016-04-20T08:25:16.3982546-04:00</Time>
+      <Time>2016-04-25T08:27:41.9480418-04:00</Time>
     </Item>
     <Item>
       <Source>Models\Pub\canape-cuir-savane-noir.jpg</Source>
@@ -741,7 +737,7 @@
       </Parameters>
       <Options>None</Options>
       <Output>C:\Users\201471429\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\canape-cuir-savane-noir_0.xnb</Output>
-      <Time>2016-04-20T08:25:16.4112507-04:00</Time>
+      <Time>2016-04-25T08:27:41.959022-04:00</Time>
     </Item>
     <Item>
       <Source>Models\Pub\interior_brick_wall.jpg</Source>
@@ -757,7 +753,7 @@
       </Parameters>
       <Options>None</Options>
       <Output>C:\Users\201471429\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\interior_brick_wall_0.xnb</Output>
-      <Time>2016-04-20T08:25:16.520218-04:00</Time>
+      <Time>2016-04-25T08:27:42.0249032-04:00</Time>
     </Item>
     <Item>
       <Source>Models\Pub\dark_roof.jpg</Source>
@@ -773,7 +769,7 @@
       </Parameters>
       <Options>None</Options>
       <Output>C:\Users\201471429\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\dark_roof_0.xnb</Output>
-      <Time>2016-04-20T08:25:16.4692333-04:00</Time>
+      <Time>2016-04-25T08:27:41.993959-04:00</Time>
     </Item>
     <Item>
       <Source>Models\Pub\dark_texture.png</Source>
@@ -789,9 +785,9 @@
       </Parameters>
       <Options>None</Options>
       <Output>C:\Users\201471429\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\dark_texture_0.xnb</Output>
-      <Time>2016-04-20T08:25:16.470233-04:00</Time>
+      <Time>2016-04-25T08:27:41.9949572-04:00</Time>
     </Item>
-    <BuildSuccessful>false</BuildSuccessful>
+    <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <ContentProjectGUID Null="true" />
       <TargetPlatform>Windows</TargetPlatform>
