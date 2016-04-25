@@ -33,11 +33,11 @@ namespace AtelierXNA
         {
             if (this.Couleur == "Black")
             {
-                return (Math.Abs(déplacement.X) == LARGEUR_CASES && déplacement.Z == LARGEUR_CASES);
+                return ((déplacement.X) == -LARGEUR_CASES && Math.Abs(déplacement.Z) == LARGEUR_CASES);
             }
             else
             {
-                return (Math.Abs(déplacement.X) == LARGEUR_CASES && déplacement.Z == -LARGEUR_CASES);
+                return ((déplacement.X) == LARGEUR_CASES && Math.Abs(déplacement.Z) == LARGEUR_CASES);
             }
         }
 
@@ -59,7 +59,7 @@ namespace AtelierXNA
 
             if (this.Couleur == "Black")
             {
-                if (Math.Abs(déplacement.X) == LARGEUR_CASES && déplacement.Y == LARGEUR_CASES) 
+                if (Math.Abs(déplacement.X) == LARGEUR_CASES && déplacement.Y == -LARGEUR_CASES) 
                 {
                     condition = true;
                 }
@@ -69,32 +69,10 @@ namespace AtelierXNA
 
                     if (EstPremierMove)
                     {
-                        condition = ((déplacement.Y == (LARGEUR_CASES)) || (déplacement.Y == 2 * LARGEUR_CASES)) && déplacement.X == 0;
+                        condition = ((déplacement.Y == -(LARGEUR_CASES)) || (déplacement.Y == 2 * -LARGEUR_CASES)) && déplacement.X == 0;
                         //if (condition == true)
                         //{
                         //   EstPremierMove = false;
-                        //}
-                    }
-                    else
-                    {
-                        condition = (déplacement.Y == LARGEUR_CASES && déplacement.X == 0);
-                    }
-                }
-            }
-            else
-            {
-                if (Math.Abs(déplacement.X) == LARGEUR_CASES && déplacement.Y == -LARGEUR_CASES)
-                {
-                    condition = true;
-                }
-                else
-                {
-                    if (EstPremierMove)
-                    {
-                        condition = ((déplacement.Y == (-LARGEUR_CASES)) || (déplacement.Y == -2 * LARGEUR_CASES)) && déplacement.X == 0;
-                        //if (condition == true)
-                        //{
-                        //    EstPremierMove = false;
                         //}
                     }
                     else
@@ -103,7 +81,34 @@ namespace AtelierXNA
                     }
                 }
             }
-            
+            else
+            {
+                if (Math.Abs(déplacement.X) == LARGEUR_CASES && déplacement.Y == LARGEUR_CASES)
+                {
+                    condition = true;
+                }
+                else
+                {
+                    if (EstPremierMove)
+                    {
+                        condition = ((déplacement.Y == (LARGEUR_CASES)) || (déplacement.Y == 2 * LARGEUR_CASES)) && déplacement.X == 0;
+                        //if (condition == true)
+                        //{
+                        //    EstPremierMove = false;
+                        //}
+                         
+                           
+                    }
+                    else
+                    {
+                        condition = (déplacement.Y == LARGEUR_CASES && déplacement.X == 0);
+                    }
+                }
+            }
+            if (condition == true)
+            {
+
+            } 
             return condition;
         }
 
