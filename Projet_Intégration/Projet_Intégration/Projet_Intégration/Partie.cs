@@ -102,10 +102,11 @@ namespace AtelierXNA
                     Environnement.Visible = true;
                     InitialiserPièces(UnÉchiquier);
                     ModifierEstVisiblePièces();
+                  //  ModifierEstVisibleCases();
                 }
                 else
                 {
-                    if (TempsÉcouléDepuisMAJ > TempsLimite || TourActuel.PartieTerminée || TourActuel.Mat())
+                    if (TempsÉcouléDepuisMAJ > TempsLimite || TourActuel.PartieTerminée )//|| TourActuel.Mat())
                     {
                         if (TourActuel.Couleur == "WHITE")
                         {
@@ -201,6 +202,13 @@ namespace AtelierXNA
             }
 
         }
+        void ModifierEstVisibleCases()
+       {
+           foreach (Cases t in UnÉchiquier.ListeCases)
+           {
+               t.Visible = !t.Visible;
+           }
+       }
         
         
         

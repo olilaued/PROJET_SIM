@@ -72,7 +72,7 @@ namespace AtelierXNA
             HD = new Vector3(Centre.X + Delta.X / 2, Centre.Y, Centre.Z+Delta.Z/2);
             BG = new Vector3(Centre.X - Delta.X / 2, Centre.Y, Centre.Z-Delta.Z/2);
             BD = new Vector3(Centre.X + Delta.X / 2, Centre.Y, Centre.Z-Delta.Z/2);
-            this.Visible = false;
+            this.Visible = true;
 
 
 

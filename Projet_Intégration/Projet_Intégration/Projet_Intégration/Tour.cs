@@ -37,6 +37,9 @@ namespace AtelierXNA
         private int NbPiece { get; set; }
         public bool PartieTerminée { get; set; }
 
+        System.Media.SoundPlayer SonChess { get; set; }
+        
+
         public Tour(Game game, string couleur, List<Cases> listeCases, List<Pieces> listePièce, float nbSortiesBlanc, float nbSortiesNoir)
             : base(game)
         {
@@ -46,6 +49,20 @@ namespace AtelierXNA
             NbSortiesBlanc = nbSortiesBlanc;
             NbSortiesNoir = nbSortiesNoir;
             NbPiece = 32;
+
+           // System.Media.SoundPlayer player = new System.Media.SoundPlayer();
+
+           // player.SoundLocation = "chess_sound.wav";
+            SonChess = new System.Media.SoundPlayer();
+
+            SonChess.SoundLocation = "chess_sound.wav";
+
+          //  SonChess.Play();
+
+
+           // wplayer.URL = "My MP3 file.mp3";
+           // wplayer.Controls.Play();
+
         }
 
 
@@ -63,6 +80,10 @@ namespace AtelierXNA
             GestionInput = Game.Services.GetService(typeof(InputManager)) as InputManager;
             base.Initialize();
         }
+        void PlaySound()
+        {
+            SonChess.Play();
+        }
 
         /// <summary>
         /// Allows the game component to update itself.
@@ -74,13 +95,16 @@ namespace AtelierXNA
             if (Compteur % 2 == 0)
             {
                 Couleur = WHITE;
+                //PlaySound();
             }
             else
             {
                 Couleur = BLACK;
+               // PlaySound();
             }
             
             GérerDéplacement();
+            
             if (EstMat())
             {
                 this.Game.Exit();
@@ -93,7 +117,7 @@ namespace AtelierXNA
             base.Update(gameTime);
         }
 
-        public bool Mat()
+        
 
         private bool EstMat()
 
@@ -342,7 +366,15 @@ namespace AtelierXNA
                 }
             }
         }
-
+        private int NbTotalDéplacements()
+        {
+            int nb = 0;
+            foreach (Pieces a in ListeDesPièces)
+            {
+                nb += a.NbDéplacement;
+            }
+            return nb;
+        }
         private void GèrerRook()
         {
             bool r = true;
@@ -428,7 +460,7 @@ namespace AtelierXNA
 
                     if (zone.Contains(PosSouris))
                     {
-                        
+                        int m = NbTotalDéplacements();
                         if (CaseA != CaseB)
                         {
                             VérifierChangementCouleur(o);
@@ -658,13 +690,18 @@ namespace AtelierXNA
                                             NbPiece--;
                                         }
                                     }
+                                    int nbTotalB = 0;
                                     foreach (Pieces g in ListeDesPièces.FindAll(x => x.Nom == "/rook" || x.Nom == "/king"  || x.Nom == "/pawn"))
                                     {
                                         if (g.NbDéplacement == 1)
                                         {
                                             g.EstPremierMove = false;
                                         }
+                                        
+                                        
                                     }
+                                    
+                                    
 
 
                                   // VerificationMat();
@@ -678,13 +715,19 @@ namespace AtelierXNA
                                 }
                                 
                             }
-                            
+                            int l = NbTotalDéplacements();
+
+                            if (l != m)
+                            {
+                                PlaySound();
+                            }
+                   
 
 
                         }
                         
                     }
-                   
+                    
                 }
                 
             }

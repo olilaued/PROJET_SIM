@@ -245,11 +245,13 @@ namespace AtelierXNA
                     DéterminerSettings();
                     if (MapChoisie == true)
                     { 
-                        Components.Add(PartiEnCours = new Partie(this, TempsDePartie, NomMap, CouleursÉchiquier, OrigineÉchiquier));
-                        unAfficheur3D.Visible = true;
                         CaméraJeu = new CaméraSubjective(this,PositionCaméra,CibleCaméra,OVCaméra, INTERVALLE_MAJ_STANDARD);
                         Components.Add(CaméraJeu);
                         Services.AddService(typeof(Caméra), CaméraJeu);
+                        Components.Add(PartiEnCours = new Partie(this, TempsDePartie, NomMap, CouleursÉchiquier, OrigineÉchiquier));
+                        unAfficheur3D.Visible = true;
+                        
+                        
                         //CaméraJeu = new CaméraSubjective(this, PositionCaméra, CibleCaméra, OVCaméra, INTERVALLE_MAJ_STANDARD);
                         
 
@@ -387,7 +389,7 @@ namespace AtelierXNA
         }
         void AfficherVoilerOPTN()
         {
-            for (int i = 3; i < 7; i++)
+            for (int i = 3; i < 6; i++)
             {
                 ListeDesBoutons.ElementAt(i).Visible = !ListeDesBoutons.ElementAt(i).Visible;
                 ListeDesBoutons.ElementAt(i).Enabled = !ListeDesBoutons.ElementAt(i).Enabled;
@@ -475,7 +477,7 @@ namespace AtelierXNA
             //}
             switch (indexMap)
             {
-                case 7: NomMap = "Pub"; OrigineÉchiquier = new Vector3(163.20f, 55.28f, -74.17f); PositionCaméra = new Vector3(171.76f, 65.08f, -68.30f); CibleCaméra = new Vector3(170.96f, 64.49f, -68.35f);
+                case 7: NomMap = "Pub/club_map_2"; OrigineÉchiquier = new Vector3(163.20f, 55.28f, -74.17f); PositionCaméra = new Vector3(171.76f, 65.08f, -68.30f); CibleCaméra = new Vector3(170.96f, 64.49f, -68.35f);
                     OVCaméra = new Vector3(-0.5933704f, 0.8049271f, -0.00201782f); break;
                 case 8: NomMap = "Parc"; break;
                     
