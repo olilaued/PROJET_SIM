@@ -67,7 +67,7 @@ namespace AtelierXNA
             Dimension = dimension;
             Delta = new Vector3(Dimension.X, Dimension.Y, Dimension.Z);
             //Origine = new Vector3(Origine.X , - Delta.Y ,  Delta.Z );
-            Centre = new Vector3(positionInitiale.X + Delta.X / 2, positionInitiale.Y+0.01f, positionInitiale.Z - Delta.Z / 2);
+            Centre = new Vector3(positionInitiale.X + Delta.X / 2, positionInitiale.Y, positionInitiale.Z - Delta.Z / 2);
             HG = new Vector3(Centre.X - Delta.X / 2, Centre.Y, Centre.Z+Delta.Z/2);
             HD = new Vector3(Centre.X + Delta.X / 2, Centre.Y, Centre.Z+Delta.Z/2);
             BG = new Vector3(Centre.X - Delta.X / 2, Centre.Y, Centre.Z-Delta.Z/2);

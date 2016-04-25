@@ -131,8 +131,14 @@ namespace AtelierXNA
         {
             ListeDesBoutons = new List<Bouton>();
             TempsDePartie = 15 * 60;
+
             //NomMap = "Pub/club_map_2";
             //OrigineÉchiquier = new Vector3(163.20f,55.28f,-74.17f);
+
+            NomMap = "Pub/club_map_2";
+            OrigineÉchiquier = new Vector3(163.20f,55.28f,-74.17f);
+           // OrigineÉchiquier = new Vector3(0, 15, 0);
+
            
             Vector3 positionObjet = new Vector3(0, 0, 0);
             Vector3 rotationObjet = new Vector3(0, 0, 0);

@@ -79,12 +79,26 @@ namespace AtelierXNA
             {
                 Couleur = BLACK;
             }
+            
             GérerDéplacement();
+            if (EstMat())
+            {
+                this.Game.Exit();
+            }
+          //if (!VerificationMat())
+          //{
+          //    this.Game.Exit();
+          //}
+          
             base.Update(gameTime);
         }
+
         public bool Mat()
+
+        private bool EstMat()
+
         {
-            bool t = false;
+            bool t = true;
 
             foreach (Pieces l in ListeDesPièces.FindAll(x => x.Couleur != Couleur))
             {
@@ -96,7 +110,7 @@ namespace AtelierXNA
                 {
 
 
-                    if (l.LogiqueDéplacement(new Vector2((r.Centre.X - l.Position.X), (r.Centre.Z - l.Position.Z))) && NeSautePas(r.Centre, l.Position))
+                    if (l.LogiqueDéplacement(new Vector2((r.Centre.Z - l.Position.Z), (r.Centre.X - l.Position.X))) && NeSautePas(r.Centre, l.Position))
                     {
 
                         l.Deplacer(r.Centre);
@@ -142,7 +156,7 @@ namespace AtelierXNA
 
                         }
 
-                        if (l.Nom == "/king" && Math.Abs(r.Centre.X - posIni.X) > 2)
+                        if (l.Nom == "/king" && Math.Abs(r.Centre.Z - posIni.Z) > 2)
                         {
                             l.Deplacer(posIni);
                             l.NbDéplacement--;
@@ -151,7 +165,7 @@ namespace AtelierXNA
                         if (!EstEnEchec(ListeDesCases, ListeDesPièces, l.Couleur))
                         {
                             
-                                t = true;
+                                t =false;
                             
                         }
 
@@ -174,7 +188,16 @@ namespace AtelierXNA
                 }
                 
             }
+
            return t;
+
+            
+            if (t == false)
+            {
+              //  this.Game.Exit();
+            }
+            return t;
+
         }
         
         private bool EstEnEchec(List<Cases> listeCases, List<Pieces> listePieces, string CouleurDuRoi)
@@ -200,6 +223,8 @@ namespace AtelierXNA
 
             }
             return condition;
+            
+            //return false;
         }
         private bool NeSautePas(Vector3 destination, Vector3 position)
         {
@@ -235,8 +260,8 @@ namespace AtelierXNA
         private bool EstAuBorne(string Couleur, Cases Case)
         {
             bool estAuBorne = true;
-            Vector3 destinationW = CaseB.Centre + new Vector3(0, 0, -2);
-            Vector3 destinationB = CaseB.Centre + new Vector3(0, 0, 2);
+            Vector3 destinationW = CaseB.Centre + new Vector3(2, 0, 0);
+            Vector3 destinationB = CaseB.Centre + new Vector3(-2, 0, 0);
             if (Couleur == "White")
             {
                 foreach (Cases f in ListeDesCases)
@@ -266,7 +291,7 @@ namespace AtelierXNA
         }
         private bool EstValidePionSeul( Cases A, Cases B)
         {
-            return (CaseB.Centre.X - CaseA.Centre.X != 0);
+            return (CaseB.Centre.Z - CaseA.Centre.Z != 0);
         }
         private void ResetPièces(Pieces A, Pieces B)
         {
@@ -296,40 +321,10 @@ namespace AtelierXNA
         {
             Pieces nouvellePiece = PièceA.PromoteQueen();
             ListeDesPièces.Add(nouvellePiece);
+           
             ListeDesPièces.Remove(PièceA);
         }
-        //private void MouvementsPiece(Cases A)
-        //{
-        //    Pieces laPiece = null;
-        //    foreach (Pieces d in ListeDesPièces)
-        //    {
-        //        if (d.Position == A.Centre)
-        //        {
-        //            laPiece = d;
-        //        }
-
-        //    }
-
-
-        //    if (laPiece != null)
-        //    {
-
-        //        foreach (Cases f in ListeDesCases)
-        //        {
-        //            if ((laPiece.LogiqueDéplacement(new Vector2((f.Centre.X - laPiece.Position.X), (f.Centre.Z - laPiece.Position.Z))) && NeSautePas(laPiece.Position, f.Centre) && !EstEnEchec(ListeDesCases, ListeDesPièces, laPiece.Couleur)) && laPiece.Couleur == Couleur)
-        //            {
-
-        //                f.ChangerCouleur(Color.Blue);
-
-
-        //            }
-        //        }
-        //        laPiece.EstPremierMove = true;
-
-
-        //    }
-
-        //}
+        
         private void ResetCouleur()
         {
             foreach (Cases t in ListeDesCases)
@@ -364,18 +359,18 @@ namespace AtelierXNA
             {
                 if (PièceA.EstPremierMove && r == true)
                 {
-                    if (c.Position == PièceA.Position + new Vector3(2, 0, 0))
+                    if (c.Position == PièceA.Position + new Vector3(0, 0, 2))
                     {
-                        c.Deplacer(CaseA.Centre + new Vector3(2, 0, 0));
+                        c.Deplacer(CaseA.Centre + new Vector3(0, 0, 2));
                         aBouger = true;
                         PièceA.EstPremierMove = false;
                         ResetCouleur();
 
                     }
 
-                    if (c.Position == PièceA.Position + new Vector3(-4, 0, 0))
+                    if (c.Position == PièceA.Position + new Vector3(0, 0, -4))
                     {
-                        c.Deplacer(CaseA.Centre + new Vector3(-2, 0, 0));
+                        c.Deplacer(CaseA.Centre + new Vector3(0, 0, -2));
                         aBouger = true;
                         PièceA.EstPremierMove = false;
                         ResetCouleur();
@@ -418,27 +413,32 @@ namespace AtelierXNA
                     BD.X -= Game.GraphicsDevice.Viewport.X;
                     BD.Y -= Game.GraphicsDevice.Viewport.Y;
 
-                    int width = (int)(HG.X - HD.X);
-                    int height = (int)(BG.Y - HG.Y);
+                   // int width = (int)(HD.Y-HG.Y);
+                   // int height = (int)(BG.X-HG.X);
+                    int height = (int)(HD.Y - HG.Y);
+                    int width = (int)(BG.X - HG.X);
 
 
 
 
-                    Rectangle zone = new Rectangle((int)BD.X, (int)HG.Y, width, height);
+                    Rectangle zone = new Rectangle((int)HG.X, (int)HG.Y, width,height);
                     Point PosSouris = GestionInput.GetPositionSouris();
 
                     
 
                     if (zone.Contains(PosSouris))
                     {
+                        
                         if (CaseA != CaseB)
                         {
                             VérifierChangementCouleur(o);
                         }
                         if (CaseA == null)
                         {
+
                             CaseA = o;
-                            
+                            VérifierChangementCouleur(o);
+                           
                         }
                        
                             
@@ -451,6 +451,7 @@ namespace AtelierXNA
                             
 
                             foreach (Pieces a in ListeDesPièces.ToList())
+                                
                             {
                                 
 
@@ -468,7 +469,7 @@ namespace AtelierXNA
                                     {
                                         if (a.Couleur == Couleur)
                                         {
-                                            if (a.LogiqueDéplacement(new Vector2((CaseB.Centre.X - CaseA.Centre.X), (CaseB.Centre.Z - CaseA.Centre.Z))) && NeSautePas(CaseA.Centre, CaseB.Centre))
+                                            if (a.LogiqueDéplacement(new Vector2(((int)CaseB.Centre.Z - (int)CaseA.Centre.Z), ((int)CaseB.Centre.X - (int)CaseA.Centre.X))) && NeSautePas(CaseA.Centre, CaseB.Centre))
                                              {
                                                 Compteur++;
                                                 PièceA = a;
@@ -481,7 +482,8 @@ namespace AtelierXNA
                                                     
                                                     if (PièceA.Nom == "/pawn")
                                                     {
-                                                        if (EstValidePionSeul(CaseA, CaseB))
+                                                       // if (EstValidePionSeul(CaseA, CaseB))
+                                                        if (EstValidePionSeul(CaseA,CaseB))
                                                         {
                                                             PièceA.Deplacer(CaseA.Centre);
                                                             Compteur--;
@@ -500,7 +502,7 @@ namespace AtelierXNA
                                                     }
                                                     if (PièceA.Nom == "/king")
                                                     {
-                                                        if (Math.Abs(CaseB.Centre.X - CaseA.Centre.X) > 2 && (!EstEnEchec(ListeDesCases, ListeDesPièces, PièceA.Couleur)))
+                                                        if (Math.Abs(CaseB.Centre.Z - CaseA.Centre.Z) > 2 && (!EstEnEchec(ListeDesCases, ListeDesPièces, PièceA.Couleur)))
                                                         {
                                                             GèrerRook();
                                                         }
@@ -555,7 +557,7 @@ namespace AtelierXNA
 
                                                         if (PièceA.Nom == "/king")
                                                         {
-                                                            if (Math.Abs(CaseB.Centre.X - CaseA.Centre.X) > 2)
+                                                            if (Math.Abs((int)CaseB.Centre.Z - (int)CaseA.Centre.Z) > 2)
                                                             {
                                                                 ResetPièces(PièceA, PièceB);
                                                             }
@@ -596,7 +598,7 @@ namespace AtelierXNA
                                             else
                                             {
                                                 ResetCouleur();
-                                             //   VérifierChangementCouleur(CaseB);
+                                            
                                             }
 
 
@@ -626,7 +628,7 @@ namespace AtelierXNA
 
                                         }
                                        
-                                      // VérifierChangementCouleur(CaseB);
+                                      
                                         
                                         PièceA = PièceB;                                      
                                         PièceB = null;
@@ -663,6 +665,11 @@ namespace AtelierXNA
                                             g.EstPremierMove = false;
                                         }
                                     }
+
+
+                                  // VerificationMat();
+                                   
+
                                     
                                    
                                     
