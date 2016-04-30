@@ -115,6 +115,7 @@ namespace AtelierXNA
         public void ModifierActivation()
         {
             this.Enabled = !this.Enabled;
+            this.Visible = !this.Visible;
         }
 
     }

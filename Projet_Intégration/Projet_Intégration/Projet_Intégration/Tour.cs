@@ -93,9 +93,9 @@ namespace AtelierXNA
             base.Update(gameTime);
         }
 
-        public bool Mat()
+        //public bool Mat();
 
-        private bool EstMat()
+        public bool EstMat()
 
         {
             bool t = true;

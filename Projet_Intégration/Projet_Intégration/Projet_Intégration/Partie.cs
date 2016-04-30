@@ -105,7 +105,7 @@ namespace AtelierXNA
                 }
                 else
                 {
-                    if (TempsÉcouléDepuisMAJ > TempsLimite || TourActuel.PartieTerminée || TourActuel.Mat())
+                    if (TempsÉcouléDepuisMAJ > TempsLimite || TourActuel.PartieTerminée || TourActuel.EstMat())
                     {
                         if (TourActuel.Couleur == "WHITE")
                         {
