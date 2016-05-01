@@ -121,11 +121,11 @@ namespace AtelierXNA
          {
              if (this.Couleur == "White")
              {
-                 Position = new Vector3(Partie.GetPositionSorties(0).X, Partie.GetPositionSorties(0).Y, nbSortiesBlanc);
+                 Position = new Vector3(Partie.GetPositionSorties(0).X-nbSortiesBlanc, Partie.GetPositionSorties(0).Y,Partie.GetPositionSorties(0).Z);
              }
              else
              {
-                 Position = new Vector3(Partie.GetPositionSorties(1).X, Partie.GetPositionSorties(1).Y, nbSortiesNoir);
+                 Position = new Vector3(Partie.GetPositionSorties(1).X+nbSortiesNoir, Partie.GetPositionSorties(1).Y,Partie.GetPositionSorties(1).Z);
              }
              this.Game.Components.Remove(this);
              this.Game.Components.Add(this);
