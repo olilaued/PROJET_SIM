@@ -147,7 +147,6 @@ namespace AtelierXNA
             Vector3 rotationObjet = new Vector3(0, 0, 0);
 
             PositionCaméra = new Vector3(140.76f, 65.08f, -68.30f);
-            //CibleCaméra = new Vector3(170.96f, 64.49f, -68.35f);
             CibleCaméra = new Vector3(157.2f, 55.28f, -68.17f);
             OVCaméra = new Vector3(-0.5933704f, 0.8049271f, -0.00201782f);
 

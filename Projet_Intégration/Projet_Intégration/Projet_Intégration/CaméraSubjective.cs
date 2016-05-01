@@ -16,6 +16,9 @@ namespace AtelierXNA
         const float DELTA_ROULIS = MathHelper.Pi / 180; // 1 degré à la fois
         const float RAYON_COLLISION = 1f;
         const float VITESSE_PIVOTEMENT = 130f;
+         Vector3 POS_INI = new Vector3(140.76f, 65.08f, -68.30f);
+         Vector3 CIBLE_INI = new Vector3(157.2f, 55.28f, -68.17f);
+         Vector3 OV_INI = new Vector3(-0.5933704f, 0.8049271f, -0.00201782f);
 
         Vector3 Direction { get; set; }
         Vector3 Latéral { get; set; }
@@ -27,7 +30,8 @@ namespace AtelierXNA
         InputManager GestionInput { get; set; }
         Matrix Rotation { get; set; }
         public float Compteur { get; set; }
-
+        int compteurTours { get; set; }
+        bool Locked { get; set; }
 
 
         bool estEnZoom;
@@ -62,11 +66,13 @@ namespace AtelierXNA
 
         public override void Initialize()
         {
+            compteurTours = 0;
             VitesseRotation = VITESSE_INITIALE_ROTATION;
             VitesseTranslation = VITESSE_INITIALE_TRANSLATION;
             TempsÉcouléDepuisMAJ = 0;
             base.Initialize();
             GestionInput = Game.Services.GetService(typeof(InputManager)) as InputManager;
+            Locked = false;
 
         }
 
@@ -77,7 +83,7 @@ namespace AtelierXNA
             // (à compléter)
             Direction = Vector3.Normalize(Direction);
             Latéral = Vector3.Cross(Direction, OrientationVerticale);
-            Vue = Matrix.CreateLookAt(Position, Cible, OrientationVerticale);
+            Vue = Matrix.CreateLookAt(Position, Direction + Position, OrientationVerticale);
             GénérerFrustum();
         }
 
@@ -97,29 +103,54 @@ namespace AtelierXNA
 
         public override void Update(GameTime gameTime)
         {
+            if (GestionInput.EstNouvelleTouche(Keys.Space))
+            {
+                Locked = !Locked;
+                if(Locked == false)
+                {
+                    
+                    Cible = CIBLE_INI;
+                    OrientationVerticale = OV_INI;
+                    if (compteurTours % 2 == 0 )
+                    {
+                        Position = POS_INI;
+                    }
+                    else
+                    {
+                        Position = new Vector3(POS_INI.X + 32, POS_INI.Y, POS_INI.Z);
+                    }
+                    Vue = Matrix.CreateLookAt(Position, Cible, OrientationVerticale);
+                    GénérerFrustum();
+                }
+            }
             float TempsÉcoulé = (float)gameTime.ElapsedGameTime.TotalSeconds;
             TempsÉcouléDepuisMAJ += TempsÉcoulé;
             GestionClavier();
             if (TempsÉcouléDepuisMAJ >= IntervalleMAJ)
             {
-                if (GestionInput.EstEnfoncée(Keys.LeftShift) || GestionInput.EstEnfoncée(Keys.RightShift))
+                if ((GestionInput.EstEnfoncée(Keys.LeftShift) || GestionInput.EstEnfoncée(Keys.RightShift)) && Locked )
                 {
-                    //GérerAccélération();
-                    // GérerDéplacement();
-                    // GérerRotation();
-                    //CréerPointDeVue();
+                    GérerAccélération();
+                     GérerDéplacement();
+                     GérerRotation();
+                    CréerPointDeVue();
                 }
                 TempsÉcouléDepuisMAJ = 0;
-
-
+                
+                if (Compteur < VITESSE_PIVOTEMENT)
                 {
-                    if (Compteur < VITESSE_PIVOTEMENT)
-                    {
-                        TournerCaméra();
+                    TournerCaméra();
 
-
-                    }
                 }
+                if (Compteur == VITESSE_PIVOTEMENT)
+                {
+                    compteurTours++;
+                    Compteur++;
+                }
+
+
+
+                
             }
 
 
