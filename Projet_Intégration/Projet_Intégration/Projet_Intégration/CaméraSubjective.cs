@@ -15,7 +15,7 @@ namespace AtelierXNA
         const float DELTA_TANGAGE = MathHelper.Pi / 180; // 1 degré à la fois
         const float DELTA_ROULIS = MathHelper.Pi / 180; // 1 degré à la fois
         const float RAYON_COLLISION = 1f;
-        const float VITESSE_PIVOTEMENT = 130f;
+         const float TEMPS_PIVOT = 130f;
 
         Vector3 Direction { get; set; }
         Vector3 Latéral { get; set; }
@@ -56,7 +56,7 @@ namespace AtelierXNA
             CréerVolumeDeVisualisation(OUVERTURE_OBJECTIF, DISTANCE_PLAN_RAPPROCHÉ, DISTANCE_PLAN_ÉLOIGNÉ);
             CréerPointDeVue(positionCaméra, cible, orientation);
             EstEnZoom = false;
-            Compteur = VITESSE_PIVOTEMENT + 1;
+            Compteur = TEMPS_PIVOT + 1;
         }
 
 
@@ -68,6 +68,10 @@ namespace AtelierXNA
             base.Initialize();
             GestionInput = Game.Services.GetService(typeof(InputManager)) as InputManager;
 
+        }
+        public bool aFiniTourner()
+        {
+            return (Compteur >= TEMPS_PIVOT);
         }
 
         protected override void CréerPointDeVue()
@@ -113,7 +117,7 @@ namespace AtelierXNA
 
 
                 {
-                    if (Compteur < VITESSE_PIVOTEMENT)
+                    if (Compteur < TEMPS_PIVOT)
                     {
                         TournerCaméra();
 
@@ -133,7 +137,7 @@ namespace AtelierXNA
             //  for (float i = 0; i < MathHelper.Pi; i += MathHelper.Pi / 10000)
             {
 
-                Position = Vector3.Transform(Position - Cible, Matrix.CreateFromAxisAngle(new Vector3(0, 1, 0), MathHelper.Pi / VITESSE_PIVOTEMENT)) + Cible;
+                Position = Vector3.Transform(Position - Cible, Matrix.CreateFromAxisAngle(new Vector3(0, 1, 0), MathHelper.Pi / TEMPS_PIVOT)) + Cible;
 
                 //Vue = Matrix.CreateLookAt(Position, Cible, OrientationVerticale);
                 CréerPointDeVue(Position, Cible, Vector3.Up);

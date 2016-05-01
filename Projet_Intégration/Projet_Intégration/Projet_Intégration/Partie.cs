@@ -18,7 +18,7 @@ namespace AtelierXNA
     public class Partie : Microsoft.Xna.Framework.GameComponent
     {
         const float LARGEUR_ECHIQUIER = 0.3f;
-        public static float LONGUEUR_ÉCHIQUIER = 15f;
+        public static float LONGUEUR_ÉCHIQUIER = 14f;
         public static float LONGUEUR_CASE = LONGUEUR_ÉCHIQUIER / 8f;
         //const float PROFONDEUR_DEFAUT = 0.5f;
         const float SCALE_DEFAUT = 1.0f;
@@ -37,7 +37,7 @@ namespace AtelierXNA
         protected float TempsÉcouléDepuisMAJ { get; set; }
         public Tour TourActuel { get; set; }
         public ObjetDeBase Environnement {get; set;}
-        protected static Vector2[] PositionSorties { get; set; }
+        protected static Vector3[] PositionSorties { get; set; }
         protected TexteAffichable GagnantB { get; set; }
         protected TexteAffichable GagnantN { get; set; }
         public bool PartieTerminée {get; set;}
@@ -66,15 +66,19 @@ namespace AtelierXNA
         /// </summary>
         public override void Initialize()
         {
-            PositionSorties = new Vector2[2];
+            PositionSorties = new Vector3[2];
             ListeDesPièces = new List<Pieces>();
             TempsÉcouléDepuisMAJ = 0;
             NbSortiesBlanc = 0;
             NbSortiesNoir = 0;
             GestionInput = Game.Services.GetService(typeof(InputManager)) as InputManager;
             CaméraJeu = Game.Services.GetService(typeof(CaméraSubjective)) as CaméraSubjective;
-            PositionSorties[0] = new Vector2(UnÉchiquier.Origine.X - 1, UnÉchiquier.Origine.Y);
-            PositionSorties[1] = new Vector2(UnÉchiquier.Origine.X + 17, UnÉchiquier.Origine.Y);
+            PositionSorties[0] = new Vector3(UnÉchiquier.Origine.X , UnÉchiquier.Origine.Y,UnÉchiquier.Origine.Z+Partie.LONGUEUR_ÉCHIQUIER - LONGUEUR_CASE/3f);
+          
+            PositionSorties[1] = new Vector3(UnÉchiquier.Origine.X-LONGUEUR_ÉCHIQUIER+2*LONGUEUR_CASE  , UnÉchiquier.Origine.Y, UnÉchiquier.Origine.Z-2*LONGUEUR_CASE+LONGUEUR_CASE/3f);
+          //  PositionSorties[0] = new Vector3(10000,10000,10000);
+            
+           // PositionSorties[1] = new Vector3(1000,100000,10000);
             //GagnantN = new TexteAffichable(Game, "Arial", VAINQUEUR_N, Color.LightGreen, 0, 3.0f, PROFONDEUR_DEFAUT);
             //GagnantB = new TexteAffichable(Game, "Arial", VAINQUEUR_B, Color.LightGreen, 0, 3.0f, PROFONDEUR_DEFAUT);
             Game.Components.Add(Environnement = new ObjetDeBase(Game, Map, 0.01f, new Vector3(0, 0, 0), Vector3.Zero));
@@ -176,7 +180,7 @@ namespace AtelierXNA
 
         }
         
-        public static Vector2 GetPositionSorties(int index)
+        public static Vector3 GetPositionSorties(int index)
         {
             
             if (index >= 0 && index < PositionSorties.Length)
@@ -185,7 +189,7 @@ namespace AtelierXNA
             }
             else
             {
-                return Vector2.Zero;
+                return Vector3.Zero;
             }
             
         }

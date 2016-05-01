@@ -80,8 +80,10 @@ namespace AtelierXNA
             {
                 Couleur = BLACK;
             }
-
-            GérerDéplacement();
+            if (CaméraJeu.aFiniTourner())
+            {
+                GérerDéplacement();
+            }
             if (EstMat())
             {
                 this.Game.Exit();
@@ -208,8 +210,10 @@ namespace AtelierXNA
 
             foreach (Pieces a in ListeDesPièces)
             {
-                Vector3 déplacement = new Vector3((leRoi.Position.X - a.Position.X), 0f, (leRoi.Position.Z - a.Position.Z));
-                if (a.LogiqueDéplacement(new Vector2((leRoi.Position.X - a.Position.X), (leRoi.Position.Z - a.Position.Z))) && (a.Couleur != leRoi.Couleur) && NeSautePas(leRoi.Position, a.Position))
+              //  Vector3 déplacement = new Vector3((leRoi.Position.X - a.Position.X), 0f, (leRoi.Position.Z - a.Position.Z));
+                Vector3 déplacement = new Vector3((leRoi.Position.Z - a.Position.Z), 0f, (leRoi.Position.X - a.Position.X));
+               // if (a.LogiqueDéplacement(new Vector2((leRoi.Position.X - a.Position.X), (leRoi.Position.Z - a.Position.Z))) && (a.Couleur != leRoi.Couleur) && NeSautePas(leRoi.Position, a.Position))
+                if (a.LogiqueDéplacement(new Vector2((leRoi.Position.Z - a.Position.Z), (leRoi.Position.X - a.Position.X))) && (a.Couleur != leRoi.Couleur) && NeSautePas(leRoi.Position, a.Position))
                 {
 
                     condition = true;
@@ -571,7 +575,7 @@ namespace AtelierXNA
 
                                                         if (PièceA.Nom == "/king")
                                                         {
-                                                            if (Math.Abs((int)CaseB.Centre.Z - (int)CaseA.Centre.Z) > Partie.LONGUEUR_CASE)
+                                                            if (Math.Abs(CaseB.Centre.Z - CaseA.Centre.Z) > Partie.LONGUEUR_CASE)
                                                             {
                                                                 ResetPièces(PièceA, PièceB);
                                                             }
@@ -668,8 +672,8 @@ namespace AtelierXNA
                                         }
                                         if (cd)
                                         {
-                                            ListeDesPièces.Remove(v);
-                                            NbPiece--;
+                                          //  ListeDesPièces.Remove(v);
+                                          //  NbPiece--;
                                         }
                                     }
                                     foreach (Pieces g in ListeDesPièces.FindAll(x => x.Nom == "/rook" || x.Nom == "/king" || x.Nom == "/pawn"))
