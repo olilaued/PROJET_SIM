@@ -43,7 +43,12 @@ namespace AtelierXNA
         Afficheur3D unAfficheur3D { get; set; }
         public static List<Bouton> ListeDesBoutons { get; protected set; }
         string NomMap { get; set; }
-        float TempsDePartie { get; set; }
+        string TempsÉcrit { get; set; }
+        int TempsDePartie { get; set; }
+        float TempsRestantB { get; set; }
+        float TempsRestantN { get; set; }
+        int MinutesRestantes { get; set; }
+        int SecondesRestantes { get; set; }
         Vector3 OrigineÉchiquier { get; set; }
         Vector3 PositionCaméra { get; set; }
         Vector3 CibleCaméra { get; set; }
@@ -53,6 +58,8 @@ namespace AtelierXNA
         ZoneDéroulante ArrièrePlanDéroulant { get; set; }
         TexteAffichable GagnantN { get; set; }
         TexteAffichable GagnantB { get; set; }
+        TexteAffichable TempsB { get; set; }
+        TexteAffichable TempsN { get; set; }
          
         
         // Menu principal
@@ -155,6 +162,8 @@ namespace AtelierXNA
             CouleursÉchiquier[0] = Color.NavajoWhite;
             CouleursÉchiquier[1] = Color.Gray;
             CouleursÉchiquier[2] = Color.Aquamarine;
+            
+            
            
             
 
@@ -165,12 +174,13 @@ namespace AtelierXNA
             GestionInput = new InputManager(this);
             GestionSprites = new SpriteBatch(GraphicsDevice);
  
-            Components.Add(ArrièrePlanDéroulant = new ZoneDéroulante(this, "chess", new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), INTERVALLE_MAJ_STANDARD));
-            Components.Add(UnAfficheurFPS = new AfficheurFps(this,"Arial", Color.Blue, INTERVALLE_CALCUL_FPS)) ;
+           
+            
             Components.Add(GestionInput);
-            Components.Add(unAfficheur3D  = new Afficheur3D(this));
-            CaméraJeu = new CaméraSubjective(this,PositionCaméra,CibleCaméra,OVCaméra, INTERVALLE_MAJ_STANDARD);
-           // Components.Add(PartiEnCours = new Partie(this, TempsDePartie, NomMap, CouleursÉchiquier, OrigineÉchiquier));
+            Components.Add(ArrièrePlanDéroulant = new ZoneDéroulante(this, "chess", new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), INTERVALLE_MAJ_STANDARD));
+            Components.Add(CaméraJeu = new CaméraSubjective(this,PositionCaméra,CibleCaméra,OVCaméra, INTERVALLE_MAJ_STANDARD));
+            
+           
            
 
             Services.AddService(typeof(Random), new Random());
@@ -194,7 +204,7 @@ namespace AtelierXNA
             CréerOptions();
             CréerChoixPause();
             CréerChoixClrsÉchi();
-            
+            CréerChoixTemps();
             
             //unAfficheur3D.Visible = false;
             
@@ -242,6 +252,9 @@ namespace AtelierXNA
         protected override void Update(GameTime gameTime)
         {
             
+            
+            //MinutesRestantes = (int)TempsRestant/ 60;
+            //SecondesRestantes = (int)TempsRestant % 60;
             switch (CurrentGameState)
             {
                 case GameState.MenuPrincipal:
@@ -270,6 +283,12 @@ namespace AtelierXNA
                         VoilerBoutons(2, 5);
                         AfficherBoutons(7, 11);
                     }
+                    if (B4.Clicked == true)
+                    {
+                        CurrentGameState = GameState.TempsPartie;
+                        VoilerBoutons(2, 5);
+                        AfficherBoutons(11, 15);
+                    }
                     if (GestionInput.EstNouvelleTouche(Keys.Escape))
                     {
                         CurrentGameState = GameState.MenuPrincipal;
@@ -286,13 +305,47 @@ namespace AtelierXNA
                         AfficherBoutons(2,5);
                     }
                     break;
+
+                case GameState.TempsPartie:
+                    if (B12.Clicked || B13.Clicked || B14.Clicked || B15.Clicked == true)
+                    {
+                        CurrentGameState = GameState.Options;
+                        VoilerBoutons(11, 15);
+                        AfficherBoutons(2, 5);
+                    }
+                    break;
+                case GameState.EnPause:
+
+                    if (GestionInput.EstNouvelleTouche(Keys.Escape) || B6.Clicked == true)
+                    {
+                        CurrentGameState = GameState.EnJeu;
+                        VoilerBoutons(5, 7);
+
+                    }
+                    if (B7.Clicked == true)
+                    {
+                        CurrentGameState = GameState.MenuPrincipal;
+                        VoilerBoutons(5, 7);
+                        AfficherBoutons(0,2);
+                        PartiEnCours.Retirer();
+                        Components.Remove(UnAfficheurFPS);
+                        Components.Remove(TempsB);
+                        Components.Remove(TempsN);
+                        Components.Remove(unAfficheur3D);
+                        ArrièrePlanDéroulant.ModifierActivation();
+                        
+
+                    }
+                    break;
                 case GameState.EnJeu:
+                    
+                    
                     if (PartiEnCours.PartieTerminée)
                     {
                         if (PartiEnCours.TourActuel.Couleur == "White")
                         {
                             Components.Add(GagnantN = new TexteAffichable(this, "Arial", VAINQUEUR_N, Color.LightGreen, 0, 3.0f, PROFONDEUR_DEFAUT));
-                            
+
                         }
                         else
                         {
@@ -300,12 +353,38 @@ namespace AtelierXNA
                         }
                         Components.Remove(PartiEnCours.TourActuel);
                     }
-                    if (GestionInput.EstNouvelleTouche(Keys.Escape))
+                    else
                     {
-                        CurrentGameState = GameState.EnPause;
-                        AfficherBoutons(5, 7);
-                    }
+                        if (GestionInput.EstNouvelleTouche(Keys.Escape))
+                        {
+                            CurrentGameState = GameState.EnPause;
+                            AfficherBoutons(5, 7);
+                        }
+                        float tempsÉcoulé = (float)gameTime.ElapsedGameTime.TotalSeconds;
+                        //string tempsB = MinutesRestantes.ToString() + ":" + SecondesRestantes.ToString();
+                        if(PartiEnCours.TourActuel.Couleur == "White")
+                        {
+                            TempsB.Visible = true;
+                            TempsB.Enabled = true;
+                            TempsRestantB = TempsRestantB - tempsÉcoulé;
+                            TempsN.Visible = false;
+                            TempsN.Enabled = false;
+                            string temps = ((int)(TempsRestantB / 60)).ToString() + ":" + ((int)(TempsRestantB % 60)).ToString();
+                            TempsB.ModifierTexte(temps);
+
+                        }
+                        else
+                        {
+                            TempsN.Visible = true;
+                            TempsN.Enabled = true;
+                            TempsRestantN = TempsRestantN - tempsÉcoulé;
+                            TempsB.Visible = false;
+                            TempsB.Enabled = false;
+                            string temps = ((int)(TempsRestantN / 60)).ToString() + ":" + ((int)(TempsRestantN % 60)).ToString();
+                            TempsN.ModifierTexte(temps);
+                        }
                        
+                    }
  
                     
                     break;
@@ -317,14 +396,18 @@ namespace AtelierXNA
         }
         void CommencerPartie()
         {
-            //Components.Add(unAfficheur3D);
-            unAfficheur3D.Visible = true;
-            Components.Add(CaméraJeu);
+            MinutesRestantes = TempsDePartie / 60;
+            SecondesRestantes = TempsDePartie % 60;
+            TempsRestantB = TempsDePartie;
+            TempsRestantN = TempsDePartie;
+            TempsÉcrit = MinutesRestantes.ToString() + ":" + SecondesRestantes.ToString();
+
             ArrièrePlanDéroulant.ModifierActivation();
             Components.Add(PartiEnCours = new Partie(this, TempsDePartie, NomMap, CouleursÉchiquier, OrigineÉchiquier));
-            //Components.Add(UnAfficheurFPS);
-            //Components.Add(UnAfficheurFPS);
-            
+            Components.Add(UnAfficheurFPS = new AfficheurFps(this, "Arial", Color.Blue, INTERVALLE_CALCUL_FPS));
+            Components.Add(TempsB = new TexteAffichable(this, "Arial",TempsÉcrit, new Vector2((GraphicsDevice.Viewport.Width - UnAfficheurFPS.PositionDroiteBas.X), UnAfficheurFPS.PositionDroiteBas.Y), Color.White, 1f));
+            Components.Add(TempsN = new TexteAffichable(this, "Arial", TempsÉcrit, new Vector2((GraphicsDevice.Viewport.Width - UnAfficheurFPS.PositionDroiteBas.X), UnAfficheurFPS.PositionDroiteBas.Y), Color.Black, 1f));
+            Components.Add(unAfficheur3D  = new Afficheur3D(this));
         }
 
         /// <summary>
@@ -415,11 +498,35 @@ namespace AtelierXNA
             VoilerBoutons(5,7);
 
         }
+
+        void CréerChoixTemps()
+        {
+            int indice = 4;
+            float valeur = GraphicsDevice.Viewport.Height / indice;
+            float y = 0;
+            float x = GraphicsDevice.Viewport.Width / 2;
+            float longueur = GraphicsDevice.Viewport.Width / 5;
+            float hauteur = GraphicsDevice.Viewport.Width / (3 * indice) - 1;
+            Components.Add(B12 = new Bouton(this, "button", "Arial", temps1, new Vector2(x, y), new Vector2(2 * longueur, hauteur)));
+            y += valeur;
+            Components.Add(B13 = new Bouton(this, "button", "Arial", temps2, new Vector2(x, y), new Vector2(2 * longueur, hauteur)));
+            y += valeur;
+            Components.Add(B14 = new Bouton(this, "button", "Arial", temps3, new Vector2(x, y), new Vector2(2 * longueur, hauteur)));
+            y += valeur;
+            Components.Add(B15 = new Bouton(this, "button", "Arial", temps4, new Vector2(x, y), new Vector2(2 * longueur, hauteur)));
+            ListeDesBoutons.Add(B12);
+            ListeDesBoutons.Add(B13); 
+            ListeDesBoutons.Add(B14); 
+            ListeDesBoutons.Add(B15);
+            VoilerBoutons(11, 15);
+
+        }
         void DéterminerSettings()
         {
             //StreamReader sr = new StreamReader("/../../../../../Settings.txt");
             //Options de la caméra
             int indexClrÉchi = ListeDesBoutons.FindIndex(7, 4, x => (x.Clicked == true));
+            int indexTempsPartie = ListeDesBoutons.FindIndex(11,4, x => (x.Clicked == true)); 
             //int indexTemps = ListeDesBoutons.FindIndex();
 
             //Options Échiquier
@@ -429,6 +536,13 @@ namespace AtelierXNA
                 case 8: CouleursÉchiquier[0] = Color.White; CouleursÉchiquier[1] = Color.Green; CouleursÉchiquier[2] = Color.Black; break;
                 case 9: CouleursÉchiquier[0] = Color.White; CouleursÉchiquier[1] = Color.Red; CouleursÉchiquier[2] = Color.Black; break;
                 case 10: CouleursÉchiquier[0] = Color.White; CouleursÉchiquier[1] = Color.Pink; CouleursÉchiquier[2] = Color.Black; break;
+            }
+            switch (indexTempsPartie)
+            {
+                case 11: TempsDePartie = 15 * 60; break;
+                case 12: TempsDePartie = 30 * 60; break;
+                case 13: TempsDePartie = 45 * 60; break;
+                case 14: TempsDePartie = 60 * 60; break;
             }
 
         }

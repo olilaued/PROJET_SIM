@@ -46,8 +46,7 @@ namespace AtelierXNA
         }
         public override void Initialize()
         {
-           
-
+            //this.Enabled = false;
             base.Initialize();
         }
         public override void Update(GameTime gameTime)
@@ -114,7 +113,7 @@ namespace AtelierXNA
         }
         public void ModifierActivation()
         {
-            this.Enabled = !this.Enabled;
+            //this.Enabled = !this.Enabled;
             this.Visible = !this.Visible;
         }
 

@@ -70,11 +70,7 @@ namespace AtelierXNA
         public override void Update(GameTime gameTime)
         {
             // TODO: Add your update code here
-                
-           foreach (Cases c in ListeCases)
-           {
-               c.Visible = true;
-           }
+           
             
             base.Update(gameTime);
         }
@@ -127,6 +123,28 @@ namespace AtelierXNA
             
 
 
+        }
+        public void ModifierVisibilitéCases()
+        {
+            foreach (Cases c in ListeCases)
+            {
+                c.Visible = !c.Visible;
+            }
+        }
+        public void ActiverCases()
+        {
+            foreach (Cases c in ListeCases)
+            {
+                c.Visible = true;
+            }
+        }
+        public void Retirer()
+        {
+            foreach (Cases c in ListeCases)
+            {
+                Game.Components.Remove(c);
+            }
+            Game.Components.Remove(this);
         }
     }
 }

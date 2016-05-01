@@ -29,7 +29,7 @@ namespace AtelierXNA
         float ValFPS { get; set; }
 
         string ChaîneFPS { get; set; }
-        Vector2 PositionDroiteBas { get; set; }
+        public Vector2 PositionDroiteBas { get; set; }
         Vector2 PositionChaîne { get; set; }
         Vector2 Dimension { get; set; }
 

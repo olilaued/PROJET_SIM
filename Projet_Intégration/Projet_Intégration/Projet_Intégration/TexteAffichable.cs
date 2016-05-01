@@ -83,14 +83,29 @@ namespace AtelierXNA
             Profondeur = 0.5f;
             
         }
+        public TexteAffichable(Game game, string nomFont, string message, Vector2 position, Color couleur, float scale)
+        : base(game)
+    {
+        NomFont = nomFont;
+        Message = message;
+        FontPos = position;
+        Couleur = couleur;
+        Rotation = 0;
+        Scale = scale;
+        Profondeur = 0f;
+    }
 
         public override void Initialize()
         {
             GestionnaireDeFonts = Game.Services.GetService(typeof(RessourcesManager<SpriteFont>)) as RessourcesManager<SpriteFont>;
             GestionSprites = Game.Services.GetService(typeof(SpriteBatch))as SpriteBatch;
-            Écriture = GestionnaireDeFonts.Find(NomFont); 
+            Écriture = GestionnaireDeFonts.Find(NomFont);
             Origine = Écriture.MeasureString(Message) / 2;
             base.Initialize();
+            if (this.Message.Contains(':'))
+            {
+                FontPos = new Vector2(FontPos.X + Écriture.MeasureString(Message).X, FontPos.Y - Écriture.MeasureString(Message).Y);
+            }
         }
 
  	
@@ -102,6 +117,10 @@ namespace AtelierXNA
         protected override void LoadContent()
         {
             base.LoadContent();
+        }
+        public override void Update(GameTime gameTime)
+        {
+            base.Update(gameTime);
         }
 
         /// <summary>
@@ -121,6 +140,10 @@ namespace AtelierXNA
 
             GestionSprites.End();
             base.Draw(gameTime);
+        }
+        public void ModifierTexte(string nvMessage)
+        {
+            this.Message = nvMessage;
         }
     }
 }

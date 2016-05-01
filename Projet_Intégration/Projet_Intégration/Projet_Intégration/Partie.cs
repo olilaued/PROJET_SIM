@@ -29,13 +29,13 @@ namespace AtelierXNA
         List<Pieces> ListeDesPièces { get; set; }
         protected List<string> ListeDesMoves { get; set; }
         protected string Map { get; set; }
-        protected Echiquier UnÉchiquier { get; set; }
+        protected  Echiquier UnÉchiquier { get; set; }
         protected CaméraSubjective CaméraJeu { get; set; }
         protected float NbSortiesBlanc { get; set; }
         protected float NbSortiesNoir { get; set; }
         protected float TempsÉcouléDepuisMAJ { get; set; }
         public Tour TourActuel { get; set; }
-        public ObjetDeBase Environnement {get; set;}
+        ObjetDeBase Environnement {get; set;}
         protected static Vector2[] PositionSorties { get; set; }
         protected TexteAffichable GagnantB { get; set; }
         protected TexteAffichable GagnantN { get; set; }
@@ -80,7 +80,7 @@ namespace AtelierXNA
             Game.Components.Add(TourActuel = new Tour(Game,"White", UnÉchiquier.ListeCases, ListeDesPièces, NbSortiesBlanc, NbSortiesNoir));
             Environnement.Visible = false;
             TourActuel.Enabled = false;
-            
+            InitialiserPièces(UnÉchiquier);
             
             
            
@@ -103,8 +103,8 @@ namespace AtelierXNA
                 {
                     TourActuel.Enabled = true;
                     Environnement.Visible = true;
-                    InitialiserPièces(UnÉchiquier);
                     ModifierEstVisiblePièces();
+                    UnÉchiquier.ModifierVisibilitéCases();
                 }
 
 
@@ -113,6 +113,14 @@ namespace AtelierXNA
                     PartieTerminée = true;
                 }
             }
+            if (Jeu.CurrentGameState == Jeu.GameState.EnPause && Environnement.Visible == true)
+            {
+                UnÉchiquier.ModifierVisibilitéCases();
+                ModifierEstVisiblePièces();
+                Environnement.Visible = false;
+                Environnement.Enabled = false;
+            }
+
 
 
 
@@ -189,7 +197,7 @@ namespace AtelierXNA
             
         }
 
-       void ModifierEstVisiblePièces()
+        public void ModifierEstVisiblePièces()
         {
            foreach (Pieces p in ListeDesPièces)
             {
@@ -198,6 +206,18 @@ namespace AtelierXNA
             }
 
         }
+        public void Retirer()
+        {
+            Game.Components.Remove(Environnement);
+            foreach (Pieces p in ListeDesPièces)
+            {
+                Game.Components.Remove(p);
+            }
+            UnÉchiquier.Retirer();
+            Game.Components.Remove(TourActuel);
+            Game.Components.Remove(this);
+        }
+
         
         
         
