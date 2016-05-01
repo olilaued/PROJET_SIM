@@ -73,36 +73,36 @@ namespace AtelierXNA
 
             if (Compteur % 2 == 0)
             {
+
                 Couleur = WHITE;
             }
             else
             {
                 Couleur = BLACK;
             }
-            
+
             GérerDéplacement();
             if (EstMat())
             {
                 this.Game.Exit();
             }
-          //if (!VerificationMat())
-          //{
-          //    this.Game.Exit();
-          //}
-          
+            //if (!VerificationMat())
+            //{
+            //    this.Game.Exit();
+            //}
+
             base.Update(gameTime);
         }
 
         //public bool Mat();
 
         public bool EstMat()
-
         {
             bool t = true;
 
             foreach (Pieces l in ListeDesPièces.FindAll(x => x.Couleur != Couleur))
             {
-                
+
                 Pieces laPiece = null;
                 Vector3 posPiece = Vector3.Zero;
                 Vector3 posIni = l.Position;
@@ -114,14 +114,14 @@ namespace AtelierXNA
                     {
 
                         l.Deplacer(r.Centre);
-                        foreach (Pieces u in ListeDesPièces.FindAll(x =>x.Couleur != l.Couleur))
+                        foreach (Pieces u in ListeDesPièces.FindAll(x => x.Couleur != l.Couleur))
                         {
                             if (u.Position == r.Centre)
                             {
-                                laPiece = u ;
+                                laPiece = u;
                                 posPiece = u.Position;
                                 laPiece.Sortir(1000, 1000);
-                                
+
 
                             }
                         }
@@ -156,7 +156,7 @@ namespace AtelierXNA
 
                         }
 
-                        if (l.Nom == "/king" && Math.Abs(r.Centre.Z - posIni.Z) > Partie.LONGUEUR_ÉCHIQUIER / 8)
+                        if (l.Nom == "/king" && Math.Abs(r.Centre.Z - posIni.Z) > 2)
                         {
                             l.Deplacer(posIni);
                             l.NbDéplacement--;
@@ -164,9 +164,9 @@ namespace AtelierXNA
                         }
                         if (!EstEnEchec(ListeDesCases, ListeDesPièces, l.Couleur))
                         {
-                            
-                                t =false;
-                            
+
+                            t = false;
+
                         }
 
                         l.Deplacer(posIni);
@@ -179,27 +179,27 @@ namespace AtelierXNA
                         {
                             l.EstPremierMove = true;
                         }
-                       
+
 
 
 
                     }
 
                 }
-                
+
             }
 
-           return t;
+            return t;
 
-            
+
             if (t == false)
             {
-              //  this.Game.Exit();
+                //  this.Game.Exit();
             }
             return t;
 
         }
-        
+
         private bool EstEnEchec(List<Cases> listeCases, List<Pieces> listePieces, string CouleurDuRoi)
         {
             bool condition = false;
@@ -209,7 +209,7 @@ namespace AtelierXNA
             foreach (Pieces a in ListeDesPièces)
             {
                 Vector3 déplacement = new Vector3((leRoi.Position.X - a.Position.X), 0f, (leRoi.Position.Z - a.Position.Z));
-                if (a.LogiqueDéplacement(new Vector2((leRoi.Position.X - a.Position.X), (leRoi.Position.Z - a.Position.Z))) && (a.Couleur != leRoi.Couleur) && NeSautePas(leRoi.Position,a.Position))
+                if (a.LogiqueDéplacement(new Vector2((leRoi.Position.X - a.Position.X), (leRoi.Position.Z - a.Position.Z))) && (a.Couleur != leRoi.Couleur) && NeSautePas(leRoi.Position, a.Position))
                 {
 
                     condition = true;
@@ -223,7 +223,7 @@ namespace AtelierXNA
 
             }
             return condition;
-            
+
             //return false;
         }
         private bool NeSautePas(Vector3 destination, Vector3 position)
@@ -235,19 +235,19 @@ namespace AtelierXNA
             {
                 Vector3 laDirection = (b.Position - destination);
                 laDirection.Normalize();
-               
-                
+
+
                 if ((Math.Abs(b.Position.Z - destination.Z) <= Math.Abs(position.Z - destination.Z)) && (Math.Abs(b.Position.X - destination.X) <= Math.Abs(position.X - destination.X)))
                 {
-                    if ((direction.X-0.0001f < laDirection.X) && (laDirection.X< direction.X+0.0001f) && (laDirection.Z-0.0001f  < direction.Z) &&( laDirection.Z+0.0001f > direction.Z))
+                    if ((direction.X - 0.0001f < laDirection.X) && (laDirection.X < direction.X + 0.0001f) && (laDirection.Z - 0.0001f < direction.Z) && (laDirection.Z + 0.0001f > direction.Z))
                     {
-                      
+
                         if (b.Position != position)
                         {
                             condition = false;
                         }
                     }
-                   
+
                 }
 
             }
@@ -260,8 +260,8 @@ namespace AtelierXNA
         private bool EstAuBorne(string Couleur, Cases Case)
         {
             bool estAuBorne = true;
-            Vector3 destinationW = CaseB.Centre + new Vector3(Partie.LONGUEUR_ÉCHIQUIER/8, 0, 0);
-            Vector3 destinationB = CaseB.Centre + new Vector3(-Partie.LONGUEUR_ÉCHIQUIER / 8, 0, 0);
+            Vector3 destinationW = CaseB.Centre + new Vector3(2, 0, 0);
+            Vector3 destinationB = CaseB.Centre + new Vector3(-2, 0, 0);
             if (Couleur == "White")
             {
                 foreach (Cases f in ListeDesCases)
@@ -280,7 +280,7 @@ namespace AtelierXNA
                     {
                         estAuBorne = false;
                     }
-                }             
+                }
 
             }
             return estAuBorne;
@@ -289,7 +289,7 @@ namespace AtelierXNA
         {
             return (Position == Position2);
         }
-        private bool EstValidePionSeul( Cases A, Cases B)
+        private bool EstValidePionSeul(Cases A, Cases B)
         {
             return (CaseB.Centre.Z - CaseA.Centre.Z != 0);
         }
@@ -299,32 +299,32 @@ namespace AtelierXNA
             PièceB.Deplacer(CaseB.Centre);
             Compteur--;
             ResetCouleur();
-            
+
         }
         private void ResetPièces(Pieces A)
         {
             PièceA.Deplacer(CaseA.Centre);
             Compteur--;
             ResetCouleur();
-            
+
         }
-        private void EstValidePionMange( Cases A, Cases B)
+        private void EstValidePionMange(Cases A, Cases B)
         {
             Vector3 déplacement = (B.Centre - A.Centre);
             if (!PièceA.EstValidePion(déplacement))
             {
                 ResetPièces(PièceA, PièceB);
             }
-            
+
         }
         private void NouvelleReine(Pieces A)
         {
             Pieces nouvellePiece = PièceA.PromoteQueen();
             ListeDesPièces.Add(nouvellePiece);
-           
+
             ListeDesPièces.Remove(PièceA);
         }
-        
+
         private void ResetCouleur()
         {
             foreach (Cases t in ListeDesCases)
@@ -359,18 +359,18 @@ namespace AtelierXNA
             {
                 if (PièceA.EstPremierMove && r == true)
                 {
-                    if (c.Position == PièceA.Position + new Vector3(0, 0, Partie.LONGUEUR_ÉCHIQUIER))
+                    if (c.Position == PièceA.Position + new Vector3(0, 0, 2))
                     {
-                        c.Deplacer(CaseA.Centre + new Vector3(0, 0, Partie.LONGUEUR_ÉCHIQUIER/8));
+                        c.Deplacer(CaseA.Centre + new Vector3(0, 0, 2));
                         aBouger = true;
                         PièceA.EstPremierMove = false;
                         ResetCouleur();
 
                     }
 
-                    if (c.Position == PièceA.Position + new Vector3(0, 0, -2 * Partie.LONGUEUR_ÉCHIQUIER/8))
+                    if (c.Position == PièceA.Position + new Vector3(0, 0, -4))
                     {
-                        c.Deplacer(CaseA.Centre + new Vector3(0, 0,  -Partie.LONGUEUR_ÉCHIQUIER/8));
+                        c.Deplacer(CaseA.Centre + new Vector3(0, 0, -2));
                         aBouger = true;
                         PièceA.EstPremierMove = false;
                         ResetCouleur();
@@ -413,22 +413,36 @@ namespace AtelierXNA
                     BD.X -= Game.GraphicsDevice.Viewport.X;
                     BD.Y -= Game.GraphicsDevice.Viewport.Y;
 
-                   // int width = (int)(HD.Y-HG.Y);
-                   // int height = (int)(BG.X-HG.X);
-                    int height = (int)(HD.Y - HG.Y);
-                    int width = (int)(BG.X - HG.X);
+                    int height = 0;
+                    int width = 0;
+                    Rectangle zone = new Rectangle(0, 0, 0, 0);
+
+                    // int width = (int)(HD.Y-HG.Y);
+                    // int height = (int)(BG.X-HG.X);
+                    if (Couleur == BLACK)
+                    {
+                        height = (int)(HD.Y - HG.Y);
+                        width = (int)(BG.X - HG.X);
+                        zone = new Rectangle((int)HG.X, (int)HG.Y, width, height);
+                    }
+                    else
+                    {
+                        height = (int)(HG.Y - HD.Y);
+                        width = (int)(HG.X - BG.X);
+                        zone = new Rectangle((int)BG.X, (int)HD.Y, width, height);
+                    }
 
 
 
 
-                    Rectangle zone = new Rectangle((int)HG.X, (int)HG.Y, width,height);
+                    //zone = new Rectangle((int)HG.X, (int)HG.Y, width,height);
                     Point PosSouris = GestionInput.GetPositionSouris();
 
-                    
 
+                    float k = Compteur;
                     if (zone.Contains(PosSouris))
                     {
-                        
+
                         if (CaseA != CaseB)
                         {
                             VérifierChangementCouleur(o);
@@ -436,41 +450,41 @@ namespace AtelierXNA
                         if (CaseA == null)
                         {
 
+
                             CaseA = o;
                             VérifierChangementCouleur(o);
-                           
+
                         }
-                       
-                            
+
+
                         else
                         {
-                           
-                          
+
+
                             CaseB = o;
-                           
-                            
+
+
 
                             foreach (Pieces a in ListeDesPièces.ToList())
-                                
                             {
-                                
+
 
                                 if (CaseA != null && CaseB != null)
                                 {
-                                    
+
                                     foreach (Pieces b in ListeDesPièces)
                                     {
-                                       if (EstPropriétaire(b.Position, CaseB.Centre))                                       
+                                        if (EstPropriétaire(b.Position, CaseB.Centre))
                                         {
                                             PièceB = b;
                                         }
                                     }
-                                    if (EstPropriétaire(a.Position, CaseA.Centre))                                  
+                                    if (EstPropriétaire(a.Position, CaseA.Centre))
                                     {
                                         if (a.Couleur == Couleur)
                                         {
                                             if (a.LogiqueDéplacement(new Vector2(((int)CaseB.Centre.Z - (int)CaseA.Centre.Z), ((int)CaseB.Centre.X - (int)CaseA.Centre.X))) && NeSautePas(CaseA.Centre, CaseB.Centre))
-                                             {
+                                            {
                                                 Compteur++;
                                                 PièceA = a;
 
@@ -479,11 +493,11 @@ namespace AtelierXNA
                                                 {
                                                     ResetCouleur();
                                                     PièceA.Deplacer(CaseB.Centre);
-                                                    
+
                                                     if (PièceA.Nom == "/pawn")
                                                     {
-                                                       // if (EstValidePionSeul(CaseA, CaseB))
-                                                        if (EstValidePionSeul(CaseA,CaseB))
+                                                        // if (EstValidePionSeul(CaseA, CaseB))
+                                                        if (EstValidePionSeul(CaseA, CaseB))
                                                         {
                                                             PièceA.Deplacer(CaseA.Centre);
                                                             Compteur--;
@@ -502,7 +516,7 @@ namespace AtelierXNA
                                                     }
                                                     if (PièceA.Nom == "/king")
                                                     {
-                                                        if (Math.Abs(CaseB.Centre.Z - CaseA.Centre.Z) > Partie.LONGUEUR_ÉCHIQUIER / 8 && (!EstEnEchec(ListeDesCases, ListeDesPièces, PièceA.Couleur)))
+                                                        if (Math.Abs(CaseB.Centre.Z - CaseA.Centre.Z) > 2 && (!EstEnEchec(ListeDesCases, ListeDesPièces, PièceA.Couleur)))
                                                         {
                                                             GèrerRook();
                                                         }
@@ -528,19 +542,19 @@ namespace AtelierXNA
                                                     {
                                                         PièceB.Sortir(NbSortiesBlanc, NbSortiesNoir);
 
-                                                     //   ListeDesPièces.Remove(PièceB);
-                                                    //    NbPiece--;
+                                                        //   ListeDesPièces.Remove(PièceB);
+                                                        //    NbPiece--;
                                                         PièceA.Deplacer(CaseB.Centre);
                                                         ResetCouleur();
-                                                        
+
                                                         if (PièceA.Nom == "/pawn")
                                                         {
                                                             Vector3 déplacement = (CaseB.Centre - CaseA.Centre);
                                                             if (!PièceA.EstValidePion(déplacement))
                                                             {
                                                                 ResetPièces(PièceA, PièceB);
-                                                          //      ListeDesPièces.Add(PièceB);
-                                                           //     NbPiece++;
+                                                                //      ListeDesPièces.Add(PièceB);
+                                                                //     NbPiece++;
                                                             }
                                                             else
                                                             {
@@ -557,7 +571,7 @@ namespace AtelierXNA
 
                                                         if (PièceA.Nom == "/king")
                                                         {
-                                                            if (Math.Abs((int)CaseB.Centre.Z - (int)CaseA.Centre.Z) > Partie.LONGUEUR_ÉCHIQUIER / 8)
+                                                            if (Math.Abs((int)CaseB.Centre.Z - (int)CaseA.Centre.Z) > 2)
                                                             {
                                                                 ResetPièces(PièceA, PièceB);
                                                             }
@@ -593,61 +607,61 @@ namespace AtelierXNA
                                                         ResetCouleur();
                                                     }
                                                 }
-                                               
+
                                             }
                                             else
                                             {
                                                 ResetCouleur();
-                                            
+
                                             }
 
 
-                                            
-                                            
+
+
                                         }
                                         else
                                         {
                                             ResetCouleur();
-                                           VérifierChangementCouleur(CaseB);
+                                            VérifierChangementCouleur(CaseB);
                                             PièceA = PièceB;
                                             PièceB = null;
                                             CaseA = CaseB;
                                             CaseB = null;
-                                                                                                                                                                                                                  
-                                            
+
+
                                         }
-                                    
+
                                     }
-                                    if (a == ListeDesPièces[NbPiece-1])
+                                    if (a == ListeDesPièces[NbPiece - 1])
                                     {
                                         ResetCouleur();
                                         if (CaseB != null)
-                                        {                                     
-                                                VérifierChangementCouleur(CaseB);
-                                            
+                                        {
+                                            VérifierChangementCouleur(CaseB);
+
 
                                         }
-                                       
-                                      
-                                        
-                                        PièceA = PièceB;                                      
+
+
+
+                                        PièceA = PièceB;
                                         PièceB = null;
                                         CaseA = CaseB;
                                         CaseB = null;
-                                        
-                                        
-                                        
-                                        
-                                        
-                                       
-                                        
+
+
+
+
+
+
+
                                     }
                                     foreach (Pieces v in ListeDesPièces.ToList())
                                     {
-                                        bool cd = true ;
+                                        bool cd = true;
                                         foreach (Cases y in ListeDesCases)
                                         {
-                                            if( v.Position == y.Centre)
+                                            if (v.Position == y.Centre)
                                             {
                                                 cd = false;
                                             }
@@ -658,7 +672,7 @@ namespace AtelierXNA
                                             NbPiece--;
                                         }
                                     }
-                                    foreach (Pieces g in ListeDesPièces.FindAll(x => x.Nom == "/rook" || x.Nom == "/king"  || x.Nom == "/pawn"))
+                                    foreach (Pieces g in ListeDesPièces.FindAll(x => x.Nom == "/rook" || x.Nom == "/king" || x.Nom == "/pawn"))
                                     {
                                         if (g.NbDéplacement == 1)
                                         {
@@ -667,30 +681,41 @@ namespace AtelierXNA
                                     }
 
 
-                                  // VerificationMat();
-                                   
 
-                                    
-                                   
-                                    
+                                    // VerificationMat();
+
+
+
+
+
 
 
                                 }
-                                
-                            }
-                            
 
+
+
+                            }
+
+                            float p = Compteur;
+                            if (k != p)
+                            {
+
+                                //CaméraJeu.TournerCaméra();
+                                CaméraJeu.Compteur = 0;
+
+
+                            }
 
                         }
-                        
+
                     }
-                   
+
                 }
-                
+
             }
-            
+
         }
-       
+
     }
 }
 
