@@ -364,6 +364,7 @@ namespace AtelierXNA
                         //string tempsB = MinutesRestantes.ToString() + ":" + SecondesRestantes.ToString();
                         if(PartiEnCours.TourActuel.Couleur == "White")
                         {
+                           
                             TempsB.Visible = true;
                             TempsB.Enabled = true;
                             TempsRestantB = TempsRestantB - tempsÉcoulé;
