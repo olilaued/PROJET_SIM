@@ -120,6 +120,7 @@ namespace AtelierXNA
             EffetDeBase.VertexColorEnabled = true;
             base.LoadContent();
             
+            
 
             // à compléter
 

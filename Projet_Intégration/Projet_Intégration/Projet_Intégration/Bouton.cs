@@ -17,7 +17,7 @@ namespace AtelierXNA
     /// </summary>
     public class Bouton : Microsoft.Xna.Framework.DrawableGameComponent
     {
-
+        int Index { get; set; }
         Texture2D Image {get; set;}
         SpriteFont Font {get; set;}
         Rectangle Location { get; set; }
@@ -55,6 +55,7 @@ namespace AtelierXNA
             GestionnaireDeTextures = Game.Services.GetService(typeof(RessourcesManager<Texture2D>)) as RessourcesManager<Texture2D>;
             GestionnaireDeFonts = Game.Services.GetService(typeof(RessourcesManager<SpriteFont>)) as RessourcesManager<SpriteFont>;
  	        base.Initialize();
+            Index = Jeu.ListeDesBoutons.FindIndex(x=> x.Equals(this));
         }
 
         protected override void LoadContent()
@@ -82,10 +83,10 @@ namespace AtelierXNA
         public override void Update(GameTime gametime)
         {
 
-            if (Clicked == true)
+            if ( Index < 7  && this.Clicked == true)
             {
 
-                Clicked = false;
+               this.Clicked = false;
             }
                 
 

@@ -33,11 +33,12 @@ namespace AtelierXNA
 
       public override void Initialize()
       {
-         this.Visible = false;
+         //this.Visible = false;
          JeuDepthBufferState = new DepthStencilState();
          JeuDepthBufferState.DepthBufferEnable = true;
          JeuRasterizerState = new RasterizerState();
-         JeuRasterizerState.CullMode = CullMode.CullCounterClockwiseFace;
+          //JeuRasterizerState.CullMode = CullMode.CullCounterClockwiseFace;
+         JeuRasterizerState.CullMode = CullMode.None;
          JeuBlendState = BlendState.Opaque;
          base.Initialize();
       }

@@ -21,6 +21,10 @@ namespace AtelierXNA
         public static bool EstVisible { get; set; }
         const float INTERVALLE_CALCUL_FPS = 1f;
         const float INTERVALLE_MAJ_STANDARD = 1f / 60f;
+        const float PROFONDEUR_DEFAUT = 0.5f;
+        const string VAINQUEUR_N = "LES NOIRS L'EMPORTENT!";
+        const string VAINQUEUR_B = "LES BLANCS L'EMPORTENT!";
+        
         float Bordures { get; set; }
         public int Index { get; set; }
         
@@ -33,52 +37,70 @@ namespace AtelierXNA
         RessourcesManager<Effect> GestionnaireDeShaders { get; set; }
         InputManager GestionInput { get; set; }
         Caméra CaméraJeu { get; set; }
+        AfficheurFps UnAfficheurFPS { get; set; }
         Color[] CouleursÉchiquier { get; set; }
         Partie PartiEnCours { get; set; }
         Afficheur3D unAfficheur3D { get; set; }
-        List<Bouton> ListeDesBoutons { get; set; }
+        public static List<Bouton> ListeDesBoutons { get; protected set; }
         string NomMap { get; set; }
         float TempsDePartie { get; set; }
         Vector3 OrigineÉchiquier { get; set; }
         Vector3 PositionCaméra { get; set; }
         Vector3 CibleCaméra { get; set; }
         Vector3 OVCaméra { get; set; }
-        enum GameState { MenuPrincipal, Options,ClrsPièces, ClrsÉchiquier, Temps}
-        GameState CurrentGameState { get; set; }
+        public enum GameState { MenuPrincipal, Options,Musique, ClrsÉchiquier, TempsPartie, EnJeu, EnPause}
+       public static GameState CurrentGameState { get; set; }
         ZoneDéroulante ArrièrePlanDéroulant { get; set; }
-        
+        TexteAffichable GagnantN { get; set; }
+        TexteAffichable GagnantB { get; set; }
+         
         
         // Menu principal
-        Bouton Bouton1 { get; set; }
-        Bouton Bouton2 { get; set; }
-
         string text1 = "Jouer 1v1";
         string text2 = "Options";
-
-
-        string text3 = "Couleur des pieces";
-        string text4 = "Couleurs de l'echiquier";
-        string text5 = "Temps de la partie";
-
-
-        string text41 = "Classique";
-        string text42 = "Vert/Blanc";
-        string text43 = "Rouge/Blanc";
-        string text44 = "Rose/Blanc";
-        
+        Bouton B1;
+        Bouton B2;
 
 
         // Options
-        Bouton Bouton3 { get; set; }
-        Bouton Bouton4 { get; set; }
-        Bouton Bouton5 { get; set; }
+        string text3 = "Couleurs de l'echiquier";
+        string text4 = "Temps de la partie";
+        string text5 = "Musique d'ambiance";
+        Bouton B3;
+        Bouton B4;
+        Bouton B5;
 
+
+        //Pause
+        string msgPause1 = "Reprendre la partie";
+        string msgPause2 = "Quitter la partie";
+        Bouton B6;
+        Bouton B7;
 
         // CouleursÉchiquier
-        Bouton Bouton41 { get; set; }
-        Bouton Bouton42 { get; set; }
-        Bouton Bouton43 { get; set; }
-        Bouton Bouton44 { get; set; }
+        
+        string clr1 = "Classique";
+        string clr2 = "Vert/Blanc";
+        string clr3 = "Rouge/Blanc";
+        string clr4 = "Rose/Blanc";
+        Bouton B8;
+        Bouton B9;
+        Bouton B10;
+        Bouton B11;
+        //ChoixTemps
+        string temps1 = "15 minutes";
+        string temps2 = "30 minutes";
+        string temps3 = "45 minutes";
+        string temps4 = "60 minutes";
+        Bouton B12;
+        Bouton B13;
+        Bouton B14;
+        Bouton B15;
+
+
+       
+
+       
         
        
        
@@ -113,9 +135,10 @@ namespace AtelierXNA
         /// </summary>
         protected override void Initialize()
         {
+            
             CurrentGameState = GameState.MenuPrincipal;
             ListeDesBoutons = new List<Bouton>();
-            TempsDePartie = 15 * 60;
+            TempsDePartie = 15*60 ;
             NomMap = "Pub/club_map_2";
             OrigineÉchiquier = new Vector3(163.20f,55.28f,-74.17f);
            // OrigineÉchiquier = new Vector3(0, 15, 0);
@@ -143,11 +166,11 @@ namespace AtelierXNA
             GestionSprites = new SpriteBatch(GraphicsDevice);
  
             Components.Add(ArrièrePlanDéroulant = new ZoneDéroulante(this, "chess", new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), INTERVALLE_MAJ_STANDARD));
-            Components.Add(new AfficheurFps(this,"Arial", Color.Blue, INTERVALLE_CALCUL_FPS)) ;
+            Components.Add(UnAfficheurFPS = new AfficheurFps(this,"Arial", Color.Blue, INTERVALLE_CALCUL_FPS)) ;
             Components.Add(GestionInput);
             Components.Add(unAfficheur3D  = new Afficheur3D(this));
             CaméraJeu = new CaméraSubjective(this,PositionCaméra,CibleCaméra,OVCaméra, INTERVALLE_MAJ_STANDARD);
-            Components.Add(PartiEnCours = new Partie(this, TempsDePartie, NomMap, CouleursÉchiquier, OrigineÉchiquier));
+           // Components.Add(PartiEnCours = new Partie(this, TempsDePartie, NomMap, CouleursÉchiquier, OrigineÉchiquier));
            
 
             Services.AddService(typeof(Random), new Random());
@@ -159,9 +182,17 @@ namespace AtelierXNA
             Services.AddService(typeof(Caméra), CaméraJeu);
             Services.AddService(typeof(SpriteBatch), GestionSprites);
 
-            
+
+            //CréerInterface("MenuPrincipal"); // 0, 1
+            //CréerInterface("Options"); // 2,3,4
+            //CréerInterface("MenuPause"); // 5,6,
+            //CréerInterface("ClrsÉchiquier"); //7,8,9,10
+            //CréerInterface("TempsPartie"); // 11,12,13,14
+            //CréerInterface("Musique"); //15,16
+            //VoilerBoutons(2, 14);
             CréerMP();
             CréerOptions();
+            CréerChoixPause();
             CréerChoixClrsÉchi();
             
             
@@ -210,57 +241,90 @@ namespace AtelierXNA
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            
             switch (CurrentGameState)
             {
                 case GameState.MenuPrincipal:
                     
-                    if (Bouton1.Clicked == true)
-                    {
-                        unAfficheur3D.Visible = true;
-                        Components.Add(CaméraJeu);
-                        ArrièrePlanDéroulant.ModifierActivation();
-                        EstVisible = true;
-                        AfficherVoilerMP();
+                    if (B1.Clicked == true) 
+                    { 
+                        DéterminerSettings();
+                        CommencerPartie();
+                        VoilerBoutons(0, 2);
+                        CurrentGameState = GameState.EnJeu;
                     }
 
-                    if (Bouton2.Clicked == true)
+                    if (B2.Clicked == true)
                     {
                         CurrentGameState = GameState.Options;
-                        VoilerMP();
-                        AfficherOPTN();
+                        VoilerBoutons(0, 2);
+                        AfficherBoutons(2, 5);
                     }
                     break;
+
                 case GameState.Options:
 
-                    if (Bouton4.Clicked == true)
+                    if (B3.Clicked == true)
                     {
                         CurrentGameState = GameState.ClrsÉchiquier;
-                        VoilerOPTN();
-                        AfficherChoixClrsÉchi();
+                        VoilerBoutons(2, 5);
+                        AfficherBoutons(7, 11);
                     }
                     if (GestionInput.EstNouvelleTouche(Keys.Escape))
                     {
                         CurrentGameState = GameState.MenuPrincipal;
-                        VoilerOPTN();
-                        AfficherMP();
+                        VoilerBoutons(2, 5);
+                        AfficherBoutons(0, 2);
                     }
                     break;
+
                 case GameState.ClrsÉchiquier:
-                    if (Bouton41.Clicked || Bouton42.Clicked || Bouton43.Clicked || Bouton44.Clicked == true)
+                    if (B8.Clicked  || B9.Clicked || B10.Clicked == true || B11.Clicked ==true)
                     {
                         CurrentGameState = GameState.Options;
-                        VoilerChoixClrsÉchi();
-                        AfficherOPTN();
-
+                        VoilerBoutons(7,11);
+                        AfficherBoutons(2,5);
                     }
-
                     break;
-
+                case GameState.EnJeu:
+                    if (PartiEnCours.PartieTerminée)
+                    {
+                        if (PartiEnCours.TourActuel.Couleur == "White")
+                        {
+                            Components.Add(GagnantN = new TexteAffichable(this, "Arial", VAINQUEUR_N, Color.LightGreen, 0, 3.0f, PROFONDEUR_DEFAUT));
+                            
+                        }
+                        else
+                        {
+                            Components.Add(GagnantB = new TexteAffichable(this, "Arial", VAINQUEUR_B, Color.LightGreen, 0, 3.0f, PROFONDEUR_DEFAUT));
+                        }
+                        Components.Remove(PartiEnCours.TourActuel);
+                    }
+                    if (GestionInput.EstNouvelleTouche(Keys.Escape))
+                    {
+                        CurrentGameState = GameState.EnPause;
+                        AfficherBoutons(5, 7);
+                    }
+                       
+ 
+                    
+                    break;
 
             }
           
             
             base.Update(gameTime);
+        }
+        void CommencerPartie()
+        {
+            //Components.Add(unAfficheur3D);
+            unAfficheur3D.Visible = true;
+            Components.Add(CaméraJeu);
+            ArrièrePlanDéroulant.ModifierActivation();
+            Components.Add(PartiEnCours = new Partie(this, TempsDePartie, NomMap, CouleursÉchiquier, OrigineÉchiquier));
+            //Components.Add(UnAfficheurFPS);
+            //Components.Add(UnAfficheurFPS);
+            
         }
 
         /// <summary>
@@ -281,11 +345,11 @@ namespace AtelierXNA
             float x = GraphicsDevice.Viewport.Width / 4;
             float longueur = GraphicsDevice.Viewport.Width / 5;
             float hauteur = GraphicsDevice.Viewport.Width / (3 * indice) - 1;
-            Components.Add(Bouton1 = new Bouton(this, "button", "Arial", text1, new Vector2(x, y), new Vector2(2 * longueur, hauteur)));
+            Components.Add(B1 = new Bouton(this, "button", "Arial", text1, new Vector2(x, y), new Vector2(2 * longueur, hauteur)));
             y += valeur;
-            Components.Add(Bouton2 = new Bouton(this, "button", "Arial", text2, new Vector2(x, y), new Vector2(longueur, hauteur)));
-            ListeDesBoutons.Add(Bouton1); //0
-            ListeDesBoutons.Add(Bouton2); //1
+            Components.Add(B2 = new Bouton(this, "button", "Arial", text2, new Vector2(x, y), new Vector2(longueur, hauteur)));
+            ListeDesBoutons.Add(B1); //0
+            ListeDesBoutons.Add(B2); //1
         }
 
         void CréerOptions()
@@ -296,69 +360,21 @@ namespace AtelierXNA
             float x = GraphicsDevice.Viewport.Width / 2;
             float longueur = GraphicsDevice.Viewport.Width / 5;
             float hauteur = GraphicsDevice.Viewport.Width / (3 * indice) - 1;
-            Components.Add(Bouton3 = new Bouton(this, "button", "Arial", text3, new Vector2(x, y), new Vector2(2 * longueur, hauteur)));
+            Components.Add(B3 = new Bouton(this, "button", "Arial", text3, new Vector2(x, y), new Vector2(2 * longueur, hauteur)));
             y += valeur;
-            Components.Add(Bouton4 = new Bouton(this, "button", "Arial", text4, new Vector2(x, y), new Vector2(2 * longueur, hauteur)));
+            Components.Add(B4 = new Bouton(this, "button", "Arial", text4, new Vector2(x, y), new Vector2(2 * longueur, hauteur)));
             y += valeur;
-            Components.Add(Bouton5 = new Bouton(this, "button", "Arial", text5, new Vector2(x, y), new Vector2(2 * longueur, hauteur)));
-            ListeDesBoutons.Add(Bouton3); //2
-            ListeDesBoutons.Add(Bouton4); //3
-            ListeDesBoutons.Add(Bouton5); //4
-            VoilerOPTN();
+            Components.Add(B5 = new Bouton(this, "button", "Arial", text5, new Vector2(x, y), new Vector2(2 * longueur, hauteur)));
+            ListeDesBoutons.Add(B3); //2
+            ListeDesBoutons.Add(B4); //3
+            ListeDesBoutons.Add(B5); //4
+            VoilerBoutons(2, 5);
 
         }
 
 
 
-        void VoilerMP()
-        {
-            for (int i = 0; i < 2; i++)
-            {
-                ListeDesBoutons.ElementAt(i).Visible = false;
-                ListeDesBoutons.ElementAt(i).Enabled = false;
-            }
-        }
-        void AfficherMP()
-        {
-            for (int i = 0; i < 2; i++)
-            {
-                ListeDesBoutons.ElementAt(i).Visible = true;
-                ListeDesBoutons.ElementAt(i).Enabled = true;
-            }
-        }
 
-        void VoilerOPTN()
-        {
-            for (int i = 2; i < 5; i++)
-            {
-                ListeDesBoutons.ElementAt(i).Visible = false;
-                ListeDesBoutons.ElementAt(i).Enabled = false;
-            }
-        }
-        void AfficherOPTN()
-        {
-            for (int i = 2; i < 5; i++)
-            {
-                ListeDesBoutons.ElementAt(i).Visible = true;
-                ListeDesBoutons.ElementAt(i).Enabled = true;
-            }
-        }
-
-
-        void AfficherVoilerMP()
-        {
-            for (int i = 0; i < 2; i++)
-            {
-                ListeDesBoutons.ElementAt(i).Visible = !ListeDesBoutons.ElementAt(i).Visible;
-            }
-        }
-        void AfficherVoilerOPTN()
-        {
-            for (int i = 2; i < 5; i++)
-            {
-                ListeDesBoutons.ElementAt(i).Visible = !ListeDesBoutons.ElementAt(i).Visible;
-            }
-        }
         void CréerChoixClrsÉchi()
         {
             int indice = 4;
@@ -367,51 +383,194 @@ namespace AtelierXNA
             float x = GraphicsDevice.Viewport.Width / 2;
             float longueur = GraphicsDevice.Viewport.Width / 5;
             float hauteur = GraphicsDevice.Viewport.Width / (3 * indice) - 1;
-            Components.Add(Bouton41 = new Bouton(this, "button", "Arial", text41, new Vector2(x, y), new Vector2(2 * longueur, hauteur)));
+            Components.Add(B8 = new Bouton(this, "button", "Arial", clr1, new Vector2(x, y), new Vector2(2 * longueur, hauteur)));
             y += valeur;
-            Components.Add(Bouton42 = new Bouton(this, "button", "Arial", text42, new Vector2(x, y), new Vector2(2 * longueur, hauteur)));
+            Components.Add(B9 = new Bouton(this, "button", "Arial", clr2, new Vector2(x, y), new Vector2(2 * longueur, hauteur)));
             y += valeur;
-            Components.Add(Bouton43 = new Bouton(this, "button", "Arial", text43, new Vector2(x, y), new Vector2(2 * longueur, hauteur)));
+            Components.Add(B10 = new Bouton(this, "button", "Arial", clr3, new Vector2(x, y), new Vector2(2 * longueur, hauteur)));
             y += valeur;
-            Components.Add(Bouton44 = new Bouton(this, "button", "Arial", text44, new Vector2(x, y), new Vector2(2 * longueur, hauteur)));
-            ListeDesBoutons.Add(Bouton41); //5
-            ListeDesBoutons.Add(Bouton42); //6
-            ListeDesBoutons.Add(Bouton43); //7 
-            ListeDesBoutons.Add(Bouton44); //8
-            VoilerChoixClrsÉchi();
+            Components.Add(B11 = new Bouton(this, "button", "Arial", clr4, new Vector2(x, y), new Vector2(2 * longueur, hauteur)));
+            ListeDesBoutons.Add(B8); //5
+            ListeDesBoutons.Add(B9); //6
+            ListeDesBoutons.Add(B10); //7 
+            ListeDesBoutons.Add(B11); //8
+            VoilerBoutons(7, 11);
 
         }
-        void VoilerChoixClrsÉchi()
+
+        void CréerChoixPause()
         {
-            for (int i = 5; i < 9; i++)
-            {
-                ListeDesBoutons.ElementAt(i).Visible = false;
-            }
-        }
-        void AfficherChoixClrsÉchi()
-        {
-            for (int i = 5; i < 9; i++)
-            {
-                ListeDesBoutons.ElementAt(i).Visible = true;
-            }
+            int indice = 2;
+            float valeur = GraphicsDevice.Viewport.Height / indice;
+            float y = 0;
+            float x = GraphicsDevice.Viewport.Width / 2;
+            float longueur = GraphicsDevice.Viewport.Width / 5;
+            float hauteur = GraphicsDevice.Viewport.Width / (3 * indice) - 1;
+            Components.Add(B6 = new Bouton(this, "button", "Arial", msgPause1, new Vector2(x, y), new Vector2(2 * longueur, hauteur)));
+            y += valeur;
+            Components.Add(B7 = new Bouton(this, "button", "Arial", msgPause2, new Vector2(x, y), new Vector2(2 * longueur, hauteur)));
+           
+            ListeDesBoutons.Add(B6); //7 
+            ListeDesBoutons.Add(B7); //8
+            VoilerBoutons(5,7);
+
         }
         void DéterminerSettings()
         {
             //StreamReader sr = new StreamReader("/../../../../../Settings.txt");
             //Options de la caméra
-            int indexMap = ListeDesBoutons.FindIndex(7, 2, x => (x.Clicked == true));
-            int indexClrÉchi = ListeDesBoutons.FindIndex(5, 3, x => (x.Clicked == true));
-
+            int indexClrÉchi = ListeDesBoutons.FindIndex(7, 4, x => (x.Clicked == true));
+            //int indexTemps = ListeDesBoutons.FindIndex();
 
             //Options Échiquier
             switch (indexClrÉchi)
             {
-                case 9: CouleursÉchiquier[0] = Color.White; CouleursÉchiquier[1] = Color.Gray; CouleursÉchiquier[2] = Color.Black; break;
-                case 10: CouleursÉchiquier[0] = Color.White; CouleursÉchiquier[1] = Color.Green; CouleursÉchiquier[2] = Color.Black; break;
-                case 11: CouleursÉchiquier[0] = Color.White; CouleursÉchiquier[1] = Color.Red; CouleursÉchiquier[2] = Color.Black; break;
-                case 12: CouleursÉchiquier[0] = Color.White; CouleursÉchiquier[1] = Color.Pink; CouleursÉchiquier[2] = Color.Black; break;
+                case 7: CouleursÉchiquier[0] = Color.White; CouleursÉchiquier[1] = Color.Gray; CouleursÉchiquier[2] = Color.Black; break;
+                case 8: CouleursÉchiquier[0] = Color.White; CouleursÉchiquier[1] = Color.Green; CouleursÉchiquier[2] = Color.Black; break;
+                case 9: CouleursÉchiquier[0] = Color.White; CouleursÉchiquier[1] = Color.Red; CouleursÉchiquier[2] = Color.Black; break;
+                case 10: CouleursÉchiquier[0] = Color.White; CouleursÉchiquier[1] = Color.Pink; CouleursÉchiquier[2] = Color.Black; break;
             }
 
         }
+        
+        void AfficherBoutons(int indiceA, int indiceB)
+        {
+            for (int i = indiceA; i < indiceB; i++)
+            {
+                ListeDesBoutons.ElementAt(i).Visible = true;
+                ListeDesBoutons.ElementAt(i).Enabled = true;
+            }
+        }
+        
+        void VoilerBoutons(int indiceA, int indiceB)
+        {
+            for (int i = indiceA; i < indiceB; i++)
+            {
+                ListeDesBoutons.ElementAt(i).Visible = false;
+                ListeDesBoutons.ElementAt(i).Enabled = false;
+            }
+        }
+    
+    
+        //void CréerInterface(string nomInterface)
+        //{
+        //    //int nbBoutons = 0;
+        //    string message1;
+        //    string message2;
+        //    string message3;
+        //    string message4;
+        //    int x = GraphicsDevice.Viewport.Width / 2;
+        //    float y = 0;
+        //    float longueur = GraphicsDevice.Viewport.Width / 5;
+        //    float nbBoutons;
+        //    float valeur;
+        //    float hauteur;
+        //    switch (nomInterface)
+        //    {
+        //        case "MenuPrincipal":
+        //            message1 = text1;
+        //            message2 = text2;
+        //            nbBoutons = 2;
+        //            valeur = GraphicsDevice.Viewport.Height / nbBoutons;
+        //            hauteur = GraphicsDevice.Viewport.Height / (3 * nbBoutons) - 1;
+                    
+        //            Components.Add(B1 = new Bouton(this, "button", "Arial", message1, new Vector2(x/2,y),new Vector2(2 * longueur, hauteur)));
+        //            y += valeur;
+        //            Components.Add(B2 = new Bouton(this, "button", "Arial", message2, new Vector2(x/2, y), new Vector2( longueur, hauteur)));
+
+        //            ListeDesBoutons.Add(B1);
+        //            ListeDesBoutons.Add(B2);
+        //            break;
+        //        case "Options":
+        //            message1 = text3;
+        //            message2 = text4;
+        //            message3 = text5;
+        //            nbBoutons = 3;
+        //            valeur = GraphicsDevice.Viewport.Height / nbBoutons;
+        //            hauteur = GraphicsDevice.Viewport.Height / (3 * nbBoutons) - 1;
+                    
+
+        //            Components.Add(B3 = new Bouton(this, "button", "Arial", message1, new Vector2(x,y),new Vector2(2 * longueur, hauteur)));
+        //            y += valeur;
+        //            Components.Add(B4 = new Bouton(this, "button", "Arial", message2, new Vector2(x, y), new Vector2(2 * longueur, hauteur)));
+        //            y += valeur;
+        //            Components.Add(B5 = new Bouton(this, "button", "Arial", message3, new Vector2(x,y),new Vector2(2 * longueur, hauteur)));
+
+        //            ListeDesBoutons.Add(B3);
+        //            ListeDesBoutons.Add(B4);
+        //            ListeDesBoutons.Add(B5);
+        //            break;
+
+        //        case "MenuPause":
+        //            message1 = msgPause1;
+        //            message2 = msgPause2;
+        //            nbBoutons = 2;
+        //            valeur = GraphicsDevice.Viewport.Height / nbBoutons;
+        //            hauteur = GraphicsDevice.Viewport.Height / (3 * nbBoutons) - 1;
+
+        //            Components.Add(B6 = new Bouton(this, "button", "Arial", message1, new Vector2(x,y),new Vector2(2 * longueur, hauteur)));
+        //            y += valeur;
+        //            Components.Add(B7 = new Bouton(this, "button", "Arial", message2, new Vector2(x, y), new Vector2(2 * longueur, hauteur)));
+
+        //            ListeDesBoutons.Add(B6);
+        //            ListeDesBoutons.Add(B7);
+        //            break;
+
+        //        case "ClrsÉchiquier":
+        //            message1 = clr1;
+        //            message2 = clr2;
+        //            message3 = clr3;
+        //            message4 = clr4;
+        //            nbBoutons = 2;
+
+        //            valeur = GraphicsDevice.Viewport.Height / nbBoutons;
+        //            hauteur = GraphicsDevice.Viewport.Height / (3 * nbBoutons) - 1;
+                    
+
+        //            Components.Add(B8 = new Bouton(this, "button", "Arial", message1, new Vector2(x,y),new Vector2(2 * longueur, hauteur)));
+        //            y += valeur;
+        //            Components.Add(B9 = new Bouton(this, "button", "Arial", message2, new Vector2(x, y), new Vector2(2 * longueur, hauteur)));
+        //            y += valeur;
+        //            Components.Add(B10 = new Bouton(this, "button", "Arial", message3, new Vector2(x,y),new Vector2(2 * longueur, hauteur)));
+        //            y += valeur;
+        //            Components.Add(B11 = new Bouton(this, "button", "Arial", message4, new Vector2(x, y), new Vector2(2 * longueur, hauteur)));
+                    
+        //            ListeDesBoutons.Add(B8);
+        //            ListeDesBoutons.Add(B9);
+        //            ListeDesBoutons.Add(B10);
+        //            ListeDesBoutons.Add(B11);
+        //            break;
+        //   case "TempsPartie":
+        //            message1 =temps1;
+        //            message2 = temps2;
+        //            message3 = temps3;
+        //            message4 = temps4;
+        //            nbBoutons = 2;
+
+        //            valeur = GraphicsDevice.Viewport.Height / nbBoutons;
+        //            hauteur = GraphicsDevice.Viewport.Height / (3 * nbBoutons) - 1;
+                    
+
+        //            Components.Add(B12 = new Bouton(this, "button", "Arial", message1, new Vector2(x,y),new Vector2(2 * longueur, hauteur)));
+        //            y += valeur;
+        //            Components.Add(B13 = new Bouton(this, "button", "Arial", message2, new Vector2(x, y), new Vector2(2 * longueur, hauteur)));
+        //            y += valeur;
+        //            Components.Add(B14 = new Bouton(this, "button", "Arial", message3, new Vector2(x,y),new Vector2(2 * longueur, hauteur)));
+        //            y += valeur;
+        //            Components.Add(B15 = new Bouton(this, "button", "Arial", message4, new Vector2(x, y), new Vector2(2 * longueur, hauteur)));
+                    
+        //            ListeDesBoutons.Add(B12);
+        //            ListeDesBoutons.Add(B13);
+        //            ListeDesBoutons.Add(B14);
+        //            ListeDesBoutons.Add(B15);
+        //            break;
+
+        //    }
+           
+            
+        //}
+        
+
+       
     }
 }

@@ -70,13 +70,12 @@ namespace AtelierXNA
         public override void Update(GameTime gameTime)
         {
             // TODO: Add your update code here
-            if (Jeu.EstVisible == true)
-            {
-                foreach (Cases c in ListeCases)
-                {
-                    c.Visible = true;
-                }
-            }
+                
+           foreach (Cases c in ListeCases)
+           {
+               c.Visible = true;
+           }
+            
             base.Update(gameTime);
         }
 

@@ -37,7 +37,7 @@ namespace AtelierXNA
 
          float z = 5;
 
-         protected const int LARGEUR_CASES = 2;
+         protected float LARGEUR_CASES = (float)Partie.LONGUEUR_ÉCHIQUIER / 8;
          
           public virtual bool LogiqueDéplacement(Vector2 déplacement)
          {

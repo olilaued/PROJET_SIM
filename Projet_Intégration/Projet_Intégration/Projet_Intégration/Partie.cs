@@ -18,12 +18,12 @@ namespace AtelierXNA
     public class Partie : Microsoft.Xna.Framework.GameComponent
     {
         const float LARGEUR_ECHIQUIER = 0.3f;
-        const float LONGUEUR_ÉCHIQUIER = 16f;
-        const float PROFONDEUR_DEFAUT = 0.5f;
+        public static float LONGUEUR_ÉCHIQUIER = 16f;
+        //const float PROFONDEUR_DEFAUT = 0.5f;
         const float SCALE_DEFAUT = 1.0f;
 
-        const string VAINQUEUR_B = "Les blancs l'emportent!";
-        const string VAINQUEUR_N = "Les noirs l'emportent!";
+        //const string VAINQUEUR_B = "Les blancs l'emportent!";
+        //const string VAINQUEUR_N = "Les noirs l'emportent!";
 
        public static float TempsLimite { get; set; }
         List<Pieces> ListeDesPièces { get; set; }
@@ -34,11 +34,13 @@ namespace AtelierXNA
         protected float NbSortiesBlanc { get; set; }
         protected float NbSortiesNoir { get; set; }
         protected float TempsÉcouléDepuisMAJ { get; set; }
-        protected Tour TourActuel { get; set; }
-        protected ObjetDeBase Environnement {get; set;}
+        public Tour TourActuel { get; set; }
+        public ObjetDeBase Environnement {get; set;}
         protected static Vector2[] PositionSorties { get; set; }
         protected TexteAffichable GagnantB { get; set; }
         protected TexteAffichable GagnantN { get; set; }
+        public bool PartieTerminée {get; set;}
+       
 
         InputManager GestionInput { get; set; }
         
@@ -72,8 +74,8 @@ namespace AtelierXNA
             CaméraJeu = Game.Services.GetService(typeof(CaméraSubjective)) as CaméraSubjective;
             PositionSorties[0] = new Vector2(UnÉchiquier.Origine.X - 1, UnÉchiquier.Origine.Y);
             PositionSorties[1] = new Vector2(UnÉchiquier.Origine.X + 17, UnÉchiquier.Origine.Y);
-            GagnantN = new TexteAffichable(Game, "Arial", VAINQUEUR_N, Color.LightGreen, 0, 3.0f, PROFONDEUR_DEFAUT);
-            GagnantB = new TexteAffichable(Game, "Arial", VAINQUEUR_B, Color.LightGreen, 0, 3.0f, PROFONDEUR_DEFAUT);
+            //GagnantN = new TexteAffichable(Game, "Arial", VAINQUEUR_N, Color.LightGreen, 0, 3.0f, PROFONDEUR_DEFAUT);
+            //GagnantB = new TexteAffichable(Game, "Arial", VAINQUEUR_B, Color.LightGreen, 0, 3.0f, PROFONDEUR_DEFAUT);
             Game.Components.Add(Environnement = new ObjetDeBase(Game, Map, 0.01f, new Vector3(0, 0, 0), Vector3.Zero));
             Game.Components.Add(TourActuel = new Tour(Game,"White", UnÉchiquier.ListeCases, ListeDesPièces, NbSortiesBlanc, NbSortiesNoir));
             Environnement.Visible = false;
@@ -94,7 +96,8 @@ namespace AtelierXNA
             
             float TempsÉcoulé = (float)gameTime.ElapsedGameTime.TotalSeconds;
             TempsÉcouléDepuisMAJ += TempsÉcoulé;
-            if (Jeu.EstVisible == true)
+
+            if (Jeu.CurrentGameState == Jeu.GameState.EnJeu)
             {
                 if (Environnement.Visible == false)
                 {
@@ -103,26 +106,19 @@ namespace AtelierXNA
                     InitialiserPièces(UnÉchiquier);
                     ModifierEstVisiblePièces();
                 }
-                else
+
+
+                if (TempsÉcouléDepuisMAJ > TempsLimite || TourActuel.PartieTerminée || TourActuel.EstMat())
                 {
-                    if (TempsÉcouléDepuisMAJ > TempsLimite || TourActuel.PartieTerminée || TourActuel.EstMat())
-                    {
-                        if (TourActuel.Couleur == "WHITE")
-                        {
-                            Game.Components.Add(GagnantN);
-                        }
-                        else
-                        {
-                            Game.Components.Add(GagnantB);
-                        }
-                        Game.Components.Remove(TourActuel);
-                        Environnement.Visible = false;
-                        TempsÉcouléDepuisMAJ = 0;
-                    }
-                    
+                    PartieTerminée = true;
                 }
-               
             }
+
+
+
+
+
+
             else
             {
                 ///code pour mode bot
@@ -197,7 +193,8 @@ namespace AtelierXNA
         {
            foreach (Pieces p in ListeDesPièces)
             {
-                p.Visible = !p.Visible; 
+                p.Visible = !p.Visible;
+               //p.Visible = true;
             }
 
         }
