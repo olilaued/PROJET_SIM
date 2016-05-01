@@ -36,7 +36,7 @@ namespace AtelierXNA
         RessourcesManager<Model> GestionnaireDeModèles { get; set; }
         RessourcesManager<Effect> GestionnaireDeShaders { get; set; }
         InputManager GestionInput { get; set; }
-        Caméra CaméraJeu { get; set; }
+        CaméraSubjective CaméraJeu { get; set; }
         AfficheurFps UnAfficheurFPS { get; set; }
         Color[] CouleursÉchiquier { get; set; }
         Partie PartiEnCours { get; set; }
@@ -362,7 +362,7 @@ namespace AtelierXNA
                         }
                         float tempsÉcoulé = (float)gameTime.ElapsedGameTime.TotalSeconds;
                         //string tempsB = MinutesRestantes.ToString() + ":" + SecondesRestantes.ToString();
-                        if(PartiEnCours.TourActuel.Couleur == "White")
+                        if(PartiEnCours.TourActuel.Couleur == "White" && CaméraJeu.aFiniTourner())
                         {
                            
                             TempsB.Visible = true;
@@ -376,13 +376,16 @@ namespace AtelierXNA
                         }
                         else
                         {
-                            TempsN.Visible = true;
-                            TempsN.Enabled = true;
-                            TempsRestantN = TempsRestantN - tempsÉcoulé;
-                            TempsB.Visible = false;
-                            TempsB.Enabled = false;
-                            string temps = ((int)(TempsRestantN / 60)).ToString() + ":" + ((int)(TempsRestantN % 60)).ToString();
-                            TempsN.ModifierTexte(temps);
+                            if (CaméraJeu.aFiniTourner())
+                            {
+                                TempsN.Visible = true;
+                                TempsN.Enabled = true;
+                                TempsRestantN = TempsRestantN - tempsÉcoulé;
+                                TempsB.Visible = false;
+                                TempsB.Enabled = false;
+                                string temps = ((int)(TempsRestantN / 60)).ToString() + ":" + ((int)(TempsRestantN % 60)).ToString();
+                                TempsN.ModifierTexte(temps);
+                            }
                         }
                        
                     }
