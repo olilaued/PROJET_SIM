@@ -56,6 +56,7 @@ namespace AtelierXNA
         public enum GameState { MenuPrincipal, Options,Musique, ClrsÉchiquier, TempsPartie, EnJeu, EnPause}
        public static GameState CurrentGameState { get; set; }
         ZoneDéroulante ArrièrePlanDéroulant { get; set; }
+        ZoneDéroulante Anand { get; set; }
         TexteAffichable GagnantN { get; set; }
         TexteAffichable GagnantB { get; set; }
         TexteAffichable TempsB { get; set; }
@@ -259,6 +260,10 @@ namespace AtelierXNA
             {
                 case GameState.MenuPrincipal:
                     
+                    if (GestionInput.EstNouvelleTouche(Keys.Escape))
+                    {
+                        this.Exit();
+                    }
                     if (B1.Clicked == true) 
                     { 
                         DéterminerSettings();
@@ -320,6 +325,8 @@ namespace AtelierXNA
                     {
                         CurrentGameState = GameState.EnJeu;
                         VoilerBoutons(5, 7);
+                        Components.Remove(Anand);
+                        
 
                     }
                     if (B7.Clicked == true)
@@ -332,6 +339,7 @@ namespace AtelierXNA
                         Components.Remove(TempsB);
                         Components.Remove(TempsN);
                         Components.Remove(unAfficheur3D);
+                        Components.Remove(Anand);
                         ArrièrePlanDéroulant.ModifierActivation();
                         
 
@@ -358,6 +366,11 @@ namespace AtelierXNA
                         if (GestionInput.EstNouvelleTouche(Keys.Escape))
                         {
                             CurrentGameState = GameState.EnPause;
+                            Components.Add(Anand = new ZoneDéroulante(this, "Anand", new Rectangle(0,0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height), INTERVALLE_MAJ_STANDARD));
+                            Components.Remove(B6);
+                            Components.Remove(B7);
+                            Components.Add(B6);
+                            Components.Add(B7);
                             AfficherBoutons(5, 7);
                         }
                         float tempsÉcoulé = (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -427,14 +440,14 @@ namespace AtelierXNA
         void CréerMP()
         {
             int indice = 2;
-            float valeur = GraphicsDevice.Viewport.Height / indice;
-            float y = 0;
+            float valeur = GraphicsDevice.Viewport.Height / indice/3;
+            float y = GraphicsDevice.Viewport.Height / 1.8f;
             float x = GraphicsDevice.Viewport.Width / 4;
             float longueur = GraphicsDevice.Viewport.Width / 5;
             float hauteur = GraphicsDevice.Viewport.Width / (3 * indice) - 1;
-            Components.Add(B1 = new Bouton(this, "button", "Arial", text1, new Vector2(x, y), new Vector2(2 * longueur, hauteur)));
+            Components.Add(B1 = new Bouton(this, "button", "Arial", text1, new Vector2(x, y), new Vector2(2 * longueur, hauteur/2)));
             y += valeur;
-            Components.Add(B2 = new Bouton(this, "button", "Arial", text2, new Vector2(x, y), new Vector2(longueur, hauteur)));
+            Components.Add(B2 = new Bouton(this, "button", "Arial", text2, new Vector2(x, y), new Vector2(longueur, hauteur/2)));
             ListeDesBoutons.Add(B1); //0
             ListeDesBoutons.Add(B2); //1
         }
@@ -488,14 +501,14 @@ namespace AtelierXNA
         void CréerChoixPause()
         {
             int indice = 2;
-            float valeur = GraphicsDevice.Viewport.Height / indice;
-            float y = 0;
-            float x = GraphicsDevice.Viewport.Width / 2;
+            float valeur = GraphicsDevice.Viewport.Height / indice/3;
+            float y = GraphicsDevice.Viewport.Height/1.6f;
+            float x = GraphicsDevice.Viewport.Width / 4;
             float longueur = GraphicsDevice.Viewport.Width / 5;
             float hauteur = GraphicsDevice.Viewport.Width / (3 * indice) - 1;
-            Components.Add(B6 = new Bouton(this, "button", "Arial", msgPause1, new Vector2(x, y), new Vector2(2 * longueur, hauteur)));
+            Components.Add(B6 = new Bouton(this, "button", "Arial", msgPause1, new Vector2(x, y), new Vector2(2 * longueur, hauteur/3)));
             y += valeur;
-            Components.Add(B7 = new Bouton(this, "button", "Arial", msgPause2, new Vector2(x, y), new Vector2(2 * longueur, hauteur)));
+            Components.Add(B7 = new Bouton(this, "button", "Arial", msgPause2, new Vector2(x, y), new Vector2(2 * longueur, hauteur/3)));
            
             ListeDesBoutons.Add(B6); //7 
             ListeDesBoutons.Add(B7); //8

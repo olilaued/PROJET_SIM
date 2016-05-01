@@ -831,6 +831,15 @@
       <Output>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Models\Pub\dark_texture_0.xnb</Output>
       <Time>2016-04-26T16:58:25.1656756-04:00</Time>
     </Item>
+    <Item>
+      <Source>Textures\anand.jpg</Source>
+      <Name>Textures\anand</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Tristan\Documents\GitHub\PROJET_SIM\Projet_Intégration\Projet_Intégration\Projet_Intégration\bin\x86\Debug\Content\Textures\anand.xnb</Output>
+      <Time>2016-05-01T14:03:02.7959872-04:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <ContentProjectGUID>{DF341C98-77B7-48D3-89A2-2262B0587BCE}</ContentProjectGUID>

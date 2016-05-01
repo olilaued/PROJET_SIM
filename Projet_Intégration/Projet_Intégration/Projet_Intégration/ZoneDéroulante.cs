@@ -48,6 +48,7 @@ namespace AtelierXNA
         {
             //this.Enabled = false;
             base.Initialize();
+            FigerAnimer();
         }
         public override void Update(GameTime gameTime)
         {
@@ -115,6 +116,10 @@ namespace AtelierXNA
         {
             //this.Enabled = !this.Enabled;
             this.Visible = !this.Visible;
+        }
+        public void FigerAnimer()
+        {
+            this.Enabled = !Enabled;
         }
 
     }
