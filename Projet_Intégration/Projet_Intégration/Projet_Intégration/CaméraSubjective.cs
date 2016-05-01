@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Input;
 using System.IO;
 
+
 namespace AtelierXNA
 {
    public class CaméraSubjective : Caméra
@@ -14,6 +15,7 @@ namespace AtelierXNA
       const float DELTA_TANGAGE = MathHelper.Pi / 180; // 1 degré à la fois
       const float DELTA_ROULIS = MathHelper.Pi / 180; // 1 degré à la fois
       const float RAYON_COLLISION = 1f;
+      const float VITESSE_PIVOTEMENT = 80f;
 
       Vector3 Direction { get; set; }
       Vector3 Latéral { get; set; }
@@ -24,6 +26,9 @@ namespace AtelierXNA
       float TempsÉcouléDepuisMAJ { get; set; }
       InputManager GestionInput { get; set; }
       Matrix Rotation { get; set; }
+      public float Compteur { get; set; }
+      
+      
 
       bool estEnZoom;
       bool EstEnZoom
@@ -51,7 +56,9 @@ namespace AtelierXNA
          CréerVolumeDeVisualisation(OUVERTURE_OBJECTIF, DISTANCE_PLAN_RAPPROCHÉ, DISTANCE_PLAN_ÉLOIGNÉ);
          CréerPointDeVue(positionCaméra, cible, orientation);
          EstEnZoom = false;
+         Compteur = VITESSE_PIVOTEMENT + 1 ;
       }
+   
 
       public override void Initialize()
       {
@@ -70,7 +77,7 @@ namespace AtelierXNA
          // (à compléter)
          Direction = Vector3.Normalize(Direction);
          Latéral = Vector3.Cross(Direction, OrientationVerticale);
-         Vue = Matrix.CreateLookAt(Position, Position + Direction, OrientationVerticale);
+         Vue = Matrix.CreateLookAt(Position, Cible, OrientationVerticale);
          GénérerFrustum();
       }
 
@@ -97,14 +104,67 @@ namespace AtelierXNA
          {
             if (GestionInput.EstEnfoncée(Keys.LeftShift) || GestionInput.EstEnfoncée(Keys.RightShift))
             {
-              GérerAccélération();
-               GérerDéplacement();
-               GérerRotation();
-              CréerPointDeVue();
+              //GérerAccélération();
+              // GérerDéplacement();
+              // GérerRotation();
+              //CréerPointDeVue();
             }
             TempsÉcouléDepuisMAJ = 0;
+
+          
+           {
+             if (Compteur < VITESSE_PIVOTEMENT)
+               
+               {
+               TournerCaméra();
+               
+             
+               }
+           }
          }
+         
+         
          base.Update(gameTime);
+        // Compteur++;
+      }
+      public void TournerCaméra()
+      {
+
+
+        //  for (float i = 0; i < MathHelper.Pi; i += MathHelper.Pi / 10000)
+          {
+
+              Position = Vector3.Transform(Position - Cible, Matrix.CreateFromAxisAngle(new Vector3(0, 1, 0), MathHelper.Pi /VITESSE_PIVOTEMENT)) + Cible;
+
+              //Vue = Matrix.CreateLookAt(Position, Cible, OrientationVerticale);
+              CréerPointDeVue(Position, Cible, Vector3.Up);
+
+
+              Compteur++;
+
+          }
+              
+              
+              
+               
+               
+
+
+               
+               
+          
+              
+              
+              
+              
+              
+
+             
+           
+              
+              
+          
+          
       }
 
       private int GérerTouche(Keys touche)

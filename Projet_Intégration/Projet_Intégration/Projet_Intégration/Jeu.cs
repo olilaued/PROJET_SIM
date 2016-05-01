@@ -46,6 +46,7 @@ namespace AtelierXNA
         enum GameState { MenuPrincipal, Options,ClrsPièces, ClrsÉchiquier, Temps}
         GameState CurrentGameState { get; set; }
         ZoneDéroulante ArrièrePlanDéroulant { get; set; }
+        public Vector3 CentreBoard { get; set; }
         
         
         // Menu principal
@@ -123,8 +124,10 @@ namespace AtelierXNA
             Vector3 positionObjet = new Vector3(0, 0, 0);
             Vector3 rotationObjet = new Vector3(0, 0, 0);
 
-            PositionCaméra = new Vector3(171.76f, 65.08f, -68.30f);
-            CibleCaméra = new Vector3(170.96f, 64.49f, -68.35f);
+            PositionCaméra = new Vector3(140.76f, 65.08f, -68.30f);
+            //CibleCaméra = new Vector3(170.96f, 64.49f, -68.35f);
+            CibleCaméra = new Vector3(157.2f,55.28f,-68.17f);
+
             OVCaméra = new Vector3(-0.5933704f, 0.8049271f, -0.00201782f);
 
 
@@ -163,6 +166,7 @@ namespace AtelierXNA
             CréerMP();
             CréerOptions();
             CréerChoixClrsÉchi();
+            Components.Add(CaméraJeu);
             
             
             //unAfficheur3D.Visible = false;
@@ -217,7 +221,7 @@ namespace AtelierXNA
                     if (Bouton1.Clicked == true)
                     {
                         unAfficheur3D.Visible = true;
-                        Components.Add(CaméraJeu);
+                     //   Components.Add(CaméraJeu);
                         ArrièrePlanDéroulant.ModifierActivation();
                         EstVisible = true;
                         AfficherVoilerMP();

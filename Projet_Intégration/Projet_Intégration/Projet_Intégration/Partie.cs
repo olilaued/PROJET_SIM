@@ -41,6 +41,7 @@ namespace AtelierXNA
         protected TexteAffichable GagnantN { get; set; }
 
         InputManager GestionInput { get; set; }
+        public Vector3 CentreBoard { get; set; }
         
         
 
@@ -56,6 +57,8 @@ namespace AtelierXNA
                 couleursÉchiquier[1], couleursÉchiquier[2]));
             TempsLimite = tempsLimite;
             Map = map;
+            CentreBoard = (UnÉchiquier.ListeCases[28].Centre);
+            
         }
         /// <summary>
         /// Allows the game component to perform any initialization it needs to before starting
@@ -78,6 +81,7 @@ namespace AtelierXNA
             Game.Components.Add(TourActuel = new Tour(Game,"White", UnÉchiquier.ListeCases, ListeDesPièces, NbSortiesBlanc, NbSortiesNoir));
             Environnement.Visible = false;
             TourActuel.Enabled = false;
+            
             
             
             

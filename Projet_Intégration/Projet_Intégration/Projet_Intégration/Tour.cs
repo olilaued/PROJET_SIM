@@ -73,6 +73,7 @@ namespace AtelierXNA
 
             if (Compteur % 2 == 0)
             {
+              
                 Couleur = WHITE;
             }
             else
@@ -396,7 +397,7 @@ namespace AtelierXNA
                 foreach (Cases o in ListeDesCases)
                 {
 
-
+                    
                     Vector3 HG = Game.GraphicsDevice.Viewport.Project(o.HG, CaméraJeu.Projection, this.CaméraJeu.Vue, Matrix.Identity);
                     HG.X -= Game.GraphicsDevice.Viewport.X;
                     HG.Y -= Game.GraphicsDevice.Viewport.Y;
@@ -413,19 +414,33 @@ namespace AtelierXNA
                     BD.X -= Game.GraphicsDevice.Viewport.X;
                     BD.Y -= Game.GraphicsDevice.Viewport.Y;
 
+                    int height = 0;
+                    int width = 0;
+                    Rectangle zone = new Rectangle(0, 0, 0, 0);
+
                    // int width = (int)(HD.Y-HG.Y);
                    // int height = (int)(BG.X-HG.X);
-                    int height = (int)(HD.Y - HG.Y);
-                    int width = (int)(BG.X - HG.X);
+                    if (Couleur == BLACK)
+                    {
+                         height = (int)(HD.Y - HG.Y);
+                         width = (int)(BG.X - HG.X);
+                         zone = new Rectangle((int)HG.X, (int)HG.Y, width, height);
+                    }
+                    else
+                    {
+                        height = (int)(HG.Y - HD.Y);
+                        width = (int)(HG.X - BG.X);
+                        zone = new Rectangle((int)BG.X, (int)HD.Y, width, height);
+                    }
 
 
 
 
-                    Rectangle zone = new Rectangle((int)HG.X, (int)HG.Y, width,height);
+                    //zone = new Rectangle((int)HG.X, (int)HG.Y, width,height);
                     Point PosSouris = GestionInput.GetPositionSouris();
 
-                    
 
+                    float k = Compteur;
                     if (zone.Contains(PosSouris))
                     {
                         
@@ -435,6 +450,7 @@ namespace AtelierXNA
                         }
                         if (CaseA == null)
                         {
+                            
 
                             CaseA = o;
                             VérifierChangementCouleur(o);
@@ -665,6 +681,7 @@ namespace AtelierXNA
                                             g.EstPremierMove = false;
                                         }
                                     }
+                                   
 
 
                                   // VerificationMat();
@@ -677,9 +694,19 @@ namespace AtelierXNA
 
                                 }
                                 
+                                    
+                                
                             }
-                            
 
+                            float p = Compteur;
+                            if (k != p)
+                            {
+
+                              //CaméraJeu.TournerCaméra();
+                                CaméraJeu.Compteur = 0;
+
+
+                          }
 
                         }
                         
