@@ -92,10 +92,14 @@ namespace AtelierXNA
                     if (EstPremierMove)
                     {
                         condition = ((déplacement.Y == (LARGEUR_CASES)) || (déplacement.Y == 2 * LARGEUR_CASES)) && déplacement.X == 0;
-                        //if (condition == true)
-                        //{
-                        //    EstPremierMove = false;
-                        //}
+                        if (condition == true)
+                        {
+                           //EstPremierMove = false;
+                        }
+                        if (déplacement.X == 0)
+                        {
+
+                        }
                          
                            
                     }

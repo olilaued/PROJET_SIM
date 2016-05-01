@@ -156,7 +156,7 @@ namespace AtelierXNA
 
                         }
 
-                        if (l.Nom == "/king" && Math.Abs(r.Centre.Z - posIni.Z) > 2)
+                        if (l.Nom == "/king" && Math.Abs(r.Centre.Z - posIni.Z) > Partie.LONGUEUR_CASE)
                         {
                             l.Deplacer(posIni);
                             l.NbDéplacement--;
@@ -255,13 +255,13 @@ namespace AtelierXNA
 
 
 
-
+            
         }
         private bool EstAuBorne(string Couleur, Cases Case)
         {
             bool estAuBorne = true;
-            Vector3 destinationW = CaseB.Centre + new Vector3(2, 0, 0);
-            Vector3 destinationB = CaseB.Centre + new Vector3(-2, 0, 0);
+            Vector3 destinationW = CaseB.Centre + new Vector3(Partie.LONGUEUR_CASE, 0, 0);
+            Vector3 destinationB = CaseB.Centre + new Vector3(-Partie.LONGUEUR_CASE, 0, 0);
             if (Couleur == "White")
             {
                 foreach (Cases f in ListeDesCases)
@@ -359,18 +359,18 @@ namespace AtelierXNA
             {
                 if (PièceA.EstPremierMove && r == true)
                 {
-                    if (c.Position == PièceA.Position + new Vector3(0, 0, 2))
+                    if (c.Position == PièceA.Position + new Vector3(0, 0, Partie.LONGUEUR_CASE))
                     {
-                        c.Deplacer(CaseA.Centre + new Vector3(0, 0, 2));
+                        c.Deplacer(CaseA.Centre + new Vector3(0, 0, Partie.LONGUEUR_CASE));
                         aBouger = true;
                         PièceA.EstPremierMove = false;
                         ResetCouleur();
 
                     }
 
-                    if (c.Position == PièceA.Position + new Vector3(0, 0, -4))
+                    if (c.Position == PièceA.Position + new Vector3(0, 0, -2*Partie.LONGUEUR_CASE))
                     {
-                        c.Deplacer(CaseA.Centre + new Vector3(0, 0, -2));
+                        c.Deplacer(CaseA.Centre + new Vector3(0, 0, -Partie.LONGUEUR_CASE));
                         aBouger = true;
                         PièceA.EstPremierMove = false;
                         ResetCouleur();
@@ -483,7 +483,7 @@ namespace AtelierXNA
                                     {
                                         if (a.Couleur == Couleur)
                                         {
-                                            if (a.LogiqueDéplacement(new Vector2(((int)CaseB.Centre.Z - (int)CaseA.Centre.Z), ((int)CaseB.Centre.X - (int)CaseA.Centre.X))) && NeSautePas(CaseA.Centre, CaseB.Centre))
+                                            if (a.LogiqueDéplacement(new Vector2((CaseB.Centre.Z - CaseA.Centre.Z), (CaseB.Centre.X - CaseA.Centre.X))) && NeSautePas(CaseA.Centre, CaseB.Centre))
                                             {
                                                 Compteur++;
                                                 PièceA = a;
@@ -516,7 +516,7 @@ namespace AtelierXNA
                                                     }
                                                     if (PièceA.Nom == "/king")
                                                     {
-                                                        if (Math.Abs(CaseB.Centre.Z - CaseA.Centre.Z) > 2 && (!EstEnEchec(ListeDesCases, ListeDesPièces, PièceA.Couleur)))
+                                                        if (Math.Abs(CaseB.Centre.Z - CaseA.Centre.Z) > Partie.LONGUEUR_CASE && (!EstEnEchec(ListeDesCases, ListeDesPièces, PièceA.Couleur)))
                                                         {
                                                             GèrerRook();
                                                         }
@@ -571,7 +571,7 @@ namespace AtelierXNA
 
                                                         if (PièceA.Nom == "/king")
                                                         {
-                                                            if (Math.Abs((int)CaseB.Centre.Z - (int)CaseA.Centre.Z) > 2)
+                                                            if (Math.Abs((int)CaseB.Centre.Z - (int)CaseA.Centre.Z) > Partie.LONGUEUR_CASE)
                                                             {
                                                                 ResetPièces(PièceA, PièceB);
                                                             }
