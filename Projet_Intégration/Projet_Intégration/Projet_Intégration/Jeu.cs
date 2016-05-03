@@ -35,6 +35,8 @@ namespace AtelierXNA
         RessourcesManager<Texture2D> GestionnaireDeTextures { get; set; }
         RessourcesManager<Model> GestionnaireDeModèles { get; set; }
         RessourcesManager<Effect> GestionnaireDeShaders { get; set; }
+        RessourcesManager<SoundEffect> GestionnaireDeSons { get; set; }
+
         InputManager GestionInput { get; set; }
         CaméraSubjective CaméraJeu { get; set; }
         AfficheurFps UnAfficheurFPS { get; set; }
@@ -61,7 +63,7 @@ namespace AtelierXNA
         TexteAffichable GagnantB { get; set; }
         TexteAffichable TempsB { get; set; }
         TexteAffichable TempsN { get; set; }
-         
+        SoundEffectInstance Chanson1 { get; set; }         
         
         // Menu principal
         string text1 = "Jouer 1v1";
@@ -172,6 +174,13 @@ namespace AtelierXNA
             GestionnaireDeTextures = new RessourcesManager<Texture2D>(this, "Textures");
             GestionnaireDeModèles = new RessourcesManager<Model>(this, "Models");
             GestionnaireDeShaders = new RessourcesManager<Effect>(this, "Effects");
+           GestionnaireDeSons = new RessourcesManager<SoundEffect>(this, "Sons");
+           // SoundEffect blabla = GestionnaireDeSons.Find("blabla.wav");
+           
+            
+           
+           
+            
             GestionInput = new InputManager(this);
             GestionSprites = new SpriteBatch(GraphicsDevice);
  
@@ -189,6 +198,7 @@ namespace AtelierXNA
             Services.AddService(typeof(RessourcesManager<Texture2D>), GestionnaireDeTextures);
             Services.AddService(typeof(RessourcesManager<Model>), GestionnaireDeModèles);
             Services.AddService(typeof(RessourcesManager<Effect>), GestionnaireDeShaders);
+            Services.AddService(typeof(RessourcesManager<SoundEffect>), GestionnaireDeSons);          
             Services.AddService(typeof(InputManager), GestionInput);
             Services.AddService(typeof(Caméra), CaméraJeu);
             Services.AddService(typeof(SpriteBatch), GestionSprites);
@@ -209,7 +219,13 @@ namespace AtelierXNA
             
             //unAfficheur3D.Visible = false;
             
+            //******************* MUSIQUE
+            Chanson1 = GestionnaireDeSons.Find("the_gael").CreateInstance();
+            Chanson1.IsLooped = true;
+            Chanson1.Play();
             
+            
+
            
             
             

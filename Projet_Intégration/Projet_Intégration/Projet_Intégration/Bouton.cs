@@ -83,10 +83,14 @@ namespace AtelierXNA
         public override void Update(GameTime gametime)
         {
 
-            if ( Index < 7  && this.Clicked == true)
+            if (Index < 7 && this.Clicked == true)
             {
 
-               this.Clicked = false;
+                this.Clicked = false;
+            }
+            if (Index >= 7 && this.Clicked == true)
+            {
+                this.Clicked = false;
             }
                 
 

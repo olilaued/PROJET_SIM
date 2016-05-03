@@ -25,6 +25,7 @@ namespace AtelierXNA
         protected List<Pieces> ListeDesPièces { get; set; }
         protected bool Action { get; set; }
         public string Couleur { get; set; }
+        public string AutreCouleur { get; set; }
         public float NbSortiesBlanc { get; set; }
         public float NbSortiesNoir { get; set; }
         CaméraSubjective CaméraJeu { get; set; }
@@ -36,6 +37,11 @@ namespace AtelierXNA
         protected int Compteur { get; set; }
         private int NbPiece { get; set; }
         public bool PartieTerminée { get; set; }
+        RessourcesManager<SoundEffect> GestionnaireDeSons { get; set; }
+        SoundEffect Chess_Hit_Sound { get; set; }
+        SoundEffect Check_Sound { get; set; }
+        SoundEffect Checkmate_Sound { get; set; }
+        
 
         public Tour(Game game, string couleur, List<Cases> listeCases, List<Pieces> listePièce, float nbSortiesBlanc, float nbSortiesNoir)
             : base(game)
@@ -46,6 +52,10 @@ namespace AtelierXNA
             NbSortiesBlanc = nbSortiesBlanc;
             NbSortiesNoir = nbSortiesNoir;
             NbPiece = 32;
+            
+           
+            
+            
         }
 
 
@@ -61,7 +71,13 @@ namespace AtelierXNA
             PartieTerminée = false;
             CaméraJeu = Game.Services.GetService(typeof(Caméra)) as CaméraSubjective;
             GestionInput = Game.Services.GetService(typeof(InputManager)) as InputManager;
+            GestionnaireDeSons = Game.Services.GetService(typeof(RessourcesManager<SoundEffect>)) as RessourcesManager<SoundEffect>;
+            Chess_Hit_Sound = GestionnaireDeSons.Find("chess_sound");
+            Check_Sound = GestionnaireDeSons.Find("check_sound");
+            Checkmate_Sound = GestionnaireDeSons.Find("checkmate_sound");
+
             base.Initialize();
+            
         }
 
         /// <summary>
@@ -75,29 +91,35 @@ namespace AtelierXNA
             {
 
                 Couleur = WHITE;
+                AutreCouleur = BLACK;
             }
             else
             {
                 Couleur = BLACK;
+                AutreCouleur = WHITE;
             }
             if (CaméraJeu.aFiniTourner())
             {
                 GérerDéplacement();
             }
-            if (EstMat())
-            {
-                this.Game.Exit();
-            }
-            //if (!VerificationMat())
-            //{
-            //    this.Game.Exit();
-            //}
+           
 
             base.Update(gameTime);
         }
 
         //public bool Mat();
+        void JouerSons()
+        {
+            if (EstMat())
+            {
+                Checkmate_Sound.Play();
+            }
+            if (EstEnEchec(ListeDesCases, ListeDesPièces, AutreCouleur))
+            {
+                Check_Sound.Play();
 
+            }
+        }
         public bool EstMat()
         {
             bool t = true;
@@ -210,8 +232,8 @@ namespace AtelierXNA
 
             foreach (Pieces a in ListeDesPièces)
             {
-              //  Vector3 déplacement = new Vector3((leRoi.Position.X - a.Position.X), 0f, (leRoi.Position.Z - a.Position.Z));
-                Vector3 déplacement = new Vector3((leRoi.Position.Z - a.Position.Z), 0f, (leRoi.Position.X - a.Position.X));
+                 Vector3 déplacement = new Vector3((leRoi.Position.X - a.Position.X), 0f, (leRoi.Position.Z - a.Position.Z));
+             //   Vector3 déplacement = new Vector3((leRoi.Position.Z - a.Position.Z), 0f, (leRoi.Position.X - a.Position.X));
                // if (a.LogiqueDéplacement(new Vector2((leRoi.Position.X - a.Position.X), (leRoi.Position.Z - a.Position.Z))) && (a.Couleur != leRoi.Couleur) && NeSautePas(leRoi.Position, a.Position))
                 if (a.LogiqueDéplacement(new Vector2((leRoi.Position.Z - a.Position.Z), (leRoi.Position.X - a.Position.X))) && (a.Couleur != leRoi.Couleur) && NeSautePas(leRoi.Position, a.Position))
                 {
@@ -222,7 +244,7 @@ namespace AtelierXNA
                         condition = a.EstValidePion(déplacement);
                     }
                 }
-
+                
 
 
             }
@@ -660,22 +682,22 @@ namespace AtelierXNA
 
 
                                     }
-                                    foreach (Pieces v in ListeDesPièces.ToList())
-                                    {
-                                        bool cd = true;
-                                        foreach (Cases y in ListeDesCases)
-                                        {
-                                            if (v.Position == y.Centre)
-                                            {
-                                                cd = false;
-                                            }
-                                        }
-                                        if (cd)
-                                        {
-                                          //  ListeDesPièces.Remove(v);
-                                          //  NbPiece--;
-                                        }
-                                    }
+                                    //foreach (Pieces v in ListeDesPièces.ToList())
+                                    //{
+                                    //    bool cd = true;
+                                    //    foreach (Cases y in ListeDesCases)
+                                    //    {
+                                    //        if (v.Position == y.Centre)
+                                    //        {
+                                    //            cd = false;
+                                    //        }
+                                    //    }
+                                    //    if (cd)
+                                    //    {
+                                    //      //  ListeDesPièces.Remove(v);
+                                    //      //  NbPiece--;
+                                    //    }
+                                    //}
                                     foreach (Pieces g in ListeDesPièces.FindAll(x => x.Nom == "/rook" || x.Nom == "/king" || x.Nom == "/pawn"))
                                     {
                                         if (g.NbDéplacement == 1)
@@ -684,9 +706,9 @@ namespace AtelierXNA
                                         }
                                     }
 
+                                   
 
-
-                                    // VerificationMat();
+                                  
 
 
 
@@ -699,16 +721,20 @@ namespace AtelierXNA
 
 
                             }
-
+                            // LE COUP EST JOUÉ***********************
+                           
                             float p = Compteur;
                             if (k != p)
                             {
 
                                 //CaméraJeu.TournerCaméra();
                                 CaméraJeu.Compteur = 0;
+                                Chess_Hit_Sound.Play();
 
 
                             }
+                            JouerSons();
+                            
 
                         }
 

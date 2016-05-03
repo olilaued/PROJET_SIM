@@ -96,10 +96,7 @@ namespace AtelierXNA
                         {
                            //EstPremierMove = false;
                         }
-                        if (déplacement.X == 0)
-                        {
-
-                        }
+                       
                          
                            
                     }

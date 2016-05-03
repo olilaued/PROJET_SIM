@@ -29,6 +29,7 @@ Content\Models\Pub\Wood_Sofa GM Plutone_Dif.xnb
 Content\Textures\button.xnb
 Content\Textures\terrain1.xnb
 Content\Textures\terrain_textures.xnb
+Content\Textures\anand.xnb
 Content\Models\Black\bishop.xnb
 Content\Models\Black\king.xnb
 Content\Models\Black\knight.xnb
@@ -43,6 +44,7 @@ Content\Models\White\queen.xnb
 Content\Models\White\rook.xnb
 Content\Models\Pub\club_map_2.xnb
 Content\Fonts\Arial.xnb
+Content\Sons\chess_sound.xnb
 Content\Models\Black\Granite_0.xnb
 Content\Models\White\Marble_0.xnb
 Content\Models\Pub\mw_Carel_0.xnb
@@ -59,4 +61,9 @@ Content\Models\Pub\canape-cuir-savane-noir_0.xnb
 Content\Models\Pub\interior_brick_wall_0.xnb
 Content\Models\Pub\dark_roof_0.xnb
 Content\Models\Pub\dark_texture_0.xnb
-Content\Textures\anand.xnb
+Content\Sons\check_sound.xnb
+Content\Sons\checkmate_sound.xnb
+Content\Sons\the_gael.xnb
+Content\Sons\Mozart_Lacrimosa.xnb
+Content\Sons\Muse_Resistance.xnb
+Content\Sons\Tunak_Tunak.xnb
