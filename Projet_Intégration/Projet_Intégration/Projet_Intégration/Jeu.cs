@@ -220,9 +220,9 @@ namespace AtelierXNA
             //unAfficheur3D.Visible = false;
             
             //******************* MUSIQUE
-            Chanson1 = GestionnaireDeSons.Find("the_gael").CreateInstance();
-            Chanson1.IsLooped = true;
-            Chanson1.Play();
+           // Chanson1 = GestionnaireDeSons.Find("Tunak_Tunak").CreateInstance();
+            //Chanson1.IsLooped = true;
+            //Chanson1.Play();
             
             
 
@@ -356,6 +356,7 @@ namespace AtelierXNA
                         Components.Remove(TempsN);
                         Components.Remove(unAfficheur3D);
                         Components.Remove(Anand);
+                        Components.Remove(PartiEnCours.TourActuel);
                         ArrièrePlanDéroulant.ModifierActivation();
                         
 
@@ -375,6 +376,8 @@ namespace AtelierXNA
                         {
                             Components.Add(GagnantB = new TexteAffichable(this, "Arial", VAINQUEUR_B, Color.LightGreen, 0, 3.0f, PROFONDEUR_DEFAUT));
                         }
+                        Components.Remove(unAfficheur3D);
+                        Components.Add(unAfficheur3D);
                         Components.Remove(PartiEnCours.TourActuel);
                     }
                     else
@@ -429,6 +432,7 @@ namespace AtelierXNA
         }
         void CommencerPartie()
         {
+            CaméraJeu.ResetCaméra(PositionCaméra, CibleCaméra, OVCaméra);
             MinutesRestantes = TempsDePartie / 60;
             SecondesRestantes = TempsDePartie % 60;
             TempsRestantB = TempsDePartie;

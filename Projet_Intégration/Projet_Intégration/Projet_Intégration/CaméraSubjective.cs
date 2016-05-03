@@ -16,6 +16,10 @@ namespace AtelierXNA
         const float DELTA_ROULIS = MathHelper.Pi / 180; // 1 degré à la fois
         const float RAYON_COLLISION = 1f;
          const float TEMPS_PIVOT = 130f;
+         bool Locked { get; set; }
+         Vector3 PositionCaméra_ini = new Vector3(140.76f, 65.08f, -68.30f);
+         Vector3 CibleCaméra_ini = new Vector3(157.2f, 55.28f, -68.17f);
+         Vector3 OVCaméra_ini = new Vector3(-0.5933704f, 0.8049271f, -0.00201782f);
 
         Vector3 Direction { get; set; }
         Vector3 Latéral { get; set; }
@@ -27,6 +31,7 @@ namespace AtelierXNA
         InputManager GestionInput { get; set; }
         Matrix Rotation { get; set; }
         public float Compteur { get; set; }
+        public int CompteurLock { get; set; }
 
 
 
@@ -62,6 +67,7 @@ namespace AtelierXNA
 
         public override void Initialize()
         {
+            Locked = true;
             VitesseRotation = VITESSE_INITIALE_ROTATION;
             VitesseTranslation = VITESSE_INITIALE_TRANSLATION;
             TempsÉcouléDepuisMAJ = 0;
@@ -81,7 +87,7 @@ namespace AtelierXNA
             // (à compléter)
             Direction = Vector3.Normalize(Direction);
             Latéral = Vector3.Cross(Direction, OrientationVerticale);
-            Vue = Matrix.CreateLookAt(Position, Cible, OrientationVerticale);
+            Vue = Matrix.CreateLookAt(Position, Position + Direction, OrientationVerticale);
             GénérerFrustum();
         }
 
@@ -104,26 +110,51 @@ namespace AtelierXNA
             float TempsÉcoulé = (float)gameTime.ElapsedGameTime.TotalSeconds;
             TempsÉcouléDepuisMAJ += TempsÉcoulé;
             GestionClavier();
+            if (GestionInput.EstNouvelleTouche(Keys.Space))
+            {
+                Locked = !Locked;
+                if (Locked)
+                {
+                    if (CompteurLock % 2 == 0)
+                    {
+                        this.ResetCaméra(PositionCaméra_ini, CibleCaméra_ini, OVCaméra_ini);
+
+                    }
+                    else
+                    {
+                        this.ResetCaméra(new Vector3(PositionCaméra_ini.X + 32, PositionCaméra_ini.Y, PositionCaméra_ini.Z), CibleCaméra_ini, OVCaméra_ini);
+                    }
+
+                }
+            }
+
+                
             if (TempsÉcouléDepuisMAJ >= IntervalleMAJ)
             {
-                if (GestionInput.EstEnfoncée(Keys.LeftShift) || GestionInput.EstEnfoncée(Keys.RightShift))
+                
+                
+                if (!Locked)
                 {
-                    //GérerAccélération();
-                    // GérerDéplacement();
-                    // GérerRotation();
-                    //CréerPointDeVue();
+                    GérerAccélération();
+                    GérerDéplacement();
+                    GérerRotation();
+                    CréerPointDeVue();
                 }
                 TempsÉcouléDepuisMAJ = 0;
 
 
-                {
+                
                     if (Compteur < TEMPS_PIVOT)
                     {
                         TournerCaméra();
-
-
                     }
-                }
+                    if (Compteur == TEMPS_PIVOT)
+                    {
+                        CompteurLock++;
+                        Compteur++;
+                    }
+
+                
             }
 
 
@@ -146,27 +177,10 @@ namespace AtelierXNA
                 Compteur++;
 
             }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        }
+       public void ResetCaméra(Vector3 position, Vector3 cible, Vector3 ovcaméra)
+        {
+            CréerPointDeVue(position, cible, ovcaméra);
 
         }
 
