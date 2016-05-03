@@ -22,6 +22,7 @@ namespace AtelierXNA
         const float INTERVALLE_CALCUL_FPS = 1f;
         const float INTERVALLE_MAJ_STANDARD = 1f / 60f;
         const float PROFONDEUR_DEFAUT = 0.5f;
+        const float TEMPS_FIN_DE_PARTIE = 10;
         const string VAINQUEUR_N = "LES NOIRS L'EMPORTENT!";
         const string VAINQUEUR_B = "LES BLANCS L'EMPORTENT!";
         
@@ -49,8 +50,8 @@ namespace AtelierXNA
         int TempsDePartie { get; set; }
         float TempsRestantB { get; set; }
         float TempsRestantN { get; set; }
-        int MinutesRestantes { get; set; }
-        int SecondesRestantes { get; set; }
+        float TempsÉcouléDepuisFinDePartie { get; set; }
+        float TempsÉcouléDepuisMAJ { get; set; }
         Vector3 OrigineÉchiquier { get; set; }
         Vector3 PositionCaméra { get; set; }
         Vector3 CibleCaméra { get; set; }
@@ -59,11 +60,13 @@ namespace AtelierXNA
        public static GameState CurrentGameState { get; set; }
         ZoneDéroulante ArrièrePlanDéroulant { get; set; }
         ZoneDéroulante Anand { get; set; }
-        TexteAffichable GagnantN { get; set; }
-        TexteAffichable GagnantB { get; set; }
+        TexteAffichable Gagnant { get; set; }
+        //TexteAffichable GagnantB { get; set; }
         TexteAffichable TempsB { get; set; }
         TexteAffichable TempsN { get; set; }
-        SoundEffectInstance Chanson1 { get; set; }         
+        SoundEffectInstance Chanson { get; set; }
+        SoundState ÉtatAntérieurChanson { get; set; }
+        
         
         // Menu principal
         string text1 = "Jouer 1v1";
@@ -97,6 +100,7 @@ namespace AtelierXNA
         Bouton B9;
         Bouton B10;
         Bouton B11;
+
         //ChoixTemps
         string temps1 = "15 minutes";
         string temps2 = "30 minutes";
@@ -106,6 +110,16 @@ namespace AtelierXNA
         Bouton B13;
         Bouton B14;
         Bouton B15;
+
+        //ChoixMusique
+        string tune1 = "Irlandaise";
+        string tune2 = "Classique";
+        string tune3 = "Indien";
+        string tune4 = "Rock/comptemporain";
+        Bouton B16;
+        Bouton B17;
+        Bouton B18;
+        Bouton B19;
 
 
        
@@ -132,7 +146,7 @@ namespace AtelierXNA
             PériphériqueGraphique = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
-            IsFixedTimeStep = false;
+            IsFixedTimeStep = true;
             PériphériqueGraphique.SynchronizeWithVerticalRetrace = false;
             PériphériqueGraphique.ApplyChanges();
         }
@@ -151,6 +165,7 @@ namespace AtelierXNA
             TempsDePartie = 15*60 ;
             NomMap = "Pub/club_map_2";
             OrigineÉchiquier = new Vector3(163.20f,55.28f,-74.17f);
+           
            // OrigineÉchiquier = new Vector3(0, 15, 0);
            
             Vector3 positionObjet = new Vector3(0, 0, 0);
@@ -216,12 +231,14 @@ namespace AtelierXNA
             CréerChoixPause();
             CréerChoixClrsÉchi();
             CréerChoixTemps();
+            CréerChoixMusique();
             
             //unAfficheur3D.Visible = false;
             
             //******************* MUSIQUE
-           // Chanson1 = GestionnaireDeSons.Find("Tunak_Tunak").CreateInstance();
-            //Chanson1.IsLooped = true;
+            
+             Chanson = GestionnaireDeSons.Find("Tunak_Tunak").CreateInstance();
+            //Chanson.IsLooped = true;
             //Chanson1.Play();
             
             
@@ -268,176 +285,212 @@ namespace AtelierXNA
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            
-            
-            //MinutesRestantes = (int)TempsRestant/ 60;
-            //SecondesRestantes = (int)TempsRestant % 60;
-            switch (CurrentGameState)
+
+            float tempsÉcoulé = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            TempsÉcouléDepuisMAJ += tempsÉcoulé;
+            if (TempsÉcouléDepuisMAJ > INTERVALLE_MAJ_STANDARD)
             {
-                case GameState.MenuPrincipal:
-                    
-                    if (GestionInput.EstNouvelleTouche(Keys.Escape))
-                    {
-                        this.Exit();
-                    }
-                    if (B1.Clicked == true) 
-                    { 
-                        DéterminerSettings();
-                        CommencerPartie();
-                        VoilerBoutons(0, 2);
-                        CurrentGameState = GameState.EnJeu;
-                    }
+                switch (CurrentGameState)
+                {
+                    case GameState.MenuPrincipal:
 
-                    if (B2.Clicked == true)
-                    {
-                        CurrentGameState = GameState.Options;
-                        VoilerBoutons(0, 2);
-                        AfficherBoutons(2, 5);
-                    }
-                    break;
-
-                case GameState.Options:
-
-                    if (B3.Clicked == true)
-                    {
-                        CurrentGameState = GameState.ClrsÉchiquier;
-                        VoilerBoutons(2, 5);
-                        AfficherBoutons(7, 11);
-                    }
-                    if (B4.Clicked == true)
-                    {
-                        CurrentGameState = GameState.TempsPartie;
-                        VoilerBoutons(2, 5);
-                        AfficherBoutons(11, 15);
-                    }
-                    if (GestionInput.EstNouvelleTouche(Keys.Escape))
-                    {
-                        CurrentGameState = GameState.MenuPrincipal;
-                        VoilerBoutons(2, 5);
-                        AfficherBoutons(0, 2);
-                    }
-                    break;
-
-                case GameState.ClrsÉchiquier:
-                    if (B8.Clicked  || B9.Clicked || B10.Clicked == true || B11.Clicked ==true)
-                    {
-                        CurrentGameState = GameState.Options;
-                        VoilerBoutons(7,11);
-                        AfficherBoutons(2,5);
-                    }
-                    break;
-
-                case GameState.TempsPartie:
-                    if (B12.Clicked || B13.Clicked || B14.Clicked || B15.Clicked == true)
-                    {
-                        CurrentGameState = GameState.Options;
-                        VoilerBoutons(11, 15);
-                        AfficherBoutons(2, 5);
-                    }
-                    break;
-                case GameState.EnPause:
-
-                    if (GestionInput.EstNouvelleTouche(Keys.Escape) || B6.Clicked == true)
-                    {
-                        CurrentGameState = GameState.EnJeu;
-                        VoilerBoutons(5, 7);
-                        Components.Remove(Anand);
-                        
-
-                    }
-                    if (B7.Clicked == true)
-                    {
-                        CurrentGameState = GameState.MenuPrincipal;
-                        VoilerBoutons(5, 7);
-                        AfficherBoutons(0,2);
-                        PartiEnCours.Retirer();
-                        Components.Remove(UnAfficheurFPS);
-                        Components.Remove(TempsB);
-                        Components.Remove(TempsN);
-                        Components.Remove(unAfficheur3D);
-                        Components.Remove(Anand);
-                        Components.Remove(PartiEnCours.TourActuel);
-                        ArrièrePlanDéroulant.ModifierActivation();
-                        
-
-                    }
-                    break;
-                case GameState.EnJeu:
-                    
-                    
-                    if (PartiEnCours.PartieTerminée)
-                    {
-                        if (PartiEnCours.TourActuel.Couleur == "White")
-                        {
-                            Components.Add(GagnantN = new TexteAffichable(this, "Arial", VAINQUEUR_N, Color.LightGreen, 0, 3.0f, PROFONDEUR_DEFAUT));
-
-                        }
-                        else
-                        {
-                            Components.Add(GagnantB = new TexteAffichable(this, "Arial", VAINQUEUR_B, Color.LightGreen, 0, 3.0f, PROFONDEUR_DEFAUT));
-                        }
-                        Components.Remove(unAfficheur3D);
-                        Components.Add(unAfficheur3D);
-                        Components.Remove(PartiEnCours.TourActuel);
-                    }
-                    else
-                    {
                         if (GestionInput.EstNouvelleTouche(Keys.Escape))
                         {
-                            CurrentGameState = GameState.EnPause;
-                            Components.Add(Anand = new ZoneDéroulante(this, "Anand", new Rectangle(0,0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height), INTERVALLE_MAJ_STANDARD));
-                            Components.Remove(B6);
-                            Components.Remove(B7);
-                            Components.Add(B6);
-                            Components.Add(B7);
-                            AfficherBoutons(5, 7);
+                            this.Exit();
                         }
-                        float tempsÉcoulé = (float)gameTime.ElapsedGameTime.TotalSeconds;
-                        //string tempsB = MinutesRestantes.ToString() + ":" + SecondesRestantes.ToString();
-                        if(PartiEnCours.TourActuel.Couleur == "White" && CaméraJeu.aFiniTourner())
+                        if (B1.Clicked == true)
                         {
-                           
-                            TempsB.Visible = true;
-                            TempsB.Enabled = true;
-                            TempsRestantB = TempsRestantB - tempsÉcoulé;
-                            TempsN.Visible = false;
-                            TempsN.Enabled = false;
-                            string temps = ((int)(TempsRestantB / 60)).ToString() + ":" + ((int)(TempsRestantB % 60)).ToString();
-                            TempsB.ModifierTexte(temps);
+                            DéterminerSettings();
+                            CommencerPartie();
+                            VoilerBoutons(0, 2);
+                            CurrentGameState = GameState.EnJeu;
+                        }
+
+                        if (B2.Clicked == true)
+                        {
+                            CurrentGameState = GameState.Options;
+                            VoilerBoutons(0, 2);
+                            AfficherBoutons(2, 5);
+                        }
+                        break;
+
+                    case GameState.Options:
+
+                        if (B3.Clicked == true)
+                        {
+                            CurrentGameState = GameState.ClrsÉchiquier;
+                            VoilerBoutons(2, 5);
+                            AfficherBoutons(7, 11);
+                        }
+                        if (B4.Clicked == true)
+                        {
+                            CurrentGameState = GameState.TempsPartie;
+                            VoilerBoutons(2, 5);
+                            AfficherBoutons(11, 15);
+                        }
+                        if (B5.Clicked == true)
+                        {
+                            CurrentGameState = GameState.Musique;
+                            VoilerBoutons(2, 5);
+                            AfficherBoutons(15, 19);
+                        }
+                        if (GestionInput.EstNouvelleTouche(Keys.Escape))
+                        {
+                            CurrentGameState = GameState.MenuPrincipal;
+                            VoilerBoutons(2, 5);
+                            AfficherBoutons(0, 2);
+                        }
+                        break;
+
+                    case GameState.ClrsÉchiquier:
+                        if (B8.Clicked || B9.Clicked || B10.Clicked == true || B11.Clicked == true)
+                        {
+                            CurrentGameState = GameState.Options;
+                            VoilerBoutons(7, 11);
+                            AfficherBoutons(2, 5);
+                        }
+                        break;
+
+                    case GameState.TempsPartie:
+                        if (B12.Clicked || B13.Clicked || B14.Clicked || B15.Clicked == true)
+                        {
+                            CurrentGameState = GameState.Options;
+                            VoilerBoutons(11, 15);
+                            AfficherBoutons(2, 5);
+                        }
+                        break;
+                    case GameState.Musique:
+                        if (B16.Clicked || B17.Clicked || B18.Clicked || B19.Clicked == true)
+                        {
+                            CurrentGameState = GameState.Options;
+                            VoilerBoutons(15, 19);
+                            AfficherBoutons(2, 5);
+                        }
+                        break;
+
+                    case GameState.EnPause:
+
+                        if (GestionInput.EstNouvelleTouche(Keys.Escape) || B6.Clicked == true)
+                        {
+                            CurrentGameState = GameState.EnJeu;
+                            VoilerBoutons(5, 7);
+                            Components.Remove(Anand);
+
+
+                        }
+                        if (B7.Clicked == true)
+                        {
+
+                            VoilerBoutons(5, 7);
+                            QuitterPartie();
+                        }
+                        break;
+                    case GameState.EnJeu:
+
+
+                        if (PartiEnCours.PartieTerminée)
+                        {
+
+                            //float tempsÉcoulé = (float)gameTime.ElapsedGameTime.TotalSeconds;
+                            TempsÉcouléDepuisFinDePartie += tempsÉcoulé;
+                            if (!Components.Contains(Gagnant))
+                            {
+                                switch (PartiEnCours.TourActuel.Couleur)
+                                {
+                                    case "White":
+                                        Components.Add(Gagnant = new TexteAffichable(this, "Arial", VAINQUEUR_N, Color.LightGreen, 0, 3.0f, PROFONDEUR_DEFAUT -0.5f));
+                                        break;
+                                    case "Black":
+                                        Components.Add(Gagnant = new TexteAffichable(this, "Arial", VAINQUEUR_B, Color.LightGreen, 0, 3.0f, PROFONDEUR_DEFAUT -0.5f));
+                                        break;
+                                }
+                            }
+                            //Components.Remove(unAfficheur3D);
+                            Afficheur3D afficheur3DTemporaire;
+                            Components.Add(afficheur3DTemporaire = new Afficheur3D(this));
+                            if (TempsÉcouléDepuisFinDePartie >TEMPS_FIN_DE_PARTIE)
+                            {
+                                QuitterPartie();
+                                //Gagnant.Visible = false;
+                                Components.Remove(Gagnant);
+                                Components.Remove(afficheur3DTemporaire);
+                                TempsÉcouléDepuisFinDePartie = 0;
+                            }
+
 
                         }
                         else
                         {
-                            if (CaméraJeu.aFiniTourner())
+                            //Chanson.Play();
+                            if (GestionInput.EstNouvelleTouche(Keys.P))
                             {
-                                TempsN.Visible = true;
-                                TempsN.Enabled = true;
-                                TempsRestantN = TempsRestantN - tempsÉcoulé;
-                                TempsB.Visible = false;
-                                TempsB.Enabled = false;
-                                string temps = ((int)(TempsRestantN / 60)).ToString() + ":" + ((int)(TempsRestantN % 60)).ToString();
-                                TempsN.ModifierTexte(temps);
+                                //Chanson.Stop();
+                                switch (Chanson.State)
+                                {
+                                    case SoundState.Playing:
+                                        Chanson.Pause();
+                                        break;
+                                    case SoundState.Paused:
+                                        Chanson.Resume();
+                                        break;
+                                }
                             }
-                        }
-                       
-                    }
- 
-                    
-                    break;
+                            if (GestionInput.EstNouvelleTouche(Keys.Escape))
+                            {
+                                CurrentGameState = GameState.EnPause;
+                                Components.Add(Anand = new ZoneDéroulante(this, "Anand", new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height), INTERVALLE_MAJ_STANDARD));
+                                Components.Remove(B6);
+                                Components.Remove(B7);
+                                Components.Add(B6);
+                                Components.Add(B7);
+                                AfficherBoutons(5, 7);
+                            }
+                            //float tempsÉcoulé = (float)gameTime.ElapsedGameTime.TotalSeconds;
+                            //string tempsB = MinutesRestantes.ToString() + ":" + SecondesRestantes.ToString();
+                            if (PartiEnCours.TourActuel.Couleur == "White" && CaméraJeu.aFiniTourner())
+                            {
 
+                                TempsB.Visible = true;
+                                TempsB.Enabled = true;
+                                TempsRestantB = TempsRestantB - tempsÉcoulé;
+                                TempsN.Visible = false;
+                                TempsN.Enabled = false;
+                                string temps = ((int)(TempsRestantB / 60)).ToString() + ":" + ((int)(TempsRestantB % 60)).ToString();
+                                TempsB.ModifierTexte(temps);
+
+                            }
+                            else
+                            {
+                                if (CaméraJeu.aFiniTourner())
+                                {
+                                    TempsN.Visible = true;
+                                    TempsN.Enabled = true;
+                                    TempsRestantN = TempsRestantN - tempsÉcoulé;
+                                    TempsB.Visible = false;
+                                    TempsB.Enabled = false;
+                                    string temps = ((int)(TempsRestantN / 60)).ToString() + ":" + ((int)(TempsRestantN % 60)).ToString();
+                                    TempsN.ModifierTexte(temps);
+                                }
+                            }
+                            
+                            
+                        }
+                        break;
+
+                }
+                 TempsÉcouléDepuisMAJ = 0;
             }
-          
+         
             
             base.Update(gameTime);
         }
         void CommencerPartie()
         {
+            Chanson.Play();
             CaméraJeu.ResetCaméra(PositionCaméra, CibleCaméra, OVCaméra);
-            MinutesRestantes = TempsDePartie / 60;
-            SecondesRestantes = TempsDePartie % 60;
             TempsRestantB = TempsDePartie;
             TempsRestantN = TempsDePartie;
-            TempsÉcrit = MinutesRestantes.ToString() + ":" + SecondesRestantes.ToString();
+            TempsÉcrit = ((int)(TempsDePartie / 60)).ToString() + ":" + ((int)(TempsDePartie % 60)).ToString();
 
             ArrièrePlanDéroulant.ModifierActivation();
             Components.Add(PartiEnCours = new Partie(this, TempsDePartie, NomMap, CouleursÉchiquier, OrigineÉchiquier));
@@ -558,29 +611,73 @@ namespace AtelierXNA
             VoilerBoutons(11, 15);
 
         }
+        void CréerChoixMusique()
+        {
+            int indice = 4;
+            float valeur = GraphicsDevice.Viewport.Height / indice;
+            float y = 0;
+            float x = GraphicsDevice.Viewport.Width / 2;
+            float longueur = GraphicsDevice.Viewport.Width / 5;
+            float hauteur = GraphicsDevice.Viewport.Width / (3 * indice) - 1;
+            Components.Add(B16 = new Bouton(this, "button", "Arial", tune1, new Vector2(x, y), new Vector2(2 * longueur, hauteur)));
+            y += valeur;
+            Components.Add(B17= new Bouton(this, "button", "Arial", tune2, new Vector2(x, y), new Vector2(2 * longueur, hauteur)));
+            y += valeur;
+            Components.Add(B18 = new Bouton(this, "button", "Arial", tune3, new Vector2(x, y), new Vector2(2 * longueur, hauteur)));
+            y += valeur;
+            Components.Add(B19 = new Bouton(this, "button", "Arial", tune4, new Vector2(x, y), new Vector2(2 * longueur, hauteur)));
+            ListeDesBoutons.Add(B16); //5
+            ListeDesBoutons.Add(B17); //6
+            ListeDesBoutons.Add(B18); //7 
+            ListeDesBoutons.Add(B19); //8
+            VoilerBoutons(15, 19);
+
+        }
         void DéterminerSettings()
         {
             //StreamReader sr = new StreamReader("/../../../../../Settings.txt");
             //Options de la caméra
             int indexClrÉchi = ListeDesBoutons.FindIndex(7, 4, x => (x.Clicked == true));
-            int indexTempsPartie = ListeDesBoutons.FindIndex(11,4, x => (x.Clicked == true)); 
+            int indexTempsPartie = ListeDesBoutons.FindIndex(11,4, x => (x.Clicked == true));
+            int indexMusique = ListeDesBoutons.FindIndex(15, 4, x => (x.Clicked == true));
             //int indexTemps = ListeDesBoutons.FindIndex();
 
             //Options Échiquier
             switch (indexClrÉchi)
             {
-                case 7: CouleursÉchiquier[0] = Color.White; CouleursÉchiquier[1] = Color.Gray; CouleursÉchiquier[2] = Color.Black; break;
-                case 8: CouleursÉchiquier[0] = Color.White; CouleursÉchiquier[1] = Color.Green; CouleursÉchiquier[2] = Color.Black; break;
-                case 9: CouleursÉchiquier[0] = Color.White; CouleursÉchiquier[1] = Color.Red; CouleursÉchiquier[2] = Color.Black; break;
-                case 10: CouleursÉchiquier[0] = Color.White; CouleursÉchiquier[1] = Color.Pink; CouleursÉchiquier[2] = Color.Black; break;
+                case 7: CouleursÉchiquier[0] = Color.White; CouleursÉchiquier[1] = Color.Gray; CouleursÉchiquier[2] = Color.Black; 
+                    break;
+                case 8: CouleursÉchiquier[0] = Color.White; CouleursÉchiquier[1] = Color.Green; CouleursÉchiquier[2] = Color.Black; 
+                    break;
+                case 9: CouleursÉchiquier[0] = Color.White; CouleursÉchiquier[1] = Color.Red; CouleursÉchiquier[2] = Color.Black;
+                    break;
+                case 10: CouleursÉchiquier[0] = Color.White; CouleursÉchiquier[1] = Color.Pink; CouleursÉchiquier[2] = Color.Black; 
+                    break;
             }
             switch (indexTempsPartie)
             {
-                case 11: TempsDePartie = 15 * 60; break;
-                case 12: TempsDePartie = 30 * 60; break;
-                case 13: TempsDePartie = 45 * 60; break;
-                case 14: TempsDePartie = 60 * 60; break;
+                case 11: TempsDePartie = 15 * 60; 
+                    break;
+                case 12: TempsDePartie = 30 * 60; 
+                    break;
+                case 13: TempsDePartie = 45 * 60; 
+                    break;
+                case 14: TempsDePartie = 60 * 60; 
+                    break;
             }
+            switch (indexMusique)
+            {
+                case 15: Chanson = GestionnaireDeSons.Find("the_gael").CreateInstance(); Chanson.IsLooped = true; 
+                    break;
+                case 16: Chanson = GestionnaireDeSons.Find("Mozart_Lacrimosa").CreateInstance();Chanson.IsLooped = true; 
+                    break;
+                case 17: Chanson = GestionnaireDeSons.Find("Tunak_Tunak").CreateInstance();Chanson.IsLooped = true; 
+                    break;
+                case 18: Chanson = GestionnaireDeSons.Find("Muse_Resistance").CreateInstance();Chanson.IsLooped = true; 
+                    break;
+
+            }
+            
 
         }
         
@@ -601,6 +698,32 @@ namespace AtelierXNA
                 ListeDesBoutons.ElementAt(i).Enabled = false;
             }
         }
+        void QuitterPartie()
+        {
+            CurrentGameState = GameState.MenuPrincipal;
+            AfficherBoutons(0, 2);
+            PartiEnCours.Retirer();
+            Components.Remove(UnAfficheurFPS);
+            Components.Remove(TempsB);
+            Components.Remove(TempsN);
+            Components.Remove(unAfficheur3D);
+            Components.Remove(Anand);
+            Components.Remove(PartiEnCours.TourActuel);
+            ArrièrePlanDéroulant.ModifierActivation();
+            Chanson.Stop();
+        }
+        //void RetirerMessage(TexteAffichable unTexteAffichable)
+        //{
+        //    if (GagnantB == unTexteAffichable)
+        //    {
+        //        Components.Remove(GagnantB);
+                
+        //    }
+        //    else
+        //    {
+        //        Components.Remove(GagnantN);
+        //    }
+        //}
     
     
         //void CréerInterface(string nomInterface)

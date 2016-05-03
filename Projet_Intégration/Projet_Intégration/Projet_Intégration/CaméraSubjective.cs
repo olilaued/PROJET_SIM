@@ -140,7 +140,7 @@ namespace AtelierXNA
                     GérerRotation();
                     CréerPointDeVue();
                 }
-                TempsÉcouléDepuisMAJ = 0;
+                
 
 
                 
@@ -154,7 +154,7 @@ namespace AtelierXNA
                         Compteur++;
                     }
 
-                
+                TempsÉcouléDepuisMAJ = 0;
             }
 
 
