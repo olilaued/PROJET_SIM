@@ -150,7 +150,7 @@ namespace AtelierXNA
                             }
                         }
 
-                        l.NbDéplacement--;
+                       
 
 
                         foreach (Pieces q in ListeDesPièces.FindAll(x => x.Couleur == l.Couleur))
@@ -158,7 +158,7 @@ namespace AtelierXNA
                             if (l != q && q.Position == l.Position)
                             {
                                 l.Deplacer(posIni);
-                                l.NbDéplacement--;
+                                
                             }
 
 
@@ -170,7 +170,7 @@ namespace AtelierXNA
                                 if ((r.Centre.X - posIni.X != 0) && (r.Centre.Z - posIni.Z != 0))
                                 {
                                     l.Deplacer(posIni);
-                                    l.NbDéplacement--;
+                                    
                                 }
                             }
 
@@ -183,7 +183,7 @@ namespace AtelierXNA
                         if (l.Nom == "/king" && Math.Abs(r.Centre.Z - posIni.Z) > Partie.LONGUEUR_CASE)
                         {
                             l.Deplacer(posIni);
-                            l.NbDéplacement--;
+                            
 
                         }
                         if (!EstEnEchec(ListeDesCases, ListeDesPièces, l.Couleur))
@@ -198,11 +198,7 @@ namespace AtelierXNA
                         {
                             laPiece.Deplacer(posPiece);
                         }
-                        l.NbDéplacement--;
-                        if (l.NbDéplacement == 0)
-                        {
-                            l.EstPremierMove = true;
-                        }
+                       
 
 
 
@@ -216,11 +212,7 @@ namespace AtelierXNA
             return t;
 
 
-            if (t == false)
-            {
-                //  this.Game.Exit();
-            }
-            return t;
+           
 
         }
 
@@ -315,6 +307,13 @@ namespace AtelierXNA
         {
             return (Position == Position2);
         }
+        private void SetÉtat ()
+        {
+            foreach (Pieces v in ListeDesPièces)
+            {
+                v.PosIni = v.Position;
+            }
+        }
         private bool EstValidePionSeul(Cases A, Cases B)
         {
             return (CaseB.Centre.Z - CaseA.Centre.Z != 0);
@@ -324,6 +323,10 @@ namespace AtelierXNA
             PièceA.Deplacer(CaseA.Centre);
             PièceB.Deplacer(CaseB.Centre);
             Compteur--;
+           
+            //
+            
+            //
             ResetCouleur();
 
         }
@@ -331,6 +334,8 @@ namespace AtelierXNA
         {
             PièceA.Deplacer(CaseA.Centre);
             Compteur--;
+           
+            //
             ResetCouleur();
 
         }
@@ -383,7 +388,7 @@ namespace AtelierXNA
             bool aBouger = false;
             foreach (Pieces c in ListeDesPièces.FindAll(x => x.Nom == "/rook" && x.Couleur == PièceA.Couleur && x.EstPremierMove == true))
             {
-                if (PièceA.EstPremierMove && r == true)
+                if (PièceA.EstPremierMove == true && r == true)
                 {
                     if (c.Position == PièceA.Position + new Vector3(0, 0, Partie.LONGUEUR_CASE))
                     {
@@ -497,6 +502,7 @@ namespace AtelierXNA
 
                                 if (CaseA != null && CaseB != null)
                                 {
+                                    SetÉtat();
 
                                     foreach (Pieces b in ListeDesPièces)
                                     {
@@ -527,6 +533,7 @@ namespace AtelierXNA
                                                         {
                                                             PièceA.Deplacer(CaseA.Centre);
                                                             Compteur--;
+                                                           
                                                             ResetCouleur();
 
 
@@ -555,6 +562,7 @@ namespace AtelierXNA
                                                         {
                                                             PièceA.Deplacer(CaseA.Centre);
                                                             Compteur--;
+                                                           
                                                             ResetCouleur();
 
 
@@ -600,6 +608,7 @@ namespace AtelierXNA
                                                             if (Math.Abs(CaseB.Centre.Z - CaseA.Centre.Z) > Partie.LONGUEUR_CASE)
                                                             {
                                                                 ResetPièces(PièceA, PièceB);
+                                                               
                                                             }
                                                         }
 
@@ -698,22 +707,27 @@ namespace AtelierXNA
                                     //      //  NbPiece--;
                                     //    }
                                     //}
+                                    //foreach (Pieces g in ListeDesPièces.FindAll(x => x.Nom == "/rook" || x.Nom == "/king" || x.Nom == "/pawn"))
+                                    //{
+                                    //    if (g.NbDéplacement == 1)
+                                    //    {
+                                    //        g.EstPremierMove = false;
+                                    //    }
+                                    //}
+
+
+
+
                                     foreach (Pieces g in ListeDesPièces.FindAll(x => x.Nom == "/rook" || x.Nom == "/king" || x.Nom == "/pawn"))
                                     {
-                                        if (g.NbDéplacement == 1)
+                                        if (g.Position != g.PosIni)
                                         {
                                             g.EstPremierMove = false;
                                         }
                                     }
 
+
                                    
-
-                                  
-
-
-
-
-
 
 
                                 }
@@ -734,7 +748,9 @@ namespace AtelierXNA
 
                             }
                             JouerSons();
-                            
+
+                           
+
 
                         }
 

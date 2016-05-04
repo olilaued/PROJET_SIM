@@ -255,19 +255,19 @@ namespace AtelierXNA
 
         private void GestionClavier()
         {
-            //if (GestionInput.EstNouvelleTouche(Keys.Z))
-            //{
-            //   EstEnZoom = !EstEnZoom;
-            //}
-            if (GestionInput.EstNouvelleTouche(Keys.P))
-            {
+        //    //if (GestionInput.EstNouvelleTouche(Keys.Z))
+        //    //{
+        //    //   EstEnZoom = !EstEnZoom;
+        //    //}
+        //    if (GestionInput.EstNouvelleTouche(Keys.P))
+        //    //{
 
-                StreamWriter sw = File.CreateText("C:/Users/Tristan/Documents/GitHub/PROJET_SIM/infoCaméra.txt");
-                sw.WriteLine(Position.ToString());
-                sw.WriteLine((Direction + Position).ToString());
-                sw.WriteLine(OrientationVerticale.ToString());
-                sw.Close();
-            }
+        //    //    StreamWriter sw = File.CreateText("C:/Users/Tristan/Documents/GitHub/PROJET_SIM/infoCaméra.txt");
+        //    //    sw.WriteLine(Position.ToString());
+        //    //    sw.WriteLine((Direction + Position).ToString());
+        //    //    sw.WriteLine(OrientationVerticale.ToString());
+        //    //    sw.Close();
+        //    //}
 
         }
     }

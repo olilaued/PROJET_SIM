@@ -22,7 +22,8 @@ namespace AtelierXNA
          Model Modèle3D { get; set; }
          public string Couleur { get; set; }
          public bool EstPremierMove { get; set; }
-         public int NbDéplacement { get; set; }
+        
+         public Vector3 PosIni { get; set; }
          //public Vector3 Position {get;set;}
             
         
@@ -62,7 +63,9 @@ namespace AtelierXNA
             this.Game.Components.Add(this);
             this.Visible = false;
             EstPremierMove = true;
-            NbDéplacement = 0;
+            
+            PosIni = positioninitiale;
+            
            
             //TODO: Construct any child components here
         }
@@ -106,7 +109,7 @@ namespace AtelierXNA
         }
          public void Deplacer(Vector3 destination)
         {
-            NbDéplacement++;
+          
             Position = destination;
            
              
@@ -115,6 +118,7 @@ namespace AtelierXNA
            
            this.Game.Components.Remove(this);
            this.Game.Components.Add(this);
+           
 
       }
          public void Sortir(float nbSortiesBlanc,float nbSortiesNoir)
