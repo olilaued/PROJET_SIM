@@ -148,6 +148,7 @@ namespace AtelierXNA
             IsMouseVisible = true;
             IsFixedTimeStep = true;
             PériphériqueGraphique.SynchronizeWithVerticalRetrace = false;
+            PériphériqueGraphique.IsFullScreen = true;
             PériphériqueGraphique.ApplyChanges();
         }
 
@@ -395,7 +396,7 @@ namespace AtelierXNA
                             TempsÉcouléDepuisFinDePartie += tempsÉcoulé;
                             if (!Components.Contains(Gagnant))
                             {
-                                switch (PartiEnCours.TourActuel.Couleur)
+                                switch (PartiEnCours.TourActuel.AutreCouleur)
                                 {
                                     case "White":
                                         Components.Add(Gagnant = new TexteAffichable(this, "Arial", VAINQUEUR_N, Color.LightGreen, 0, 3.0f, PROFONDEUR_DEFAUT -0.5f));
