@@ -163,20 +163,12 @@ namespace AtelierXNA
         }
         public void TournerCaméra()
         {
-
-
-            //  for (float i = 0; i < MathHelper.Pi; i += MathHelper.Pi / 10000)
-            {
-
-                Position = Vector3.Transform(Position - Cible, Matrix.CreateFromAxisAngle(new Vector3(0, 1, 0), MathHelper.Pi / TEMPS_PIVOT)) + Cible;
-
-                //Vue = Matrix.CreateLookAt(Position, Cible, OrientationVerticale);
+            
+                Position = Vector3.Transform(Position - Cible, Matrix.CreateFromAxisAngle(new Vector3(0, 1, 0), MathHelper.Pi / TEMPS_PIVOT)) + Cible;               
                 CréerPointDeVue(Position, Cible, Vector3.Up);
-
-
                 Compteur++;
 
-            }
+            
         }
        public void ResetCaméra(Vector3 position, Vector3 cible, Vector3 ovcaméra)
         {
