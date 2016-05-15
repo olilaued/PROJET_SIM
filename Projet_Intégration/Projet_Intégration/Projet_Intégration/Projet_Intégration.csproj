@@ -93,7 +93,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Pièces\Reine.cs" />
     <Compile Include="Pièces\Roi.cs" />
-    <Compile Include="Terrain.cs" />
     <Compile Include="TexteAffichable.cs" />
     <Compile Include="Tour.cs" />
     <Compile Include="Pièces\Tours.cs" />
@@ -134,9 +133,7 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Gestion\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />
   <!--
