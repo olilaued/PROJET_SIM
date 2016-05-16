@@ -12,9 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace AtelierXNA
 {
-    /// <summary>
-    /// This is a game component that implements IUpdateable.
-    /// </summary>
+    
     public class Tour : Microsoft.Xna.Framework.GameComponent
     {
        
@@ -109,7 +107,7 @@ namespace AtelierXNA
             {
                 Checkmate_Sound.Play();
             }
-            if (EstEnEchec(ListeDesCases, ListeDesPièces, AutreCouleur))
+            if (EstEnEchec(AutreCouleur))
             {
                 Check_Sound.Play();
 
@@ -183,7 +181,7 @@ namespace AtelierXNA
 
                         }
                         //ON VÉRIFIE SI LE JOUEUR NE SERAIT PLUS EN ÉCHEC APRÈS AVOIR JOUÉ CE COUP
-                        if (!EstEnEchec(ListeDesCases, ListeDesPièces, l.Couleur))
+                        if (!EstEnEchec(l.Couleur))
                         {
 
                             t = false;
@@ -209,7 +207,7 @@ namespace AtelierXNA
 
         }
 
-        private bool EstEnEchec(List<Cases> listeCases, List<Pieces> listePieces, string CouleurDuRoi)
+        private bool EstEnEchec(string CouleurDuRoi)
         {
             bool condition = false;
             //ON TROUVE LE ROI DE LA COULEUR QUI PEUT ÊTRE ÉCHEC
@@ -383,7 +381,7 @@ namespace AtelierXNA
             {
                 //ON VÉRIFIE SI LE ROI PASSE PAR UNE CASE SUR LAQUELLE IL EST ÉCHEC LORSQU'IL ESSAIE DE ROQUER
                 PièceA.Deplacer(CaseA.Centre + i * (CaseB.Centre - CaseA.Centre));
-                if (EstEnEchec(ListeDesCases, ListeDesPièces, PièceA.Couleur))
+                if (EstEnEchec(PièceA.Couleur))
                 {
                     r = false;
                 }
@@ -549,7 +547,7 @@ namespace AtelierXNA
                                                     if (PièceA.Nom == "/king")
                                                     {
                                                         //ON VÉRIFIE SI LE JOUEUR ESSAIE DE ROQUER
-                                                        if (Math.Abs(CaseB.Centre.Z - CaseA.Centre.Z) > Partie.LONGUEUR_CASE && (!EstEnEchec(ListeDesCases, ListeDesPièces, PièceA.Couleur)))
+                                                        if (Math.Abs(CaseB.Centre.Z - CaseA.Centre.Z) > Partie.LONGUEUR_CASE && (!EstEnEchec( PièceA.Couleur)))
                                                         {
                                                             GèrerRook();
                                                         }
@@ -559,7 +557,7 @@ namespace AtelierXNA
                                                     if (!EstPropriétaire(PièceA.Position, CaseA.Centre))
                                                     {
                                                         // SI pièceA A BOUGÉ, ON VÉRIFIE SI LE JOUEUR SE MET LUI-MÊME EN ÉCHEC
-                                                        if (EstEnEchec(ListeDesCases, ListeDesPièces, Couleur))
+                                                        if (EstEnEchec(Couleur))
                                                         {
                                                             //ON REMET LA PIÈCE À SA POSITION INITIALE CAR LE MOUVEMENT EST INVALIDE (SE MET EN ÉCHEC)
                                                             PièceA.Deplacer(CaseA.Centre);
@@ -620,7 +618,7 @@ namespace AtelierXNA
 
 
 
-                                                        if (EstEnEchec(ListeDesCases, ListeDesPièces, Couleur))
+                                                        if (EstEnEchec(Couleur))
                                                         {
                                                            //ON RESET LES PIÈCES SI LE JOUEUR S'EST MIS EN ÉCHEC
                                                             ResetPièces(PièceA, PièceB);
