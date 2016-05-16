@@ -32,7 +32,7 @@ namespace AtelierXNA
         Vector2 Origine { get; set; }
         Vector2 Dimensions { get; set; }
         public bool Clicked { get; set; }
-        string clickText = "Button was Clicked!";
+       
 
         public Bouton(Game game,string nomTexture, string nomFont, string texte, Vector2 origine, Vector2 dimensions)
             :base(game)
@@ -49,7 +49,7 @@ namespace AtelierXNA
         {
             Clicked = false;
             
-          //  GestionSprites = Game.Services.GetService(typeof(SpriteBatch)) as SpriteBatch;
+         
             
             GestionInput = Game.Services.GetService(typeof(InputManager)) as InputManager;
             GestionnaireDeTextures = Game.Services.GetService(typeof(RessourcesManager<Texture2D>)) as RessourcesManager<Texture2D>;
@@ -64,8 +64,7 @@ namespace AtelierXNA
             Image = GestionnaireDeTextures.Find(NomTexture);
             Font = GestionnaireDeFonts.Find(NomFont);
             Vector2 size = Font.MeasureString(Texte);
-            //int longueur = GraphicsDevice.Viewport.Width / 5;
-           // int hauteur = GraphicsDevice.Viewport.Width / 8;
+           
             Location = new Rectangle((int)Origine.X - (int)Dimensions.X/2, (int)Origine.Y + (int)(Dimensions.Y/2), (int)Dimensions.X , (int)Dimensions.Y);
             TexteLocation = new Vector2(Location.X + ((Location.Width / 2) - (size.X / 2)),Location.Y + ((Location.Height / 2) - (size.Y / 2)));
            
@@ -123,11 +122,7 @@ namespace AtelierXNA
 
             GestionSprites.DrawString(Font,Texte,TexteLocation,Color.Black);
 
-            if (Clicked)
-            {
-                Vector2 position = new Vector2(10, 75);
-                GestionSprites.DrawString(Font,clickText,position,Color.White);
-            }
+            
 
             GestionSprites.End();
             

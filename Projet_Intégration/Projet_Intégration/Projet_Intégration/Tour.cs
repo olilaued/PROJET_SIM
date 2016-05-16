@@ -677,7 +677,7 @@ namespace AtelierXNA
                                     }
                                     if (a == ListeDesPièces[NbPiece - 1])
                                     {
-                                        //LE JOUEUR A CLICKÉ A PRIS UNE CASE VIDE COMME caseA, ON MET DONC LA caseB COMME ÉTANT caseA
+                                        //LE JOUEUR A PRIS UNE CASE VIDE COMME caseA, ON MET DONC LA caseB COMME ÉTANT caseA
                                         ResetCouleur();
                                         if (CaseB != null)
                                         {
@@ -714,7 +714,6 @@ namespace AtelierXNA
                             if (k != p)
                             {
                                 //ON VÉRIFIE À L'AIDE DU COMPTEUR SI LE COUP A ÉTÉ JOUÉ, ON FAIT TOURNER LA CAMÉRA ET ON JOUE LE SON DE DÉPLACEMENT
-
                                
                                 CaméraJeu.Compteur = 0;
                                 Chess_Hit_Sound.Play();

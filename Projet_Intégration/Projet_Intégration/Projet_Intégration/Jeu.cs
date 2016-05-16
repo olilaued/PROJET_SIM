@@ -18,7 +18,6 @@ namespace AtelierXNA
     public class Jeu : Microsoft.Xna.Framework.Game
     {
 
-        public static bool EstVisible { get; set; }
         const float INTERVALLE_CALCUL_FPS = 1f;
         const float INTERVALLE_MAJ_STANDARD = 1f / 60f;
         const float PROFONDEUR_DEFAUT = 0.5f;
@@ -26,8 +25,8 @@ namespace AtelierXNA
         const string VAINQUEUR_N = "LES NOIRS L'EMPORTENT!";
         const string VAINQUEUR_B = "LES BLANCS L'EMPORTENT!";
         
-        float Bordures { get; set; }
-        public int Index { get; set; }
+        
+        
         
         GraphicsDeviceManager PériphériqueGraphique { get; set; }
         SpriteBatch GestionSprites { get; set; }
@@ -35,7 +34,6 @@ namespace AtelierXNA
         RessourcesManager<SpriteFont> GestionnaireDeFonts { get; set; }
         RessourcesManager<Texture2D> GestionnaireDeTextures { get; set; }
         RessourcesManager<Model> GestionnaireDeModèles { get; set; }
-        RessourcesManager<Effect> GestionnaireDeShaders { get; set; }
         RessourcesManager<SoundEffect> GestionnaireDeSons { get; set; }
 
         InputManager GestionInput { get; set; }
@@ -57,15 +55,14 @@ namespace AtelierXNA
         Vector3 CibleCaméra { get; set; }
         Vector3 OVCaméra { get; set; }
         public enum GameState { MenuPrincipal, Options,Musique, ClrsÉchiquier, TempsPartie, EnJeu, EnPause}
-       public static GameState CurrentGameState { get; set; }
+        public static GameState CurrentGameState { get; set; }
         ZoneDéroulante ArrièrePlanDéroulant { get; set; }
         ZoneDéroulante Anand { get; set; }
         TexteAffichable Gagnant { get; set; }
-        //TexteAffichable GagnantB { get; set; }
         TexteAffichable TempsB { get; set; }
         TexteAffichable TempsN { get; set; }
         SoundEffectInstance Chanson { get; set; }
-        SoundState ÉtatAntérieurChanson { get; set; }
+        
         
         
         // Menu principal
@@ -148,16 +145,10 @@ namespace AtelierXNA
             IsMouseVisible = true;
             IsFixedTimeStep = true;
             PériphériqueGraphique.SynchronizeWithVerticalRetrace = false;
-            PériphériqueGraphique.IsFullScreen = true;
             PériphériqueGraphique.ApplyChanges();
         }
 
-        /// <summary>
-        /// Allows the game to perform any initialization it needs to before starting to run.
-        /// This is where it can query for any required services and load any non-graphic
-        /// related content.  Calling base.Initialize will enumerate through any components
-        /// and initialize them as well.
-        /// </summary>
+        
         protected override void Initialize()
         {
             
@@ -167,7 +158,7 @@ namespace AtelierXNA
             NomMap = "Pub/club_map_2";
             OrigineÉchiquier = new Vector3(163.20f,55.28f,-74.17f);
            
-           // OrigineÉchiquier = new Vector3(0, 15, 0);
+           
            
             Vector3 positionObjet = new Vector3(0, 0, 0);
             Vector3 rotationObjet = new Vector3(0, 0, 0);
@@ -189,9 +180,8 @@ namespace AtelierXNA
             GestionnaireDeFonts = new RessourcesManager<SpriteFont>(this, "Fonts");
             GestionnaireDeTextures = new RessourcesManager<Texture2D>(this, "Textures");
             GestionnaireDeModèles = new RessourcesManager<Model>(this, "Models");
-            GestionnaireDeShaders = new RessourcesManager<Effect>(this, "Effects");
-           GestionnaireDeSons = new RessourcesManager<SoundEffect>(this, "Sons");
-           // SoundEffect blabla = GestionnaireDeSons.Find("blabla.wav");
+            GestionnaireDeSons = new RessourcesManager<SoundEffect>(this, "Sons");
+           
            
             
            
@@ -213,20 +203,13 @@ namespace AtelierXNA
             Services.AddService(typeof(RessourcesManager<SpriteFont>), GestionnaireDeFonts);
             Services.AddService(typeof(RessourcesManager<Texture2D>), GestionnaireDeTextures);
             Services.AddService(typeof(RessourcesManager<Model>), GestionnaireDeModèles);
-            Services.AddService(typeof(RessourcesManager<Effect>), GestionnaireDeShaders);
             Services.AddService(typeof(RessourcesManager<SoundEffect>), GestionnaireDeSons);          
             Services.AddService(typeof(InputManager), GestionInput);
             Services.AddService(typeof(Caméra), CaméraJeu);
             Services.AddService(typeof(SpriteBatch), GestionSprites);
 
 
-            //CréerInterface("MenuPrincipal"); // 0, 1
-            //CréerInterface("Options"); // 2,3,4
-            //CréerInterface("MenuPause"); // 5,6,
-            //CréerInterface("ClrsÉchiquier"); //7,8,9,10
-            //CréerInterface("TempsPartie"); // 11,12,13,14
-            //CréerInterface("Musique"); //15,16
-            //VoilerBoutons(2, 14);
+           
             CréerMP();
             CréerOptions();
             CréerChoixPause();
@@ -234,23 +217,11 @@ namespace AtelierXNA
             CréerChoixTemps();
             CréerChoixMusique();
             
-            //unAfficheur3D.Visible = false;
+            
             
             //******************* MUSIQUE
             
-             Chanson = GestionnaireDeSons.Find("Tunak_Tunak").CreateInstance();
-            //Chanson.IsLooped = true;
-            //Chanson1.Play();
-            
-            
-
-           
-            
-            
-
-           
-
-            
+             Chanson = GestionnaireDeSons.Find("Mozart_Lacrimosa").CreateInstance();
 
             base.Initialize();
            
@@ -258,32 +229,15 @@ namespace AtelierXNA
         }
         
 
-        /// <summary>
-        /// LoadContent will be called once per game and is the place to load
-        /// all of your content.
-        /// </summary>
+        
         protected override void LoadContent()
         {
            
             base.LoadContent();
-            // TODO: use this.Content to load your game content here
+            
         }
 
-        /// <summary>
-        /// UnloadContent will be called once per game and is the place to unload
-        /// all content.
-        /// </summary>
-        protected override void UnloadContent()
-        {
-            // TODO: Unload any non ContentManager content here
-        }
-         
-
-        /// <summary>
-        /// Allows the game to run logic such as updating the world,
-        /// checking for collisions, gathering input, and playing audio.
-        /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
+       
         protected override void Update(GameTime gameTime)
         {
 
@@ -392,11 +346,10 @@ namespace AtelierXNA
                         if (PartiEnCours.PartieTerminée)
                         {
 
-                            //float tempsÉcoulé = (float)gameTime.ElapsedGameTime.TotalSeconds;
                             TempsÉcouléDepuisFinDePartie += tempsÉcoulé;
                             if (!Components.Contains(Gagnant))
                             {
-                                switch (PartiEnCours.TourActuel.AutreCouleur)
+                                switch (PartiEnCours.TourActuel.Couleur)
                                 {
                                     case "White":
                                         Components.Add(Gagnant = new TexteAffichable(this, "Arial", VAINQUEUR_N, Color.LightGreen, 0, 3.0f, PROFONDEUR_DEFAUT -0.5f));
@@ -406,13 +359,12 @@ namespace AtelierXNA
                                         break;
                                 }
                             }
-                            //Components.Remove(unAfficheur3D);
+                            
                             Afficheur3D afficheur3DTemporaire;
                             Components.Add(afficheur3DTemporaire = new Afficheur3D(this));
                             if (TempsÉcouléDepuisFinDePartie >TEMPS_FIN_DE_PARTIE)
                             {
                                 QuitterPartie();
-                                //Gagnant.Visible = false;
                                 Components.Remove(Gagnant);
                                 Components.Remove(afficheur3DTemporaire);
                                 TempsÉcouléDepuisFinDePartie = 0;
@@ -422,10 +374,8 @@ namespace AtelierXNA
                         }
                         else
                         {
-                            //Chanson.Play();
                             if (GestionInput.EstNouvelleTouche(Keys.P))
                             {
-                                //Chanson.Stop();
                                 switch (Chanson.State)
                                 {
                                     case SoundState.Playing:
@@ -446,16 +396,12 @@ namespace AtelierXNA
                                 Components.Add(B7);
                                 AfficherBoutons(5, 7);
                             }
-                            //float tempsÉcoulé = (float)gameTime.ElapsedGameTime.TotalSeconds;
-                            //string tempsB = MinutesRestantes.ToString() + ":" + SecondesRestantes.ToString();
+                            
                             if (PartiEnCours.TourActuel.Couleur == "White" && CaméraJeu.aFiniTourner())
                             {
-
-                                TempsB.Visible = true;
-                                TempsB.Enabled = true;
+                               
                                 TempsRestantB = TempsRestantB - tempsÉcoulé;
-                                TempsN.Visible = false;
-                                TempsN.Enabled = false;
+                                ChangerTemps("W");
                                 string temps = ((int)(TempsRestantB / 60)).ToString() + ":" + ((int)(TempsRestantB % 60)).ToString();
                                 TempsB.ModifierTexte(temps);
 
@@ -464,13 +410,11 @@ namespace AtelierXNA
                             {
                                 if (CaméraJeu.aFiniTourner())
                                 {
-                                    TempsN.Visible = true;
-                                    TempsN.Enabled = true;
                                     TempsRestantN = TempsRestantN - tempsÉcoulé;
-                                    TempsB.Visible = false;
-                                    TempsB.Enabled = false;
+                                    ChangerTemps("N");
                                     string temps = ((int)(TempsRestantN / 60)).ToString() + ":" + ((int)(TempsRestantN % 60)).ToString();
                                     TempsN.ModifierTexte(temps);
+
                                 }
                             }
                             
@@ -501,10 +445,7 @@ namespace AtelierXNA
             Components.Add(unAfficheur3D  = new Afficheur3D(this));
         }
 
-        /// <summary>
-        /// This is called when the game should draw itself.
-        /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
+       
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
@@ -522,8 +463,8 @@ namespace AtelierXNA
             Components.Add(B1 = new Bouton(this, "button", "Arial", text1, new Vector2(x, y), new Vector2(2 * longueur, hauteur/2)));
             y += valeur;
             Components.Add(B2 = new Bouton(this, "button", "Arial", text2, new Vector2(x, y), new Vector2(longueur, hauteur/2)));
-            ListeDesBoutons.Add(B1); //0
-            ListeDesBoutons.Add(B2); //1
+            ListeDesBoutons.Add(B1); 
+            ListeDesBoutons.Add(B2); 
         }
 
         void CréerOptions()
@@ -539,9 +480,9 @@ namespace AtelierXNA
             Components.Add(B4 = new Bouton(this, "button", "Arial", text4, new Vector2(x, y), new Vector2(2 * longueur, hauteur)));
             y += valeur;
             Components.Add(B5 = new Bouton(this, "button", "Arial", text5, new Vector2(x, y), new Vector2(2 * longueur, hauteur)));
-            ListeDesBoutons.Add(B3); //2
-            ListeDesBoutons.Add(B4); //3
-            ListeDesBoutons.Add(B5); //4
+            ListeDesBoutons.Add(B3); 
+            ListeDesBoutons.Add(B4); 
+            ListeDesBoutons.Add(B5); 
             VoilerBoutons(2, 5);
 
         }
@@ -564,10 +505,10 @@ namespace AtelierXNA
             Components.Add(B10 = new Bouton(this, "button", "Arial", clr3, new Vector2(x, y), new Vector2(2 * longueur, hauteur)));
             y += valeur;
             Components.Add(B11 = new Bouton(this, "button", "Arial", clr4, new Vector2(x, y), new Vector2(2 * longueur, hauteur)));
-            ListeDesBoutons.Add(B8); //5
-            ListeDesBoutons.Add(B9); //6
-            ListeDesBoutons.Add(B10); //7 
-            ListeDesBoutons.Add(B11); //8
+            ListeDesBoutons.Add(B8); 
+            ListeDesBoutons.Add(B9); 
+            ListeDesBoutons.Add(B10);  
+            ListeDesBoutons.Add(B11); 
             VoilerBoutons(7, 11);
 
         }
@@ -584,8 +525,8 @@ namespace AtelierXNA
             y += valeur;
             Components.Add(B7 = new Bouton(this, "button", "Arial", msgPause2, new Vector2(x, y), new Vector2(2 * longueur, hauteur/3)));
            
-            ListeDesBoutons.Add(B6); //7 
-            ListeDesBoutons.Add(B7); //8
+            ListeDesBoutons.Add(B6); 
+            ListeDesBoutons.Add(B7); 
             VoilerBoutons(5,7);
 
         }
@@ -627,54 +568,77 @@ namespace AtelierXNA
             Components.Add(B18 = new Bouton(this, "button", "Arial", tune3, new Vector2(x, y), new Vector2(2 * longueur, hauteur)));
             y += valeur;
             Components.Add(B19 = new Bouton(this, "button", "Arial", tune4, new Vector2(x, y), new Vector2(2 * longueur, hauteur)));
-            ListeDesBoutons.Add(B16); //5
-            ListeDesBoutons.Add(B17); //6
-            ListeDesBoutons.Add(B18); //7 
-            ListeDesBoutons.Add(B19); //8
+            ListeDesBoutons.Add(B16); 
+            ListeDesBoutons.Add(B17); 
+            ListeDesBoutons.Add(B18); 
+            ListeDesBoutons.Add(B19); 
             VoilerBoutons(15, 19);
 
         }
         void DéterminerSettings()
         {
-            //StreamReader sr = new StreamReader("/../../../../../Settings.txt");
-            //Options de la caméra
+            
             int indexClrÉchi = ListeDesBoutons.FindIndex(7, 4, x => (x.Clicked == true));
             int indexTempsPartie = ListeDesBoutons.FindIndex(11,4, x => (x.Clicked == true));
             int indexMusique = ListeDesBoutons.FindIndex(15, 4, x => (x.Clicked == true));
-            //int indexTemps = ListeDesBoutons.FindIndex();
+            
 
-            //Options Échiquier
+            
             switch (indexClrÉchi)
             {
-                case 7: CouleursÉchiquier[0] = Color.White; CouleursÉchiquier[1] = Color.Gray; CouleursÉchiquier[2] = Color.Black; 
+                case 7: 
+                    CouleursÉchiquier[0] = Color.White; 
+                    CouleursÉchiquier[1] = Color.Gray; 
+                    CouleursÉchiquier[2] = Color.Black; 
                     break;
-                case 8: CouleursÉchiquier[0] = Color.White; CouleursÉchiquier[1] = Color.Green; CouleursÉchiquier[2] = Color.Black; 
+                case 8: 
+                    CouleursÉchiquier[0] = Color.White; 
+                    CouleursÉchiquier[1] = Color.Green; 
+                    CouleursÉchiquier[2] = Color.Black; 
                     break;
-                case 9: CouleursÉchiquier[0] = Color.White; CouleursÉchiquier[1] = Color.Red; CouleursÉchiquier[2] = Color.Black;
+                case 9: 
+                    CouleursÉchiquier[0] = Color.White; 
+                    CouleursÉchiquier[1] = Color.Red; 
+                    CouleursÉchiquier[2] = Color.Black;
                     break;
-                case 10: CouleursÉchiquier[0] = Color.White; CouleursÉchiquier[1] = Color.Pink; CouleursÉchiquier[2] = Color.Black; 
+                case 10: 
+                    CouleursÉchiquier[0] = Color.White; 
+                    CouleursÉchiquier[1] = Color.Pink; 
+                    CouleursÉchiquier[2] = Color.Black; 
                     break;
             }
             switch (indexTempsPartie)
             {
-                case 11: TempsDePartie = 15 * 60; 
+                case 11: 
+                    TempsDePartie = 15 * 60; 
                     break;
-                case 12: TempsDePartie = 30 * 60; 
+                case 12: 
+                    TempsDePartie = 30 * 60; 
                     break;
-                case 13: TempsDePartie = 45 * 60; 
+                case 13: 
+                    TempsDePartie = 45 * 60; 
                     break;
-                case 14: TempsDePartie = 60 * 60; 
+                case 14: 
+                    TempsDePartie = 60 * 60; 
                     break;
             }
             switch (indexMusique)
             {
-                case 15: Chanson = GestionnaireDeSons.Find("the_gael").CreateInstance(); Chanson.IsLooped = true; 
+                case 15: 
+                    Chanson = GestionnaireDeSons.Find("the_gael").CreateInstance(); 
+                    Chanson.IsLooped = true; 
                     break;
-                case 16: Chanson = GestionnaireDeSons.Find("Mozart_Lacrimosa").CreateInstance();Chanson.IsLooped = true; 
+                case 16: 
+                    Chanson = GestionnaireDeSons.Find("Mozart_Lacrimosa").CreateInstance();
+                    Chanson.IsLooped = true; 
                     break;
-                case 17: Chanson = GestionnaireDeSons.Find("Tunak_Tunak").CreateInstance();Chanson.IsLooped = true; 
+                case 17: 
+                    Chanson = GestionnaireDeSons.Find("Tunak_Tunak").CreateInstance();
+                    Chanson.IsLooped = true; 
                     break;
-                case 18: Chanson = GestionnaireDeSons.Find("Muse_Resistance").CreateInstance();Chanson.IsLooped = true; 
+                case 18: 
+                    Chanson = GestionnaireDeSons.Find("Muse_Resistance").CreateInstance();
+                    Chanson.IsLooped = true; 
                     break;
 
             }
@@ -713,138 +677,26 @@ namespace AtelierXNA
             ArrièrePlanDéroulant.ModifierActivation();
             Chanson.Stop();
         }
-        //void RetirerMessage(TexteAffichable unTexteAffichable)
-        //{
-        //    if (GagnantB == unTexteAffichable)
-        //    {
-        //        Components.Remove(GagnantB);
-                
-        //    }
-        //    else
-        //    {
-        //        Components.Remove(GagnantN);
-        //    }
-        //}
-    
-    
-        //void CréerInterface(string nomInterface)
-        //{
-        //    //int nbBoutons = 0;
-        //    string message1;
-        //    string message2;
-        //    string message3;
-        //    string message4;
-        //    int x = GraphicsDevice.Viewport.Width / 2;
-        //    float y = 0;
-        //    float longueur = GraphicsDevice.Viewport.Width / 5;
-        //    float nbBoutons;
-        //    float valeur;
-        //    float hauteur;
-        //    switch (nomInterface)
-        //    {
-        //        case "MenuPrincipal":
-        //            message1 = text1;
-        //            message2 = text2;
-        //            nbBoutons = 2;
-        //            valeur = GraphicsDevice.Viewport.Height / nbBoutons;
-        //            hauteur = GraphicsDevice.Viewport.Height / (3 * nbBoutons) - 1;
+        void ChangerTemps(string couleur)
+        {
+            switch(couleur)
+            {
+                case "W": 
+                    TempsB.Visible = true;
+                    TempsB.Enabled = true;
                     
-        //            Components.Add(B1 = new Bouton(this, "button", "Arial", message1, new Vector2(x/2,y),new Vector2(2 * longueur, hauteur)));
-        //            y += valeur;
-        //            Components.Add(B2 = new Bouton(this, "button", "Arial", message2, new Vector2(x/2, y), new Vector2( longueur, hauteur)));
+                    TempsN.Visible = false;
+                    TempsN.Enabled = false;
+                    break;
+                case "N":
+                    TempsN.Visible = true;
+                    TempsN.Enabled = true;
 
-        //            ListeDesBoutons.Add(B1);
-        //            ListeDesBoutons.Add(B2);
-        //            break;
-        //        case "Options":
-        //            message1 = text3;
-        //            message2 = text4;
-        //            message3 = text5;
-        //            nbBoutons = 3;
-        //            valeur = GraphicsDevice.Viewport.Height / nbBoutons;
-        //            hauteur = GraphicsDevice.Viewport.Height / (3 * nbBoutons) - 1;
-                    
-
-        //            Components.Add(B3 = new Bouton(this, "button", "Arial", message1, new Vector2(x,y),new Vector2(2 * longueur, hauteur)));
-        //            y += valeur;
-        //            Components.Add(B4 = new Bouton(this, "button", "Arial", message2, new Vector2(x, y), new Vector2(2 * longueur, hauteur)));
-        //            y += valeur;
-        //            Components.Add(B5 = new Bouton(this, "button", "Arial", message3, new Vector2(x,y),new Vector2(2 * longueur, hauteur)));
-
-        //            ListeDesBoutons.Add(B3);
-        //            ListeDesBoutons.Add(B4);
-        //            ListeDesBoutons.Add(B5);
-        //            break;
-
-        //        case "MenuPause":
-        //            message1 = msgPause1;
-        //            message2 = msgPause2;
-        //            nbBoutons = 2;
-        //            valeur = GraphicsDevice.Viewport.Height / nbBoutons;
-        //            hauteur = GraphicsDevice.Viewport.Height / (3 * nbBoutons) - 1;
-
-        //            Components.Add(B6 = new Bouton(this, "button", "Arial", message1, new Vector2(x,y),new Vector2(2 * longueur, hauteur)));
-        //            y += valeur;
-        //            Components.Add(B7 = new Bouton(this, "button", "Arial", message2, new Vector2(x, y), new Vector2(2 * longueur, hauteur)));
-
-        //            ListeDesBoutons.Add(B6);
-        //            ListeDesBoutons.Add(B7);
-        //            break;
-
-        //        case "ClrsÉchiquier":
-        //            message1 = clr1;
-        //            message2 = clr2;
-        //            message3 = clr3;
-        //            message4 = clr4;
-        //            nbBoutons = 2;
-
-        //            valeur = GraphicsDevice.Viewport.Height / nbBoutons;
-        //            hauteur = GraphicsDevice.Viewport.Height / (3 * nbBoutons) - 1;
-                    
-
-        //            Components.Add(B8 = new Bouton(this, "button", "Arial", message1, new Vector2(x,y),new Vector2(2 * longueur, hauteur)));
-        //            y += valeur;
-        //            Components.Add(B9 = new Bouton(this, "button", "Arial", message2, new Vector2(x, y), new Vector2(2 * longueur, hauteur)));
-        //            y += valeur;
-        //            Components.Add(B10 = new Bouton(this, "button", "Arial", message3, new Vector2(x,y),new Vector2(2 * longueur, hauteur)));
-        //            y += valeur;
-        //            Components.Add(B11 = new Bouton(this, "button", "Arial", message4, new Vector2(x, y), new Vector2(2 * longueur, hauteur)));
-                    
-        //            ListeDesBoutons.Add(B8);
-        //            ListeDesBoutons.Add(B9);
-        //            ListeDesBoutons.Add(B10);
-        //            ListeDesBoutons.Add(B11);
-        //            break;
-        //   case "TempsPartie":
-        //            message1 =temps1;
-        //            message2 = temps2;
-        //            message3 = temps3;
-        //            message4 = temps4;
-        //            nbBoutons = 2;
-
-        //            valeur = GraphicsDevice.Viewport.Height / nbBoutons;
-        //            hauteur = GraphicsDevice.Viewport.Height / (3 * nbBoutons) - 1;
-                    
-
-        //            Components.Add(B12 = new Bouton(this, "button", "Arial", message1, new Vector2(x,y),new Vector2(2 * longueur, hauteur)));
-        //            y += valeur;
-        //            Components.Add(B13 = new Bouton(this, "button", "Arial", message2, new Vector2(x, y), new Vector2(2 * longueur, hauteur)));
-        //            y += valeur;
-        //            Components.Add(B14 = new Bouton(this, "button", "Arial", message3, new Vector2(x,y),new Vector2(2 * longueur, hauteur)));
-        //            y += valeur;
-        //            Components.Add(B15 = new Bouton(this, "button", "Arial", message4, new Vector2(x, y), new Vector2(2 * longueur, hauteur)));
-                    
-        //            ListeDesBoutons.Add(B12);
-        //            ListeDesBoutons.Add(B13);
-        //            ListeDesBoutons.Add(B14);
-        //            ListeDesBoutons.Add(B15);
-        //            break;
-
-        //    }
-           
-            
-        //}
-        
+                    TempsB.Visible = false;
+                    TempsB.Enabled = false;
+                    break;
+            }
+        }
 
        
     }

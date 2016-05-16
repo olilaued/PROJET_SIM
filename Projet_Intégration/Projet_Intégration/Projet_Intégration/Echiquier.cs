@@ -47,26 +47,20 @@ namespace AtelierXNA
 
 
             CréerCases();
-            // TODO: Construct any child components here
+            
         }
 
-        /// <summary>
-        /// Allows the game component to perform any initialization it needs to before starting
-        /// to run.  This is where it can query for any required services and load content.
-        /// </summary>
+      
         public override void Initialize()
         {
            
           
-            // TODO: Add your initialization code here
+      
             
             base.Initialize();
         }
 
-        /// <summary>
-        /// Allows the game component to update itself.
-        /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
+       
         public override void Update(GameTime gameTime)
         {
             // TODO: Add your update code here
@@ -96,12 +90,12 @@ namespace AtelierXNA
                         uneCase = new Cases(this.Game, 1f, Vector3.Zero, position, CouleurB, CouleurContour, new Vector3(Delta.X,Delta.Y, Delta.X), 1f / 60f);
                     }
                     this.Game.Components.Add(uneCase);
-                    //uneCase.Visible = false;
+                    
                     ListeCases.Add(uneCase);
                     Variation++;
                     b -= Delta.X;
                 } 
-                //position = new Vector3(a, Origine.Y, b);
+                
                 b = Origine.X;
                 a += Delta.X;
 

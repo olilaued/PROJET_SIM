@@ -12,9 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace AtelierXNA
 {
-    /// <summary>
-    /// This is a game component that implements IUpdateable.
-    /// </summary>
+  
     public class TexteAffichable : Microsoft.Xna.Framework.DrawableGameComponent
     {
         string NomFont {get; set;}
@@ -110,10 +108,7 @@ namespace AtelierXNA
 
  	
 
-        /// <summary>
-        /// Allows the game component to perform any initialization it needs to before starting
-        /// to run.  This is where it can query for any required services and load content.
-        /// </summary>
+       
         protected override void LoadContent()
         {
             base.LoadContent();
@@ -123,13 +118,10 @@ namespace AtelierXNA
             base.Update(gameTime);
         }
 
-        /// <summary>
-        /// Allows the game component to update itself.
-        /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
+      
         public override void Draw(GameTime gameTime)
         {
-            //GraphicsDevice.Clear(Color.CornflowerBlue);
+            
 
             GestionSprites.Begin();
 

@@ -82,9 +82,7 @@ namespace AtelierXNA
 
         protected override void CréerPointDeVue()
         {
-            // Méthode appelée s'il est nécessaire de recalculer la matrice de vue.
-            // Calcul et normalisation de certains vecteurs
-            // (à compléter)
+           
             Direction = Vector3.Normalize(Direction);
             Latéral = Vector3.Cross(Direction, OrientationVerticale);
             Vue = Matrix.CreateLookAt(Position, Position + Direction, OrientationVerticale);
@@ -93,10 +91,7 @@ namespace AtelierXNA
 
         protected override void CréerPointDeVue(Vector3 position, Vector3 cible, Vector3 orientation)
         {
-            // À la construction, initialisation des propriétés Position, Cible et OrientationVerticale,
-            // ainsi que le calcul des vecteur Direction, Latéral et le recalcul du vecteur OrientationVerticale
-            // permettant de calculer la matrice de vue de la caméra subjective
-            // (à compléter)
+           
             Position = position;
             Cible = cible;
             OrientationVerticale = orientation;
@@ -109,7 +104,7 @@ namespace AtelierXNA
         {
             float TempsÉcoulé = (float)gameTime.ElapsedGameTime.TotalSeconds;
             TempsÉcouléDepuisMAJ += TempsÉcoulé;
-            GestionClavier();
+            
             if (GestionInput.EstNouvelleTouche(Keys.Space))
             {
                 Locked = !Locked;
@@ -159,7 +154,7 @@ namespace AtelierXNA
 
 
             base.Update(gameTime);
-            // Compteur++;
+          
         }
         public void TournerCaméra()
         {
@@ -245,22 +240,6 @@ namespace AtelierXNA
 
         }
 
-        private void GestionClavier()
-        {
-        //    //if (GestionInput.EstNouvelleTouche(Keys.Z))
-        //    //{
-        //    //   EstEnZoom = !EstEnZoom;
-        //    //}
-        //    if (GestionInput.EstNouvelleTouche(Keys.P))
-        //    //{
-
-        //    //    StreamWriter sw = File.CreateText("C:/Users/Tristan/Documents/GitHub/PROJET_SIM/infoCaméra.txt");
-        //    //    sw.WriteLine(Position.ToString());
-        //    //    sw.WriteLine((Direction + Position).ToString());
-        //    //    sw.WriteLine(OrientationVerticale.ToString());
-        //    //    sw.Close();
-        //    //}
-
-        }
+        
     }
 }

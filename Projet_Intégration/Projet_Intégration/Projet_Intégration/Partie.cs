@@ -12,35 +12,29 @@ using Microsoft.Xna.Framework.Media;
 
 namespace AtelierXNA
 {
-    /// <summary>
-    /// This is a game component that implements IUpdateable.
-    /// </summary>
+    
     public class Partie : Microsoft.Xna.Framework.GameComponent
     {
         const float LARGEUR_ECHIQUIER = 0.3f;
         public static float LONGUEUR_ÉCHIQUIER = 15f;
         public static float LONGUEUR_CASE = LONGUEUR_ÉCHIQUIER / 8f;
-        //const float PROFONDEUR_DEFAUT = 0.5f;
-        const float SCALE_DEFAUT = 1.0f;
+        
 
-        //const string VAINQUEUR_B = "Les blancs l'emportent!";
-        //const string VAINQUEUR_N = "Les noirs l'emportent!";
-
-       public static float TempsLimite { get; set; }
-        List<Pieces> ListeDesPièces { get; set; }
-        protected List<string> ListeDesMoves { get; set; }
-        protected string Map { get; set; }
-        protected  Echiquier UnÉchiquier { get; set; }
-        protected CaméraSubjective CaméraJeu { get; set; }
-        protected float NbSortiesBlanc { get; set; }
-        protected float NbSortiesNoir { get; set; }
-        protected float TempsÉcouléDepuisMAJ { get; set; }
+        public static float TempsLimite { get; set; }
         public Tour TourActuel { get; set; }
-        ObjetDeBase Environnement {get; set;}
-        protected static Vector3[] PositionSorties { get; set; }
-        protected TexteAffichable GagnantB { get; set; }
-        protected TexteAffichable GagnantN { get; set; }
         public bool PartieTerminée {get; set;}
+        List<Pieces> ListeDesPièces { get; set; }
+        string Map { get; set; }
+        Echiquier UnÉchiquier { get; set; }
+        CaméraSubjective CaméraJeu { get; set; }
+        float NbSortiesBlanc { get; set; }
+        float NbSortiesNoir { get; set; }
+        float TempsÉcouléDepuisDébut { get; set; }
+        ObjetDeBase Environnement {get; set;}
+        static Vector3[] PositionSorties { get; set; }
+        TexteAffichable GagnantB { get; set; }
+        TexteAffichable GagnantN { get; set; }
+        
        
 
         InputManager GestionInput { get; set; }
@@ -60,23 +54,18 @@ namespace AtelierXNA
             TempsLimite = tempsLimite;
             Map = map;
         }
-        /// <summary>
-        /// Allows the game component to perform any initialization it needs to before starting
-        /// to run.  This is where it can query for any required services and load content.
-        /// </summary>
+        
         public override void Initialize()
         {
             PositionSorties = new Vector3[2];
             ListeDesPièces = new List<Pieces>();
-            TempsÉcouléDepuisMAJ = 0;
+            TempsÉcouléDepuisDébut = 0;
             NbSortiesBlanc = 0;
             NbSortiesNoir = 0;
             GestionInput = Game.Services.GetService(typeof(InputManager)) as InputManager;
             CaméraJeu = Game.Services.GetService(typeof(CaméraSubjective)) as CaméraSubjective;
             PositionSorties[0] = new Vector3(UnÉchiquier.Origine.X, UnÉchiquier.Origine.Y, UnÉchiquier.Origine.Z + Partie.LONGUEUR_ÉCHIQUIER - LONGUEUR_CASE / 3f);
             PositionSorties[1] = new Vector3(UnÉchiquier.Origine.X - LONGUEUR_ÉCHIQUIER + 2 * LONGUEUR_CASE, UnÉchiquier.Origine.Y, UnÉchiquier.Origine.Z - 2 * LONGUEUR_CASE + LONGUEUR_CASE / 3f);
-            //GagnantN = new TexteAffichable(Game, "Arial", VAINQUEUR_N, Color.LightGreen, 0, 3.0f, PROFONDEUR_DEFAUT);
-            //GagnantB = new TexteAffichable(Game, "Arial", VAINQUEUR_B, Color.LightGreen, 0, 3.0f, PROFONDEUR_DEFAUT);
             Game.Components.Add(Environnement = new ObjetDeBase(Game, Map, 0.01f, new Vector3(0, 0, 0), Vector3.Zero));
             Game.Components.Add(TourActuel = new Tour(Game,"White", UnÉchiquier.ListeCases, ListeDesPièces, NbSortiesBlanc, NbSortiesNoir));
             Environnement.Visible = false;
@@ -88,15 +77,12 @@ namespace AtelierXNA
             base.Initialize();
         }
 
-        /// <summary>
-        /// Allows the game component to update itself.
-        /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
+        
         public override void Update(GameTime gameTime)
         {
             
             float TempsÉcoulé = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            TempsÉcouléDepuisMAJ += TempsÉcoulé;
+            TempsÉcouléDepuisDébut += TempsÉcoulé;
 
             if (Jeu.CurrentGameState == Jeu.GameState.EnJeu)
             {
@@ -109,7 +95,7 @@ namespace AtelierXNA
                 }
 
 
-                if (TempsÉcouléDepuisMAJ > TempsLimite || TourActuel.PartieTerminée || TourActuel.EstMat())
+                if (TempsÉcouléDepuisDébut > TempsLimite || TourActuel.PartieTerminée || TourActuel.EstMat())
                 {
                     
                     PartieTerminée = true;
@@ -121,17 +107,6 @@ namespace AtelierXNA
                 ModifierEstVisiblePièces();
                 Environnement.Visible = false;
                 Environnement.Enabled = false;
-            }
-
-
-
-
-
-
-
-            else
-            {
-                ///code pour mode bot
             }
             base.Update(gameTime);
 
@@ -204,7 +179,6 @@ namespace AtelierXNA
            foreach (Pieces p in ListeDesPièces)
             {
                 p.Visible = !p.Visible;
-               //p.Visible = true;
             }
 
         }

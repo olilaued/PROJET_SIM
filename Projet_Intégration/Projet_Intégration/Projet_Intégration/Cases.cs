@@ -12,9 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace AtelierXNA
 {
-    /// <summary>
-    /// This is a game component that implements IUpdateable.
-    /// </summary>
+   
     public class Cases : PrimitiveDeBase
     {
         Vector3 Dimension { get; set; }
@@ -66,7 +64,7 @@ namespace AtelierXNA
             CouleurContour = couleurContour;
             Dimension = dimension;
             Delta = new Vector3(Dimension.X, Dimension.Y, Dimension.Z);
-            //Origine = new Vector3(Origine.X , - Delta.Y ,  Delta.Z );
+           
             Centre = new Vector3(positionInitiale.X + Delta.X / 2, positionInitiale.Y, positionInitiale.Z - Delta.Z / 2);
             HG = new Vector3(Centre.X - Delta.X / 2, Centre.Y, Centre.Z+Delta.Z/2);
             HD = new Vector3(Centre.X + Delta.X / 2, Centre.Y, Centre.Z+Delta.Z/2);
@@ -78,10 +76,7 @@ namespace AtelierXNA
 
         }
 
-        /// <summary>
-        /// Allows the game component to perform any initialization it needs to before starting
-        /// to run.  This is where it can query for any required services and load content.
-        /// </summary>
+       
         public override void Initialize()
         {
            SommetsA = new VertexPositionColor[NB_SOMMETS];
@@ -122,7 +117,7 @@ namespace AtelierXNA
             
             
 
-            // à compléter
+      
 
         }
         protected override void InitialiserSommets()
@@ -216,20 +211,14 @@ namespace AtelierXNA
 
 
 
-        /// <summary>
-        /// Allows the game component to update itself.
-        /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
+       
         public override void Update(GameTime gameTime)
         {
-            // TODO: Add your update code here
+          
 
             base.Update(gameTime);
         }
-        public void ModifierPropriétaire(string nouvellePièce)
-        {
-
-        }
+        
 
     }
 }

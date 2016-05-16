@@ -12,22 +12,18 @@ using Microsoft.Xna.Framework.Media;
 
 namespace AtelierXNA
 {
-    /// <summary>
-    /// This is a game component that implements IUpdateable.
-    /// </summary>
+   
     public class Pions : Pieces
     {
-        //string Couleur { get; set; }
-        //bool estPremierMouvement = true;
-     
+          
         public Pions(Game game,Vector3 positioninitiale,string couleur)
             : base(game,positioninitiale,couleur,"/pawn")
         {
-           // Couleur = couleur;
+      
             
 
             
-            // TODO: Construct any child components here
+        
         }
         public override bool EstValidePion(Vector3 déplacement)
         {
@@ -41,14 +37,11 @@ namespace AtelierXNA
             }
         }
 
-        /// <summary>
-        /// Allows the game component to perform any initialization it needs to before starting
-        /// to run.  This is where it can query for any required services and load content.
-        /// </summary>
+      
         public override void Initialize()
         {
             
-            // TODO: Add your initialization code here
+            
 
             base.Initialize();
         }
@@ -70,10 +63,7 @@ namespace AtelierXNA
                     if (EstPremierMove)
                     {
                         condition = ((déplacement.Y == -(LARGEUR_CASES)) || (déplacement.Y == 2 * -LARGEUR_CASES)) && déplacement.X == 0;
-                        //if (condition == true)
-                        //{
-                        //   EstPremierMove = false;
-                        //}
+
                     }
                     else
                     {
@@ -92,10 +82,6 @@ namespace AtelierXNA
                     if (EstPremierMove)
                     {
                         condition = ((déplacement.Y == (LARGEUR_CASES)) || (déplacement.Y == 2 * LARGEUR_CASES)) && déplacement.X == 0;
-                        if (condition == true)
-                        {
-                           //EstPremierMove = false;
-                        }
                        
                          
                            
@@ -113,13 +99,10 @@ namespace AtelierXNA
             return condition;
         }
 
-        /// <summary>
-        /// Allows the game component to update itself.
-        /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
+       
         public override void Update(GameTime gameTime)
         {
-            // TODO: Add your update code here
+           
 
             base.Update(gameTime);
         }
